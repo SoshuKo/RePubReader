@@ -1,0 +1,361 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>『共和国物語』サーガ 閲覧サイト</title>
+  <style>
+    :root {
+      --bg: #f4efe5;
+      --panel: #fffdfa;
+      --ink: #1f1b16;
+      --muted: #74695c;
+      --line: #d4c9b8;
+      --accent: #9f2a2a;
+      --accent-2: #1f5c69;
+      --theme-choice: linear-gradient(transparent 60%, rgba(255, 215, 0, .45) 60%);
+      --theme-dialogue: linear-gradient(transparent 60%, rgba(135, 206, 250, .45) 60%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at 80% -20%, #e8d9bf, transparent 40%), var(--bg);
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "BIZ UDPMincho", serif;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 100vh;
+    }
+    aside {
+      border-right: 1px solid var(--line);
+      background: linear-gradient(180deg, #f7f0e2, #f4efe5);
+      padding: 16px;
+      overflow: auto;
+    }
+    main {
+      padding: 24px clamp(16px, 3vw, 42px);
+      overflow: auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      letter-spacing: .08em;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    nav a {
+      display: inline-block;
+      margin-right: 8px;
+      color: var(--accent-2);
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+    .tree details {
+      margin-bottom: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .tree summary {
+      cursor: pointer;
+      padding: 10px;
+      font-weight: 700;
+      background: #fdf9f1;
+    }
+    .section {
+      padding: 8px 10px;
+      border-top: 1px solid var(--line);
+    }
+    .section-title {
+      font-size: .9rem;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .episode-btn {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 9px;
+      margin: 0 0 6px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .episode-btn.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(159, 42, 42, .1);
+      background: #fff7f5;
+    }
+    .top-page {
+      display: grid;
+      gap: 14px;
+    }
+    .intro {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      padding: clamp(16px, 2vw, 24px);
+      line-height: 1.95;
+    }
+    .intro h2 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      color: var(--accent);
+    }
+    .intro h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      color: var(--accent-2);
+    }
+    .catch {
+      margin: 0 0 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .intro p { margin: 0; white-space: pre-line; }
+    .article-wrap { display: none; }
+    .article-head {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: end;
+      flex-wrap: wrap;
+    }
+    .article-head h2 { margin: 0 0 6px; font-size: 1.4rem; }
+    .article-head .trail { color: var(--muted); font-size: .92rem; }
+    .back-btn {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 10px;
+      background: #fff;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .article {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: clamp(16px, 2vw, 26px);
+      line-height: 1.95;
+    }
+    .article p { margin: 0 0 1em; }
+    .theme-choice { background: var(--theme-choice); }
+    .theme-dialogue { background: var(--theme-dialogue); }
+    .char-ref, .term-ref { text-decoration: underline; text-underline-offset: .18em; }
+    .empty {
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fffefa;
+    }
+    @media (max-width: 880px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { border-right: none; border-bottom: 1px solid var(--line); max-height: 42vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h1>『共和国物語』サーガ</h1>
+      <div class="meta">物語本編ビューア / JSON連携</div>
+      <nav>
+        <a href="index.html">トップ・本編</a>
+        <a href="characters.html">登場人物辞典</a>
+        <a href="glossary.html">用語辞典</a>
+      </nav>
+      <hr />
+      <div id="tree" class="tree" aria-label="目次"></div>
+    </aside>
+    <main>
+      <section id="topPage" class="top-page">
+        <article class="intro">
+          <h2>『共和国物語』サーガ</h2>
+          <p class="catch">次の100年も、その次も</p>
+          <p>架空の国家「カラベイ教導国」と「ハーロピノン共和国」などを舞台に、世代と国境を超えて紡がれる壮大な群像劇。
+理想の国家を追い求め、剣（デューレイ）と血で歴史を切り拓いた為政者たち。その歪な「幸せ」の定義に抗い、あるいは翻弄されながらも、自分たちの未来と日常を掴み取ろうとする若者たち。
+「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
+        </article>
+
+        <article class="intro">
+          <h3>カラバァタン共和国物語</h3>
+          <p class="catch">200メートル先、転向する兄弟</p>
+          <p>19世紀末から20世紀後半にかけてのカラバァタン共和国（後のカラベイ教導国）を舞台にした、血と陰謀の建国史。
+「天命の子」として生まれ、共和主義の洗脳から抜け出して絶対的な力で教導国を建国した初代・パラジェイ。その独裁と狂気に立ち向かい、対話による未来を模索したラカン・ライやビライン・アカネイたち。そして、愛する者のために自ら闇を担い、国を導こうとしたラデン・タネイとシャウン・アカウ。
+為政者たちが握る「狐色のナイフ」は誰の血を吸い、どこへ向かうのか。哀しくも美しい、初代から第五代に至る教導職たちの愛憎と、極限の剣戟（デューレイ）の軌跡を描く歴史叙事詩。</p>
+        </article>
+
+        <article class="intro">
+          <h3>ハーロピノン共和国物語</h3>
+          <p class="catch">Boy-Meets-Knife</p>
+          <p>舞台は1990年代のハーロピノン共和国・ヘリエン直轄市。マフィア「五天」、過激派学生組織「マンツァル」、秘密結社「ジューナー」など、さまざまな組織の思惑が入り乱れる無法地帯で、平凡な日常を守るために立ち上がった若者たちの物語。
+ヘリエン国立大学の弱小サークル「西アルトス研究会」に集った、国籍も身分もバラバラな学生たち。彼らは「パラジェイのナイフ」を巡る陰謀や、弱者を切り捨てる理不尽な法律、恐るべきウイルスの脅威に対し、受け継がれた剣術、圧倒的なディベート、そして揺るぎない友情を武器に立ち向かっていく。
+大人たちの都合で均されることを拒み、でこぼこな「幸せ」を掴み取るための熱き青春群像劇。</p>
+        </article>
+
+        <article class="intro">
+          <h3>ブックキーパー</h3>
+          <p class="catch">Like Business, Love 推し</p>
+          <p>世界の裏社会を掌握する犯罪組織「五天」。その最高幹部である「紫天」アーシャ・プリティヴィティと「青天」コト・テイル・アイテールを主役に据えたピカレスク・スピンオフ。
+激しい抗争から一息つき、ウォール連邦やアルモナ王国へと足を伸ばした二人の淑女。アーシャは「複式簿記」の論理と推し活に情熱を燃やし、コトは愛しの「旦那さま」への歪な愛と殺意を常に懐に忍ばせる。
+巨大アパレル企業とのビジネス商談、推しのライブへの参戦、そして因縁のマキャベリストとの遭遇。一見平和なバカンスの裏で、札束とナイフが乱れ飛ぶ。強烈な個性を持つ悪の幹部たちが織りなす、危険で華麗な裏社会のロードムービー。</p>
+        </article>
+      </section>
+
+      <section id="articleWrap" class="article-wrap">
+        <div class="article-head">
+          <div>
+            <h2 id="epTitle">読み込み中...</h2>
+            <div id="epTrail" class="trail"></div>
+          </div>
+          <button id="backTop" class="back-btn" type="button">トップページへ戻る</button>
+        </div>
+        <article id="epContent" class="article"></article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const state = {
+      data: null,
+      current: null,
+      buttons: []
+    };
+
+    const topPageEl = document.getElementById("topPage");
+    const articleWrapEl = document.getElementById("articleWrap");
+
+    function esc(text) {
+      return String(text ?? "").replace(/[&<>\"]/g, ch => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;"
+      }[ch]));
+    }
+
+    function showTop() {
+      topPageEl.style.display = "grid";
+      articleWrapEl.style.display = "none";
+      for (const btn of state.buttons) btn.classList.remove("active");
+      history.replaceState(null, "", "#top");
+    }
+
+    function showEpisode() {
+      topPageEl.style.display = "none";
+      articleWrapEl.style.display = "block";
+    }
+
+    function renderEpisode(work, section, ep) {
+      state.current = { work, section, ep };
+      showEpisode();
+      document.getElementById("epTitle").textContent = ep.label || ep.id || "無題";
+      document.getElementById("epTrail").textContent = `${work.title} / ${section.title}`;
+      const html = Array.isArray(ep.content)
+        ? ep.content.map(block => block.html || `<p>${esc(block.text || "")}</p>`).join("\n")
+        : "<p>本文データがありません。</p>";
+      document.getElementById("epContent").innerHTML = html;
+
+      for (const btn of state.buttons) {
+        const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
+        btn.classList.toggle("active", active);
+      }
+      location.hash = encodeURIComponent(`${work.id}::${section.id}::${ep.id}`);
+    }
+
+    function buildTree(data) {
+      const root = document.getElementById("tree");
+      root.innerHTML = "";
+      state.buttons = [];
+
+      if (!Array.isArray(data.works) || data.works.length === 0) {
+        root.innerHTML = '<div class="empty">作品データがありません。</div>';
+        return;
+      }
+
+      for (const work of data.works) {
+        const d = document.createElement("details");
+        d.open = true;
+        const s = document.createElement("summary");
+        s.textContent = work.title || work.id || "無題作品";
+        d.appendChild(s);
+
+        for (const section of (work.sections || [])) {
+          const box = document.createElement("div");
+          box.className = "section";
+          const h = document.createElement("p");
+          h.className = "section-title";
+          h.textContent = section.title || section.id || "無題セクション";
+          box.appendChild(h);
+
+          for (const ep of (section.episodes || [])) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "episode-btn";
+            btn.textContent = ep.label || ep.id || "EP";
+            btn.dataset.workid = work.id;
+            btn.dataset.sectionid = section.id;
+            btn.dataset.epid = ep.id;
+            btn.addEventListener("click", () => renderEpisode(work, section, ep));
+            box.appendChild(btn);
+            state.buttons.push(btn);
+          }
+          d.appendChild(box);
+        }
+        root.appendChild(d);
+      }
+
+      const fromHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+      if (!fromHash || fromHash === "top") {
+        showTop();
+        return;
+      }
+
+      const [wid, sid, eid] = fromHash.split("::");
+      for (const work of data.works) {
+        if (work.id !== wid) continue;
+        for (const section of (work.sections || [])) {
+          if (section.id !== sid) continue;
+          for (const ep of (section.episodes || [])) {
+            if (ep.id === eid) {
+              renderEpisode(work, section, ep);
+              return;
+            }
+          }
+        }
+      }
+
+      showTop();
+    }
+
+    async function boot() {
+      try {
+        const res = await fetch("./物語本編.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        state.data = await res.json();
+        buildTree(state.data);
+      } catch (e) {
+        document.getElementById("tree").innerHTML = `<div class="empty">読み込み失敗: ${esc(e.message)}</div>`;
+      }
+    }
+
+    document.getElementById("backTop").addEventListener("click", showTop);
+    window.addEventListener("hashchange", () => {
+      const h = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+      if (h === "top") showTop();
+    });
+
+    boot();
+  </script>
+</body>
+</html>
