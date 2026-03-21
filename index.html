@@ -88,7 +88,12 @@
       text-decoration: none;
       border-bottom: 1px dotted currentColor;
     }
-    .theme-toggle {
+    .toggle-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }    .theme-toggle {
       margin-top: 10px;
       border: 1px solid var(--line);
       border-radius: 999px;
@@ -346,15 +351,18 @@
 <body>
   <div class="layout">
     <aside>
-      <h1>『共和国物語』サーガ</h1>
-      <div class="meta">物語本編ビューア / JSON連携</div>
+      <h1 id="siteTitle">『共和国物語』サーガ</h1>
+      <div id="siteMeta" class="meta">物語本編ビューア / JSON連携</div>
       <nav>
-        <a href="index.html">トップ・本編</a>
-        <a href="characters.html">登場人物辞典</a>
-        <a href="glossary.html">用語辞典</a>
-        <a href="audiocommentary.html">オーディオコメンタリ</a>
+        <a id="navTop" href="index.html">トップ・本編</a>
+        <a id="navChars" href="characters.html">登場人物辞典</a>
+        <a id="navGloss" href="glossary.html">用語辞典</a>
+        <a id="navAudio" href="audiocommentary.html">オーディオコメンタリ</a>
       </nav>
-      <button id="themeToggle" class="theme-toggle" type="button">ダークモード</button>
+      <div class="toggle-row">
+        <button id="themeToggle" class="theme-toggle" type="button">ダークモード</button>
+        <button id="langToggle" class="theme-toggle" type="button">English</button>
+      </div>
       <hr />
       <div id="tree" class="tree" aria-label="目次"></div>
     </aside>
@@ -418,6 +426,65 @@
           <p style="margin-top:10px;"><a href="audiocommentary.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">オーディオコメンタリを開く</a></p>
         </article>
       </section>
+      <section id="topPageEn" class="top-page" style="display:none;">
+        <article class="intro">
+          <h2>Republica Saga</h2>
+          <p class="catch">For the next 100 years, and beyond.</p>
+          <p>Set in the fictional nations of the Instructional Nation of Kàlavé and the Harl-Lopinong Republic, this is a large-scale ensemble drama spanning generations and borders.
+Rulers who carved history with Duïlé and blood, and young people who resist or are swept up by those distorted definitions of “happiness,” struggling to seize their own future and daily life.
+A historical entertainment epic where politics, religion, mafia networks, and student movements intersect around two clashing ideals: painful decisions called “choice,” and harmony through dialogue.</p>
+          <p style="margin-top:10px;">Quick links: <a href="#work-karabatan-en">Kàlavatan Republica</a> / <a href="#work-haropinon-en">Harl-Lopinong Republica</a> / <a href="#work-bookkeeper-en">Bookkeeper</a></p>
+        </article>
+
+        <article class="intro">
+          <h3 id="work-karabatan-en">Kàlavatan Republica</h3>
+          <p class="catch">200 Meters Ahead, Brothers Turn Their Backs</p>
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./転向の橋の戦い.png" alt="Battle at the Bridge of Defection" loading="lazy" /></figure>
+            <div>
+              <p>A blood-soaked nation-building chronicle set in the Kàlavatan Republic, later the Instructional Nation of Kàlavé.
+From Pàlajé to Lakán Lài, Bïláin Àkané, Ládén Tané, and Shàun Akau, the era is defined by ambition, violence, and fragile hope.
+As the Foxinated Knife changes hands, the fate of the nation is rewritten again and again.</p>
+              <div class="share-links"><button class="share-link" type="button" data-share="karabatan">Share</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro">
+          <h3 id="work-haropinon-en">Harl-Lopinong Republica</h3>
+          <p class="catch">Boy-Meets-Knife</p>
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./寮生活とナイフ.png" alt="Dorm Life and Knife" loading="lazy" /></figure>
+            <div>
+              <p>In 1990s Hellén direct-controlled municipality, factions like Arza Fivejesa, Manccar, and Gúenar collide.
+Students at Hellén National University and the West Altos Researching Club stand against conspiracy, unjust laws, and the Glúck Virus.
+A youth ensemble story about choosing an uneven but genuine happiness.</p>
+              <div class="share-links"><button class="share-link" type="button" data-share="haropinon">Share</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro">
+          <h3 id="work-bookkeeper-en">Bookkeeper</h3>
+          <p class="catch">Like Business, Love Oshi</p>
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./ポートフォリオ.png" alt="Portfolio" loading="lazy" /></figure>
+            <div>
+              <p>A picaresque spin-off starring Arsha Pritiviti (Arza Shon) and Koto tál Aitēl (Arza Nil), senior figures of Arza Fivejesa.
+From high-stakes business to dangerous reunions, money and knives fly beneath a polished vacation surface.
+A stylish underworld road movie with lethal charm.</p>
+              <div class="share-links"><button class="share-link" type="button" data-share="bookkeeper">Share</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro">
+          <h3>English Pages</h3>
+          <p class="catch">Under Construction</p>
+          <p>Characters / Glossary / Audio Commentary in English are currently under development.（実装中）</p>
+          <p style="margin-top:10px;"><a href="./en-under-construction.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">Open English Status</a></p>
+        </article>
+      </section>
       <section id="shareModal" class="share-modal" aria-hidden="true">
         <div class="share-box">
           <h4 id="shareTitle">SNSで共有</h4>
@@ -454,7 +521,7 @@
     </main>
   </div>
 
-    <script>
+      <script>
     const state = {
       data: null,
       current: null,
@@ -465,12 +532,23 @@
 
     const STORAGE_THEME = "repub_theme_v1";
     const STORAGE_READ = "repub_read_episodes_v1";
+    const STORAGE_LANG = "repub_lang_v1";
+    let currentLang = "ja";
 
     const topPageEl = document.getElementById("topPage");
+    const topPageEnEl = document.getElementById("topPageEn");
     const articleWrapEl = document.getElementById("articleWrap");
     const mainEl = document.querySelector("main");
     const themeToggle = document.getElementById("themeToggle");
+    const langToggle = document.getElementById("langToggle");
     const shareEpisodeBtn = document.getElementById("shareEpisode");
+    const treeEl = document.getElementById("tree");
+    const siteTitleEl = document.getElementById("siteTitle");
+    const siteMetaEl = document.getElementById("siteMeta");
+    const navTop = document.getElementById("navTop");
+    const navChars = document.getElementById("navChars");
+    const navGloss = document.getElementById("navGloss");
+    const navAudio = document.getElementById("navAudio");
 
     const shareModal = document.getElementById("shareModal");
     const shareTitle = document.getElementById("shareTitle");
@@ -561,8 +639,63 @@
       }
     }
 
+    function englishLink(kind) {
+      return `./en-under-construction.html?page=${encodeURIComponent(kind)}`;
+    }
+
+    function applyLanguage(lang) {
+      currentLang = lang === "en" ? "en" : "ja";
+      document.documentElement.setAttribute("lang", currentLang);
+
+      if (langToggle) langToggle.textContent = currentLang === "en" ? "日本語" : "English";
+      if (siteTitleEl) siteTitleEl.textContent = currentLang === "en" ? "Republica Saga" : "『共和国物語』サーガ";
+      if (siteMetaEl) siteMetaEl.textContent = currentLang === "en" ? "Story Reader / JSON" : "物語本編ビューア / JSON連携";
+
+      if (navTop) {
+        navTop.textContent = currentLang === "en" ? "Top / Story" : "トップ・本編";
+        navTop.href = "index.html";
+      }
+      if (navChars) {
+        navChars.textContent = currentLang === "en" ? "Characters" : "登場人物辞典";
+        navChars.href = currentLang === "en" ? englishLink("characters") : "characters.html";
+      }
+      if (navGloss) {
+        navGloss.textContent = currentLang === "en" ? "Glossary" : "用語辞典";
+        navGloss.href = currentLang === "en" ? englishLink("glossary") : "glossary.html";
+      }
+      if (navAudio) {
+        navAudio.textContent = currentLang === "en" ? "Audio Commentary" : "オーディオコメンタリ";
+        navAudio.href = currentLang === "en" ? englishLink("audiocommentary") : "audiocommentary.html";
+      }
+
+      if (currentLang === "en") {
+        treeEl.innerHTML = '<div class="empty">English story JSON is under construction.（実装中）</div>';
+      } else if (state.data) {
+        buildTree(state.data);
+      }
+
+      showTop();
+    }
+
+    function initLanguage() {
+      const qLang = new URLSearchParams(location.search).get("lang");
+      let lang = qLang || localStorage.getItem(STORAGE_LANG) || "ja";
+      if (lang !== "en") lang = "ja";
+      localStorage.setItem(STORAGE_LANG, lang);
+      applyLanguage(lang);
+
+      if (langToggle) {
+        langToggle.addEventListener("click", () => {
+          const next = currentLang === "en" ? "ja" : "en";
+          localStorage.setItem(STORAGE_LANG, next);
+          applyLanguage(next);
+        });
+      }
+    }
+
     function showTop() {
-      topPageEl.style.display = "grid";
+      topPageEl.style.display = currentLang === "en" ? "none" : "grid";
+      if (topPageEnEl) topPageEnEl.style.display = currentLang === "en" ? "grid" : "none";
       articleWrapEl.style.display = "none";
       for (const btn of state.buttons) btn.classList.remove("active");
       history.replaceState(null, "", "#top");
@@ -570,6 +703,7 @@
 
     function showEpisode() {
       topPageEl.style.display = "none";
+      if (topPageEnEl) topPageEnEl.style.display = "none";
       articleWrapEl.style.display = "block";
     }
 
@@ -611,6 +745,14 @@
     }
 
     function renderEpisode(work, section, ep) {
+      if (currentLang === "en") {
+        showEpisode();
+        document.getElementById("epTitle").textContent = "Under Construction";
+        document.getElementById("epTrail").textContent = "English story text is under construction.";
+        document.getElementById("epContent").innerHTML = "<p>English JSON implementation is in progress.（実装中）</p>";
+        return;
+      }
+
       state.current = { work, section, ep };
       state.currentKey = episodeKey(work, section, ep);
       showEpisode();
@@ -631,7 +773,12 @@
     }
 
     function buildTree(data) {
-      const root = document.getElementById("tree");
+      if (currentLang === "en") {
+        treeEl.innerHTML = '<div class="empty">English story JSON is under construction.（実装中）</div>';
+        return;
+      }
+
+      const root = treeEl;
       root.innerHTML = "";
       state.buttons = [];
 
@@ -710,7 +857,7 @@
         state.data = await res.json();
         buildTree(state.data);
       } catch (e) {
-        document.getElementById("tree").innerHTML = `<div class="empty">読み込み失敗: ${esc(e.message)}</div>`;
+        treeEl.innerHTML = `<div class="empty">読み込み失敗: ${esc(e.message)}</div>`;
       }
     }
 
@@ -727,6 +874,10 @@
     });
 
     shareEpisodeBtn.addEventListener("click", () => {
+      if (currentLang === "en") {
+        alert("English episode sharing is under construction.（実装中）");
+        return;
+      }
       if (!state.current) return;
       const key = workShareKey(state.current.work.id);
       const base = shareMap[key];
@@ -785,10 +936,17 @@
 
     loadReadSet();
     initTheme();
+    initLanguage();
     boot();
   </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
