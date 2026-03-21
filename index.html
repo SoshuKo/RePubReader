@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>『共和国物語』サーガ 閲覧サイト</title>
+    <meta name="description" content="『200メートル先、転向する兄弟/Boy-Meets-Knife』100年に渡る血と運命の物語。" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/index.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/index.html" />
+  <meta property="og:title" content="『共和国物語』サーガ | 公式閲覧サイト" />
+  <meta property="og:description" content="『200メートル先、転向する兄弟/Boy-Meets-Knife』100年に渡る血と運命の物語。" />
+  <meta property="og:image" content="./転向の橋の戦い.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="『共和国物語』サーガ | 公式閲覧サイト" />
+  <meta name="twitter:description" content="『200メートル先、転向する兄弟/Boy-Meets-Knife』100年に渡る血と運命の物語。" />
+  <meta name="twitter:image" content="./転向の橋の戦い.png" />
+  <title>『共和国物語』サーガ | 公式閲覧サイト</title>
+  <link rel="icon" type="image/png" href="./アイコン.png" />
   <style>
     :root {
       --bg: #f4efe5;
@@ -122,6 +134,75 @@
       letter-spacing: .04em;
     }
     .intro p { margin: 0; white-space: pre-line; }
+    .intro-media-wrap {
+      display: grid;
+      grid-template-columns: minmax(220px, 360px) 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .intro-media {
+      margin: 0;
+      width: 320px;
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+    }
+    .intro-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #f1ece4;
+    }
+    .share-links {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .share-link {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--accent-2);
+      background: #fff;
+      font-size: .9rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .share-link:hover { background: #f7f1e7; }
+    .share-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.38);
+      z-index: 120;
+      padding: 12px;
+    }
+    .share-modal.open { display: flex; }
+    .share-box {
+      width: min(460px, 96vw);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 14px;
+    }
+    .share-box h4 { margin: 0 0 10px; font-size: 1rem; }
+    .share-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .share-actions button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 7px 10px;
+      cursor: pointer;
+      font: inherit;
+    }
+    .share-note { margin-top: 10px; color: var(--muted); font-size: .85rem; }
     .article-wrap { display: none; }
     .article-head {
       padding-bottom: 12px;
@@ -164,8 +245,33 @@
     @media (max-width: 880px) {
       .layout { grid-template-columns: 1fr; }
       aside { border-right: none; border-bottom: 1px solid var(--line); max-height: 42vh; }
+      .intro-media-wrap { grid-template-columns: 1fr; }
+      .intro-media { width: 100%; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "『共和国物語』サーガ",
+        "url": "https://soshuko.github.io/RePubReader/index.html",
+        "inLanguage": "ja"
+      },
+      {
+        "@type": "CreativeWorkSeries",
+        "name": "『共和国物語』サーガ",
+        "url": "https://soshuko.github.io/RePubReader/index.html",
+        "workExample": [
+          {"@type":"CreativeWork","name":"カラバァタン共和国物語","url":"/share-karabatan.html"},
+          {"@type":"CreativeWork","name":"ハーロピノン共和国物語","url":"/share-haropinon.html"},
+          {"@type":"CreativeWork","name":"ブックキーパー","url":"/share-bookkeeper.html"}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="layout">
@@ -189,30 +295,49 @@
           <p>架空の国家「カラベイ教導国」と「ハーロピノン共和国」などを舞台に、世代と国境を超えて紡がれる壮大な群像劇。
 理想の国家を追い求め、剣（デューレイ）と血で歴史を切り拓いた為政者たち。その歪な「幸せ」の定義に抗い、あるいは翻弄されながらも、自分たちの未来と日常を掴み取ろうとする若者たち。
 「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
+          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="characters.html">登場人物辞典</a> / <a href="glossary.html">用語辞典</a> / <a href="audiocommentary.html">オーディオコメンタリ</a></p>
         </article>
 
         <article class="intro">
-          <h3>カラバァタン共和国物語</h3>
+          <h3 id="work-karabatan">カラバァタン共和国物語</h3>
           <p class="catch">200メートル先、転向する兄弟</p>
-          <p>19世紀末から20世紀後半にかけてのカラバァタン共和国（後のカラベイ教導国）を舞台にした、血と陰謀の建国史。
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./転向の橋の戦い.png" alt="転向の橋の戦い" loading="lazy" /></figure>
+            <div>
+              <p>19世紀末から20世紀後半にかけてのカラバァタン共和国（後のカラベイ教導国）を舞台にした、血と陰謀の建国史。
 「天命の子」として生まれ、共和主義の洗脳から抜け出して絶対的な力で教導国を建国した初代・パラジェイ。その独裁と狂気に立ち向かい、対話による未来を模索したラカン・ライやビライン・アカネイたち。そして、愛する者のために自ら闇を担い、国を導こうとしたラデン・タネイとシャウン・アカウ。
 為政者たちが握る「狐色のナイフ」は誰の血を吸い、どこへ向かうのか。哀しくも美しい、初代から第五代に至る教導職たちの愛憎と、極限の剣戟（デューレイ）の軌跡を描く歴史叙事詩。</p>
+              <div class="share-links"><button class="share-link" type="button" data-share="karabatan">SNSで共有</button></div>
+            </div>
+          </div>
         </article>
 
         <article class="intro">
-          <h3>ハーロピノン共和国物語</h3>
+          <h3 id="work-haropinon">ハーロピノン共和国物語</h3>
           <p class="catch">Boy-Meets-Knife</p>
-          <p>舞台は1990年代のハーロピノン共和国・ヘリエン直轄市。マフィア「五天」、過激派学生組織「マンツァル」、秘密結社「ジューナー」など、さまざまな組織の思惑が入り乱れる無法地帯で、平凡な日常を守るために立ち上がった若者たちの物語。
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./寮生活とナイフ.png" alt="寮生活とナイフ" loading="lazy" /></figure>
+            <div>
+              <p>舞台は1990年代のハーロピノン共和国・ヘリエン直轄市。マフィア「五天」、過激派学生組織「マンツァル」、秘密結社「ジューナー」など、さまざまな組織の思惑が入り乱れる無法地帯で、平凡な日常を守るために立ち上がった若者たちの物語。
 ヘリエン国立大学の弱小サークル「西アルトス研究会」に集った、国籍も身分もバラバラな学生たち。彼らは「パラジェイのナイフ」を巡る陰謀や、弱者を切り捨てる理不尽な法律、恐るべきウイルスの脅威に対し、受け継がれた剣術、圧倒的なディベート、そして揺るぎない友情を武器に立ち向かっていく。
 大人たちの都合で均されることを拒み、でこぼこな「幸せ」を掴み取るための熱き青春群像劇。</p>
+              <div class="share-links"><button class="share-link" type="button" data-share="haropinon">SNSで共有</button></div>
+            </div>
+          </div>
         </article>
 
         <article class="intro">
-          <h3>ブックキーパー</h3>
+          <h3 id="work-bookkeeper">ブックキーパー</h3>
           <p class="catch">Like Business, Love 推し</p>
-          <p>世界の裏社会を掌握する犯罪組織「五天」。その最高幹部である「紫天」アーシャ・プリティヴィティと「青天」コト・テイル・アイテールを主役に据えたピカレスク・スピンオフ。
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./ポートフォリオ.png" alt="ポートフォリオ" loading="lazy" /></figure>
+            <div>
+              <p>世界の裏社会を掌握する犯罪組織「五天」。その最高幹部である「紫天」アーシャ・プリティヴィティと「青天」コト・テイル・アイテールを主役に据えたピカレスク・スピンオフ。
 激しい抗争から一息つき、ウォール連邦やアルモナ王国へと足を伸ばした二人の淑女。アーシャは「複式簿記」の論理と推し活に情熱を燃やし、コトは愛しの「旦那さま」への歪な愛と殺意を常に懐に忍ばせる。
 巨大アパレル企業とのビジネス商談、推しのライブへの参戦、そして因縁のマキャベリストとの遭遇。一見平和なバカンスの裏で、札束とナイフが乱れ飛ぶ。強烈な個性を持つ悪の幹部たちが織りなす、危険で華麗な裏社会のロードムービー。</p>
+              <div class="share-links"><button class="share-link" type="button" data-share="bookkeeper">SNSで共有</button></div>
+            </div>
+          </div>
         </article>
 
         <article class="intro">
@@ -222,7 +347,20 @@
           <p style="margin-top:10px;"><a href="audiocommentary.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">オーディオコメンタリを開く</a></p>
         </article>
       </section>
-
+      <section id="shareModal" class="share-modal" aria-hidden="true">
+        <div class="share-box">
+          <h4 id="shareTitle">SNSで共有</h4>
+          <div class="share-actions">
+            <button type="button" id="shareX">X</button>
+            <button type="button" id="shareLine">LINE</button>
+            <button type="button" id="shareFb">Facebook</button>
+            <button type="button" id="shareCopy">リンクをコピー</button>
+            <button type="button" id="shareNative">共有...</button>
+            <button type="button" id="shareClose">閉じる</button>
+          </div>
+          <p class="share-note">作品ごとにSNSカード画像が切り替わる専用URLを共有します。</p>
+        </div>
+      </section>
       <section id="articleWrap" class="article-wrap">
         <div class="article-head">
           <div>
@@ -363,8 +501,119 @@
       if (h === "top") showTop();
     });
 
+
+    const shareModal = document.getElementById("shareModal");
+    const shareTitle = document.getElementById("shareTitle");
+    const shareX = document.getElementById("shareX");
+    const shareLine = document.getElementById("shareLine");
+    const shareFb = document.getElementById("shareFb");
+    const shareCopy = document.getElementById("shareCopy");
+    const shareNative = document.getElementById("shareNative");
+    const shareClose = document.getElementById("shareClose");
+
+    const shareMap = {
+      karabatan: {
+        label: "カラバァタン共和国物語",
+        path: "./share-karabatan.html",
+        text: "カラバァタン共和国物語『200メートル先、転向する兄弟』"
+      },
+      haropinon: {
+        label: "ハーロピノン共和国物語",
+        path: "./share-haropinon.html",
+        text: "ハーロピノン共和国物語『Boy-Meets-Knife』"
+      },
+      bookkeeper: {
+        label: "ブックキーパー",
+        path: "./share-bookkeeper.html",
+        text: "ブックキーパー『Like Business, Love 推し』"
+      }
+    };
+
+    let currentShare = null;
+
+    function openWindow(url) {
+      window.open(url, "_blank", "noopener,noreferrer,width=720,height=640");
+    }
+
+    function currentShareUrl() {
+      return currentShare ? new URL(currentShare.path, window.location.href).href : window.location.href;
+    }
+
+    function openShareModal(key) {
+      const item = shareMap[key];
+      if (!item) return;
+      currentShare = item;
+      shareTitle.textContent = `${item.label} を共有`;
+      shareModal.classList.add("open");
+      shareModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeShareModal() {
+      shareModal.classList.remove("open");
+      shareModal.setAttribute("aria-hidden", "true");
+      currentShare = null;
+    }
+
+    document.querySelectorAll(".share-link[data-share]").forEach((btn) => {
+      btn.addEventListener("click", () => openShareModal(btn.dataset.share));
+    });
+
+    shareX.addEventListener("click", () => {
+      if (!currentShare) return;
+      const u = encodeURIComponent(currentShareUrl());
+      const t = encodeURIComponent(currentShare.text);
+      openWindow(`https://twitter.com/intent/tweet?url=${u}&text=${t}`);
+    });
+
+    shareLine.addEventListener("click", () => {
+      if (!currentShare) return;
+      const u = encodeURIComponent(currentShareUrl());
+      openWindow(`https://social-plugins.line.me/lineit/share?url=${u}`);
+    });
+
+    shareFb.addEventListener("click", () => {
+      if (!currentShare) return;
+      const u = encodeURIComponent(currentShareUrl());
+      openWindow(`https://www.facebook.com/sharer/sharer.php?u=${u}`);
+    });
+
+    shareCopy.addEventListener("click", async () => {
+      if (!currentShare) return;
+      try {
+        await navigator.clipboard.writeText(currentShareUrl());
+        shareCopy.textContent = "コピーしました";
+        setTimeout(() => { shareCopy.textContent = "リンクをコピー"; }, 1200);
+      } catch (_) {
+        alert("コピーに失敗しました。");
+      }
+    });
+
+    shareNative.addEventListener("click", async () => {
+      if (!currentShare) return;
+      if (!navigator.share) {
+        alert("この端末ではネイティブ共有が使えません。");
+        return;
+      }
+      try {
+        await navigator.share({ title: currentShare.label, text: currentShare.text, url: currentShareUrl() });
+      } catch (_) {}
+    });
+
+    shareClose.addEventListener("click", closeShareModal);
+    shareModal.addEventListener("click", (e) => { if (e.target === shareModal) closeShareModal(); });
     boot();
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
