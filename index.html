@@ -30,10 +30,20 @@
       --theme-dialogue: linear-gradient(transparent 60%, rgba(135, 206, 250, .45) 60%);
     }
     * { box-sizing: border-box; }
+    html[data-theme="dark"] {
+      --bg: #1a1713;
+      --bg-spot: #3d3326;
+      --panel: #25211b;
+      --ink: #f1e9de;
+      --muted: #c0b19d;
+      --line: #4a3f33;
+      --accent: #e08b8b;
+      --accent-2: #8ad7f2;
+    }
     body {
       margin: 0;
       color: var(--ink);
-      background: radial-gradient(circle at 80% -20%, #e8d9bf, transparent 40%), var(--bg);
+      background: radial-gradient(circle at 80% -20%, var(--bg-spot), transparent 40%), var(--bg);
       font-family: "Hiragino Mincho ProN", "Yu Mincho", "BIZ UDPMincho", serif;
     }
     .layout {
@@ -43,7 +53,7 @@
     }
     aside {
       border-right: 1px solid var(--line);
-      background: linear-gradient(180deg, #f7f0e2, #f4efe5);
+      background: linear-gradient(180deg, var(--panel), var(--bg));
       padding: 16px;
       overflow: auto;
     }
@@ -69,7 +79,17 @@
       text-decoration: none;
       border-bottom: 1px dotted currentColor;
     }
-    .tree details {
+    .theme-toggle {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--ink);
+      padding: 6px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: .86rem;
+    }    .tree details {
       margin-bottom: 8px;
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -80,7 +100,7 @@
       cursor: pointer;
       padding: 10px;
       font-weight: 700;
-      background: #fdf9f1;
+      background: var(--panel);
     }
     .section {
       padding: 8px 10px;
@@ -98,7 +118,7 @@
       border-radius: 8px;
       padding: 7px 9px;
       margin: 0 0 6px;
-      background: #fff;
+      background: var(--panel);
       color: var(--ink);
       cursor: pointer;
       font-family: inherit;
@@ -108,7 +128,20 @@
       box-shadow: 0 0 0 2px rgba(159, 42, 42, .1);
       background: #fff7f5;
     }
-    .top-page {
+    .episode-btn.read-done {
+      border-color: #8b7d66;
+      position: relative;
+    }
+    .episode-btn.read-done::after {
+      content: "既読";
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .72rem;
+      color: #6f644f;
+      opacity: .9;
+    }    .top-page {
       display: grid;
       gap: 14px;
     }
@@ -169,7 +202,7 @@
       border-radius: 8px;
       text-decoration: none;
       color: var(--accent-2);
-      background: #fff;
+      background: var(--panel);
       font-size: .9rem;
       font-family: inherit;
       cursor: pointer;
@@ -190,7 +223,7 @@
       width: min(460px, 96vw);
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: #fff;
+      background: var(--panel);
       padding: 14px;
     }
     .share-box h4 { margin: 0 0 10px; font-size: 1rem; }
@@ -198,7 +231,7 @@
     .share-actions button {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #fff;
+      background: var(--panel);
       padding: 7px 10px;
       cursor: pointer;
       font: inherit;
@@ -221,11 +254,25 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 6px 10px;
-      background: #fff;
+      background: var(--panel);
       cursor: pointer;
       font-family: inherit;
     }
-    .article {
+    .article-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .share-ep-btn {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 10px;
+      background: var(--panel);
+      color: var(--ink);
+      cursor: pointer;
+      font-family: inherit;
+    }    .article {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -236,12 +283,25 @@
     .theme-choice { background: var(--theme-choice); }
     .theme-dialogue { background: var(--theme-dialogue); }
     .char-ref, .term-ref { text-decoration: underline; text-underline-offset: .18em; }
+    .site-footer {
+      margin-top: 18px;
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.6;
+    }
+    .site-footer a {
+      color: var(--accent-2);
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
     .empty {
       color: var(--muted);
       border: 1px dashed var(--line);
       border-radius: 10px;
       padding: 14px;
-      background: #fffefa;
+      background: var(--panel);
     }
     @media (max-width: 880px) {
       .layout { grid-template-columns: 1fr; }
@@ -285,6 +345,7 @@
         <a href="glossary.html">用語辞典</a>
         <a href="audiocommentary.html">オーディオコメンタリ</a>
       </nav>
+      <button id="themeToggle" class="theme-toggle" type="button">ダークモード</button>
       <hr />
       <div id="tree" class="tree" aria-label="目次"></div>
     </aside>
@@ -368,27 +429,127 @@
             <h2 id="epTitle">読み込み中...</h2>
             <div id="epTrail" class="trail"></div>
           </div>
-          <button id="backTop" class="back-btn" type="button">トップページへ戻る</button>
+          <div class="article-actions">
+            <button id="shareEpisode" class="share-ep-btn" type="button">この話を共有</button>
+            <button id="backTop" class="back-btn" type="button">トップページへ戻る</button>
+          </div>
         </div>
         <article id="epContent" class="article"></article>
       </section>
+
+      <footer class="site-footer">
+        <div><strong>RePubS</strong> (<a href="https://twitter.com/PubRe26174" target="_blank" rel="noopener noreferrer">@PubRe26174</a>)</div>
+        <div>© 2026 RePubS.</div>
+        <div>Except where otherwise noted, the text of this story is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Images and other assets are all rights reserved.</div>
+      </footer>
     </main>
   </div>
 
-  <script>
+    <script>
     const state = {
       data: null,
       current: null,
-      buttons: []
+      currentKey: null,
+      buttons: [],
+      readSet: new Set()
     };
+
+    const STORAGE_THEME = "repub_theme_v1";
+    const STORAGE_READ = "repub_read_episodes_v1";
 
     const topPageEl = document.getElementById("topPage");
     const articleWrapEl = document.getElementById("articleWrap");
+    const mainEl = document.querySelector("main");
+    const themeToggle = document.getElementById("themeToggle");
+    const shareEpisodeBtn = document.getElementById("shareEpisode");
+
+    const shareModal = document.getElementById("shareModal");
+    const shareTitle = document.getElementById("shareTitle");
+    const shareX = document.getElementById("shareX");
+    const shareLine = document.getElementById("shareLine");
+    const shareFb = document.getElementById("shareFb");
+    const shareCopy = document.getElementById("shareCopy");
+    const shareNative = document.getElementById("shareNative");
+    const shareClose = document.getElementById("shareClose");
+
+    const shareMap = {
+      karabatan: {
+        label: "カラバァタン共和国物語",
+        path: "./share-karabatan.html",
+        text: "カラバァタン共和国物語『200メートル先、転向する兄弟』"
+      },
+      haropinon: {
+        label: "ハーロピノン共和国物語",
+        path: "./share-haropinon.html",
+        text: "ハーロピノン共和国物語『Boy-Meets-Knife』"
+      },
+      bookkeeper: {
+        label: "ブックキーパー",
+        path: "./share-bookkeeper.html",
+        text: "ブックキーパー『Like Business, Love 推し』"
+      }
+    };
+
+    let currentShare = null;
 
     function esc(text) {
       return String(text ?? "").replace(/[&<>\"]/g, ch => ({
         "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;"
       }[ch]));
+    }
+
+    function loadReadSet() {
+      try {
+        const raw = localStorage.getItem(STORAGE_READ);
+        if (!raw) return;
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr)) state.readSet = new Set(arr);
+      } catch (_) {}
+    }
+
+    function saveReadSet() {
+      try {
+        localStorage.setItem(STORAGE_READ, JSON.stringify([...state.readSet]));
+      } catch (_) {}
+    }
+
+    function episodeKey(work, section, ep) {
+      return `${work.id}::${section.id}::${ep.id}`;
+    }
+
+    function updateReadBadge(btn) {
+      const key = btn.dataset.epkey;
+      btn.classList.toggle("read-done", !!key && state.readSet.has(key));
+    }
+
+    function markCurrentEpisodeRead() {
+      if (!state.currentKey) return;
+      if (state.readSet.has(state.currentKey)) return;
+      state.readSet.add(state.currentKey);
+      saveReadSet();
+      for (const btn of state.buttons) updateReadBadge(btn);
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      if (themeToggle) {
+        themeToggle.textContent = theme === "dark" ? "ライトモード" : "ダークモード";
+      }
+    }
+
+    function initTheme() {
+      let theme = localStorage.getItem(STORAGE_THEME);
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      applyTheme(theme);
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          applyTheme(next);
+          localStorage.setItem(STORAGE_THEME, next);
+        });
+      }
     }
 
     function showTop() {
@@ -403,9 +564,48 @@
       articleWrapEl.style.display = "block";
     }
 
+    function workShareKey(workId) {
+      const id = String(workId || "");
+      if (id.includes("カラバァタン")) return "karabatan";
+      if (id.includes("ハーロピノン")) return "haropinon";
+      return "bookkeeper";
+    }
+
+    function openWindow(url) {
+      window.open(url, "_blank", "noopener,noreferrer,width=720,height=640");
+    }
+
+    function currentShareUrl() {
+      if (!currentShare) return window.location.href;
+      const u = new URL(currentShare.path, window.location.href);
+      if (currentShare.epKey) u.searchParams.set("ep", currentShare.epKey);
+      return u.href;
+    }
+
+    function openShareModalItem(item) {
+      currentShare = item;
+      shareTitle.textContent = `${item.label} を共有`;
+      shareModal.classList.add("open");
+      shareModal.setAttribute("aria-hidden", "false");
+    }
+
+    function openShareModal(key) {
+      const item = shareMap[key];
+      if (!item) return;
+      openShareModalItem({ ...item });
+    }
+
+    function closeShareModal() {
+      shareModal.classList.remove("open");
+      shareModal.setAttribute("aria-hidden", "true");
+      currentShare = null;
+    }
+
     function renderEpisode(work, section, ep) {
       state.current = { work, section, ep };
+      state.currentKey = episodeKey(work, section, ep);
       showEpisode();
+
       document.getElementById("epTitle").textContent = ep.label || ep.id || "無題";
       document.getElementById("epTrail").textContent = `${work.title} / ${section.title}`;
       const html = Array.isArray(ep.content)
@@ -416,8 +616,9 @@
       for (const btn of state.buttons) {
         const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
         btn.classList.toggle("active", active);
+        updateReadBadge(btn);
       }
-      location.hash = encodeURIComponent(`${work.id}::${section.id}::${ep.id}`);
+      location.hash = encodeURIComponent(state.currentKey);
     }
 
     function buildTree(data) {
@@ -453,7 +654,9 @@
             btn.dataset.workid = work.id;
             btn.dataset.sectionid = section.id;
             btn.dataset.epid = ep.id;
+            btn.dataset.epkey = episodeKey(work, section, ep);
             btn.addEventListener("click", () => renderEpisode(work, section, ep));
+            updateReadBadge(btn);
             box.appendChild(btn);
             state.buttons.push(btn);
           }
@@ -485,6 +688,12 @@
       showTop();
     }
 
+    function handleMainScroll() {
+      if (articleWrapEl.style.display !== "block") return;
+      const nearBottom = mainEl.scrollTop + mainEl.clientHeight >= mainEl.scrollHeight - 8;
+      if (nearBottom) markCurrentEpisodeRead();
+    }
+
     async function boot() {
       try {
         const res = await fetch("./物語本編.json", { cache: "no-store" });
@@ -497,73 +706,35 @@
     }
 
     document.getElementById("backTop").addEventListener("click", showTop);
+    mainEl.addEventListener("scroll", handleMainScroll, { passive: true });
+
     window.addEventListener("hashchange", () => {
       const h = decodeURIComponent((location.hash || "").replace(/^#/, ""));
       if (h === "top") showTop();
     });
 
-
-    const shareModal = document.getElementById("shareModal");
-    const shareTitle = document.getElementById("shareTitle");
-    const shareX = document.getElementById("shareX");
-    const shareLine = document.getElementById("shareLine");
-    const shareFb = document.getElementById("shareFb");
-    const shareCopy = document.getElementById("shareCopy");
-    const shareNative = document.getElementById("shareNative");
-    const shareClose = document.getElementById("shareClose");
-
-    const shareMap = {
-      karabatan: {
-        label: "カラバァタン共和国物語",
-        path: "./share-karabatan.html",
-        text: "カラバァタン共和国物語『200メートル先、転向する兄弟』"
-      },
-      haropinon: {
-        label: "ハーロピノン共和国物語",
-        path: "./share-haropinon.html",
-        text: "ハーロピノン共和国物語『Boy-Meets-Knife』"
-      },
-      bookkeeper: {
-        label: "ブックキーパー",
-        path: "./share-bookkeeper.html",
-        text: "ブックキーパー『Like Business, Love 推し』"
-      }
-    };
-
-    let currentShare = null;
-
-    function openWindow(url) {
-      window.open(url, "_blank", "noopener,noreferrer,width=720,height=640");
-    }
-
-    function currentShareUrl() {
-      return currentShare ? new URL(currentShare.path, window.location.href).href : window.location.href;
-    }
-
-    function openShareModal(key) {
-      const item = shareMap[key];
-      if (!item) return;
-      currentShare = item;
-      shareTitle.textContent = `${item.label} を共有`;
-      shareModal.classList.add("open");
-      shareModal.setAttribute("aria-hidden", "false");
-    }
-
-    function closeShareModal() {
-      shareModal.classList.remove("open");
-      shareModal.setAttribute("aria-hidden", "true");
-      currentShare = null;
-    }
-
     document.querySelectorAll(".share-link[data-share]").forEach((btn) => {
       btn.addEventListener("click", () => openShareModal(btn.dataset.share));
+    });
+
+    shareEpisodeBtn.addEventListener("click", () => {
+      if (!state.current) return;
+      const key = workShareKey(state.current.work.id);
+      const base = shareMap[key];
+      const label = `${state.current.work.title} ${state.current.ep.label || state.current.ep.id}`;
+      openShareModalItem({
+        label,
+        path: base.path,
+        text: `${label} を共有`,
+        epKey: state.currentKey
+      });
     });
 
     shareX.addEventListener("click", () => {
       if (!currentShare) return;
       const u = encodeURIComponent(currentShareUrl());
-      const t = encodeURIComponent(currentShare.text);
-      openWindow(`https://twitter.com/intent/tweet?url=${u}&text=${t}`);
+      const tt = encodeURIComponent(currentShare.text || currentShare.label || "");
+      openWindow(`https://twitter.com/intent/tweet?url=${u}&text=${tt}`);
     });
 
     shareLine.addEventListener("click", () => {
@@ -602,10 +773,19 @@
 
     shareClose.addEventListener("click", closeShareModal);
     shareModal.addEventListener("click", (e) => { if (e.target === shareModal) closeShareModal(); });
+
+    loadReadSet();
+    initTheme();
     boot();
   </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 

@@ -18,9 +18,18 @@
   <link rel="icon" type="image/png" href="./アイコン.png" />
 </head>
 <body>
-  <p><a href="./index.html#top">トップページへ戻る</a></p>
+  <p><a id="jumpLink" href="./index.html#top">本文ページへ移動</a></p>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const ep = params.get("ep");
+    const hash = ep ? `#${encodeURIComponent(ep)}` : "#top";
+    const target = `./index.html${hash}`;
+    document.getElementById("jumpLink").href = target;
+    location.replace(target);
+  </script>
 </body>
 </html>
+
 
 
 
