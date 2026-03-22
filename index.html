@@ -924,10 +924,8 @@ A stylish underworld road movie with lethal charm.</p>
       if (articleWrapEl.style.display !== "block") return;
       const nearBottom = mainEl.scrollTop + mainEl.clientHeight >= mainEl.scrollHeight - 8;
       if (nearBottom) markCurrentEpisodeRead();
-    } catch (_) {
-        el.textContent = `閲覧数(この端末): ${current.toLocaleString("ja-JP")}`;
-      }
     }
+
     async function boot() {
       try {
         const res = await fetch("./data/物語本編.json", { cache: "no-store" });
@@ -1020,6 +1018,10 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
