@@ -393,6 +393,7 @@
         <a id="navChars" href="./characters.html">登場人物辞典</a>
         <a id="navGloss" href="./glossary.html">用語辞典</a>
         <a id="navAudio" href="./audiocommentary.html">オーディオコメンタリ</a>
+        <a id="navDiary" href="./diary.html">執筆録</a>
       </nav>
       <label class="world-nav">世界設定
         <select id="worldSettingSelect" onchange="if(this.value){location.href=this.value}">
@@ -417,7 +418,7 @@
           <p>架空の国家「カラベイ教導国」と「ハーロピノン共和国」などを舞台に、世代と国境を超えて紡がれる壮大な群像劇。
 理想の国家を追い求め、剣（デューレイ）と血で歴史を切り拓いた為政者たち。その歪な「幸せ」の定義に抗い、あるいは翻弄されながらも、自分たちの未来と日常を掴み取ろうとする若者たち。
 「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
-          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a></p>
+          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a> / <a href="./diary.html">執筆録</a></p>
         </article>
 
         <article class="intro">
@@ -599,6 +600,7 @@ A stylish underworld road movie with lethal charm.</p>
     const navChars = document.getElementById("navChars");
     const navGloss = document.getElementById("navGloss");
     const navAudio = document.getElementById("navAudio");
+    const navDiary = document.getElementById("navDiary");
 
     const shareModal = document.getElementById("shareModal");
     const shareTitle = document.getElementById("shareTitle");
@@ -765,6 +767,10 @@ A stylish underworld road movie with lethal charm.</p>
       if (navAudio) {
         navAudio.textContent = currentLang === "en" ? "Audio Commentary" : "オーディオコメンタリ";
         navAudio.href = currentLang === "en" ? englishLink("audiocommentary") : "audiocommentary.html";
+      }
+      if (navDiary) {
+        navDiary.textContent = currentLang === "en" ? "Writing Log" : "執筆録";
+        navDiary.href = currentLang === "en" ? englishLink("diary") : "diary.html";
       }
 
       if (currentLang === "en") {
@@ -1041,6 +1047,7 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
 
 
 

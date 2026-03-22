@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-NNPH1HB9GD');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="『共和国物語』サーガの執筆録。制作メモや更新記録を検索して閲覧できます。" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/diary.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/diary.html" />
+  <meta property="og:title" content="執筆録 | 『共和国物語』サーガ" />
+  <meta property="og:description" content="制作メモ・更新記録・関連話リンクをまとめた執筆ログ。" />
+  <meta property="og:image" content="./assets/images/アイコン.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="執筆録 | 『共和国物語』サーガ" />
+  <meta name="twitter:description" content="制作メモ・更新記録・関連話リンクをまとめた執筆ログ。" />
+  <meta name="twitter:image" content="./assets/images/アイコン.png" />
+  <title>執筆録 | 『共和国物語』サーガ</title>
+  <link rel="icon" type="image/png" href="./assets/images/アイコン.png" />
+  <style>
+    :root { --bg:#f3eee6; --card:#fffdf9; --ink:#201a14; --muted:#77695b; --line:#d8cab6; --accent:#7f2a2a; --accent2:#1f5c69; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:radial-gradient(circle at 90% -15%, #e8dbc5, transparent 45%), var(--bg); font-family:"BIZ UDPGothic", "Yu Gothic UI", sans-serif; }
+    header { position:sticky; top:0; z-index:10; background:rgba(255,255,255,.93); backdrop-filter:blur(4px); border-bottom:1px solid var(--line); padding:14px clamp(14px, 4vw, 28px); }
+    h1 { margin:0 0 8px; font-size:1.2rem; }
+    nav a { display:inline-block; color:var(--accent2); margin-right:12px; margin-bottom:6px; text-decoration:none; border-bottom:1px dotted currentColor; }
+    .tools { margin-top:10px; display:grid; grid-template-columns:1fr 200px; gap:10px; }
+    input, select { width:100%; border:1px solid var(--line); border-radius:10px; padding:9px 10px; font:inherit; background:#fff; }
+    main { width:min(1080px, 96vw); margin:18px auto 36px; display:grid; gap:12px; }
+    .entry { border:1px solid var(--line); border-radius:14px; background:var(--card); overflow:hidden; box-shadow:0 8px 24px rgba(31,27,20,.07); }
+    .entry-head { padding:12px 14px; border-bottom:1px solid var(--line); background:#faf5ed; }
+    .entry-title { margin:0; font-size:1.05rem; color:var(--accent); }
+    .entry-meta { margin-top:5px; color:var(--muted); font-size:.9rem; }
+    .entry-body { padding:12px 14px; line-height:1.9; white-space:pre-wrap; }
+    .entry-links, .entry-tags { padding:0 14px 12px; }
+    .label { margin:0 0 6px; color:var(--muted); font-size:.88rem; font-weight:700; }
+    .chips { display:flex; flex-wrap:wrap; gap:7px; }
+    .chip { display:inline-block; border:1px solid var(--line); background:#f7f1e8; border-radius:999px; padding:4px 9px; font-size:.86rem; text-decoration:none; color:inherit; }
+    a.chip { color:var(--accent2); }
+    .empty { border:1px dashed var(--line); border-radius:12px; background:#fffdf9; color:var(--muted); padding:16px; }
+    @media (max-width:760px) { .tools { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>『共和国物語』サーガ 執筆録</h1>
+    <nav>
+      <a href="./index.html">トップ・本編</a>
+      <a href="./characters.html">登場人物辞典</a>
+      <a href="./glossary.html">用語辞典</a>
+      <a href="./audiocommentary.html">オーディオコメンタリ</a>
+      <a href="./diary.html">執筆録</a>
+      <a href="./地理/geo.html">世界設定</a>
+    </nav>
+    <div class="tools">
+      <input id="q" type="search" placeholder="タイトル・執筆者・本文・タグで検索" />
+      <select id="tagFilter"><option value="">全タグ</option></select>
+    </div>
+  </header>
+  <main id="list"></main>
+  <script>
+    const listEl = document.getElementById('list');
+    const qEl = document.getElementById('q');
+    const tagFilterEl = document.getElementById('tagFilter');
+    let entries = [];
+
+    function esc(s){ const d=document.createElement('div'); d.textContent=String(s ?? ''); return d.innerHTML; }
+    function arr(v){ return Array.isArray(v) ? v : (v ? [v] : []); }
+    function mkHref(r){
+      if(!r || typeof r !== 'object') return null;
+      if(r.href) return String(r.href);
+      if(r.episodeKey) return './index.html#' + encodeURIComponent(String(r.episodeKey));
+      if(r.workId && r.sectionId && r.episodeId) return './index.html#' + encodeURIComponent(r.workId + '::' + r.sectionId + '::' + r.episodeId);
+      return null;
+    }
+    function hit(row,q,tag){
+      const tags=arr(row.tags).map(String);
+      if(tag && !tags.includes(tag)) return false;
+      if(!q) return true;
+      const related=arr(row.relatedWorks).map((r)=> typeof r === 'object' ? (r.label || r.episodeKey || '') : String(r || ''));
+      const hay=[row.title,row.date,row.author,row.body,...tags,...related].join('\n').toLowerCase();
+      return hay.includes(q.toLowerCase());
+    }
+    function render(){
+      const q=qEl.value.trim();
+      const tag=tagFilterEl.value;
+      const rows=entries.filter((e)=>hit(e,q,tag));
+      if(rows.length===0){ listEl.innerHTML='<div class="empty">該当する執筆録がありません。</div>'; return; }
+      listEl.innerHTML=rows.map((row)=>{
+        const links=arr(row.relatedWorks).map((r)=>{
+          if(typeof r==='object' && r){
+            const href=mkHref(r);
+            const label=r.label || r.episodeKey || '関連話';
+            return href ? '<a class="chip" href="'+esc(href)+'">'+esc(label)+'</a>' : '<span class="chip">'+esc(label)+'</span>';
+          }
+          return '<span class="chip">'+esc(String(r||'関連話'))+'</span>';
+        }).join('');
+        const tags=arr(row.tags).map((t)=>'<span class="chip">'+esc(t)+'</span>').join('');
+        return '<article class="entry">'
+          + '<div class="entry-head"><h2 class="entry-title">'+esc(row.title||'無題')+'</h2><div class="entry-meta">'+esc(row.date||'')+' / '+esc(row.author||'不明')+'</div></div>'
+          + '<div class="entry-body">'+esc(row.body||'')+'</div>'
+          + '<div class="entry-links"><p class="label">関連作品</p><div class="chips">'+(links||'<span class="chip">なし</span>')+'</div></div>'
+          + '<div class="entry-tags"><p class="label">タグ</p><div class="chips">'+(tags||'<span class="chip">タグなし</span>')+'</div></div>'
+          + '</article>';
+      }).join('');
+    }
+    function initTags(){
+      const set=new Set();
+      entries.forEach((e)=>arr(e.tags).forEach((t)=>{ const s=String(t||'').trim(); if(s) set.add(s); }));
+      const tags=Array.from(set).sort((a,b)=>a.localeCompare(b,'ja'));
+      tagFilterEl.innerHTML='<option value="">全タグ</option>' + tags.map((t)=>'<option value="'+esc(t)+'">'+esc(t)+'</option>').join('');
+    }
+    async function boot(){
+      try{
+        const res=await fetch('./data/diary.json',{cache:'no-store'});
+        if(!res.ok) throw new Error('HTTP '+res.status);
+        const json=await res.json();
+        entries=Array.isArray(json.entries) ? json.entries.slice() : [];
+        entries.sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+        initTags();
+        render();
+      }catch(e){
+        listEl.innerHTML='<div class="empty">読み込み失敗: '+esc(e.message)+'</div>';
+      }
+    }
+    qEl.addEventListener('input', render);
+    tagFilterEl.addEventListener('change', render);
+    boot();
+  </script>
+</body>
+</html>
