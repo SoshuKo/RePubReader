@@ -543,7 +543,7 @@ A stylish underworld road movie with lethal charm.</p>
         <div><strong>RePubS</strong> (<a href="https://twitter.com/PubRe26174" target="_blank" rel="noopener noreferrer">@PubRe26174</a>)</div>
         <div>© 2026 RePubS.</div>
         <div>Except where otherwise noted, the text of this story is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Images and other assets are all rights reserved.</div>
-        <div id="accessCounter" class="counter-note">閲覧数: 計測中...</div>
+        <div class="counter-note"><a href="https://myhits.vercel.app" target="_blank" rel="noopener noreferrer"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fsoshuko.github.io%2FRePubReader?color=gray&label=hits&size=small" alt="hits" /></a></div>
       </footer
     </main>
   </div>
@@ -924,26 +924,7 @@ A stylish underworld road movie with lethal charm.</p>
       if (articleWrapEl.style.display !== "block") return;
       const nearBottom = mainEl.scrollTop + mainEl.clientHeight >= mainEl.scrollHeight - 8;
       if (nearBottom) markCurrentEpisodeRead();
-    }
-
-
-    async function updateAccessCounter() {
-      const el = document.getElementById("accessCounter");
-      if (!el) return;
-
-      // Fallback counter (device-local)
-      const localKey = "repub_local_view_count_v1";
-      const current = Number(localStorage.getItem(localKey) || "0") + 1;
-      localStorage.setItem(localKey, String(current));
-
-      try {
-        const url = "https://api.countapi.xyz/hit/soshuko-repubreader/index";
-        const res = await fetch(url, { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        const n = Number(data.value || 0).toLocaleString("ja-JP");
-        el.textContent = `閲覧数: ${n}`;
-      } catch (_) {
+    } catch (_) {
         el.textContent = `閲覧数(この端末): ${current.toLocaleString("ja-JP")}`;
       }
     }
@@ -1035,11 +1016,11 @@ A stylish underworld road movie with lethal charm.</p>
     initTheme();
     initLanguage();
     mountGiscus();
-    updateAccessCounter();
     boot();
   </script>
 </body>
 </html>
+
 
 
 
