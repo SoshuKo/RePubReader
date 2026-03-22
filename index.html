@@ -326,7 +326,11 @@
       text-decoration: none;
       border-bottom: 1px dotted currentColor;
     }
-    .empty {
+    .counter-note {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .78rem;
+    }    .empty {
       color: var(--muted);
       border: 1px dashed var(--line);
       border-radius: 10px;
@@ -539,7 +543,8 @@ A stylish underworld road movie with lethal charm.</p>
         <div><strong>RePubS</strong> (<a href="https://twitter.com/PubRe26174" target="_blank" rel="noopener noreferrer">@PubRe26174</a>)</div>
         <div>© 2026 RePubS.</div>
         <div>Except where otherwise noted, the text of this story is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Images and other assets are all rights reserved.</div>
-      </footer>
+        <div id="accessCounter" class="counter-note">閲覧数: 計測中...</div>
+      </footer
     </main>
   </div>
 
@@ -921,6 +926,21 @@ A stylish underworld road movie with lethal charm.</p>
       if (nearBottom) markCurrentEpisodeRead();
     }
 
+
+    async function updateAccessCounter() {
+      const el = document.getElementById("accessCounter");
+      if (!el) return;
+      try {
+        const url = "https://api.countapi.xyz/hit/soshuko-repubreader/index";
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const n = Number(data.value || 0).toLocaleString("ja-JP");
+        el.textContent = `閲覧数: ${n}`;
+      } catch (_) {
+        el.textContent = "閲覧数: 取得できませんでした";
+      }
+    }
     async function boot() {
       try {
         const res = await fetch("./data/物語本編.json", { cache: "no-store" });
@@ -1009,10 +1029,12 @@ A stylish underworld road movie with lethal charm.</p>
     initTheme();
     initLanguage();
     mountGiscus();
+    updateAccessCounter();
     boot();
   </script>
 </body>
 </html>
+
 
 
 
