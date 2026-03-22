@@ -930,6 +930,12 @@ A stylish underworld road movie with lethal charm.</p>
     async function updateAccessCounter() {
       const el = document.getElementById("accessCounter");
       if (!el) return;
+
+      // Fallback counter (device-local)
+      const localKey = "repub_local_view_count_v1";
+      const current = Number(localStorage.getItem(localKey) || "0") + 1;
+      localStorage.setItem(localKey, String(current));
+
       try {
         const url = "https://api.countapi.xyz/hit/soshuko-repubreader/index";
         const res = await fetch(url, { cache: "no-store" });
@@ -938,7 +944,7 @@ A stylish underworld road movie with lethal charm.</p>
         const n = Number(data.value || 0).toLocaleString("ja-JP");
         el.textContent = `閲覧数: ${n}`;
       } catch (_) {
-        el.textContent = "閲覧数: 取得できませんでした";
+        el.textContent = `閲覧数(この端末): ${current.toLocaleString("ja-JP")}`;
       }
     }
     async function boot() {
@@ -1034,6 +1040,7 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
 
 
 
