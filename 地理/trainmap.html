@@ -1,0 +1,1281 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+<meta name="description" content="架空国家・カラベイ教導国の本格乗り換え案内。架空国家/架空世界/架空鉄道の経路検索。" />
+<meta name="keywords" content="架空国家,架空世界,架空鉄道,カラベイ教導国,地理,乗換案内,リアルタイムマップ" />
+<link rel="canonical" href="https://soshuko.github.io/RePubReader/%E5%9C%B0%E7%90%86/trainmap.html" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://soshuko.github.io/RePubReader/%E5%9C%B0%E7%90%86/trainmap.html" />
+<meta property="og:title" content="カラベイ総合乗換案内" />
+<meta property="og:description" content="架空国家・カラベイ教導国の本格乗り換え案内。架空国家/架空世界/架空鉄道の経路検索。" />
+<meta property="og:image" content="https://soshuko.github.io/RePubReader/assets/images/アイコン.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="カラベイ総合乗換案内" />
+<meta name="twitter:description" content="架空国家・カラベイ教導国の本格乗り換え案内。架空国家/架空世界/架空鉄道の経路検索。" />
+<meta name="twitter:image" content="https://soshuko.github.io/RePubReader/assets/images/アイコン.png" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NNPH1HB9GD');
+</script>
+<link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カラベイ総合乗換案内（全路線版）</title>
+  <style>
+    :root {
+      --ink: #1f2a37;
+      --brand: #0d9488;
+      --bg: #f3f7f9;
+      --card: #ffffff;
+      --line: #d6e0e5;
+      --warn: #b45309;
+      --ok: #166534;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(160deg, #edf5f7, #f8fbff);
+      font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      color: var(--ink);
+      padding: 18px;
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+    }
+    h1 { margin: 0 0 10px; font-size: 1.6rem; }
+    .sub { margin: 0 0 16px; color: #45556a; font-size: 0.92rem; }
+    .top-link {
+      margin: 0 0 12px;
+    }
+    .back-link {
+      display: inline-block;
+      text-decoration: none;
+      color: #0b4b63;
+      border: 1px solid #9cc6d7;
+      background: #eaf6fb;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 160px 140px;
+      gap: 10px;
+      align-items: end;
+    }
+    label { display: block; font-weight: 700; margin-bottom: 5px; font-size: 0.92rem; }
+    select, input, button {
+      width: 100%;
+      border: 1px solid #b9c7d0;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      background: #fff;
+    }
+    button {
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(0.95); }
+    .note {
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: #3d5162;
+      background: #f1f8f7;
+      border: 1px solid #d4ece9;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .result {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+    }
+    .head {
+      background: #1b3145;
+      color: #fff;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .body { padding: 12px; }
+    .kpi {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fafcfe;
+    }
+    .pill strong { display: block; font-size: 1.05rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border-bottom: 1px solid #e5edf2;
+      padding: 7px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f6fafc; }
+    .warn { color: var(--warn); font-weight: 700; }
+    .ok { color: var(--ok); font-weight: 700; }
+    .all-lines {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .line-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #e5f4f3;
+      border: 1px solid #b8e4df;
+      margin-right: 6px;
+    }
+    .route-candidates {
+      margin-bottom: 12px;
+      border: 1px solid #d3e1ea;
+      border-radius: 10px;
+      padding: 10px;
+      background: #f9fcff;
+    }
+    .route-candidates h4 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+    }
+    .candidate {
+      border: 1px solid #d8e5ef;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 6px 0;
+      background: #fff;
+    }
+    .candidate.active {
+      border-color: #38bdf8;
+      background: #f0f9ff;
+    }
+    .candidate button {
+      width: auto;
+      padding: 6px 10px;
+      font-size: 0.84rem;
+      margin-top: 6px;
+    }
+    .journey-map {
+      margin-top: 12px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #1f2937, #111827);
+      border: 1px solid #374151;
+      padding: 12px;
+      color: #e5e7eb;
+    }
+    .journey-map h4 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: #c7d2fe;
+    }
+    .map-row {
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: 10px;
+      align-items: start;
+      margin: 6px 0;
+    }
+    .map-time {
+      font-family: Consolas, monospace;
+      color: #93c5fd;
+      font-size: 0.9rem;
+    }
+    .map-station {
+      position: relative;
+      padding-left: 16px;
+      font-size: 0.9rem;
+    }
+    .map-station::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #34d399;
+    }
+    .map-pass .map-station::before {
+      background: #f59e0b;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .kpi { grid-template-columns: 1fr 1fr; }
+    }
+  
+  .global-cross-nav {
+    margin: 0 0 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .global-cross-nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: #0b4b63;
+    border: 1px solid #9cc6d7;
+    background: #eaf6fb;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="global-cross-nav">
+  <a href="../index.html">トップ・本編</a>
+  <a href="../characters.html">登場人物辞典</a>
+  <a href="../glossary.html">用語辞典</a>
+  <a href="../audiocommentary.html">オーディオコメンタリ</a>
+  <a href="geo.html">カラベイ地理アーカイブ</a>
+  <a href="trainmap.html">カラベイ総合乗換案内</a>
+  <a href="realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+</div>
+  <div class="wrap">
+    <h1>カラベイ総合乗換案内</h1>
+    <div class="top-link"><a class="back-link" href="geo.html">カラベイ地理アーカイブへ戻る</a> <a class="back-link" href="realtimemap.html">鉄道リアルタイムマップへ</a> </div>
+    <p class="sub">湾岸線・ハヴァレイキ線・セラン線・KIRT貨物短絡線・KMRTゴネイキ線・ツァパ線・地下鉄1/2/3号線・デュラベイBRT対応</p>
+
+    <div class="grid">
+      <div>
+        <label for="from">出発駅</label>
+        <select id="from"></select>
+      </div>
+      <div>
+        <label for="to">到着駅</label>
+        <select id="to"></select>
+      </div>
+      <div>
+        <label for="depart">出発時刻</label>
+        <input id="depart" type="time" value="10:00" />
+      </div>
+      <div>
+        <button id="search">検索</button>
+      </div>
+    </div>
+
+    <div class="note">
+      料金ルール: 鉄道 0.05K/km・地下鉄 0.25K/乗車1回・BRT 0.20K/km。
+      駅同一扱い: ナラター = イラー中央、マラゼイ = アーケイ中央。
+    </div>
+
+    <div id="result" class="result">
+      <div class="head">
+        <div id="title">経路</div>
+        <div id="timeSummary">--</div>
+      </div>
+      <div class="body">
+        <div id="routeCandidates" class="route-candidates" style="display:none;"></div>
+        <div class="kpi">
+          <div class="pill"><span>総距離</span><strong id="dist">-- km</strong></div>
+          <div class="pill"><span>所要目安</span><strong id="mins">-- 分</strong></div>
+          <div class="pill"><span>運賃合計</span><strong id="fare">-- K</strong></div>
+          <div class="pill"><span>乗換回数</span><strong id="transfers">-- 回</strong></div>
+        </div>
+
+        <h3>乗換案内（路線別）</h3>
+        <table>
+          <thead>
+            <tr><th>順序</th><th>路線</th><th>区間</th><th>種別</th><th>座席クラス</th><th>距離</th><th>運賃</th><th>時刻情報</th></tr>
+          </thead>
+          <tbody id="steps"></tbody>
+        </table>
+
+        <p id="aliasNote" class="note"></p>
+        <div id="journeyMap" class="journey-map" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div class="all-lines">
+      <h3>全路線ダイヤ・距離・料金一覧</h3>
+      <table>
+        <thead>
+          <tr><th>路線</th><th>主区間</th><th>時刻（本文データ準拠）</th><th>距離データ</th><th>運賃ルール</th></tr>
+        </thead>
+        <tbody id="lineTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const aliasToCanonical = {
+      "ナラター": "イラー中央",
+      "マラゼイ": "アーケイ中央"
+    };
+
+    const canonicalToAlias = {
+      "イラー中央": ["ナラター"],
+      "アーケイ中央": ["マラゼイ"]
+    };
+
+    const lines = {
+      "湾岸線": { mode: "rail", speed: 68, timetable: "特急ドゥラム: 06:00-20:00（概ね毎時）、急行: 毎時10/40・15/45、普通: 区間別30分または60分" },
+      "ハヴァレイキ線": { mode: "rail", speed: 66, timetable: "特急マガセ: 06:00-20:00、区間特急: 毎時05/35・10/40、急行: 毎時2本、普通: 区間別1-2本/時" },
+      "セラン線": { mode: "rail", speed: 58, timetable: "普通: 3時間ヘッド（06/09/12/15/18/21時発）" },
+      "KIRT貨物短絡線": { mode: "rail", speed: 62, timetable: "普通KIRT: 毎時2本想定、特急待避あり（ビライツァ）" },
+      "KMRTゴネイキ線": { mode: "rail", speed: 75, timetable: "急行1本/時・普通2本/時、ビライツァで併結/分割" },
+      "ツァパ線": { mode: "rail", speed: 55, timetable: "上下とも30分サイクル（00/30, 15/45）" },
+      "地下鉄1号線": { mode: "subway", speed: 35, timetable: "00/10/20/30/40/50発（10分間隔）" },
+      "地下鉄2号線": { mode: "subway", speed: 35, timetable: "00/10/20/30/40/50発（10分間隔）" },
+      "地下鉄3号線": { mode: "subway", speed: 46, timetable: "KLV-7形700番台(再生車)/設計最高100km/h。キラディウネイ方面: 毎時00/20先行・10待避、ティナレイキ方面: 毎時05/25先行・15待避" },
+      "デュラベイBRT": { mode: "brt", speed: 85, timetable: "ラッシュ15分、通常30分（本文ダイヤ）" }
+    };
+
+    const lineTypes = {
+      "湾岸線": ["普通", "急行", "特急", "国際特急"],
+      "ハヴァレイキ線": ["普通", "急行", "区間特急", "特急"],
+      "セラン線": ["普通"],
+      "KIRT貨物短絡線": ["普通", "急行", "特急"],
+      "KMRTゴネイキ線": ["普通", "急行"],
+      "ツァパ線": ["普通"],
+      "地下鉄1号線": ["普通"],
+      "地下鉄2号線": ["普通"],
+      "地下鉄3号線": ["普通"],
+      "デュラベイBRT": ["普通"]
+    };
+
+    const kirtDisplayName = {
+      localExpress: {
+        "イリケレイ第一信号場": "イリケレイ第一",
+        "ギリネヴァレイ貨物駅": "ギリネヴァレイ",
+        "イリケレイ第二信号場": "イリケレイ第二",
+        "ニヴィギナセイ第一信号場": "ニヴィギナセイ第一",
+        "ニヴィギナセイ第二信号場": "ニヴィギナセイ第二"
+      },
+      freightLimited: {
+        "イリケレイ第一信号場": "イリケレイ第一信号場",
+        "ギリネヴァレイ貨物駅": "ギリネヴァレイ貨物駅",
+        "イリケレイ第二信号場": "イリケレイ第二信号場",
+        "ニヴィギナセイ第一信号場": "ニヴィギナセイ第一信号場",
+        "ニヴィギナセイ第二信号場": "ニヴィギナセイ第二信号場"
+      }
+    };
+
+    const seatClasses = ["標準", "アルター", "ガネット"];
+    let currentSearchState = null;
+
+    const edges = [];
+    const lineStationOrder = {};
+
+    function addLine(lineName, stations, distances) {
+      if (!lineStationOrder[lineName]) {
+        lineStationOrder[lineName] = stations.slice();
+      }
+      for (let i = 0; i < stations.length - 1; i++) {
+        edges.push({
+          a: stations[i],
+          b: stations[i + 1],
+          d: distances[i],
+          line: lineName
+        });
+      }
+    }
+
+    addLine("湾岸線",
+      ["ギュラベイ","ティナネイキ","ギリディネイ","ミリフマレイ","ショリギナセイ","イラー中央","イリビレイセイ","ラゼハビメイ","フミシラレイ","ナピリラセイ","ダリギナセイ","ガネイキ","ネウリフマレイ","マウキビレイ","セラン中央","リウニシェベン","ミュネイキ","デュラベイ"],
+      [57.7,23.8,18.4,23.7,18.7,33.9,39.9,21.2,21.6,52.4,51.0,36.1,26.5,27.1,30.8,45.7,40.3]
+    );
+
+    addLine("ハヴァレイキ線",
+      ["タネイ・トライポート","イラー中央","マリディア","ギジェイキニ","ティナレイキ","ミラフレイ","ナーキ","アーケイ中央","ティレリウレイ","ラデイキ","ヴィーラー","アラデイキ","ギザレイキ","ヤーキ","ゾルアー","ノビレイ","ハヴァレイキ","ダーフレイ","ビライタン","ゾパイタン","ヴィシャーン","ヤシャーン"],
+      [5.0,33.0,38.0,42.2,41.9,39.8,32.3,17.7,25.4,29.0,43.6,48.1,38.3,25.1,21.9,33.0,26.8,45.6,42.4,43.5,14.6]
+    );
+
+    addLine("セラン線",
+      ["セラン中央","ビーパン","キカーン","マリアネイ","ハリアネイ","ギリディウネイ","アーケイ中央"],
+      [42.4,20.8,21.8,31.3,50.16,20.4]
+    );
+
+    addLine("KIRT貨物短絡線",
+      ["イラー中央","イリケレイ第一信号場","ギリネヴァレイ貨物駅","イリケレイ第二信号場","ビライツァ","ニヴィギナセイ第一信号場","イギリヴィ","ニヴィギナセイ第二信号場","セラン中央"],
+      [39,41.11,39,40,39,40.11,39,39]
+    );
+
+    addLine("KMRTゴネイキ線",
+      ["ビライツァ","フリウヴァレン","ミウニアネイ","マリアネイ","ティリ・マジェイ","キラティ","ゴネイキ"],
+      [78.96,61.05,37.09,48.58,44.24,71.65]
+    );
+
+    addLine("ツァパ線",
+      ["ダリギナセイ","キラアネイ","キラゴー","キラツァパ","ノツァパ","ノゴー"],
+      [39.6,26.3,14.3,8.8,14.3]
+    );
+
+    addLine("地下鉄1号線",
+      ["タネイ・トライポート","イラー中央","カラー","アマレイ","サレイ","タネイ・バン・ティラダ","ダレイ"],
+      [5.0,2.0,2.0,2.0,2.0,2.0]
+    );
+
+    addLine("地下鉄2号線",
+      ["アーケイ中央","ナナゼイ","ラグワー","フリカウ","イマ"],
+      [2.0,2.0,2.0,2.0]
+    );
+
+    addLine("地下鉄3号線",
+      ["ティナレイキ","エミエ","ファタキ","アダウ","ザレイキ","シャーキ","マダキ","マリア・ド・ルミア","ディウニケネイ","ノロロキ","ロロキ","イマン","アガリア","キラディウネイ"],
+      [1.4,2.3,1.8,2.2,1.4,2.6,3.6,3.4,3.2,3.8,2.3,3.6,3.6]
+    );
+
+    addLine("デュラベイBRT",
+      ["ミュネイキ","サツァディアン","ティリディアン","ティリ・チャラヒヴァン","ティレウキニ","キラティ","フリペレイ","デュラル・コンビナート"],
+      [34.6,55.5,31.5,22.4,32.0,26.3,2.0]
+    );
+
+    const graph = {};
+    const stationSet = new Set();
+
+    function addAdj(u, v, e) {
+      if (!graph[u]) graph[u] = [];
+      graph[u].push({ to: v, d: e.d, line: e.line });
+      stationSet.add(u);
+      stationSet.add(v);
+    }
+
+    edges.forEach(e => {
+      addAdj(e.a, e.b, e);
+      addAdj(e.b, e.a, e);
+    });
+
+    function normalizeStation(s) {
+      return aliasToCanonical[s] || s;
+    }
+
+    function travelMinutes(dist, lineName) {
+      const speed = lines[lineName].speed;
+      return (dist / speed) * 60;
+    }
+
+    function dijkstra(start, goal) {
+      const nodes = Array.from(stationSet);
+      const dist = {};
+      const prev = {};
+      const prevLine = {};
+      const unvisited = new Set(nodes);
+
+      nodes.forEach(n => {
+        dist[n] = Infinity;
+        prev[n] = null;
+        prevLine[n] = null;
+      });
+      dist[start] = 0;
+
+      while (unvisited.size) {
+        let cur = null;
+        for (const n of unvisited) {
+          if (cur === null || dist[n] < dist[cur]) cur = n;
+        }
+        if (cur === goal || dist[cur] === Infinity) break;
+        unvisited.delete(cur);
+
+        const edgesCur = graph[cur] || [];
+        for (const e of edgesCur) {
+          if (!unvisited.has(e.to)) continue;
+          const base = travelMinutes(e.d, e.line);
+          const transferPenalty = prevLine[cur] && prevLine[cur] !== e.line ? 5 : 0;
+          const alt = dist[cur] + base + transferPenalty;
+          if (alt < dist[e.to]) {
+            dist[e.to] = alt;
+            prev[e.to] = { node: cur, d: e.d, line: e.line };
+            prevLine[e.to] = e.line;
+          }
+        }
+      }
+
+      if (!prev[goal]) return null;
+
+      const path = [];
+      let cur = goal;
+      while (cur !== start) {
+        const p = prev[cur];
+        path.unshift({ from: p.node, to: cur, d: p.d, line: p.line });
+        cur = p.node;
+      }
+      return { path, minutes: dist[goal] };
+    }
+
+    function findRouteCandidates(start, goal, maxRoutes = 3) {
+      const queue = [{
+        node: start,
+        cost: 0,
+        path: [],
+        visited: new Set([start]),
+        lastLine: null
+      }];
+      const found = [];
+      const signatures = new Set();
+      let guard = 0;
+
+      while (queue.length && found.length < maxRoutes && guard < 60000) {
+        guard += 1;
+        queue.sort((a, b) => a.cost - b.cost);
+        const cur = queue.shift();
+        if (cur.node === goal) {
+          const sig = cur.path.map(p => `${p.from}->${p.to}:${p.line}`).join("|");
+          if (!signatures.has(sig)) {
+            signatures.add(sig);
+            found.push(cur.path);
+          }
+          continue;
+        }
+        const nexts = graph[cur.node] || [];
+        for (const e of nexts) {
+          if (cur.visited.has(e.to)) continue;
+          const transfer = cur.lastLine && cur.lastLine !== e.line ? 5 : 0;
+          const w = travelMinutes(e.d, e.line) + transfer;
+          const visited = new Set(cur.visited);
+          visited.add(e.to);
+          queue.push({
+            node: e.to,
+            cost: cur.cost + w,
+            path: cur.path.concat([{ from: cur.node, to: e.to, d: e.d, line: e.line }]),
+            visited,
+            lastLine: e.line
+          });
+        }
+      }
+      return found;
+    }
+
+    function isExpressType(type) {
+      return type.includes("特急");
+    }
+
+    function speedFactorByType(type) {
+      if (type === "国際特急") return 1.6;
+      if (type === "特急") return 1.5;
+      if (type === "区間特急") return 1.35;
+      if (type === "急行") return 1.2;
+      return 1.0;
+    }
+
+    function segmentMinutesByType(seg, type) {
+      const baseSpeed = lines[seg.line].speed;
+      const speed = baseSpeed * speedFactorByType(type);
+      return (seg.distance / speed) * 60;
+    }
+
+    function segmentFare(seg, type, seatClass) {
+      const mode = lines[seg.line].mode;
+      if (mode === "subway") return 0.25;
+      if (mode === "brt") return seg.distance * 0.2;
+
+      let fare = seg.distance * 0.05;
+      if (isExpressType(type)) {
+        fare += seg.distance * 0.5;
+      }
+      if (seatClass === "アルター" && isExpressType(type)) {
+        fare += seg.distance * 0.5;
+      }
+      if (seatClass === "ガネット" && isExpressType(type)) {
+        fare += seg.distance * 1.0;
+      }
+      if (type === "国際特急") {
+        fare += 25.0;
+      }
+      return fare;
+    }
+
+    function calcFare(segments, selections) {
+      let railKm = 0;
+      let brtKm = 0;
+      let subwayRides = 0;
+      let lastLine = null;
+      let total = 0;
+
+      segments.forEach((s, idx) => {
+        const mode = lines[s.line].mode;
+        const sel = selections[idx];
+        if (mode === "rail") railKm += s.d;
+        if (mode === "brt") brtKm += s.d;
+        if (mode === "subway" && s.line !== lastLine) subwayRides += 1;
+        total += segmentFare({
+          line: s.line,
+          distance: s.d
+        }, sel.type, sel.seatClass);
+        lastLine = s.line;
+      });
+
+      return {
+        railKm,
+        brtKm,
+        subwayRides,
+        total
+      };
+    }
+
+    function groupSegments(path) {
+      const groups = [];
+      for (const s of path) {
+        const last = groups[groups.length - 1];
+        if (last && last.line === s.line) {
+          last.to = s.to;
+          last.distance += s.d;
+          last.stations.push(s.to);
+        } else {
+          groups.push({
+            line: s.line,
+            from: s.from,
+            to: s.to,
+            distance: s.d,
+            stations: [s.from, s.to]
+          });
+        }
+      }
+      return groups;
+    }
+
+    function formatK(n) {
+      return `${n.toFixed(2)} K`;
+    }
+
+    function getOrderedStationsInSegment(line, from, to) {
+      const arr = lineStationOrder[line] || [];
+      const i = arr.indexOf(from);
+      const j = arr.indexOf(to);
+      if (i === -1 || j === -1) return [from, to];
+      if (i <= j) return arr.slice(i, j + 1);
+      return arr.slice(j, i + 1).reverse();
+    }
+
+    function getStopSet(line, type) {
+      if (type === "普通") return null;
+      const map = {
+        "湾岸線": {
+          "急行": new Set(["ギュラベイ","ティナネイキ","ショリギナセイ","イラー中央","マウキビレイ","セラン中央"]),
+          "特急": new Set(["ギュラベイ","ティナネイキ","ショリギナセイ","イラー中央","セラン中央","デュラベイ"]),
+          "国際特急": new Set(["ギュラベイ","イラー中央","セラン中央","デュラベイ"])
+        },
+        "ハヴァレイキ線": {
+          "急行": new Set(["タネイ・トライポート","イラー中央","ティナレイキ","アーケイ中央","ラデイキ","ノビレイ","ハヴァレイキ","ダーフレイ"]),
+          "区間特急": new Set(["タネイ・トライポート","イラー中央","マリディア","ギジェイキニ","ティナレイキ","ミラフレイ","ナーキ","アーケイ中央","ティレリウレイ","ラデイキ"]),
+          "特急": new Set(["タネイ・トライポート","イラー中央","ティナレイキ","アーケイ中央","ラデイキ","ハヴァレイキ"])
+        },
+        "KIRT貨物短絡線": {
+          "急行": new Set(["セラン中央","ビライツァ","イラー中央"]),
+          "特急": new Set(["イラー中央","セラン中央"])
+        },
+        "KMRTゴネイキ線": {
+          "急行": new Set(["ビライツァ","ティリ・マジェイ","キラティ","ゴネイキ"])
+        }
+      };
+      return (map[line] && map[line][type]) ? map[line][type] : null;
+    }
+
+    function displayStationName(line, type, station) {
+      if (line !== "KIRT貨物短絡線") return station;
+      if (type === "特急" || type === "国際特急") {
+        return kirtDisplayName.freightLimited[station] || station;
+      }
+      return kirtDisplayName.localExpress[station] || station;
+    }
+
+    function lineDirection(line, from, to) {
+      const arr = lineStationOrder[line] || [];
+      const i = arr.indexOf(from);
+      const j = arr.indexOf(to);
+      return i <= j ? "forward" : "reverse";
+    }
+
+    function directionStations(line, direction) {
+      const arr = lineStationOrder[line] || [];
+      return direction === "forward" ? arr : arr.slice().reverse();
+    }
+
+    function runtimeMinutes(line, type, from, to, dist) {
+      if (line === "地下鉄1号線") {
+        if ((from === "タネイ・トライポート" && to === "イラー中央") || (from === "イラー中央" && to === "タネイ・トライポート")) return 12;
+        return 6;
+      }
+      if (line === "地下鉄2号線") return 6;
+      if (line === "地下鉄3号線") {
+        const metro3 = {
+          "ティナレイキ|エミエ": 2,
+          "エミエ|ファタキ": 2,
+          "ファタキ|アダウ": 1,
+          "アダウ|ザレイキ": 2,
+          "ザレイキ|シャーキ": 1,
+          "シャーキ|マダキ": 2,
+          "マダキ|マリア・ド・ルミア": 4,
+          "マリア・ド・ルミア|ディウニケネイ": 3,
+          "ディウニケネイ|ノロロキ": 3,
+          "ノロロキ|ロロキ": 3,
+          "ロロキ|イマン": 2,
+          "イマン|アガリア": 3,
+          "アガリア|キラディウネイ": 3
+        };
+        const key = `${from}|${to}`;
+        const rev = `${to}|${from}`;
+        return metro3[key] || metro3[rev] || 3;
+      }
+      const base = lines[line].speed * speedFactorByType(type);
+      return Math.max(1, Math.round((dist / base) * 60));
+    }
+
+    function scheduleRule(line, type, direction = "forward") {
+      const byLine = {
+        "湾岸線": {
+          "普通": { minutes: [7, 37], everyHour: true },
+          "急行": { minutes: [10, 40], everyHour: true },
+          "特急": { list: ["06:00","07:00","08:00","10:00","12:00","14:00","15:30","17:00","18:30","20:00"] },
+          "国際特急": { list: ["08:00","09:00","16:00","17:50"] }
+        },
+        "ハヴァレイキ線": {
+          "普通": { minutes: [10, 40], everyHour: true },
+          "急行": { minutes: [5, 35], everyHour: true },
+          "区間特急": { minutes: [10, 40], everyHour: true },
+          "特急": { list: ["06:00","07:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00"] }
+        },
+        "セラン線": {
+          "普通": { minutes: [0], hours: [6,9,12,15,18,21] }
+        },
+        "KIRT貨物短絡線": {
+          "普通": { minutes: [7, 37], everyHour: true },
+          "急行": { minutes: [20, 50], everyHour: true },
+          "特急": { minutes: [0, 30], everyHour: true }
+        },
+        "KMRTゴネイキ線": {
+          "普通": { minutes: [10, 40], everyHour: true },
+          "急行": { minutes: [45], everyHour: true }
+        },
+        "ツァパ線": {
+          "普通": { minutes: [0, 30], everyHour: true }
+        },
+        "地下鉄1号線": {
+          "普通": { minutes: [0,10,20,30,40,50], everyHour: true }
+        },
+        "地下鉄2号線": {
+          "普通": { minutes: [0,10,20,30,40,50], everyHour: true }
+        },
+        "地下鉄3号線": {
+          "普通": direction === "forward"
+            ? { minutes: [0,10,20], everyHour: true }
+            : { minutes: [5,15,25], everyHour: true }
+        },
+        "デュラベイBRT": {
+          "普通": { mode: "brt" }
+        }
+      };
+      return (byLine[line] && byLine[line][type]) ? byLine[line][type] : { minutes: [0, 30], everyHour: true };
+    }
+
+    function hmToMin(hm) {
+      const [h, m] = hm.split(":").map(Number);
+      return h * 60 + m;
+    }
+
+    function minToHM(total) {
+      const t = ((total % 1440) + 1440) % 1440;
+      const h = String(Math.floor(t / 60)).padStart(2, "0");
+      const m = String(t % 60).padStart(2, "0");
+      return `${h}:${m}`;
+    }
+
+    function offsetsForLine(line, type, direction) {
+      const seq = directionStations(line, direction);
+      const stopSet = getStopSet(line, type);
+      const dep = {};
+      const arr = {};
+      dep[seq[0]] = 0;
+      arr[seq[0]] = 0;
+      let t = 0;
+      for (let i = 0; i < seq.length - 1; i++) {
+        const a = seq[i];
+        const b = seq[i + 1];
+        const edge = (graph[a] || []).find(x => x.to === b && x.line === line);
+        const run = runtimeMinutes(line, type, a, b, edge ? edge.d : 1);
+        t += run;
+        arr[b] = t;
+        const shouldStop = !stopSet || stopSet.has(b) || i + 1 === seq.length - 1;
+        if (shouldStop) t += 1;
+        dep[b] = t;
+      }
+      return { dep, arr };
+    }
+
+    function brtNextDeparture(currentMin) {
+      const minuteInDay = ((currentMin % 1440) + 1440) % 1440;
+      const hour = Math.floor(minuteInDay / 60);
+      const min = minuteInDay % 60;
+      const rush = (hour >= 6 && hour < 9) || (hour >= 17 && hour < 20);
+      const pattern = rush ? [0, 15, 30, 45] : [25, 55];
+      for (const p of pattern) {
+        if (p >= min) return currentMin + (p - min);
+      }
+      return currentMin + (60 - min) + pattern[0];
+    }
+
+    function nextTripForSegment(group, currentMin) {
+      if (crossesIlaSeranOnWangan(group) && (group.type === "特急" || group.type === "国際特急")) {
+        return { error: "イラー中央⇄セラン中央の特急は湾岸線を使用しません。" };
+      }
+      const direction = lineDirection(group.line, group.from, group.to);
+      const seqDir = directionStations(group.line, direction);
+      const rule = scheduleRule(group.line, group.type, direction);
+      const { dep, arr } = offsetsForLine(group.line, group.type, direction);
+      const stopSet = getStopSet(group.line, group.type);
+
+      const fromStopOk = !stopSet || stopSet.has(group.from);
+      const toStopOk = !stopSet || stopSet.has(group.to);
+      if (!fromStopOk || !toStopOk) {
+        return { error: "選択した種別では発着駅に停車しません。" };
+      }
+
+      if (rule.mode === "brt") {
+        const depAtFrom = brtNextDeparture(currentMin);
+        const tripBase = depAtFrom - dep[group.from];
+        const arrAtTo = tripBase + arr[group.to];
+        return { depAtFrom, arrAtTo, tripBase, direction };
+      }
+
+      const fromOffset = dep[group.from] || 0;
+      let best = null;
+      const startDayBase = Math.floor(currentMin / 1440) * 1440;
+
+      for (let day = -1; day <= 2; day++) {
+        const dayBase = startDayBase + day * 1440;
+        let starts = [];
+        if (rule.list) {
+          starts = rule.list.map(hm => dayBase + hmToMin(hm));
+        } else if (rule.hours) {
+          for (const h of rule.hours) {
+            for (const m of rule.minutes || [0]) {
+              starts.push(dayBase + h * 60 + m);
+            }
+          }
+        } else {
+          for (let h = 0; h < 24; h++) {
+            for (const m of rule.minutes || [0]) {
+              starts.push(dayBase + h * 60 + m);
+            }
+          }
+        }
+        for (const st of starts) {
+          const depAtFrom = st + fromOffset;
+          if (depAtFrom >= currentMin) {
+            if (best === null || depAtFrom < best) best = st;
+          }
+        }
+      }
+
+      if (best === null) return { error: "次の列車が見つかりません。" };
+      const depAtFrom = best + (dep[group.from] || 0);
+      const arrAtTo = best + (arr[group.to] || depAtFrom);
+      return { depAtFrom, arrAtTo, tripBase: best, direction };
+    }
+
+    function itineraryForGroups(groups, departStr) {
+      let now = hmToMin(departStr);
+      const items = [];
+      for (let i = 0; i < groups.length; i++) {
+        const g = groups[i];
+        const r = nextTripForSegment(g, now);
+        if (r.error) return { error: `${g.line}: ${r.error}` };
+
+        const seq = getOrderedStationsInSegment(g.line, g.from, g.to);
+        const stopSet = getStopSet(g.line, g.type);
+        const dir = lineDirection(g.line, g.from, g.to);
+        const { dep, arr } = offsetsForLine(g.line, g.type, dir);
+        const stationTimes = seq.map((st, idx) => {
+          const isEdge = idx === 0 || idx === seq.length - 1;
+          const isStop = !stopSet || stopSet.has(st) || isEdge;
+          const tm = isStop ? (idx === 0 ? r.depAtFrom : r.tripBase + arr[st]) : (r.tripBase + arr[st]);
+          return { station: st, time: tm, stop: isStop };
+        });
+
+        items.push({
+          ...g,
+          dep: r.depAtFrom,
+          arr: r.arrAtTo,
+          stationTimes
+        });
+        const noTransfer = i < groups.length - 1 && isThroughService(g, groups[i + 1]);
+        now = r.arrAtTo + (noTransfer ? 0 : 2);
+      }
+      return { items, totalMins: now - hmToMin(departStr) - 2 };
+    }
+
+    const allStations = Array.from(stationSet).sort((a, b) => a.localeCompare(b, "ja"));
+    const fromSel = document.getElementById("from");
+    const toSel = document.getElementById("to");
+
+    function populateStations() {
+      const labels = [];
+      for (const s of allStations) {
+        labels.push({ label: s, value: s });
+      }
+      labels.push({ label: "ナラター（=イラー中央）", value: "ナラター" });
+      labels.push({ label: "マラゼイ（=アーケイ中央）", value: "マラゼイ" });
+
+      labels.sort((a, b) => a.label.localeCompare(b.label, "ja"));
+
+      for (const item of labels) {
+        fromSel.add(new Option(item.label, item.value));
+        toSel.add(new Option(item.label, item.value));
+      }
+      fromSel.value = "イラー中央";
+      toSel.value = "セラン中央";
+    }
+
+    function defaultTypeForLine(line) {
+      const types = lineTypes[line] || ["普通"];
+      return types[0];
+    }
+
+    function allowedTypesForGroup(group) {
+      const types = (lineTypes[group.line] || ["普通"]).slice();
+      if (crossesIlaSeranOnWangan(group)) {
+        return types.filter(t => t !== "特急" && t !== "国際特急");
+      }
+      return types;
+    }
+
+    function crossesIlaSeranOnWangan(group) {
+      if (group.line !== "湾岸線") return false;
+      const seq = getOrderedStationsInSegment(group.line, group.from, group.to);
+      return seq.includes("イラー中央") && seq.includes("セラン中央");
+    }
+
+    function isThroughService(a, b) {
+      if (!a || !b) return false;
+      if (a.to !== b.from) return false;
+
+      const directRules = [
+        // Á-Lĭnar想定（急行直通）
+        { at: "ビライツァ", lines: ["KIRT貨物短絡線", "KMRTゴネイキ線"], types: ["急行"] },
+        { at: "イラー中央", lines: ["ハヴァレイキ線", "KIRT貨物短絡線"], types: ["急行"] },
+        { at: "セラン中央", lines: ["KIRT貨物短絡線", "湾岸線"], types: ["急行"] },
+
+        // 貨物線短絡特急（同一車両継続）
+        { at: "イラー中央", lines: ["湾岸線", "KIRT貨物短絡線"], types: ["特急", "国際特急"] },
+        { at: "セラン中央", lines: ["KIRT貨物短絡線", "湾岸線"], types: ["特急", "国際特急"] },
+        { at: "イラー中央", lines: ["ハヴァレイキ線", "KIRT貨物短絡線"], types: ["特急"] }
+      ];
+
+      return directRules.some(rule => {
+        const linePair = rule.lines.includes(a.line) && rule.lines.includes(b.line);
+        const typeOk = rule.types.includes(a.type) && rule.types.includes(b.type);
+        return a.to === rule.at && linePair && typeOk;
+      });
+    }
+
+    function countTransfers(groups) {
+      let c = 0;
+      for (let i = 0; i < groups.length - 1; i++) {
+        if (!isThroughService(groups[i], groups[i + 1])) c += 1;
+      }
+      return c;
+    }
+
+    function routeSummary(route, depart) {
+      const run = itineraryForGroups(route.groups, depart);
+      if (run.error) {
+        return { ok: false, error: run.error };
+      }
+      const fare = calcFare(
+        route.groups.map(g => ({ line: g.line, d: g.distance })),
+        route.groups.map(g => ({ type: g.type, seatClass: g.seatClass }))
+      );
+      const dist = route.groups.reduce((a, b) => a + b.distance, 0);
+      const transfer = countTransfers(route.groups);
+      return {
+        ok: true,
+        dist,
+        transfer,
+        mins: run.totalMins,
+        fare: fare.total,
+        lines: route.groups.map(g => g.line).join(" → "),
+        arr: hmToMin(depart) + run.totalMins
+      };
+    }
+
+    function renderCandidates() {
+      const box = document.getElementById("routeCandidates");
+      if (!currentSearchState || !currentSearchState.routes?.length) {
+        box.style.display = "none";
+        return;
+      }
+      const depart = currentSearchState.depart;
+      const html = currentSearchState.routes.map((r, idx) => {
+        const s = routeSummary(r, depart);
+        const cls = idx === currentSearchState.selectedRouteIndex ? "candidate active" : "candidate";
+        if (!s.ok) {
+          return `<div class="${cls}">候補${idx + 1}: ${s.error}</div>`;
+        }
+        return `<div class="${cls}">
+          <div><strong>候補${idx + 1}</strong> ${s.lines}</div>
+          <div>距離 ${s.dist.toFixed(2)}km / 所要 ${Math.round(s.mins)}分 / 到着 ${minToHM(s.arr)} / 運賃 ${s.fare.toFixed(2)}K / 乗換 ${s.transfer}回</div>
+          <button class="candidate-btn" data-idx="${idx}">この経路を表示</button>
+        </div>`;
+      }).join("");
+      box.innerHTML = `<h4>比較可能な経路</h4>${html}`;
+      box.style.display = "block";
+
+      box.querySelectorAll(".candidate-btn").forEach(btn => {
+        btn.addEventListener("click", (ev) => {
+          currentSearchState.selectedRouteIndex = Number(ev.target.dataset.idx);
+          renderRouteResult();
+        });
+      });
+    }
+
+    function renderLineTable() {
+      const tbody = document.getElementById("lineTable");
+      const rows = [
+        ["湾岸線", "ギュラベイ - デュラベイ", lines["湾岸線"].timetable, "17区間（資料値）", "0.05K/km"],
+        ["ハヴァレイキ線", "トライポート - ヤシャーン", lines["ハヴァレイキ線"].timetable, "21区間（資料値）", "0.05K/km"],
+        ["セラン線", "セラン中央 - アーケイ中央", lines["セラン線"].timetable, "6区間（資料値）", "0.05K/km"],
+        ["KIRT貨物短絡線", "イラー中央 - セラン中央", lines["KIRT貨物短絡線"].timetable, "8区間（資料値）", "0.05K/km"],
+        ["KMRTゴネイキ線", "ビライツァ - ゴネイキ", lines["KMRTゴネイキ線"].timetable, "6区間（資料値）", "0.05K/km"],
+        ["ツァパ線", "ダリギナセイ - ノゴー", lines["ツァパ線"].timetable, "5区間（資料値）", "0.05K/km"],
+        ["地下鉄1号線", "トライポート - ダレイ", lines["地下鉄1号線"].timetable, "6区間（5km+2km系）", "0.25K/1乗車"],
+        ["地下鉄2号線", "アーケイ中央 - イマ", lines["地下鉄2号線"].timetable, "4区間（各2km）", "0.25K/1乗車"],
+        ["地下鉄3号線", "ティナレイキ - キラディウネイ", lines["地下鉄3号線"].timetable, "13区間（計35.2km）", "0.25K/1乗車"],
+        ["デュラベイBRT", "ミュネイキ - デュラル・コンビナート", lines["デュラベイBRT"].timetable, "7区間（総距離204.3km）", "0.20K/km"]
+      ];
+
+      tbody.innerHTML = rows.map(r => `
+        <tr>
+          <td><span class="line-badge">${r[0]}</span></td>
+          <td>${r[1]}</td>
+          <td>${r[2]}</td>
+          <td>${r[3]}</td>
+          <td>${r[4]}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderRouteResult() {
+      if (!currentSearchState) return;
+      const { rawFrom, rawTo, from, to, depart } = currentSearchState;
+      const groups = currentSearchState.routes[currentSearchState.selectedRouteIndex].groups;
+      groups.forEach(g => {
+        const allowed = allowedTypesForGroup(g);
+        if (!allowed.includes(g.type)) {
+          g.type = allowed[0] || "普通";
+        }
+      });
+      renderCandidates();
+
+      const steps = document.getElementById("steps");
+      const run = itineraryForGroups(groups, depart);
+      if (run.error) {
+        alert(run.error);
+        return;
+      }
+      const timedItems = run.items;
+
+      const rows = [];
+      let order = 1;
+      for (let i = 0; i < groups.length; i++) {
+        const g = groups[i];
+        const tItem = timedItems[i];
+        let j = i;
+        while (j < groups.length - 1 && isThroughService(groups[j], groups[j + 1])) {
+          j += 1;
+        }
+
+        if (j > i) {
+          const first = groups[i];
+          const last = groups[j];
+          const firstTime = timedItems[i];
+          const lastTime = timedItems[j];
+          let segFare = 0;
+          let segDist = 0;
+          const lineLabel = [];
+          const typeLabel = [];
+          for (let k = i; k <= j; k++) {
+            const gk = groups[k];
+            segFare += segmentFare(gk, gk.type, gk.seatClass);
+            segDist += gk.distance;
+            lineLabel.push(gk.line);
+            typeLabel.push(gk.type);
+          }
+          rows.push(`
+            <tr>
+              <td>${order}</td>
+              <td>${lineLabel.join(" ⇄ ")}</td>
+              <td>${displayStationName(first.line, first.type, first.from)} → ${displayStationName(last.line, last.type, last.to)}</td>
+              <td>${typeLabel.join(" / ")}（直通）</td>
+              <td>同一車両継続</td>
+              <td>${segDist.toFixed(2)} km</td>
+              <td>${formatK(segFare)}</td>
+              <td>${minToHM(firstTime.dep)} 発 → ${minToHM(lastTime.arr)} 着<br>直通扱い（乗換不要）</td>
+            </tr>
+          `);
+          i = j;
+          order += 1;
+          continue;
+        }
+
+        const typeOptions = allowedTypesForGroup(g)
+          .map(t => `<option value="${t}" ${g.type === t ? "selected" : ""}>${t}</option>`)
+          .join("");
+
+        const seatEnabled = isExpressType(g.type);
+        const seatOptions = seatClasses
+          .map(c => `<option value="${c}" ${g.seatClass === c ? "selected" : ""}>${c}</option>`)
+          .join("");
+
+        const segFare = segmentFare(g, g.type, g.seatClass);
+        rows.push(`
+          <tr>
+            <td>${order}</td>
+            <td>${g.line}</td>
+            <td>${displayStationName(g.line, g.type, g.from)} → ${displayStationName(g.line, g.type, g.to)}</td>
+            <td>
+              <select data-i="${i}" class="type-select">${typeOptions}</select>
+            </td>
+            <td>
+              <select data-i="${i}" class="seat-select" ${seatEnabled ? "" : "disabled"}>
+                ${seatOptions}
+              </select>
+            </td>
+            <td>${g.distance.toFixed(2)} km</td>
+            <td>${formatK(segFare)}</td>
+            <td>${minToHM(tItem.dep)} 発 → ${minToHM(tItem.arr)} 着<br>${lines[g.line].timetable}</td>
+          </tr>
+        `);
+        order += 1;
+      }
+      steps.innerHTML = rows.join("");
+
+      const totalDist = groups.reduce((acc, g) => acc + g.distance, 0);
+      const totalMins = run.totalMins;
+      const fareDetail = calcFare(
+        groups.map(g => ({ line: g.line, d: g.distance })),
+        groups.map(g => ({ type: g.type, seatClass: g.seatClass }))
+      );
+      const transferCount = countTransfers(groups);
+
+      const departDate = new Date(`2000-01-01T${depart}:00`);
+      const arriveDate = new Date(departDate.getTime() + Math.round(totalMins) * 60000);
+      const arrH = String(arriveDate.getHours()).padStart(2, "0");
+      const arrM = String(arriveDate.getMinutes()).padStart(2, "0");
+
+      document.getElementById("title").textContent = `${rawFrom} → ${rawTo}`;
+      document.getElementById("timeSummary").textContent = `${depart} 発 / ${arrH}:${arrM} 頃着`;
+      document.getElementById("dist").textContent = `${totalDist.toFixed(2)} km`;
+      document.getElementById("mins").textContent = `${Math.round(totalMins)} 分`;
+      document.getElementById("fare").textContent = `${fareDetail.total.toFixed(2)} K`;
+      document.getElementById("transfers").textContent = `${transferCount} 回`;
+
+      const aliasMsgs = [];
+      if (rawFrom !== from) aliasMsgs.push(`出発駅「${rawFrom}」は「${from}」として計算`);
+      if (rawTo !== to) aliasMsgs.push(`到着駅「${rawTo}」は「${to}」として計算`);
+      const aliasText = aliasMsgs.length ? aliasMsgs.join(" / ") : "同一駅補正なし";
+      document.getElementById("aliasNote").innerHTML = `<span class="ok">駅名補正:</span> ${aliasText}<br><span class="warn">運賃内訳:</span> 鉄道 ${fareDetail.railKm.toFixed(2)}km + BRT ${fareDetail.brtKm.toFixed(2)}km + 地下鉄 ${fareDetail.subwayRides}乗車`;
+
+      const journeyMap = document.getElementById("journeyMap");
+      const mapRows = [];
+      timedItems.forEach(seg => {
+        mapRows.push(`<div class="map-row"><div class="map-time">${minToHM(seg.dep)}</div><div class="map-station"><strong>${seg.line} ${seg.type}</strong> ${displayStationName(seg.line, seg.type, seg.from)} 発</div></div>`);
+        seg.stationTimes.slice(1).forEach(st => {
+          mapRows.push(`<div class="map-row ${st.stop ? "" : "map-pass"}"><div class="map-time">${minToHM(st.time)}</div><div class="map-station">${displayStationName(seg.line, seg.type, st.station)} ${st.stop ? "停車" : "通過"}</div></div>`);
+        });
+      });
+      journeyMap.innerHTML = `<h4>路線図風 行程タイムライン（分単位）</h4>${mapRows.join("")}`;
+      journeyMap.style.display = "block";
+
+      steps.querySelectorAll(".type-select").forEach(sel => {
+        sel.addEventListener("change", (ev) => {
+          const idx = Number(ev.target.dataset.i);
+          currentSearchState.routes[currentSearchState.selectedRouteIndex].groups[idx].type = ev.target.value;
+          if (!isExpressType(ev.target.value)) {
+            currentSearchState.routes[currentSearchState.selectedRouteIndex].groups[idx].seatClass = "標準";
+          }
+          renderRouteResult();
+        });
+      });
+
+      steps.querySelectorAll(".seat-select").forEach(sel => {
+        sel.addEventListener("change", (ev) => {
+          const idx = Number(ev.target.dataset.i);
+          currentSearchState.routes[currentSearchState.selectedRouteIndex].groups[idx].seatClass = ev.target.value;
+          renderRouteResult();
+        });
+      });
+
+    }
+
+    function searchRoute() {
+      const rawFrom = fromSel.value;
+      const rawTo = toSel.value;
+      const from = normalizeStation(rawFrom);
+      const to = normalizeStation(rawTo);
+      const depart = document.getElementById("depart").value || "10:00";
+
+      if (from === to) {
+        alert("出発駅と到着駅が同一です。");
+        return;
+      }
+
+      const candidates = findRouteCandidates(from, to, 3);
+      if (!candidates.length) {
+        alert("経路が見つかりません。路線接続を確認してください。");
+        return;
+      }
+
+      const routes = candidates.map(path => ({
+        groups: groupSegments(path).map(g => ({
+          ...g,
+          type: defaultTypeForLine(g.line),
+          seatClass: "標準"
+        }))
+      }));
+
+      currentSearchState = {
+        rawFrom,
+        rawTo,
+        from,
+        to,
+        depart,
+        routes,
+        selectedRouteIndex: 0
+      };
+      renderRouteResult();
+      document.getElementById("result").style.display = "block";
+    }
+
+    document.getElementById("search").addEventListener("click", searchRoute);
+    populateStations();
+    renderLineTable();
+  </script>
+</body>
+</html>
+
+
+
+
+
+

@@ -88,7 +88,22 @@
       text-decoration: none;
       border-bottom: 1px dotted currentColor;
     }
-    .toggle-row {
+    .world-nav {
+      margin-top: 10px;
+      display: block;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .world-nav select {
+      margin-top: 4px;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 9px;
+      font: inherit;
+      background: var(--panel);
+      color: var(--ink);
+    }    .toggle-row {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -379,6 +394,14 @@
         <a id="navGloss" href="./glossary.html">用語辞典</a>
         <a id="navAudio" href="./audiocommentary.html">オーディオコメンタリ</a>
       </nav>
+      <label class="world-nav">世界設定
+        <select id="worldSettingSelect" onchange="if(this.value){location.href=this.value}">
+          <option value="">選択してください</option>
+          <option value="./地理/geo.html">カラベイ地理アーカイブ</option>
+          <option value="./地理/trainmap.html">カラベイ総合乗換案内</option>
+          <option value="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</option>
+        </select>
+      </label>
       <div class="toggle-row">
         <button id="themeToggle" class="theme-toggle" type="button">ダークモード</button>
         <button id="langToggle" class="theme-toggle" type="button">English</button>
@@ -544,7 +567,7 @@ A stylish underworld road movie with lethal charm.</p>
         <div>© 2026 RePubS.</div>
         <div>Except where otherwise noted, the text of this story is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Images and other assets are all rights reserved.</div>
         <div class="counter-note"><a href="https://myhits.vercel.app" target="_blank" rel="noopener noreferrer"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fsoshuko.github.io%2FRePubReader?color=gray&label=hits&size=small" alt="hits" /></a></div>
-      </footer
+      </footer>
     </main>
   </div>
 
@@ -1018,6 +1041,9 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
+
 
 
 

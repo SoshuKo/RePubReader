@@ -1,12 +1,14 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
   <url><loc>https://soshuko.github.io/RePubReader/index.html</loc></url>
   <url><loc>https://soshuko.github.io/RePubReader/characters.html</loc></url>
   <url><loc>https://soshuko.github.io/RePubReader/glossary.html</loc></url>
   <url><loc>https://soshuko.github.io/RePubReader/audiocommentary.html</loc></url>
+  <url><loc>https://soshuko.github.io/RePubReader/en-under-construction.html</loc></url>
   <url><loc>https://soshuko.github.io/RePubReader/share-karabatan.html</loc></url>
   <url><loc>https://soshuko.github.io/RePubReader/share-haropinon.html</loc></url>
   <url><loc>https://soshuko.github.io/RePubReader/share-bookkeeper.html</loc></url>
+  <url><loc>https://soshuko.github.io/RePubReader/%E5%9C%B0%E7%90%86/geo.html</loc></url>
+  <url><loc>https://soshuko.github.io/RePubReader/%E5%9C%B0%E7%90%86/trainmap.html</loc></url>
+  <url><loc>https://soshuko.github.io/RePubReader/%E5%9C%B0%E7%90%86/realtimemap.html</loc></url>
 </urlset>
-
-

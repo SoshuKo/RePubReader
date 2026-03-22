@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="架空国家・カラベイ教導国の本格地理サイト。架空国家/架空世界/架空地理の設定を網羅。" />
+<meta name="keywords" content="架空国家,架空世界,架空鉄道,カラベイ教導国,地理,地理アーカイブ" />
+<link rel="canonical" href="https://soshuko.github.io/RePubReader/%E5%9C%B0%E7%90%86/geo.html" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://soshuko.github.io/RePubReader/%E5%9C%B0%E7%90%86/geo.html" />
+<meta property="og:title" content="カラベイ地理アーカイブ" />
+<meta property="og:description" content="架空国家・カラベイ教導国の本格地理サイト。" />
+<meta property="og:image" content="https://soshuko.github.io/RePubReader/assets/images/アイコン.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="カラベイ地理アーカイブ" />
+<meta name="twitter:description" content="架空国家・カラベイ教導国の本格地理サイト。" />
+<meta name="twitter:image" content="https://soshuko.github.io/RePubReader/assets/images/アイコン.png" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NNPH1HB9GD');
+</script>
+<link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カラベイ地理アーカイブ</title>
+<style>
+  /* 基本設定 */
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f9;
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  .site-title {
+    margin: 0 0 14px 0;
+    font-size: clamp(1.3rem, 2.4vw, 2rem);
+    font-weight: 800;
+    color: #1f2d3d;
+    letter-spacing: 0.03em;
+  }
+
+  /* コントロールボタン周り */
+  .controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  button.map-btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: #0080FF;
+    border: 2px solid #0080FF;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  button.map-btn:hover, button.map-btn.active {
+    background-color: #0080FF;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 128, 255, 0.3);
+  }
+  /* 別アプリへのリンクボタン */
+  a.app-link-btn {
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border: 2px solid #2c3e50;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    margin-left: auto; /* 右寄せ */
+  }
+  a.app-link-btn:hover {
+    background-color: #1a252f;
+    box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
+  }
+
+  /* 地図コンテナ */
+  #map-container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    background-color: white;
+  }
+  #map-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  #points-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* ポイント（ピン）のデザイン */
+  .map-point {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: #0080FF;
+    border: 2px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  .map-point:hover {
+    background-color: #FF4081;
+    transform: translate(-50%, -50%) scale(1.6);
+    z-index: 10;
+  }
+
+  /* --- 解説パネル（サイドバー）のデザイン --- */
+  #info-panel {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 400px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+  }
+  #info-panel.open {
+    right: 0;
+  }
+  .panel-header {
+    background: linear-gradient(135deg, #0080FF, #005bb5);
+    color: white;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .panel-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  .close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  .close-btn:hover {
+    transform: scale(1.2);
+  }
+  .panel-content {
+    padding: 25px;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  .parish-stats {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .parish-stats th, .parish-stats td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  .parish-stats th {
+    color: #0080FF;
+    width: 35%;
+  }
+
+  /* 別ページへのリンクボタン */
+  .detail-link-btn {
+    display: block;
+    text-align: center;
+    background-color: #0080FF;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 128, 255, 0.2);
+  }
+  .detail-link-btn:hover {
+    background-color: #005bb5;
+    transform: translateY(-2px);
+  }
+  
+  #overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    z-index: 999;
+  }
+  #overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .global-cross-nav {
+    margin: 0 0 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .global-cross-nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: #0b4b63;
+    border: 1px solid #9cc6d7;
+    background: #eaf6fb;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="global-cross-nav">
+  <a href="../index.html">トップ・本編</a>
+  <a href="../characters.html">登場人物辞典</a>
+  <a href="../glossary.html">用語辞典</a>
+  <a href="../audiocommentary.html">オーディオコメンタリ</a>
+  <a href="geo.html">カラベイ地理アーカイブ</a>
+  <a href="trainmap.html">カラベイ総合乗換案内</a>
+  <a href="realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+</div>
+<h1 class="site-title">カラベイ地理アーカイブ</h1>
+
+<div class="controls">
+  <button class="map-btn active" onclick="changeMap('地形図.PNG', this)">地形図</button>
+  <button class="map-btn" onclick="changeMap('行政区分図.PNG', this)">行政区分図</button>
+  <button class="map-btn" onclick="changeMap('鉄道路線図.png', this)">鉄道路線図</button>
+  
+  <a href="trainmap.html" class="app-link-btn">運賃・経路検索へ 🚆</a>`r`n  <a href="realtimemap.html" class="app-link-btn">リアルタイムマップへ 🛰️</a>
+</div>
+
+<div id="map-container">
+  <img id="map-image" src="assets/maps/地形図.PNG" alt="地図">
+  <div id="points-layer"></div>
+</div>
+
+<div id="overlay" onclick="closePanel()"></div>
+
+<div id="info-panel">
+  <div class="panel-header">
+    <h2 id="p-title">教区名</h2>
+    <button class="close-btn" onclick="closePanel()">&times;</button>
+  </div>
+  <div class="panel-content">
+    <table class="parish-stats">
+      <tbody>
+        <tr><th>大教区</th><td id="p-archdiocese">-</td></tr>
+        <tr><th>州</th><td id="p-state">-</td></tr>
+        <tr><th>人口</th><td id="p-population">-</td></tr>
+      </tbody>
+    </table>
+    
+    <a id="p-link" href="#" class="detail-link-btn" style="display: none;">この教区の詳細を読む</a>
+  </div>
+</div>
+
+<img id="color-code-img" src="assets/maps/カラーコード.png" style="display:none;">
+
+<script>
+  const parishDatabase = {
+  1: { 
+    name: "イラー直轄教区", 
+    archdiocese: "沿海北大教区", 
+    state: "直轄", 
+    population: "485万人",
+    pageUrl: "イラー.html"
+  },
+  2: { 
+    name: "ティズィウレイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ノゴー州", 
+    population: "10万3,000人"
+  },
+  3: { 
+    name: "ギュラベイ自治教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ノゴー州", 
+    population: "6万4,000人"
+  },
+  4: { 
+    name: "ティナネイキ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ノゴー州", 
+    population: "23万9,000人",
+    pageUrl: "ティナネイキ.html"
+  },
+  5: { 
+    name: "ギリディネイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ガジリレイキ州", 
+    population: "14万1,000人"
+  },
+  6: { 
+    name: "ミリフマレイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ガジリレイキ州", 
+    population: "12万1,000人"
+  },
+  7: { 
+    name: "ガリピラセイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ガジリレイキ州", 
+    population: "18万4,000人"
+  },
+  8: { 
+    name: "シュピラセイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ガジリレイキ州", 
+    population: "9万1,000人"
+  },
+  9: { 
+    name: "ショリギナセイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ガジリレイキ州", 
+    population: "23万9,000人",
+    pageUrl: "ショリギナセイ.html"
+  },
+  10: { 
+    name: "マリディア教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "155万人",
+    pageUrl: "マリディア.html"
+  },
+  11: { 
+    name: "ギジェイキニ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "18万1,000人"
+  },
+  12: { 
+    name: "イリビレセイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "14万3,000人"
+  },
+  13: { 
+    name: "ギリネヴァレイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "12万6,000人"
+  },
+  14: { 
+    name: "フリウティレウ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "9万9,000人"
+  },
+  15: { 
+    name: "ラゼハピメイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "13万6,000人"
+  },
+  16: { 
+    name: "フミシラレイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "9万1,000人"
+  },
+  17: { 
+    name: "ビライツァ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "イリケレイ州", 
+    population: "10万9,000人",
+    pageUrl: "ビライツァ.html"
+  },
+  18: { 
+    name: "キラゴー教区", 
+    archdiocese: "沿海北大教区", 
+    state: "キラゴー州", 
+    population: "23万9,000人",
+    pageUrl: "キラゴー.html"
+  },
+  19: { 
+    name: "ナピリラゼイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ニヴィギナセイ州", 
+    population: "14万5,000人"
+  },
+  20: { 
+    name: "ダリギナセイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ニヴィギナセイ州", 
+    population: "17万3,000人"
+  },
+  21: { 
+    name: "ガネイキ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ニヴィギナセイ州", 
+    population: "10万6,000人",
+    pageUrl: "ガネイキ.html"
+  },
+  22: { 
+    name: "ネウリフマレイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ニヴィギナセイ州", 
+    population: "11万2,000人"
+  },
+  23: { 
+    name: "イギリヴィ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ニヴィギナセイ州", 
+    population: "19万7,000人"
+  },
+  24: { 
+    name: "マウキビレイ教区", 
+    archdiocese: "沿海北大教区", 
+    state: "ニヴィギナセイ州", 
+    population: "23万9,000人",
+    pageUrl: "マウキビレイ.html"
+  },
+  25: { 
+    name: "セラン直轄教区", 
+    archdiocese: "沿海南大教区", 
+    state: "直轄", 
+    population: "195万人",
+    pageUrl: "セラン.html"
+  },
+  26: { 
+    name: "フリウヴァレン教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ズィウニアネイ州", 
+    population: "15万8,000人"
+  },
+  27: { 
+    name: "ビーパン教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ズィウニアネイ州", 
+    population: "18万4,000人"
+  },
+  28: { 
+    name: "キカーン教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ズィウニアネイ州", 
+    population: "13万1,000人"
+  },
+  29: { 
+    name: "ハラセイキ自治教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ナハリレイキ州", 
+    population: "8万4,000人"
+  },
+  30: { 
+    name: "リウニシェベン教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ナハリレイキ州", 
+    population: "18万4,000人",
+    pageUrl: "リウニシェベン.html"
+  },
+  31: { 
+    name: "ティリディアン教区", 
+    archdiocese: "沿海南大教区", 
+    state: "キュシアネイ州", 
+    population: "18万4,000人"
+  },
+  32: { 
+    name: "ティリ・チャラヒヴァン教区", 
+    archdiocese: "沿海南大教区", 
+    state: "キュシアネイ州", 
+    population: "12万人"
+  },
+  33: { 
+    name: "ティレウキニ教区", 
+    archdiocese: "沿海南大教区", 
+    state: "キュシアネイ州", 
+    population: "10万1,000人"
+  },
+  34: { 
+    name: "ミュネイキ教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ズィラマイセイ州", 
+    population: "18万4,000人",
+    pageUrl: "ミュネイキ.html"
+  },
+  35: { 
+    name: "デュラベイ自治教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ズィラマイセイ州", 
+    population: "8万4,000人"
+  },
+  36: { 
+    name: "サツァディアン教区", 
+    archdiocese: "沿海南大教区", 
+    state: "ズィラマイセイ州", 
+    population: "18万6,000人"
+  },
+  37: { 
+    name: "アーケイ直轄教区", 
+    archdiocese: "中央大教区", 
+    state: "直轄", 
+    population: "288万人",
+    pageUrl: "アーケイ.html"
+  },
+  38: { 
+    name: "ティナレイキ教区", 
+    archdiocese: "中央大教区", 
+    state: "マヤシレイキ州", 
+    population: "362万人",
+    pageUrl: "ティナレイキ.html"
+  },
+  39: { 
+    name: "ミラフレイ教区", 
+    archdiocese: "中央大教区", 
+    state: "マヤシレイキ州", 
+    population: "15万3,000人"
+  },
+  40: { 
+    name: "ナーキ教区", 
+    archdiocese: "中央大教区", 
+    state: "マヤシレイキ州", 
+    population: "15万2,000人",
+    pageUrl: "ナーキ.html"
+  },
+  41: { 
+    name: "ティレリウレイ教区", 
+    archdiocese: "中央大教区", 
+    state: "マヤシレイキ州", 
+    population: "10万6,000人"
+  },
+  42: { 
+    name: "ディウニケネイ教区", 
+    archdiocese: "中央大教区", 
+    state: "マヤシレイキ州", 
+    population: "13万5,000人"
+  },
+  43: { 
+    name: "クアレイキ教区", 
+    archdiocese: "中央大教区", 
+    state: "マヤシレイキ州", 
+    population: "8万9,000人"
+  },
+  44: { 
+    name: "ミウニアネイ教区", 
+    archdiocese: "中央大教区", 
+    state: "フリミジェイキ州", 
+    population: "13万5,000人"
+  },
+  45: { 
+    name: "キラディウネイ教区", 
+    archdiocese: "中央大教区", 
+    state: "フリミジェイキ州", 
+    population: "10万9,000人"
+  },
+  46: { 
+    name: "マリアネイ教区", 
+    archdiocese: "中央大教区", 
+    state: "フリミジェイキ州", 
+    population: "11万8,000人"
+  },
+  47: { 
+    name: "ハリアネイ教区", 
+    archdiocese: "中央大教区", 
+    state: "フリミジェイキ州", 
+    population: "7万7,000人"
+  },
+  48: { 
+    name: "ティリ・マジェイ教区", 
+    archdiocese: "中央大教区", 
+    state: "フリミジェイキ州", 
+    population: "19万3,000人"
+  },
+  49: { 
+    name: "フリペレイ教区", 
+    archdiocese: "中央大教区", 
+    state: "フリミジェイキ州", 
+    population: "16万7,000人"
+  },
+  50: { 
+    name: "キラティ教区", 
+    archdiocese: "中央大教区", 
+    state: "ピリリティ州", 
+    population: "19万3,000人"
+  },
+  51: { 
+    name: "ヒナベイ自治教区", 
+    archdiocese: "中央大教区", 
+    state: "ピリリティ州", 
+    population: "6万3,000人"
+  },
+  52: { 
+    name: "ギリディウネイ教区", 
+    archdiocese: "中央大教区", 
+    state: "ラシャニレイキ州", 
+    population: "19万3,000人"
+  },
+  53: { 
+    name: "ヘレヴァレイ教区", 
+    archdiocese: "中央大教区", 
+    state: "ラシャニレイキ州", 
+    population: "10万6,000人"
+  },
+  54: { 
+    name: "ジウディウネイ教区", 
+    archdiocese: "中央大教区", 
+    state: "ラシャニレイキ州", 
+    population: "14万7,000人"
+  },
+  55: { 
+    name: "ガスィディア教区", 
+    archdiocese: "中央大教区", 
+    state: "ラシャニレイキ州", 
+    population: "14万1,000人"
+  },
+  56: { 
+    name: "ゴネイキ教区", 
+    archdiocese: "中央大教区", 
+    state: "ラシャニレイキ州", 
+    population: "11万6,000人",
+    pageUrl: "ゴネイキ.html"
+  },
+  57: { 
+    name: "ハヴァレイキ直轄教区", 
+    archdiocese: "東大教区", 
+    state: "直轄", 
+    population: "120万人",
+    pageUrl: "ハヴァレイキ.html"
+  },
+  58: { 
+    name: "ラデイキ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "110万人",
+    pageUrl: "ラデイキ.html"
+  },
+  59: { 
+    name: "ヴィーラー教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "3万1,000人"
+  },
+  60: { 
+    name: "アラデイキ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "2万3,000人"
+  },
+  61: { 
+    name: "ギサレイキ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "3万3,000人"
+  },
+  62: { 
+    name: "ヤーキ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "3万人",
+    pageUrl: "ヤーキ.html"
+  },
+  63: { 
+    name: "ゾルアー教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "2万3,000人"
+  },
+  64: { 
+    name: "ノビレイ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "3万7,000人"
+  },
+  65: { 
+    name: "フリゼイ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "2万人"
+  },
+  66: { 
+    name: "ミフレイ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "2万7,000人"
+  },
+  67: { 
+    name: "イケリヴァル教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "2万9,000人"
+  },
+  68: { 
+    name: "キラビレイ教区", 
+    archdiocese: "東大教区", 
+    state: "ジリウペル州", 
+    population: "2万8,000人"
+  },
+  69: { 
+    name: "ペラタン教区", 
+    archdiocese: "東大教区", 
+    state: "カディネイ州", 
+    population: "2万3,000人"
+  },
+  70: { 
+    name: "ズィウリヒウ教区", 
+    archdiocese: "東大教区", 
+    state: "カディネイ州", 
+    population: "2万5,000人"
+  },
+  71: { 
+    name: "ギラタン教区", 
+    archdiocese: "東大教区", 
+    state: "カディネイ州", 
+    population: "3万7,000人",
+    pageUrl: "ギラタン.html"
+  },
+  72: { 
+    name: "ヴァラベイ自治教区", 
+    archdiocese: "東大教区", 
+    state: "カディネイ州", 
+    population: "1万9,000人"
+  },
+  73: { 
+    name: "ダーフレイ自治教区", 
+    archdiocese: "東大教区", 
+    state: "カディネイ州", 
+    population: "1万9,000人"
+  },
+  74: { 
+    name: "キニナラベイ自治教区", 
+    archdiocese: "東大教区", 
+    state: "カシャティレイキ州", 
+    population: "1万9,000人"
+  },
+  75: { 
+    name: "ビライタン教区", 
+    archdiocese: "東大教区", 
+    state: "カシャティレイキ州", 
+    population: "3万7,000人",
+    pageUrl: "ビライタン.html"
+  },
+  76: { 
+    name: "ゾパイタン教区", 
+    archdiocese: "東大教区", 
+    state: "カシャティレイキ州", 
+    population: "3万3,000人"
+  },
+  77: { 
+    name: "フララーン自治教区", 
+    archdiocese: "東大教区", 
+    state: "カシャティレイキ州", 
+    population: "1万9,000人"
+  },
+  78: { 
+    name: "ヴィシャーン自治教区", 
+    archdiocese: "東大教区", 
+    state: "カシャティレイキ州", 
+    population: "1万9,000人"
+  },
+  79: { 
+    name: "ヤシャーン自治教区", 
+    archdiocese: "東大教区", 
+    state: "カシャティレイキ州", 
+    population: "1万9,000人"
+  }
+};
+
+  function changeMap(imageSrc, btnElement) {
+    const resolved = imageSrc.includes('/') ? imageSrc : `assets/maps/${imageSrc}`;
+    document.getElementById('map-image').src = resolved;
+    document.querySelectorAll('.map-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+
+  window.onload = function() {
+    const colorCodeImg = document.getElementById('color-code-img');
+    if (colorCodeImg.complete) {
+      extractPoints(colorCodeImg);
+    } else {
+      colorCodeImg.onload = () => extractPoints(colorCodeImg);
+    }
+  };
+
+  function extractPoints(img) {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+
+    let imageData;
+    try {
+      imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    } catch (e) {
+      console.error("ピクセルデータの取得に失敗しました。", e);
+      return;
+    }
+
+    const data = imageData.data;
+    const pointsLayer = document.getElementById('points-layer');
+
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
+      if (a === 0) continue;
+
+      if (r === 0 && g === 0) {
+        const hexString = b.toString(16);
+        if (/^[0-9]+$/.test(hexString)) {
+          const parishId = parseInt(hexString, 10);
+          if (parishId >= 1 && parishId <= 79) {
+            const pixelIndex = i / 4;
+            const x = pixelIndex % canvas.width;
+            const y = Math.floor(pixelIndex / canvas.width);
+            createPoint(x, y, canvas.width, canvas.height, parishId, pointsLayer);
+          }
+        }
+      }
+    }
+  }
+
+  function createPoint(x, y, mapWidth, mapHeight, parishId, layer) {
+    const point = document.createElement('div');
+    point.className = 'map-point';
+    point.style.left = (x / mapWidth * 100) + '%';
+    point.style.top = (y / mapHeight * 100) + '%';
+    point.title = '教区 ' + parishId;
+
+    point.onclick = function() {
+      openPanel(parishId);
+    };
+
+    layer.appendChild(point);
+  }
+
+  function openPanel(parishId) {
+    const data = parishDatabase[parishId] || {
+      name: `第${parishId}教区`,
+      archdiocese: "未設定",
+      state: "未設定",
+      population: "未調査"
+    };
+
+    document.getElementById('p-title').innerText = data.name;
+    document.getElementById('p-archdiocese').innerText = data.archdiocese;
+    document.getElementById('p-state').innerText = data.state;
+    document.getElementById('p-population').innerText = data.population;
+
+    const linkBtn = document.getElementById('p-link');
+    if (data.pageUrl) {
+      linkBtn.href = data.pageUrl.includes('/') ? data.pageUrl : 'pages/stations/' + data.pageUrl;
+      linkBtn.style.display = 'block';
+    } else {
+      linkBtn.style.display = 'none';
+    }
+
+    document.getElementById('info-panel').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+  }
+
+  function closePanel() {
+    document.getElementById('info-panel').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
