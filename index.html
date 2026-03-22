@@ -297,7 +297,23 @@
     .theme-choice { background: var(--theme-choice); }
     .theme-dialogue { background: var(--theme-dialogue); }
     .char-ref, .term-ref { text-decoration: underline; text-underline-offset: .18em; }
-    .site-footer {
+    .comments-wrap {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      padding: 14px;
+    }
+    .comments-wrap h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--accent-2);
+    }
+    .comments-note {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: .9rem;
+    }    .site-footer {
       margin-top: 18px;
       padding: 10px 12px;
       border-top: 1px solid var(--line);
@@ -513,6 +529,12 @@ A stylish underworld road movie with lethal charm.</p>
         <article id="epContent" class="article"></article>
       </section>
 
+
+      <section id="commentsWrap" class="comments-wrap">
+        <h3>コメント</h3>
+        <p id="giscusNotice" class="comments-note">感想や応援コメントをどうぞ。</p>
+        <div id="giscusThread"></div>
+      </section>
       <footer class="site-footer">
         <div><strong>RePubS</strong> (<a href="https://twitter.com/PubRe26174" target="_blank" rel="noopener noreferrer">@PubRe26174</a>)</div>
         <div>© 2026 RePubS.</div>
@@ -578,6 +600,55 @@ A stylish underworld road movie with lethal charm.</p>
     };
 
     let currentShare = null;
+    const GISCUS_CONFIG = {
+      repo: "SoshuKo/RePubReader",
+      repoId: "R_kgDORr7bUw",
+      category: "Announcements",
+      categoryId: "DIC_kwDORr7bU84C5BUP",
+      mapping: "pathname",
+      strict: "0",
+      reactionsEnabled: "1",
+      emitMetadata: "0",
+      inputPosition: "bottom",
+      theme: "preferred_color_scheme",
+      lang: "ja"
+    };
+
+    function mountGiscus() {
+      const thread = document.getElementById("giscusThread");
+      const notice = document.getElementById("giscusNotice");
+      if (!thread || thread.dataset.mounted === "1") return;
+
+      if (
+        GISCUS_CONFIG.repoId.startsWith("REPLACE_WITH") ||
+        GISCUS_CONFIG.categoryId.startsWith("REPLACE_WITH")
+      ) {
+        if (notice) {
+          notice.textContent = "giscus未設定です。repoId/categoryId を index.html の GISCUS_CONFIG に入れると有効化されます。";
+        }
+        return;
+      }
+
+      const s = document.createElement("script");
+      s.src = "https://giscus.app/client.js";
+      s.async = true;
+      s.crossOrigin = "anonymous";
+      s.setAttribute("data-repo", GISCUS_CONFIG.repo);
+      s.setAttribute("data-repo-id", GISCUS_CONFIG.repoId);
+      s.setAttribute("data-category", GISCUS_CONFIG.category);
+      s.setAttribute("data-category-id", GISCUS_CONFIG.categoryId);
+      s.setAttribute("data-mapping", GISCUS_CONFIG.mapping);
+      s.setAttribute("data-strict", GISCUS_CONFIG.strict);
+      s.setAttribute("data-reactions-enabled", GISCUS_CONFIG.reactionsEnabled);
+      s.setAttribute("data-emit-metadata", GISCUS_CONFIG.emitMetadata);
+      s.setAttribute("data-input-position", GISCUS_CONFIG.inputPosition);
+      s.setAttribute("data-theme", GISCUS_CONFIG.theme);
+      s.setAttribute("data-lang", GISCUS_CONFIG.lang);
+
+      thread.appendChild(s);
+      thread.dataset.mounted = "1";
+      if (notice) notice.textContent = "";
+    }
 
     function esc(text) {
       return String(text ?? "").replace(/[&<>\"]/g, ch => ({
@@ -937,10 +1008,13 @@ A stylish underworld road movie with lethal charm.</p>
     loadReadSet();
     initTheme();
     initLanguage();
+    mountGiscus();
     boot();
   </script>
 </body>
 </html>
+
+
 
 
 
