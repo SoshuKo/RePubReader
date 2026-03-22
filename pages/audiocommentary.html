@@ -1,0 +1,550 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NNPH1HB9GD');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="登場人物による感想戦を読むオーディオコメンタリページ。スクロール連動演出付き。" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/pages/audiocommentary.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/pages/audiocommentary.html" />
+  <meta property="og:title" content="オーディオコメンタリ | 『共和国物語』サーガ" />
+  <meta property="og:description" content="登場人物による感想戦を読むオーディオコメンタリページ。スクロール連動演出付き。" />
+  <meta property="og:image" content="../assets/images/寮生活とナイフ.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="オーディオコメンタリ | 『共和国物語』サーガ" />
+  <meta name="twitter:description" content="登場人物による感想戦を読むオーディオコメンタリページ。スクロール連動演出付き。" />
+  <meta name="twitter:image" content="../assets/images/寮生活とナイフ.png" />
+  <title>オーディオコメンタリ | 『共和国物語』サーガ</title>
+  <style>
+    :root {
+      --bg: #f4efe8;
+      --panel: #fffdf8;
+      --studio-h: 88px;
+      --ink: #201b16;
+      --muted: #766a5d;
+      --line: #d8ccb8;
+      --accent: #9f2a2a;
+      --accent-2: #215c72;
+      --active: #fff6e7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at 20% -20%, #e6d8bf, transparent 45%), var(--bg);
+      font-family: "BIZ UDPGothic", "Yu Gothic UI", sans-serif;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      min-height: 100vh;
+      align-items: start;
+    }
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      border-right: 1px solid var(--line);
+      background: linear-gradient(180deg, #f8f1e6, #f4efe8);
+      padding: 12px;
+      overflow: auto;
+    }
+    main {
+      min-width: 0;
+      padding: 12px clamp(12px, 2.4vw, 28px) 24px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      letter-spacing: .05em;
+    }
+    nav a {
+      display: inline-block;
+      margin-right: 8px;
+      color: var(--accent-2);
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+      margin-bottom: 6px;
+    }
+    .meta {
+      margin: 6px 0 10px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .episode-btn {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font: inherit;
+      line-height: 1.5;
+    }
+    .episode-btn.active {
+      border-color: var(--accent);
+      background: #fff7f4;
+      box-shadow: 0 0 0 2px rgba(159, 42, 42, .12);
+    }
+    .studio {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: linear-gradient(180deg, #fffdf9, #fff8ef);
+      padding: 5px 7px;
+      margin: 8px 0 10px;
+      min-height: var(--studio-h);
+    }
+    .studio-head {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+    .hosts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      align-items: end;
+    }
+    .host {
+      text-align: center;
+      opacity: .35;
+      transition: opacity .22s ease, filter .22s ease, transform .22s ease;
+      will-change: transform;
+    }
+    .host.active {
+      opacity: 1;
+      filter: drop-shadow(0 7px 12px rgba(0,0,0,.12));
+      transform: translateY(-1px);
+    }
+    .host img {
+      width: min(100%, 72px);
+      height: auto;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      transition: transform .12s ease;
+      cursor: pointer;
+      transform-origin: 50% 80%;
+    }
+    .host.left img.base {
+      transform: scaleX(-1);
+    }
+    .host.squish img {
+      animation: puni .32s ease;
+    }
+    @keyframes puni {
+      0% { transform: var(--base-transform) scale(1,1); }
+      28% { transform: var(--base-transform) scale(1.12,.84); }
+      55% { transform: var(--base-transform) scale(.92,1.06); }
+      100% { transform: var(--base-transform) scale(1,1); }
+    }
+    .host-name {
+      margin-top: 1px;
+      font-size: .68rem;
+      font-weight: 700;
+      color: #3d352b;
+      line-height: 1.25;
+    }
+    .episode-title {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+    .episode-title h2 {
+      margin: 0 0 5px;
+      font-size: 1.05rem;
+    }
+    .episode-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .dialogue {
+      display: grid;
+      gap: 6px;
+    }
+    .line {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      padding: 12px 14px;
+      line-height: 1.9;
+      scroll-margin-top: 96px;
+    }
+    .line.active {
+      background: var(--active);
+      border-color: #e9be7f;
+    }
+    .speaker {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--accent-2);
+      margin-bottom: 3px;
+    }
+    .text {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    .empty {
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      color: var(--muted);
+      background: #fffefa;
+    }
+    @media (max-width: 920px) {
+      .layout { grid-template-columns: 1fr; }
+
+      .mobile-menu-btn {
+        display: inline-block;
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        z-index: 60;
+      }
+
+      aside {
+        position: fixed;
+        left: -286px;
+        top: 0;
+        bottom: 0;
+        width: 280px;
+        height: auto;
+        z-index: 50;
+        padding: 12px;
+        border-right: 1px solid var(--line);
+        border-bottom: none;
+        background: linear-gradient(180deg, #f8f1e6, #f4efe8);
+        overflow: auto;
+        transition: left .2s ease;
+      }
+
+      body.sidebar-open aside {
+        left: 0;
+      }
+
+      .studio {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: auto;
+        margin: 0 auto 8px;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        pointer-events: none;
+        z-index: 40;
+      }
+
+      .studio-head { display: none; }
+
+      .hosts {
+        width: min(260px, 88vw);
+        margin: 0 auto;
+        gap: 10px;
+      }
+
+      .host {
+        pointer-events: none;
+      }
+
+      .host img {
+        width: min(100%, 78px);
+        pointer-events: auto;
+      }
+
+      main {
+        padding-top: 52px;
+        padding-bottom: 110px;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+</head>
+<body>
+  <button id="mobileMenuBtn" class="mobile-menu-btn" type="button">メニュー</button>
+  <div class="layout">
+    <aside>
+      <h1>オーディオコメンタリ</h1>
+      <nav>
+        <a href="../index.html">トップ・本編</a>
+        <a href="characters.html">登場人物辞典</a>
+        <a href="glossary.html">用語辞典</a>
+        <a href="audiocommentary.html">オーディオコメンタリ</a>
+      </nav>
+      <div class="meta">回を選ぶと感想戦を表示します</div>
+
+      <section class="studio">
+        <p class="studio-head">出演者（スクロール連動）</p>
+        <div class="hosts">
+          <figure id="hostLeft" class="host left">
+            <img id="hostLeftImg" class="base" src="" alt="" />
+            <figcaption id="hostLeftName" class="host-name"></figcaption>
+          </figure>
+          <figure id="hostRight" class="host right">
+            <img id="hostRightImg" class="base" src="" alt="" />
+            <figcaption id="hostRightName" class="host-name"></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <div id="episodeList"></div>
+    </aside>
+
+    <main>
+      <section class="episode-title">
+        <h2 id="epTitle">読み込み中...</h2>
+        <p id="epMeta"></p>
+      </section>
+
+      <section id="dialogue" class="dialogue"></section>
+    </main>
+  </div>
+
+  <script>
+    const state = {
+      data: null,
+      episode: null,
+      observer: null,
+      buttons: [],
+      hostSet: []
+    };
+
+    const elEpisodeList = document.getElementById("episodeList");
+    const elTitle = document.getElementById("epTitle");
+    const elMeta = document.getElementById("epMeta");
+    const elDialogue = document.getElementById("dialogue");
+
+    const hostLeft = document.getElementById("hostLeft");
+    const hostRight = document.getElementById("hostRight");
+    const hostLeftImg = document.getElementById("hostLeftImg");
+    const hostRightImg = document.getElementById("hostRightImg");
+    const hostLeftName = document.getElementById("hostLeftName");
+    const hostRightName = document.getElementById("hostRightName");
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+
+    const esc = (s) => String(s ?? "").replace(/[&<>\"]/g, (ch) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;" }[ch]));
+
+    function imagePathFor(name) {
+      const n = String(name || "").trim();
+      if (!n) return "";
+      return `./${n}.png`;
+    }
+
+    function setHostActive(name) {
+      if (!state.hostSet.length) return;
+      const [left, right] = state.hostSet;
+      const leftOn = name === left;
+      const rightOn = name === right;
+      hostLeft.classList.toggle("active", leftOn);
+      hostRight.classList.toggle("active", rightOn);
+      if (!leftOn && !rightOn) {
+        hostLeft.classList.add("active");
+        hostRight.classList.add("active");
+      }
+    }
+
+    function animateSquish(hostEl, imgEl, isLeft) {
+      hostEl.classList.remove("squish");
+      const base = isLeft ? "scaleX(-1)" : "scaleX(1)";
+      imgEl.style.setProperty("--base-transform", base);
+      void hostEl.offsetWidth;
+      hostEl.classList.add("squish");
+    }
+
+    function attachSquish() {
+      hostLeftImg.addEventListener("pointerdown", () => animateSquish(hostLeft, hostLeftImg, true));
+      hostRightImg.addEventListener("pointerdown", () => animateSquish(hostRight, hostRightImg, false));
+    }
+
+    function buildEpisodeList(episodes) {
+      elEpisodeList.innerHTML = "";
+      state.buttons = [];
+
+      for (const ep of episodes) {
+        const btn = document.createElement("button");
+        btn.className = "episode-btn";
+        btn.type = "button";
+        btn.textContent = `${ep.episode_id}  ${ep.title}`;
+        btn.addEventListener("click", () => {
+          renderEpisode(ep);
+          if (window.matchMedia("(max-width: 920px)").matches) {
+            document.body.classList.remove("sidebar-open");
+          }
+        });
+        elEpisodeList.appendChild(btn);
+        state.buttons.push({ id: ep.episode_id, el: btn });
+      }
+    }
+
+    function observeDialogue() {
+      if (state.observer) state.observer.disconnect();
+
+      const items = Array.from(elDialogue.querySelectorAll(".line"));
+      if (!items.length) return;
+
+      state.observer = new IntersectionObserver((entries) => {
+        const visibles = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!visibles.length) return;
+
+        const target = visibles[0].target;
+        const speaker = target.getAttribute("data-speaker");
+
+        for (const item of items) {
+          item.classList.toggle("active", item === target);
+        }
+        setHostActive(speaker);
+      }, {
+        root: null,
+        threshold: [0.2, 0.45, 0.7],
+        rootMargin: "-20% 0px -55% 0px"
+      });
+
+      for (const item of items) state.observer.observe(item);
+
+      const firstSpeaker = items[0].getAttribute("data-speaker");
+      if (firstSpeaker) {
+        items[0].classList.add("active");
+        setHostActive(firstSpeaker);
+      }
+    }
+
+    async function setHosts(commentators) {
+      const leftName = commentators?.[0] || "";
+      const rightName = commentators?.[1] || "";
+      state.hostSet = [leftName, rightName];
+
+      hostLeftName.textContent = leftName || "-";
+      hostRightName.textContent = rightName || "-";
+
+      const leftSrc = imagePathFor(leftName);
+      const rightSrc = imagePathFor(rightName);
+
+      if (leftSrc) {
+        hostLeftImg.src = leftSrc;
+        hostLeftImg.alt = `${leftName} ゆっくり`;
+      } else {
+        hostLeftImg.removeAttribute("src");
+        hostLeftImg.alt = `${leftName} 画像なし`;
+      }
+
+      if (rightSrc) {
+        hostRightImg.src = rightSrc;
+        hostRightImg.alt = `${rightName} ゆっくり`;
+      } else {
+        hostRightImg.removeAttribute("src");
+        hostRightImg.alt = `${rightName} 画像なし`;
+      }
+
+      hostLeft.classList.add("active");
+      hostRight.classList.add("active");
+    }
+
+    async function renderEpisode(ep) {
+      state.episode = ep;
+      location.hash = encodeURIComponent(ep.episode_id);
+
+      for (const b of state.buttons) {
+        b.el.classList.toggle("active", b.id === ep.episode_id);
+      }
+
+      elTitle.textContent = ep.title || ep.episode_id;
+      elMeta.textContent = `回: ${ep.episode_id} / パーソナリティ: ${(ep.commentators || []).join("・")}`;
+
+      await setHosts(ep.commentators || []);
+
+      if (!Array.isArray(ep.dialogue) || !ep.dialogue.length) {
+        elDialogue.innerHTML = '<div class="empty">この回のコメント本文はありません。</div>';
+        return;
+      }
+
+      elDialogue.innerHTML = ep.dialogue.map((line, idx) => `
+        <article class="line" id="line-${idx}" data-speaker="${esc(line.speaker)}">
+          <span class="speaker">${esc(line.speaker)}</span>
+          <p class="text">${esc(line.text)}</p>
+        </article>
+      `).join("\n");
+
+      observeDialogue();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    async function boot() {
+      try {
+        const res = await fetch("../data/AudioCommentary.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`AudioCommentary.json: HTTP ${res.status}`);
+        state.data = await res.json();
+
+        const episodes = Array.isArray(state.data.episodes) ? state.data.episodes : [];
+        if (!episodes.length) {
+          elEpisodeList.innerHTML = '<div class="empty">エピソードが見つかりません。</div>';
+          elTitle.textContent = "データなし";
+          elMeta.textContent = "";
+          elDialogue.innerHTML = "";
+          return;
+        }
+
+        buildEpisodeList(episodes);
+
+        const fromHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+        const selected = episodes.find(ep => ep.episode_id === fromHash) || episodes[0];
+        await renderEpisode(selected);
+      } catch (e) {
+        elEpisodeList.innerHTML = `<div class="empty">読み込み失敗: ${esc(e.message)}</div>`;
+        elTitle.textContent = "読み込み失敗";
+        elMeta.textContent = "";
+        elDialogue.innerHTML = '<div class="empty">AudioCommentary.json を確認してください。</div>';
+      }
+    }
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener("click", () => {
+        document.body.classList.toggle("sidebar-open");
+      });
+    }
+
+    attachSquish();
+    boot();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
