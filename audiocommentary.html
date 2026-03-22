@@ -13,16 +13,16 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="登場人物による感想戦を読むオーディオコメンタリページ。スクロール連動演出付き。" />
-  <link rel="canonical" href="https://soshuko.github.io/RePubReader/pages/audiocommentary.html" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/audiocommentary.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://soshuko.github.io/RePubReader/pages/audiocommentary.html" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/audiocommentary.html" />
   <meta property="og:title" content="オーディオコメンタリ | 『共和国物語』サーガ" />
   <meta property="og:description" content="登場人物による感想戦を読むオーディオコメンタリページ。スクロール連動演出付き。" />
-  <meta property="og:image" content="../assets/images/寮生活とナイフ.png" />
+  <meta property="og:image" content="./assets/images/寮生活とナイフ.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="オーディオコメンタリ | 『共和国物語』サーガ" />
   <meta name="twitter:description" content="登場人物による感想戦を読むオーディオコメンタリページ。スクロール連動演出付き。" />
-  <meta name="twitter:image" content="../assets/images/寮生活とナイフ.png" />
+  <meta name="twitter:image" content="./assets/images/寮生活とナイフ.png" />
   <title>オーディオコメンタリ | 『共和国物語』サーガ</title>
   <style>
     :root {
@@ -275,7 +275,7 @@
       }
     }
   </style>
-  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="icon" type="image/png" href="./assets/images/アイコン.png" />
 </head>
 <body>
   <button id="mobileMenuBtn" class="mobile-menu-btn" type="button">メニュー</button>
@@ -283,7 +283,7 @@
     <aside>
       <h1>オーディオコメンタリ</h1>
       <nav>
-        <a href="../index.html">トップ・本編</a>
+        <a href="./index.html">トップ・本編</a>
         <a href="characters.html">登場人物辞典</a>
         <a href="glossary.html">用語辞典</a>
         <a href="audiocommentary.html">オーディオコメンタリ</a>
@@ -344,7 +344,7 @@
     function imagePathFor(name) {
       const n = String(name || "").trim();
       if (!n) return "";
-      return `../assets/images/${n}.png`;
+      return `./assets/images/${n}.png`;
     }
 
     function setHostActive(name) {
@@ -490,7 +490,7 @@
 
     async function boot() {
       try {
-        const res = await fetch("../data/AudioCommentary.json", { cache: "no-store" });
+        const res = await fetch("./data/AudioCommentary.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`AudioCommentary.json: HTTP ${res.status}`);
         state.data = await res.json();
 
@@ -526,6 +526,7 @@
   </script>
 </body>
 </html>
+
 
 
 

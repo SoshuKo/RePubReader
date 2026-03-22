@@ -13,16 +13,16 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="『共和国物語』サーガの用語辞典。ナイフ・構え・使用者の情報を閲覧。" />
-  <link rel="canonical" href="https://soshuko.github.io/RePubReader/pages/glossary.html" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/glossary.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://soshuko.github.io/RePubReader/pages/glossary.html" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/glossary.html" />
   <meta property="og:title" content="用語辞典 | 『共和国物語』サーガ" />
   <meta property="og:description" content="『共和国物語』サーガの用語辞典。ナイフ・構え・使用者の情報を閲覧。" />
-  <meta property="og:image" content="../assets/images/ポートフォリオ.png" />
+  <meta property="og:image" content="./assets/images/ポートフォリオ.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="用語辞典 | 『共和国物語』サーガ" />
   <meta name="twitter:description" content="『共和国物語』サーガの用語辞典。ナイフ・構え・使用者の情報を閲覧。" />
-  <meta name="twitter:image" content="../assets/images/ポートフォリオ.png" />
+  <meta name="twitter:image" content="./assets/images/ポートフォリオ.png" />
   <title>用語辞典 | 『共和国物語』サーガ</title>
   <style>
     :root {
@@ -112,13 +112,13 @@
     .char-link:hover { background: #edf5f8; }
     .dim { color: var(--muted); }
   </style>
-  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="icon" type="image/png" href="./assets/images/アイコン.png" />
 </head>
 <body>
   <header>
     <h1>『共和国物語』サーガ 用語辞典</h1>
     <nav>
-      <a href="../index.html">本編</a>
+      <a href="./index.html">本編</a>
       <a href="characters.html">登場人物辞典</a>
       <a href="glossary.html">用語辞典</a>
       <a href="audiocommentary.html">オーディオコメンタリ</a>
@@ -251,8 +251,8 @@
     async function boot() {
       try {
         const [storyRes, dicRes] = await Promise.all([
-          fetch("../data/物語本編.json", { cache: "no-store" }),
-          fetch("../data/rpdic.json", { cache: "no-store" })
+          fetch("./data/物語本編.json", { cache: "no-store" }),
+          fetch("./data/rpdic.json", { cache: "no-store" })
         ]);
         if (!storyRes.ok) throw new Error(`物語本編.json: HTTP ${storyRes.status}`);
         if (!dicRes.ok) throw new Error(`rpdic.json: HTTP ${dicRes.status}`);
@@ -296,6 +296,7 @@
   </script>
 </body>
 </html>
+
 
 
 

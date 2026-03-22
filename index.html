@@ -355,9 +355,9 @@
       <div id="siteMeta" class="meta">物語本編ビューア / JSON連携</div>
       <nav>
         <a id="navTop" href="index.html">トップ・本編</a>
-        <a id="navChars" href="./pages/characters.html">登場人物辞典</a>
-        <a id="navGloss" href="./pages/glossary.html">用語辞典</a>
-        <a id="navAudio" href="./pages/audiocommentary.html">オーディオコメンタリ</a>
+        <a id="navChars" href="./characters.html">登場人物辞典</a>
+        <a id="navGloss" href="./glossary.html">用語辞典</a>
+        <a id="navAudio" href="./audiocommentary.html">オーディオコメンタリ</a>
       </nav>
       <div class="toggle-row">
         <button id="themeToggle" class="theme-toggle" type="button">ダークモード</button>
@@ -374,7 +374,7 @@
           <p>架空の国家「カラベイ教導国」と「ハーロピノン共和国」などを舞台に、世代と国境を超えて紡がれる壮大な群像劇。
 理想の国家を追い求め、剣（デューレイ）と血で歴史を切り拓いた為政者たち。その歪な「幸せ」の定義に抗い、あるいは翻弄されながらも、自分たちの未来と日常を掴み取ろうとする若者たち。
 「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
-          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./pages/characters.html">登場人物辞典</a> / <a href="./pages/glossary.html">用語辞典</a> / <a href="./pages/audiocommentary.html">オーディオコメンタリ</a></p>
+          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a></p>
         </article>
 
         <article class="intro">
@@ -423,7 +423,7 @@
           <h3>オーディオコメンタリ</h3>
           <p class="catch">登場人物たちの感想戦ラジオ</p>
           <p>各エピソードを、作中の登場人物たちが「感想戦」として語る特別企画です。スクロールにあわせて話者が切り替わるビジュアル演出付きで閲覧できます。</p>
-          <p style="margin-top:10px;"><a href="./pages/audiocommentary.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">オーディオコメンタリを開く</a></p>
+          <p style="margin-top:10px;"><a href="./audiocommentary.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">オーディオコメンタリを開く</a></p>
         </article>
       </section>
       <section id="topPageEn" class="top-page" style="display:none;">
@@ -482,7 +482,7 @@ A stylish underworld road movie with lethal charm.</p>
           <h3>English Pages</h3>
           <p class="catch">Under Construction</p>
           <p>Characters / Glossary / Audio Commentary in English are currently under development.（実装中）</p>
-          <p style="margin-top:10px;"><a href="./pages/en-under-construction.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">Open English Status</a></p>
+          <p style="margin-top:10px;"><a href="./en-under-construction.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">Open English Status</a></p>
         </article>
       </section>
       <section id="shareModal" class="share-modal" aria-hidden="true">
@@ -562,17 +562,17 @@ A stylish underworld road movie with lethal charm.</p>
     const shareMap = {
       karabatan: {
         label: "カラバァタン共和国物語",
-        path: "./pages/share-karabatan.html",
+        path: "./share-karabatan.html",
         text: "カラバァタン共和国物語『200メートル先、転向する兄弟』"
       },
       haropinon: {
         label: "ハーロピノン共和国物語",
-        path: "./pages/share-haropinon.html",
+        path: "./share-haropinon.html",
         text: "ハーロピノン共和国物語『Boy-Meets-Knife』"
       },
       bookkeeper: {
         label: "ブックキーパー",
-        path: "./pages/share-bookkeeper.html",
+        path: "./share-bookkeeper.html",
         text: "ブックキーパー『Like Business, Love 推し』"
       }
     };
@@ -640,7 +640,7 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function englishLink(kind) {
-      return `./pages/en-under-construction.html?page=${encodeURIComponent(kind)}`;
+      return `./en-under-construction.html?page=${encodeURIComponent(kind)}`;
     }
 
     function applyLanguage(lang) {
@@ -941,6 +941,7 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
 
 
 
