@@ -19,61 +19,60 @@
   <meta property="og:title" content="Kàlavén Qedïlàyia Sïtīm | Fast Visa" />
   <meta property="og:description" content="査証有効画面" />
   <meta property="og:image" content="./国章.png" />
-    <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kàlavén Qedïlàyia Sïtīm | Fast Visa" />
   <meta name="twitter:description" content="カラベイ教導国ファストビザ表示画面" />
   <meta name="twitter:image" content="./国章.png" />
   <title>Kàlavén Qedïlàyia Sïtīm | Saïbén Chìul</title>
   <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
   <style>
-    :root{--bg:#e8edf2;--panel:#ffffff;--line:#c7d0d8;--ink:#1d2832;--muted:#566474;--ok:#1f6a3e}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:"Yu Gothic UI","BIZ UDPGothic",sans-serif;color:var(--ink)}
-    .wrap{max-width:940px;margin:0 auto;padding:20px}
-    .visa{position:relative;border:1px solid var(--line);background:var(--panel);padding:16px;overflow:hidden}
-    .visa::before{content:'';position:absolute;inset:0;background:url('./国章.png') center 45% / 66% no-repeat;opacity:.12;pointer-events:none;filter:contrast(1.2)}
+    body{margin:0;background:#e8e8dd;font-family:Tahoma,Arial,"MS PGothic",sans-serif;font-size:13px;color:#202020}
+    .shell{width:960px;max-width:96vw;margin:10px auto;border:1px solid #5f5f5f;background:#fff}
+    .topbar{background:#1f3f61;color:#fff;padding:8px 10px;border-bottom:4px solid #8799ab;font-weight:700}
+    .body{padding:10px}
+    .visa{position:relative;border:1px solid #8c8c8c;background:#fafaf7;padding:10px;overflow:hidden}
+    .visa:before{content:'';position:absolute;inset:0;background:url('./国章.png') center 48% / 25% no-repeat;opacity:.12;pointer-events:none;filter:contrast(1.2)}
     .visa>*{position:relative;z-index:1}
-    h1{margin:0 0 8px;font-size:1.06rem}
-    .badge{display:inline-block;padding:4px 8px;border:1px solid #99c9ad;background:#eaf7ef;color:var(--ok);font-weight:700;font-size:.86rem}
-    .sec{margin-top:12px;padding-top:10px;border-top:1px dashed #d5dce3}
-    .k{font-weight:700;color:#3f5262}
-    .comment{margin-top:10px;padding:10px;border:1px solid #d8dee5;background:#f5f8fb}
-    .link{margin-top:12px}
-    a{color:#214766}
+    .badge{display:inline-block;padding:2px 7px;border:1px solid #688f66;background:#d7ead4;font-weight:700}
+    .sec{margin-top:8px;padding-top:8px;border-top:1px dotted #b8b8ab}
+    .k{font-weight:700}
+    .comment{margin-top:6px;border:1px solid #aaa98f;background:#fffef7;padding:7px}
+    .foot{padding:8px;border-top:1px solid #c0c0b0;background:#f4f4ed;font-size:12px}
+    a{color:#1d4668}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="visa">
-      <h1>Kàlavén Qedïlàyia Sïtīm كلڤن قديليي ستم</h1>
-      <div class="badge">【Saïbén Chìul】 Vísarén Sècá: Yair (有効)</div>
-      <div class="sec">
-        <div><span class="k">Hráilén Shīu:</span> KL-V-95-058291</div>
+  <div class="shell">
+    <div class="topbar">Kàlavén Qedïlàyia Sïtīm كلڤن قديليي ستم</div>
+    <div class="body">
+      <div class="visa">
+        <div class="badge">【Saïbén Chìul】 Vísarén Sècá: Yair (有効)</div>
+        <div class="sec"><span class="k">Hráilén Shīu:</span> KL-V-95-058291</div>
+        <div class="sec">
+          <div class="k">【Vaubiálén Báitar】</div>
+          <div><span class="k">Kïliāng:</span> er Mĭnace Arïsïnōva</div>
+          <div><span class="k">Xàuzuā:</span> Har-Lopĭnong</div>
+          <div><span class="k">Riàn:</span> <span id="purposeOut"></span></div>
+        </div>
+        <div class="sec">
+          <div class="k">【A-Hriāny】</div>
+          <div id="noteOut" style="min-height:20px"></div>
+        </div>
+        <div class="sec">
+          <div class="k">【Lasálén Diānyïbe (担当者コメント)】</div>
+          <div id="staffComment" class="comment"></div>
+        </div>
       </div>
-      <div class="sec">
-        <h2 style="margin:0 0 8px;font-size:1rem">【Vaubiálén Báitar】</h2>
-        <div><span class="k">Kïliāng:</span> er Mĭnace Arïsïnōva</div>
-        <div><span class="k">Xàuzuā:</span> Har-Lopĭnong</div>
-        <div><span class="k">Riàn:</span> <span id="purposeOut"></span></div>
-      </div>
-      <div class="sec">
-        <h2 style="margin:0 0 8px;font-size:1rem">【A-Hriāny】</h2>
-        <div id="noteOut" style="min-height:24px"></div>
-      </div>
-      <div class="sec">
-        <h2 style="margin:0 0 8px;font-size:1rem">【Lasálén Diānyïbe (担当者コメント)】</h2>
-        <div id="staffComment" class="comment"></div>
-      </div>
-      <p class="link"><a href="./visa-top.html">申請トップへ戻る</a> / <a href="./visa-status.html">照会画面へ</a> / <a href="../index.html">サイトトップ</a></p>
-    </section>
+    </div>
+    <div class="foot"><a href="./visa-top.html">申請トップへ戻る</a> / <a href="./visa-status.html">照会画面へ</a> / <a href="../index.html">サイトトップ</a></div>
   </div>
 
   <script>
     const params=new URLSearchParams(location.search);
     const purpose=params.get('purpose')||'Muabe موب（選択）';
-    const note=params.get('note')||'';
+    const note=(params.get('note')||'').trim();
     document.getElementById('purposeOut').textContent=purpose;
     document.getElementById('noteOut').textContent=note||'（記載なし）';
-
     const comments=[
       'FM. Shàun Mia شون مي: 許可する。だが、頼むから騒ぎだけは起こさないでくれ。タネイ猊下は面白がっているが、尻拭いをするのは我々事務方なのだ。',
       'FM. Shàun Mia شون مي: 許可する、が。『西アルトス研究会』？『奪還作戦一行』？ なんだそれは。新しい劇団か何かか？ 申告内容の意味が不明だが、危害を加える意思はなさそうだ。',

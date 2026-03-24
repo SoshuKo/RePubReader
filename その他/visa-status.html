@@ -19,76 +19,106 @@
   <meta property="og:title" content="Kàlavén alátĭran vísar sïtīm - Wáubar a Cïlēl" />
   <meta property="og:description" content="新規申請確認画面 / 申請状況照会" />
   <meta property="og:image" content="./国章.png" />
-    <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Wáubar a Cïlēl" />
   <meta name="twitter:description" content="カラベイ電子査証システムの確認・照会画面" />
   <meta name="twitter:image" content="./国章.png" />
   <title>Kàlavén alátĭran vísar sïtīm - Wáubar a Cïlēl</title>
   <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
   <style>
-    :root{--bg:#eef2f5;--panel:#fff;--line:#c6d0da;--ink:#1b2731;--muted:#586473;--accent:#305c81;--warn:#8a5a19}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:"Yu Gothic UI","BIZ UDPGothic",sans-serif;color:var(--ink)}
-    .wrap{max-width:1080px;margin:0 auto;padding:18px}.head,.sec{border:1px solid var(--line);background:#fff;padding:14px}.head{margin-bottom:12px}
-    h1{margin:0;font-size:1.06rem}.muted{color:var(--muted);font-size:.9rem}
-    h2{margin:0 0 10px;font-size:1rem;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:6px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.row{padding:6px 0;border-bottom:1px dotted #d8dee5}.k{color:#4a5f72;font-weight:700}
-    .qr{width:160px;height:160px;border:8px solid #111;background:
-      linear-gradient(90deg,#111 10%,transparent 10% 20%,#111 20% 30%,transparent 30% 40%,#111 40% 50%,transparent 50% 60%,#111 60% 70%,transparent 70% 80%,#111 80% 90%,transparent 90%),
-      linear-gradient(#111 10%,transparent 10% 20%,#111 20% 30%,transparent 30% 40%,#111 40% 50%,transparent 50% 60%,#111 60% 70%,transparent 70% 80%,#111 80% 90%,transparent 90%),
-      #fff;display:grid;place-items:center;cursor:pointer;font-weight:700}
-    .btn{border:1px solid #8fa0b2;background:#f6f9fb;padding:7px 10px;cursor:pointer;text-decoration:none;color:#233947;display:inline-block}
-    .note{margin-top:10px;padding:10px;border:1px solid #eadabf;background:#fff9ef;color:#5e4524}
-    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+    body{margin:0;background:#e8e8dd;font-family:Tahoma,Arial,"MS PGothic",sans-serif;font-size:13px;color:#202020}
+    .shell{width:960px;max-width:96vw;margin:10px auto;border:1px solid #5f5f5f;background:#fff}
+    .topbar{background:#1f3f61;color:#fff;padding:8px 10px;border-bottom:4px solid #8799ab;font-weight:700}
+    .subbar{background:#e3e8ee;padding:6px 10px;border-bottom:1px solid #aeb8c2;color:#233849}
+    .body{padding:10px}
+    .panel{border:1px solid #8c8c8c;background:#fafaf7;margin-bottom:10px}
+    .panel h2{margin:0;padding:6px 8px;background:#b8c3d0;color:#12283d;font-size:14px;border-bottom:1px solid #8c8c8c}
+    .content{padding:8px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .row{padding:5px;border-bottom:1px dotted #b8b8ab;background:#fff}
+    .k{font-weight:700}
+    .btn{border:1px solid #5a5a5a;background:#d7d7cc;padding:6px 10px;font-weight:700;cursor:pointer}
+    .btn:hover{background:#c8c8bd}
+    .hidden{display:none}
+    .qr-img{width:220px;max-width:100%;display:block;border:4px solid #111;background:#fff;cursor:pointer}
+    .note{margin-top:8px;border:1px solid #aaa98f;background:#fffef7;padding:7px}
+    .foot{padding:8px;border-top:1px solid #c0c0b0;background:#f4f4ed;font-size:12px}
+    a{color:#1d4668}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="head">
-      <h1>Kàlavén alátĭran vísar sïtīm - Wáubar a Cïlēl كلڤن الترن ڤسر ستم - ووبر ا ڃلل</h1>
-      <p class="muted"><a href="./visa-top.html">トップ画面</a> / <a href="../index.html">サイトトップ</a></p>
-    </header>
+  <div class="shell">
+    <div class="topbar">Kàlavén alátĭran vísar sïtīm - Wáubar a Cïlēl</div>
+    <div class="subbar"><a href="./visa-top.html">トップ画面</a> / <a href="../index.html">サイトトップ</a></div>
 
-    <section class="sec">
-      <h2>【Cïlēl 1: Jàur a Vauyia ڃلل 1: جور ا ڤوي】</h2>
-      <p class="muted">Pïlól sháun vauyián hliáshe hráilbe. 申請内容をご確認ください。</p>
-      <div class="grid">
-        <div>
-          <div class="row"><span class="k">Xàuzuā:</span> Har-Lopĭnong Cīxál (HL)</div>
-          <div class="row"><span class="k">Pásár-píyághen Shīu:</span> HL-95-M3729-ARS</div>
-          <div class="row"><span class="k">Én-kïliāng:</span> Arïsïnōva</div>
-          <div class="row"><span class="k">O-kïliāng:</span> Mĭnace</div>
-          <div class="row"><span class="k">Gguan Fià:</span> 1974/09/22</div>
-          <div class="row"><span class="k">Yīng:</span> dēl</div>
+    <div class="body">
+      <section id="screen1" class="panel">
+        <h2>【Cïlēl 1: Jàur a Vauyia ڃلل 1: جور ا ڤوي (新規申請確認画面)】</h2>
+        <div class="content">
+          <p>Pïlól sháun vauyián hliáshe hráilbe. 申請内容をご確認ください。</p>
+          <div class="grid">
+            <div>
+              <div class="row"><span class="k">Xàuzuā:</span> Har-Lopĭnong Cīxál (HL)</div>
+              <div class="row"><span class="k">Pásár-píyághen Shīu:</span> HL-95-M3729-ARS</div>
+              <div class="row"><span class="k">Én-kïliāng:</span> Arïsïnōva</div>
+              <div class="row"><span class="k">O-kïliāng:</span> Mĭnace</div>
+            </div>
+            <div>
+              <div class="row"><span class="k">Qedïlàyián Riàn:</span> <span id="purposeOut"></span></div>
+              <div class="row"><span class="k">申告:</span> <span id="declOut"></span></div>
+              <div class="row"><span class="k">特記事項:</span> <span id="noteOut"></span></div>
+            </div>
+          </div>
+          <p><button id="editBtn" class="btn" type="button">Yan ين (修正)</button> <button id="sendBtn" class="btn" type="button">Riày ريي (送信)</button></p>
         </div>
-        <div>
-          <div class="row"><span class="k">Qedïlàyián Riàn:</span> Magáseyia</div>
-          <div class="row"><span class="k">Dïlài Fià:</span> 1995/05/15</div>
-          <div class="row"><span class="k">Qedïlàyián Hlàny:</span> Tàné Tïraipōtar (YLA)</div>
-          <div class="row"><span class="k">Kïráuten Shīu:</span> FA541 (Hrïse: HEN)</div>
-          <div class="row"><span class="k">Dautān:</span> Hōtál Zàléi tïl / Qára, Yìlà</div>
-          <div class="row"><span class="k">Hátau:</span> +46-61-7782-9000</div>
-        </div>
-      </div>
-      <p class="muted">Rélo hram a vió (zuò, tuò) qosuābe a yïpuìbe. [ Hráilje (確認済) ]</p>
-      <p><button class="btn" type="button">Yan ين (修正)</button> <a class="btn" href="#status">Riày ريي (送信)</a></p>
-    </section>
+      </section>
 
-    <section id="status" class="sec" style="margin-top:12px">
-      <h2>【Cïlēl 2: Sècá Hráil ڃلل 2: سڃ هريل】</h2>
-      <p><strong>Vauyián Shīu:</strong> 950515-HL-0042 / <strong>Woim a Sècá:</strong> Hluayïje (発給済)</p>
-      <p><strong>Vísarén Shīu:</strong> KL-V-95-058291<br><strong>Yair a Vō:</strong> 1995/05/15 - 1995/06/14<br><strong>Tairïbiál:</strong> er Mĭnace Arïsïnōva</p>
-      <p>入国審査時、本画面のQRコードを生体認証ゲートにかざしてください。</p>
-      <div id="goFast" class="qr">QR</div>
-      <div class="note">Sèbaibe: 滞在中はTravarアプリのGPS機能を常に有効にしてください。90分以上の信号途絶は位置確認対象です。</div>
-      <div class="note">A-Kuábe: 元第一教導職の国葬に伴い、アーケイ直轄教区周辺で交通規制が行われています。</div>
-    </section>
+      <section id="status" class="panel hidden">
+        <h2>【Cïlēl 2: Sècá Hráil ڃلل 2: سڃ هريل (申請状況照会)】</h2>
+        <div class="content">
+          <p><strong>Vauyián Shīu:</strong> 950515-HL-0042 / <strong>Woim a Sècá:</strong> Hluayïje (発給済)</p>
+          <p><strong>Vísarén Shīu:</strong> KL-V-95-058291<br><strong>Yair a Vō:</strong> 1995/05/15 - 1995/06/14</p>
+          <p>入国審査時、本画面のQRコードを生体認証ゲートにかざしてください。</p>
+          <img id="goFast" class="qr-img" src="./qr-code.svg" alt="Visa QR Code" />
+          <div class="note">Sèbaibe: 滞在中はTravarアプリのGPS機能を常に有効にしてください。90分以上の信号途絶は位置確認対象です。</div>
+          <div class="note">A-Kuábe: 元第一教導職の国葬に伴い、アーケイ直轄教区周辺で交通規制が行われています。</div>
+        </div>
+      </section>
+    </div>
+
+    <div class="foot">Kàlavé Kuīshár Cīxálén Pe-chashe / カラベイ教導国 外務省</div>
   </div>
 
   <script>
-    document.getElementById('goFast').addEventListener('click',()=>{
-      location.href='./fast-visa.html?purpose='+encodeURIComponent('Magáseyia مگسي (観光)')+'&note=';
+    const params=new URLSearchParams(location.search);
+    const purpose=params.get('purpose') || 'Magáseyia مگسي (観光)';
+    const decl=params.get('decl') || 'Kuo كو (いいえ)';
+    const note=(params.get('note') || '').trim();
+
+    document.getElementById('purposeOut').textContent=purpose;
+    document.getElementById('declOut').textContent=decl;
+    document.getElementById('noteOut').textContent=note || '（記載なし）';
+
+    document.getElementById('editBtn').addEventListener('click',()=>{
+      location.href='./visa-top.html?purpose='+encodeURIComponent(purpose)+'&decl='+encodeURIComponent(decl)+'&note='+encodeURIComponent(note);
     });
+
+    document.getElementById('sendBtn').addEventListener('click',()=>{
+      document.getElementById('screen1').classList.add('hidden');
+      const s2=document.getElementById('status');
+      s2.classList.remove('hidden');
+      location.hash='status';
+    });
+
+    document.getElementById('goFast').addEventListener('click',()=>{
+      location.href='./fast-visa.html?purpose='+encodeURIComponent(purpose)+'&note='+encodeURIComponent(note)+'&decl='+encodeURIComponent(decl);
+    });
+
+    if(location.hash==='#status'){
+      document.getElementById('screen1').classList.add('hidden');
+      document.getElementById('status').classList.remove('hidden');
+    }
   </script>
 </body>
 </html>
-
