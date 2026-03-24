@@ -79,18 +79,32 @@
     }
     th, td { border: 1px solid var(--line); padding: 7px 8px; vertical-align: top; }
     th { background: #fff4e4; text-align: left; color: #804900; }
-    pre {
-      margin: 8px 0 0;
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: #fffaf1;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 10px;
-      max-height: none;
-      overflow: visible;
-      font-family: "BIZ UDPGothic", "Yu Gothic UI", sans-serif;
-      line-height: 1.7;
+    .md-part {
+      margin: 18px 0 8px;
+      padding: 8px 10px;
+      border-left: 4px solid var(--accent);
+      background: #fff7ea;
+      color: #7f4500;
+      font-size: 1.02rem;
+    }
+    .md-lesson {
+      margin: 14px 0 8px;
+      color: #9a5600;
+      font-size: 1rem;
+      border-bottom: 1px dashed var(--line);
+      padding-bottom: 4px;
+    }
+    .md-p { margin: 8px 0; }
+    .md-ul { margin: 6px 0 8px 1.2em; padding: 0; }
+    .md-ul li { margin: 4px 0; }
+    .md-hr { border: 0; border-top: 1px solid var(--line); margin: 14px 0; }
+    .md-code {
+      background: #fff4e4;
+      border: 1px solid #f6d4a5;
+      border-radius: 6px;
+      padding: 1px 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .92em;
     }
     @media (max-width: 960px) {
       .layout { grid-template-columns: 1fr; }
@@ -178,9 +192,15 @@
       </section>
 
       <section class="card">
-        <h2>4. 文法解説（講義全文）</h2>
+        <h2>4. 文法解説（講義）</h2>
         <div class="body">
-          <pre>
+          <div id="lectureRender"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script id="lectureMarkdown" type="text/plain">
 # カラバル語講義：第1部 カラバル語の基礎構造
 
 ようこそ！第1部では、カラバル語の基本となる語順と、この言語の最大の特徴である「クラス転換」を中心に、基礎的な文法構造を身につけていきます。カラバル語のアラビア文字表記では、主母音が原則として転写されない（子音のみが表記される）点にも注目して学習を進めましょう。
@@ -532,10 +552,73 @@
 *   **-biál / -uál（〜する人）：** 例 kuābe（教える）→ **kuābiál / كوبيل**（教える人・教師）
 *   **-tèr / -ïtèr（〜化、〜になる）：** 例 hmàká（都市）→ **hmàkátèr / همكتر**（都市化）
 *   **-tān / -ān（場所）：** 例 kài（食べる）→ **kàitān / كيتن**（食べる場所・食堂）
-          </pre>
-        </div>
-      </section>
-    </main>
-  </div>
+  </script>
+  <script>
+    function esc(s){
+      return String(s ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    function inlineMd(s){
+      return esc(s)
+        .replace(/`([^`]+)`/g, '<code class="md-code">$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    }
+
+    function renderMarkdown(src){
+      const lines = src.replace(/\r/g, '').split('\n');
+      const out = [];
+      let inList = false;
+
+      function closeList(){
+        if (inList) { out.push('</ul>'); inList = false; }
+      }
+
+      for (const raw of lines) {
+        const line = raw.trimEnd();
+        const t = line.trim();
+
+        if (!t) { closeList(); continue; }
+
+        if (/^---+$/.test(t)) {
+          closeList();
+          out.push('<hr class="md-hr" />');
+          continue;
+        }
+
+        const h1 = t.match(/^#\s+(.+)$/);
+        if (h1) {
+          closeList();
+          out.push('<h3 class="md-part">' + inlineMd(h1[1]) + '</h3>');
+          continue;
+        }
+
+        const h2 = t.match(/^##\s+(.+)$/);
+        if (h2) {
+          closeList();
+          out.push('<h4 class="md-lesson">' + inlineMd(h2[1]) + '</h4>');
+          continue;
+        }
+
+        const li = line.match(/^\s*\*\s+(.+)$/);
+        if (li) {
+          if (!inList) { out.push('<ul class="md-ul">'); inList = true; }
+          out.push('<li>' + inlineMd(li[1]) + '</li>');
+          continue;
+        }
+
+        closeList();
+        out.push('<p class="md-p">' + inlineMd(t) + '</p>');
+      }
+
+      closeList();
+      return out.join('\n');
+    }
+
+    const mdSource = document.getElementById('lectureMarkdown').textContent || '';
+    document.getElementById('lectureRender').innerHTML = renderMarkdown(mdSource);
+  </script>
 </body>
 </html>
