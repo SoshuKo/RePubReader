@@ -88,22 +88,48 @@
       text-decoration: none;
       border-bottom: 1px dotted currentColor;
     }
-    .world-nav {
+    .site-groups {
       margin-top: 10px;
-      display: block;
-      color: var(--muted);
-      font-size: .86rem;
-    }
-    .world-nav select {
-      margin-top: 4px;
-      width: 100%;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 7px 9px;
-      font: inherit;
+      border-radius: 10px;
       background: var(--panel);
+      overflow: hidden;
+    }
+    .site-groups details + details { border-top: 1px solid var(--line); }
+    .site-groups summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      font-size: .9rem;
+      font-weight: 700;
       color: var(--ink);
-    }    .toggle-row {
+    }
+    .site-groups summary::-webkit-details-marker { display: none; }
+    .site-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      flex: 0 0 18px;
+    }
+    .group-links {
+      display: grid;
+      gap: 6px;
+      padding: 0 10px 10px;
+    }
+    .group-links a {
+      display: block;
+      color: var(--accent-2);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 6px 8px;
+      font-size: .85rem;
+      background: var(--panel);
+    }
+    .group-links a:hover { background: #f7f1e7; }    .toggle-row {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -394,18 +420,30 @@
         <a id="navGloss" href="./glossary.html">用語辞典</a>
         <a id="navAudio" href="./audiocommentary.html">オーディオコメンタリ</a>
         <a id="navDiary" href="./diary.html">執筆録</a>
-      </nav>
-      <label class="world-nav">世界設定
-        <select id="worldSettingSelect" onchange="if(this.value){location.href=this.value}">
-          <option value="">選択してください</option>
-          <option value="./地理/geo.html">カラベイ地理アーカイブ</option>
-          <option value="./地理/trainmap.html">カラベイ総合乗換案内</option>
-          <option value="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</option>
-          <option value="./言語/karabar-overview.html">カラバル語概要・文法解説</option>
-          <option value="./その他/visa-top.html">ファストビザ申請</option>
-          <option value="./言語/langdictionary.html">カラバル語オンライン辞書</option>
-        </select>
-      </label>
+      </nav>      <div class="site-groups" aria-label="派生サイト">
+        <details>
+          <summary><img class="site-icon" src="./assets/images/地理アイコン.png" alt="地理" />地理</summary>
+          <div class="group-links">
+            <a href="./地理/geo.html">カラベイ地理アーカイブ</a>
+            <a href="./地理/trainmap.html">カラベイ総合乗換案内</a>
+            <a href="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+          </div>
+        </details>
+        <details>
+          <summary><img class="site-icon" src="./assets/images/言語アイコン.png" alt="言語" />言語</summary>
+          <div class="group-links">
+            <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a>
+            <a href="./言語/langdictionary.html">カラバル語オンライン辞書</a>
+          </div>
+        </details>
+        <details>
+          <summary><img class="site-icon" src="./assets/images/その他アイコン.png" alt="その他" />その他</summary>
+          <div class="group-links">
+            <a href="./その他/visa-top.html">ファストビザ申請</a>
+            <a href="./その他/visa-status.html">ファストビザ照会</a>
+          </div>
+        </details>
+      </div>
       <div class="toggle-row">
         <button id="themeToggle" class="theme-toggle" type="button">ダークモード</button>
         <button id="langToggle" class="theme-toggle" type="button">English</button>
@@ -1053,6 +1091,9 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
+
 
 
 
