@@ -1,0 +1,246 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-NNPH1HB9GD');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="架空国家カラベイ教導国のカラバル語概要。音韻・格・クラス転換・語形成と講義資料ベースの文法解説を掲載。" />
+  <meta name="keywords" content="カラバル語,架空言語,架空国家,カラベイ教導国,文法,語根,格変化,クラス転換,講義資料" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A8%80%E8%AA%9E/karabar-overview.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A8%80%E8%AA%9E/karabar-overview.html" />
+  <meta property="og:title" content="カラバル語概要・文法解説 | 『共和国物語』サーガ" />
+  <meta property="og:description" content="音韻・形態論・格変化・クラス転換と講義資料ベースの文法解説。" />
+  <meta property="og:image" content="../assets/images/アイコン.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="カラバル語概要・文法解説 | 『共和国物語』サーガ" />
+  <meta name="twitter:description" content="音韻・形態論・格変化・クラス転換と講義資料ベースの文法解説。" />
+  <meta name="twitter:image" content="../assets/images/アイコン.png" />
+  <title>カラバル語概要・文法解説 | 『共和国物語』サーガ</title>
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <style>
+    :root {
+      --bg: #fff9ef;
+      --card: #ffffff;
+      --ink: #2f2317;
+      --muted: #7d6550;
+      --line: #f0c58f;
+      --accent: #f09000;
+      --accent-deep: #ad5f00;
+      --accent-soft: #fff2df;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 110% -20%, #ffdca9 0, transparent 45%),
+        radial-gradient(circle at -10% 110%, #ffe8c8 0, transparent 40%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "BIZ UDPGothic", "Yu Gothic UI", sans-serif;
+    }
+    .layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 16px;
+      background: linear-gradient(180deg, #fff8eb, #ffe8cb);
+      position: sticky; top: 0; height: 100vh; overflow: auto;
+    }
+    main { min-width: 0; padding: 18px clamp(14px, 2.8vw, 34px) 34px; }
+    h1 { margin: 0 0 8px; font-size: 1.16rem; color: var(--accent-deep); letter-spacing: .04em; }
+    .meta { margin: 0 0 12px; color: var(--muted); font-size: .86rem; line-height: 1.6; }
+    nav a { display: inline-block; margin: 0 10px 8px 0; text-decoration: none; color: #8c4d00; border-bottom: 1px dotted currentColor; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: 0 10px 24px rgba(165, 90, 0, .08);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .card h2 {
+      margin: 0;
+      padding: 12px 14px;
+      font-size: 1.06rem;
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .card .body { padding: 12px 14px; line-height: 1.8; }
+    table {
+      width: 100%; border-collapse: collapse; margin-top: 8px; background: #fff;
+      font-size: .94rem;
+    }
+    th, td { border: 1px solid var(--line); padding: 7px 8px; vertical-align: top; }
+    th { background: #fff4e4; text-align: left; color: #804900; }
+    .small { color: var(--muted); font-size: .88rem; }
+    .pill {
+      display: inline-block; padding: 2px 8px; border: 1px solid var(--line);
+      border-radius: 999px; background: #fff5e7; font-size: .84rem; margin-right: 6px;
+    }
+    pre {
+      margin: 8px 0 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #fffaf1;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      max-height: 420px;
+      overflow: auto;
+      font-family: "BIZ UDPGothic", "Yu Gothic UI", sans-serif;
+      line-height: 1.7;
+    }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h1>カラバル語概要</h1>
+      <p class="meta">音韻・形態論・格変化・クラス転換・接辞の早見表と、講義資料ベース文法解説。</p>
+      <nav>
+        <a href="../index.html">トップ・本編</a>
+        <a href="../characters.html">登場人物辞典</a>
+        <a href="../glossary.html">用語辞典</a>
+        <a href="../audiocommentary.html">オーディオコメンタリ</a>
+        <a href="../diary.html">執筆録</a>
+        <a href="../地理/geo.html">世界設定</a>
+        <a href="./langdictionary.html">カラバル語辞書</a>
+      </nav>
+      <div class="small">
+        <span class="pill">更新先</span> 文法解説は <code>文法解説.txt</code> から自動抽出します。<br />
+        <span class="pill">講義資料</span> 後送資料は同ページに追記可能です。
+      </div>
+    </aside>
+
+    <main>
+      <section class="card">
+        <h2>1. 音韻・クラス転換の概要</h2>
+        <div class="body">
+          <table>
+            <thead><tr><th>項目</th><th>内容</th></tr></thead>
+            <tbody>
+              <tr><td>基本語順</td><td>SOV（主語-目的語-動詞）</td></tr>
+              <tr><td>主母音</td><td>ï / e / o / a</td></tr>
+              <tr><td>副母音</td><td>i / u</td></tr>
+              <tr><td>声調</td><td>V̄ [44], V́ [24], V [22], V̀ [42]（資料表記に準拠）</td></tr>
+              <tr><td>中性 ï の声調</td><td>ī, í, ï, ì</td></tr>
+              <tr><td>母音クラス</td><td>男性(a系) / 未婚女性(e系) / 既婚女性(o系) / 中性(ï系)</td></tr>
+            </tbody>
+          </table>
+
+          <table>
+            <thead><tr><th>テンプレート</th><th>男性</th><th>未婚女性</th><th>既婚女性</th><th>中性</th></tr></thead>
+            <tbody>
+              <tr><td>V</td><td>a</td><td>e</td><td>o</td><td>ï</td></tr>
+              <tr><td>iV</td><td>ia</td><td>ie</td><td>io</td><td>ī</td></tr>
+              <tr><td>Vi</td><td>ai</td><td>ei</td><td>oi</td><td>ī</td></tr>
+              <tr><td>uV</td><td>ua</td><td>ue</td><td>uo</td><td>uï</td></tr>
+              <tr><td>Vu</td><td>au</td><td>eu</td><td>ou</td><td>ïu</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. 格変化（名詞）</h2>
+        <div class="body">
+          <table>
+            <thead><tr><th>格</th><th>機能</th><th>単数（子音語尾 / 母音語尾）</th><th>複数（子音語尾 / 母音語尾）</th></tr></thead>
+            <tbody>
+              <tr><td>対格</td><td>〜を</td><td>無標</td><td>-ïn / -ny</td></tr>
+              <tr><td>主格</td><td>〜が</td><td>-o / -ve</td><td>-uï / -vï</td></tr>
+              <tr><td>与格</td><td>〜に</td><td>-ér / -r</td><td>-ér / -rï</td></tr>
+              <tr><td>属格</td><td>〜の</td><td>-én / -n</td><td>-ény / -nie</td></tr>
+              <tr><td>具格</td><td>〜で</td><td>-éi / -je</td><td>-í / -jì</td></tr>
+              <tr><td>副詞格</td><td>〜として</td><td>-ei / -ye</td><td>-ï / -yï</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. 動詞の基本構造</h2>
+        <div class="body">
+          <table>
+            <thead><tr><th>区分</th><th>形式</th><th>メモ</th></tr></thead>
+            <tbody>
+              <tr><td>肯定（母音語尾）</td><td>√-(re)-(yï)-be</td><td>使役/受動は任意挿入</td></tr>
+              <tr><td>肯定（子音語尾）</td><td>√-ï-(re)-(yï)-be</td><td>連結母音 ï を追加</td></tr>
+              <tr><td>否定（母音語尾）</td><td>qo-√-(re)-(yï)-be</td><td>接頭辞 qo-</td></tr>
+              <tr><td>否定（子音語尾）</td><td>√-o-(re)-(yï)-be</td><td>接中辞 -o-</td></tr>
+              <tr><td>相</td><td>be / me / je / ne</td><td>無標 / 進行 / 完了 / 推量</td></tr>
+              <tr><td>時制</td><td>Ø / pï / yï</td><td>非過去 / 過去 / 希求法</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>4. 講義資料（文法解説.txt）</h2>
+        <div class="body">
+          <p class="small">講義資料の章立て（「## 第n課」）を抽出して表にしています。後で送る資料も同形式なら同ページに追記できます。</p>
+          <table id="lessonTable">
+            <thead><tr><th>課</th><th>テーマ</th></tr></thead>
+            <tbody><tr><td colspan="2">読み込み中...</td></tr></tbody>
+          </table>
+          <details style="margin-top:10px;">
+            <summary>文法解説.txt 全文を表示</summary>
+            <pre id="rawText">読み込み中...</pre>
+          </details>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = String(s ?? '');
+      return d.innerHTML;
+    }
+
+    async function loadLectureText() {
+      const rawEl = document.getElementById('rawText');
+      const tableBody = document.querySelector('#lessonTable tbody');
+      try {
+        const res = await fetch('./文法解説.txt', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        rawEl.textContent = text;
+
+        const lines = text.split(/\r?\n/);
+        const lessons = [];
+        for (const line of lines) {
+          const m = line.match(/^##\s*第\s*(\d+)\s*課[:：]\s*(.+)$/);
+          if (m) lessons.push({ no: m[1], title: m[2].trim() });
+        }
+
+        if (lessons.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="2">課見出し（## 第n課）が見つかりませんでした。</td></tr>';
+          return;
+        }
+
+        tableBody.innerHTML = lessons.map((x) =>
+          '<tr><td>第' + esc(x.no) + '課</td><td>' + esc(x.title) + '</td></tr>'
+        ).join('');
+      } catch (e) {
+        rawEl.textContent = '読み込み失敗: ' + e.message;
+        tableBody.innerHTML = '<tr><td colspan="2">読み込み失敗: ' + esc(e.message) + '</td></tr>';
+      }
+    }
+
+    loadLectureText();
+  </script>
+</body>
+</html>
