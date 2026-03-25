@@ -1,74 +1,141 @@
 ﻿<!doctype html>
-<html lang=\"ja\">
+<html lang="ja">
 <head>
-  <meta charset=\"UTF-8\" />
-  <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD\"></script>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    if (location.hostname === 'soshuko.github.io') {
-      gtag('config', 'G-NNPH1HB9GD');
-    }
+    if (location.hostname === 'soshuko.github.io') { gtag('config', 'G-NNPH1HB9GD'); }
   </script>
-  <meta name=\"google-site-verification\" content=\"02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <meta name=\"description\" content=\"カラベイ外務省観光局公式サイト。祈りと革新が交差する国・カラベイの最新観光案内。\" />
-  <meta name=\"keywords\" content=\"カラベイ,観光,架空国家,湾岸国家,文化,宗教,政治,地理\" />
-  <link rel=\"canonical\" href=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/politics.html\" />
-  <meta property=\"og:type\" content=\"website\" />
-  <meta property=\"og:url\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/politics.html\" />
-  <meta property=\"og:title\" content=\"政治（Politics） | カラベイ外務省観光局\" />
-  <meta property=\"og:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta property=\"og:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <meta name=\"twitter:card\" content=\"summary_large_image\" />
-  <meta name=\"twitter:title\" content=\"政治（Politics） | カラベイ外務省観光局\" />
-  <meta name=\"twitter:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta name=\"twitter:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <title>政治（Politics） | カラベイ外務省観光局</title>
-  <link rel=\"icon\" type=\"image/png\" href=\"../assets/images/アイコン.png\" />
-  <link rel=\"stylesheet\" href=\"./tourism.css\" />
+  <meta name="google-site-verification" content="02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="カラベイ教導国の政治案内。" />
+  <meta name="keywords" content="架空国家,架空世界,観光案内,カラベイ教導国" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/politics.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/politics.html" />
+  <meta property="og:title" content="政治" />
+  <meta property="og:description" content="カラベイ教導国の政治案内。" />
+  <meta property="og:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="政治" />
+  <meta name="twitter:description" content="カラベイ教導国の政治案内。" />
+  <meta name="twitter:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <title>政治 | カラベイ外務省観光局</title>
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="stylesheet" href="./tourism.css" />
 </head>
 <body>
-  <div class=\"layout\">
-    <aside>
-      <div class=\"brand\">
-        <img src=\"../assets/images/観光アイコン.png\" alt=\"観光\" />
-        <h1>カラベイ外務省観光局<br><span class=\"badge\">Official Tourism Portal</span></h1>
+  <button class="btn side-open" id="openBtn" type="button">メニュー</button>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <img src="../その他/カラベイの国旗.png" alt="カラベイの国旗" />
+          <h1>カラベイ外務省観光局<small>Kàlavé MoFA</small></h1>
+        </div>
+        <button class="btn" id="closeBtn" type="button">折りたたみ</button>
       </div>
-      <nav class=\"nav\">
-        <a class=\"\" href=\"./visit.html\">Záube ghór, Kàlavé!</a>
-        <a class=\"active\" href=\"./politics.html\">政治（Politics）</a>
-        <a class=\"\" href=\"./religion.html\">宗教（Religion）</a>
-        <a class=\"\" href=\"./culture.html\">文化（Culture）</a>
-        <a class=\"\" href=\"./geo-history.html\">地理と歴史</a>
+      <nav class="nav">
+        <a class="" href="./visit.html">トップページ</a>
+        <a class="active" href="./politics.html">政治</a>
+        <a class="" href="./religion.html">宗教</a>
+        <a class="" href="./culture.html">文化</a>
+        <a class="" href="./geo-history.html">地理と歴史</a>
       </nav>
-      <div class=\"subtools\">
-        <a href=\"../その他/visa-top.html\">ファストビザ申請</a>
-        <a href=\"../地理/realtimemap.html\">鉄道リアルタイムマップ</a>
-        <a href=\"../index.html\">『共和国物語』サーガへ戻る</a>
+      <div class="util">
+        <a href="../その他/visa-top.html">ファストビザ申請</a>
+        <a href="../地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+        <a href="../index.html">トップへ戻る</a>
       </div>
     </aside>
-    <main>
-      <section class="card"><h3>■ 政治（Politics） ──神の意志と法治の調和、そして『豊かな冬』へのあゆみ</h3>
-<p>Alïdau（至高の昼よ）。
-カラベイ教導国の政治体制は、古き良き信仰の伝統と近代法治が融合した「教導君主制」です。
+    <main class="main">
+      <header>
+        <div class="header-visual"><h2>政治</h2></div>
+        <div class="header-sub">Kàlavé MoFA</div>
+      </header>
+      <div class="content">
+                        <article class="section">
+          <h2>政治 ──神の意志と法治の調和、そして「豊かな冬」へのあゆみ</h2>
+          <p>Alïdau（至高の昼よ）。</p>
+          <p>カラベイ教導国の政治体制は、古き良き信仰の伝統と、近代的な法治システムが極めて高度な次元で融合した、世界でも類を見ない「教導君主制」を採択しております。アルトス西部における安定の要であり、ルルペ協定の盟主として国際社会を牽引する当国の、堅牢かつ開かれた統治機構をご紹介いたします。</p>
 
-【国家元首：三人の教導職（Kuīshál）】
-第一教導職：ラデン・タネイ 猊下（世俗統治）
-第二教導職：マジェン・カレイ 猊下（宗教祭祀・科学技術）
-第三教導職：タゲン・アティラー 猊下（宗教祭祀・福祉・法解釈）
+          <h3>国家元首：三人の教導職（Kuīshál）</h3>
+          <p>当国における最高権力は、建国の始祖たる九氏族より選ばれ、教学会の承認と「神の意思の確認作業」を経て即位する三名の「教導職（猊下）」によって合議・行使されます。世俗の権力と宗教的権威を分担することで、独裁を防ぎ、常に民の幸福と国家の繁栄を追求する体制が整えられています。</p>
 
-【統治機構】
-教学会、法議会、政務官・行政各省、二層司法制度によって、法と信仰を精緻に照合。
+          <div class="indent-block">
+            <p class="indent-line"><strong>第一教導職：ラデン・タネイ 猊下</strong></p>
+            <p class="indent-line">世俗の統治を統括する国家元首。1978年の就任以来、「豊かな冬」をスローガンに掲げ、医療費無償化や最低賃金制度の導入、インフラの劇的な近代化を実現しました。その卓越した「講話」の手腕は、国民を納得させ導く至高の統治技術として、国内外から深い敬愛を集めています。</p>
+            <p class="indent-line"><strong>第二教導職：マジェン・カレイ 猊下</strong></p>
+            <p class="indent-line">宗教祭祀を司るとともに、科学技術や学術振興に深い造詣を持たれる若き指導者。原子力工学をはじめとする次世代エネルギーへの理解も深く、当国の「祈りと科学の共存」を象徴する存在です。</p>
+            <p class="indent-line"><strong>第三教導職：タゲン・アティラー 猊下</strong></p>
+            <p class="indent-line">宗教祭祀を司り、農業政策や福祉、法解釈のグローバルスタンダード化を提言する人情家。カラバル語点字の改訂に尽力されるなど、多様な民に寄り添う慈愛（マーシェ）の体現者として知られています。</p>
+          </div>
 
-【国家政策：豊かな冬】
-医療費無償化、最低賃金制度、巨大インフラ更新、無料通信網整備、国際金融ハブ化を推進。
+          <h3>統治機構：法と信仰が織りなす精緻なシステム</h3>
+          <p>首都アーケイにそびえる「ミセニティウ大講堂」は、当国の政治と宗教の心臓部です。「法議院（世俗）」と「教学院（宗教）」の二つの巨塔を空中廊下『転向の橋』で結ぶその建築は、当国の統治システムそのものを体現しています。</p>
+          <div class="indent-block">
+            <p class="indent-line"><strong>教学会（教学院）</strong> 国家の魂である規範（宗教法）を審議し、教導職へ奏上する最高権威機関。150名の定数からなるエリート学者層（教学会員）によって構成され、マネイカル学派（国際教導主義）を中心に、時代に即した正統な法解釈を行っています。</p>
+            <p class="indent-line"><strong>法議会（法議院）</strong> 世俗法を審議し、国家の秩序を保つ立法機関。議員の中から選出される議長を中心に、国民の生活に直結する法案の熟議が行われます。</p>
+            <p class="indent-line"><strong>政務官・行政各省</strong> 第一教導職の任命を受けた政務官邸（現在、シャウン・アカウ政務官が主導）の下、内務、外務、国防、法務、経済、基盤、文部などの各省庁が実務を執行します。商務・農務を統合した「産業総省」の設立など、時代の変化に合わせた迅速な組織再編が行われています。</p>
+            <p class="indent-line"><strong>司法制度（二層構造による法の照合）</strong> 最高裁判所を頂点とする「世俗法」の審議機関と、判決がイスミズラークの教義に反していないかを照合する「諮問委員会（宗教法）」の二層構造を採用。教区・大教区・中央の各段階で厳密な審査が行われ、完璧な法の下の平等（ハリア）を実現しています。</p>
+          </div>
 
-【外交・経済】
-ルルペ協定の盟主として、集団安全保障・関税撤廃・通貨統合・教導基金投資を主導しています。</p>
-</section>
+          <h3>国家政策：「豊かな冬」と奇跡の経済発展</h3>
+          <p>ラデン・タネイ第一教導職の治世下、カラベイは「ラデン・タネイの奇跡」と呼ばれる未曾有の繁栄を謳歌しています。</p>
+          <div class="indent-block">
+            <p class="indent-line"><strong>徹底した福祉と平等（ハリア）</strong> 医療費の無償化、最低賃金の保障、女性議員の登用による女性参政権の拡充など、誰一人取り残さない社会保障制度を構築しました。</p>
+            <p class="indent-line"><strong>基幹インフラの世界的刷新</strong> 「タネイ・トライポート」の建設や、「フォル航空」の設立、全土を網羅する無料通信網『シティーリファー』の整備により、世界最高峰のインフラ国家へと変貌を遂げました。</p>
+            <p class="indent-line"><strong>クオ・フラメイによる情報発信</strong> 政府系独立メディア「クオ・フラメイ」を設立。世界の真実を独自の視点で報じ、娯楽から報道まで、3億5,000万人規模の視聴者に「戦う報道」を届けています。</p>
+          </div>
+
+          <h3>外交・経済：ルルペ協定の盟主として</h3>
+          <p>当国は単なる一国としての繁栄にとどまらず、アルトス西部全体、ひいては世界の平和と経済安定に寄与しています。</p>
+          <div class="indent-block">
+            <p class="indent-line"><strong>ルルペ協定と集団安全保障</strong> 1986年に締結されたルルペ協定の中心として、域内の関税撤廃・通貨統合を推進。シャウン・ミア外務事務次官やラデン・ア・ミオ国防事務次官の主導により、強固な集団安全保障体制を構築しています。</p>
+            <p class="indent-line"><strong>国際金融のハブ機能</strong> 最大都市イラーには「ルルペ協定金融公社（LAFC）」の本部が置かれ、独自の通貨バスケット「LFC-Ogilt」を用いた為替の安定化を図っています。「為替変動補償制度（RD）」により、海外からの投資家やビジネス客に極めて安全な取引環境を提供しています。</p>
+            <p class="indent-line"><strong>教導基金を通じた国際貢献</strong> 莫大な天然ガス収入を原資とする「教導基金」を運用し、教育、医療、科学技術、文化保護など、倫理的かつ長期的な投資を国内外で行い、イスミズラークの慈愛（マーシェ）を世界へと広げています。</p>
+          </div>
+
+          <p>「話し合い」と「選択」の歴史を越えて。カラベイ教導国は、確固たる法と揺るぎない信仰の下、訪れるすべての皆様、そして投資家の皆様に、最も安全で透明性の高い社会をお約束いたします。</p>
+          <p>国家の歩みや最新の法規、各種行政手続きに関する詳細は、各省庁の特設リンクよりご参照ください。</p>
+        </article>
+      </div>
     </main>
   </div>
+  <script>
+  (function(){
+    const key='tourism_sidebar_hidden';
+    const b=document.body;
+    const closeBtn=document.getElementById('closeBtn');
+    const openBtn=document.getElementById('openBtn');
+    function apply(){
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){
+        b.classList.remove('sidebar-hidden');
+      }else if(localStorage.getItem(key)==='1'){
+        b.classList.add('sidebar-hidden');
+      }else{
+        b.classList.remove('sidebar-hidden');
+      }
+    }
+    closeBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.remove('sidebar-open'); }
+      else { b.classList.add('sidebar-hidden'); localStorage.setItem(key,'1'); }
+    });
+    openBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.add('sidebar-open'); }
+      else { b.classList.remove('sidebar-hidden'); localStorage.setItem(key,'0'); }
+    });
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+  </script>
 </body>
 </html>
+
+

@@ -1,68 +1,164 @@
 ﻿<!doctype html>
-<html lang=\"ja\">
+<html lang="ja">
 <head>
-  <meta charset=\"UTF-8\" />
-  <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD\"></script>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    if (location.hostname === 'soshuko.github.io') {
-      gtag('config', 'G-NNPH1HB9GD');
-    }
+    if (location.hostname === 'soshuko.github.io') { gtag('config', 'G-NNPH1HB9GD'); }
   </script>
-  <meta name=\"google-site-verification\" content=\"02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <meta name=\"description\" content=\"カラベイ外務省観光局公式サイト。祈りと革新が交差する国・カラベイの最新観光案内。\" />
-  <meta name=\"keywords\" content=\"カラベイ,観光,架空国家,湾岸国家,文化,宗教,政治,地理\" />
-  <link rel=\"canonical\" href=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/geo-history.html\" />
-  <meta property=\"og:type\" content=\"website\" />
-  <meta property=\"og:url\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/geo-history.html\" />
-  <meta property=\"og:title\" content=\"地理と歴史 | カラベイ外務省観光局\" />
-  <meta property=\"og:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta property=\"og:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <meta name=\"twitter:card\" content=\"summary_large_image\" />
-  <meta name=\"twitter:title\" content=\"地理と歴史 | カラベイ外務省観光局\" />
-  <meta name=\"twitter:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta name=\"twitter:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
+  <meta name="google-site-verification" content="02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="カラベイ教導国の地理と歴史。" />
+  <meta name="keywords" content="架空国家,架空世界,観光案内,カラベイ教導国" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/geo-history.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/geo-history.html" />
+  <meta property="og:title" content="地理と歴史" />
+  <meta property="og:description" content="カラベイ教導国の地理と歴史。" />
+  <meta property="og:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="地理と歴史" />
+  <meta name="twitter:description" content="カラベイ教導国の地理と歴史。" />
+  <meta name="twitter:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
   <title>地理と歴史 | カラベイ外務省観光局</title>
-  <link rel=\"icon\" type=\"image/png\" href=\"../assets/images/アイコン.png\" />
-  <link rel=\"stylesheet\" href=\"./tourism.css\" />
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="stylesheet" href="./tourism.css" />
 </head>
 <body>
-  <div class=\"layout\">
-    <aside>
-      <div class=\"brand\">
-        <img src=\"../assets/images/観光アイコン.png\" alt=\"観光\" />
-        <h1>カラベイ外務省観光局<br><span class=\"badge\">Official Tourism Portal</span></h1>
+  <button class="btn side-open" id="openBtn" type="button">メニュー</button>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <img src="../その他/カラベイの国旗.png" alt="カラベイの国旗" />
+          <h1>カラベイ外務省観光局<small>Kàlavé MoFA</small></h1>
+        </div>
+        <button class="btn" id="closeBtn" type="button">折りたたみ</button>
       </div>
-      <nav class=\"nav\">
-        <a class=\"\" href=\"./visit.html\">Záube ghór, Kàlavé!</a>
-        <a class=\"\" href=\"./politics.html\">政治（Politics）</a>
-        <a class=\"\" href=\"./religion.html\">宗教（Religion）</a>
-        <a class=\"\" href=\"./culture.html\">文化（Culture）</a>
-        <a class=\"active\" href=\"./geo-history.html\">地理と歴史</a>
+      <nav class="nav">
+        <a class="" href="./visit.html">トップページ</a>
+        <a class="" href="./politics.html">政治</a>
+        <a class="" href="./religion.html">宗教</a>
+        <a class="" href="./culture.html">文化</a>
+        <a class="active" href="./geo-history.html">地理と歴史</a>
       </nav>
-      <div class=\"subtools\">
-        <a href=\"../その他/visa-top.html\">ファストビザ申請</a>
-        <a href=\"../地理/realtimemap.html\">鉄道リアルタイムマップ</a>
-        <a href=\"../index.html\">『共和国物語』サーガへ戻る</a>
+      <div class="util">
+        <a href="../その他/visa-top.html">ファストビザ申請</a>
+        <a href="../地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+        <a href="../index.html">トップへ戻る</a>
       </div>
     </aside>
-    <main>
-      <section class="card"><h3>■ 地理と歴史（Geography & History） ──雄大な自然と栄光の軌跡</h3>
-<p>国土309,383㎢。フリカウ山脈とデュラベイ山脈、二大水系、神秘のクオ・マガベ湖を擁する多様な国土です。
-
-【Geography】
-アーケイ（内陸ステップ）、ハヴァレイキ（高地湿潤）、イラー（地中海性）、セラン（多雨）と、都市ごとに全く異なる顔を持ちます。
-固有生態系と海洋資源は、当国の食文化・交易・観光の基盤です。
-
-【History】
-建国の父シャウン・パラジェイ猊下が教導国を樹立。
-現代ではラデン・タネイ猊下が「豊かな冬」を掲げ、福祉・インフラ・外交を統合的に発展させ、
-当国はルルペ協定の盟主として安定と繁栄を牽引しています。</p>
-</section>
+    <main class="main">
+      <header>
+        <div class="header-visual"><h2>地理と歴史</h2></div>
+        <div class="header-sub">Kàlavé MoFA</div>
+      </header>
+      <div class="content">
+                        <article class="section">
+          <h2>地理と歴史（Geography &amp; History） ──雄大な自然が育む命と、英雄たちが築いた栄光の軌跡</h2>
+          <p>Alïdau（至高の昼よ）。</p>
+          <p>アルトス西部に位置するカラベイ教導国は、天を突く巨大山脈と、青く輝くドゥラム海に抱かれた風光明媚な国家です。そして、その過酷でありながらも美しい自然環境こそが、当国の不屈の精神と輝かしい歴史を育んできました。</p>
+          <p>ここでは、観光の舞台となる多彩な大地と、現代の繁栄を築き上げた偉大なる指導者たちの正史をご紹介いたします。</p>
+          <h3>Geography / 多彩なる大地と水の恵み</h3>
+          <p>当国の国土（309,383㎢）は、標高や緯度によって驚くほど多様な気候と景観を見せてくれます。</p>
+          <h3>巨大山脈と気候のコントラスト</h3>
+          <p>国土を南北に貫くのは、二つの巨大山脈です。</p>
+          <div class="indent-block">
+            <p class="indent-line">フリカウ山脈（全長2,059km）：石灰岩質の大山脈。最高峰マン・カバキ山（2,996m）を擁し、純白の岩肌が神秘的な景観を作り出します。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">デュラベイ山脈（全長2,359km）：強固な花崗岩質からなる広大な山域。最高峰フリ・イル=カレイ山（2,927m）がそびえ立ちます。</p>
+          </div>
+          <p>これら地形の影響により、各都市はそれぞれ全く異なる顔を持ちます。</p>
+          <div class="indent-block">
+            <p class="indent-line">アーケイ（内陸・首都）：夏は酷暑、冬は氷点下となる乾燥したステップ気候。澄み切った空気が大講堂のシルエットを際立たせます。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">ハヴァレイキ（高地・聖地）：年間降水量1,200mm。夏は涼しく避暑に最適で、冬は厳寒となる湿潤大陸性・高山気候。豊かな緑と雪景色が楽しめます。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">イラー（沿海・最大都市）：温暖で安定した地中海性気候。卓越する西風が心地よい、リゾートと海洋交通の要衝です。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">セラン（南部・亜熱帯）：年間降水量3,800mmを誇る極めて多雨な温暖湿潤気候。豊かな水量が巨大な水力発電を支えています。</p>
+          </div>
+          <h3>二大水系と神秘の湖</h3>
+          <div class="indent-block">
+            <p class="indent-line">フリメレイ水系：国内最大級の河川（本流1,212km）。石灰岩質の山脈を流れるため、上流から下流にかけて水質が変化し、河口のイラー周辺ではミネラル豊富な「超硬水」となります。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">セリティン水系：セラン周辺を流れる「極軟水」の水系。豊かな流量（850㎥/s）を誇り、出力1.2GWの「ティリ・チャラヒヴァン水力発電所」が当国のクリーンな基幹電源を担っています。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">クオ・マガベ湖（Kuo magabe）：水深1,000m、その名は「潜るな」を意味します。極限的な硬度を誇り、容易に人を寄せ付けない危険な湖ですが、その湖畔から湧き出る水や、特産品のシイタケは超希少な最高級品として知られています。</p>
+          </div>
+          <h3>独自の生態系と固有種</h3>
+          <p>生態系の層が薄い当国では、独自の進化を遂げた動植物が息づいています。</p>
+          <p>人に懐きやすい「ドゥラムギツネ」や、荷役として活躍する「ドゥラムイノシシ」。そして海には、カレイでありながら左向きの顔を持つ「アルタガレイ」など、固有種の宝庫です。栄養豊富なイラル湾では、チョウザメや1mを超える特大マスが育ち、世界に誇るキャビアや魚食文化を支えています。</p>
+          <h3>History / 「天命の子」から「豊かな冬」へ。輝かしき建国史</h3>
+          <p>カラベイ教導国の歴史は、幾多の困難を乗り越え、唯一神イラトの御心のもと「正しい選択」をし続けた偉大なる指導者たちの軌跡です。</p>
+          <h3>建国の父：シャウン・パラジェイ 第一教導職猊下の偉功</h3>
+          <p>19世紀末から20世紀初頭にかけて、かつてのカラバァタン共和国は、宗主国からの搾取と、諸勢力の果てしない対立により、政治的・経済的な停滞の淵に沈んでいました。民衆は貧困に苦しみ、国家は方向性を失っていました。</p>
+          <p>その混迷の時代に、古の伝承が告げる「天命の子」として立ち上がったのが、建国の父・シャウン・パラジェイ猊下です。</p>
+          <p>類まれなる武の才と、国を憂う深い慈愛を持ったパラジェイ猊下は、腐敗した共和制の限界を見抜き、民衆を救うための「強き国家」の樹立を決意します。1927年、首都アーケイのミセニティウ大講堂にて、歴史的な『転向の橋』を渡り、ついにカラバァタン共和国を解体。ここに、神の意志と法治が融合する「カラベイ教導国」が高らかに建国されました。</p>
+          <p>「迷いなき第一教導職」として強力な指導力を発揮したパラジェイ猊下は、国家の絶対的な礎を築き、現代へと続く誇り高き教導主義の道を切り拓いたのです。</p>
+          <h3>現代の奇跡：ラデン・タネイ 第一教導職猊下と「豊かな冬」</h3>
+          <p>建国の父が築いた強固な礎の上に、未曾有の平和と経済的繁栄（奇跡）をもたらしたのが、現国家元首である第5代第一教導職、ラデン・タネイ猊下です。</p>
+          <p>1978年に就任されたタネイ猊下は、『国民よ。春は終わった。だが、わたしたちが築くのは、凍えることのない豊かな冬だ』という歴史的な講話とともに、大規模な国家近代化に着手しました。</p>
+          <p>その偉功は枚挙にいとまがありません。</p>
+          <div class="indent-block">
+            <p class="indent-line">タネイ・トライポートの建設：空港・海港・鉄道駅を完全統合した世界屈指の複合ハブをイラー沖に創設し、当国を国際交通の頂点へと押し上げました。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">ルルペ協定の締結（1986年）：周辺諸国との経済・安全保障の要となる地域共同体を主導し、カラベイを揺るぎない盟主の座に据えました。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">徹底した福祉社会の実現：国家の富（イラー湾岸ガス田の恩恵など）を国民に還元し、医療費の完全無償化や最低賃金の保障など、教義である「ハリア（水平＝過剰を均すこと）」を現実の政策として完遂しました。</p>
+          </div>
+          <p>タネイ猊下は、パラジェイ猊下が夢見た「強く優しいカラベイ」を、現代のテクノロジーと洗練された外交手腕で見事に実現させました。</p>
+          <p>今日、私たちが享受している安全で豊かな社会は、偉大なる指導者たちの揺るぎない決断と、唯一神イラトへの深い信仰の賜物なのです。</p>
+          <p>'Ï'E'A Géjéné Kuējebeyï （ヤー、三尾の狐よ、教導し給え）</p>
+          <p>過酷な大自然の恩恵と、英雄たちが紡いだ栄光の歴史。</p>
+          <p>カラベイ教導国は、過去の誇りを胸に抱きながら、タネイ猊下の導きのもと、さらなる輝かしい未来（円端）へと歩み続けています。</p>
+          <p>皆様の旅が、この国の雄大な地理と深い歴史に触れる、忘れがたいものとなりますように。</p>
+        </article>
+      </div>
     </main>
   </div>
+  <script>
+  (function(){
+    const key='tourism_sidebar_hidden';
+    const b=document.body;
+    const closeBtn=document.getElementById('closeBtn');
+    const openBtn=document.getElementById('openBtn');
+    function apply(){
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){
+        b.classList.remove('sidebar-hidden');
+      }else if(localStorage.getItem(key)==='1'){
+        b.classList.add('sidebar-hidden');
+      }else{
+        b.classList.remove('sidebar-hidden');
+      }
+    }
+    closeBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.remove('sidebar-open'); }
+      else { b.classList.add('sidebar-hidden'); localStorage.setItem(key,'1'); }
+    });
+    openBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.add('sidebar-open'); }
+      else { b.classList.remove('sidebar-hidden'); localStorage.setItem(key,'0'); }
+    });
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+  </script>
 </body>
 </html>
+
+

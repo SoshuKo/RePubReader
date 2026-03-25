@@ -1,73 +1,181 @@
 ﻿<!doctype html>
-<html lang=\"ja\">
+<html lang="ja">
 <head>
-  <meta charset=\"UTF-8\" />
-  <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD\"></script>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    if (location.hostname === 'soshuko.github.io') {
-      gtag('config', 'G-NNPH1HB9GD');
-    }
+    if (location.hostname === 'soshuko.github.io') { gtag('config', 'G-NNPH1HB9GD'); }
   </script>
-  <meta name=\"google-site-verification\" content=\"02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <meta name=\"description\" content=\"カラベイ外務省観光局公式サイト。祈りと革新が交差する国・カラベイの最新観光案内。\" />
-  <meta name=\"keywords\" content=\"カラベイ,観光,架空国家,湾岸国家,文化,宗教,政治,地理\" />
-  <link rel=\"canonical\" href=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/culture.html\" />
-  <meta property=\"og:type\" content=\"website\" />
-  <meta property=\"og:url\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/culture.html\" />
-  <meta property=\"og:title\" content=\"文化（Culture） | カラベイ外務省観光局\" />
-  <meta property=\"og:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta property=\"og:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <meta name=\"twitter:card\" content=\"summary_large_image\" />
-  <meta name=\"twitter:title\" content=\"文化（Culture） | カラベイ外務省観光局\" />
-  <meta name=\"twitter:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta name=\"twitter:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <title>文化（Culture） | カラベイ外務省観光局</title>
-  <link rel=\"icon\" type=\"image/png\" href=\"../assets/images/アイコン.png\" />
-  <link rel=\"stylesheet\" href=\"./tourism.css\" />
+  <meta name="google-site-verification" content="02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="カラベイ教導国の文化観光案内。" />
+  <meta name="keywords" content="架空国家,架空世界,観光案内,カラベイ教導国" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/culture.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/culture.html" />
+  <meta property="og:title" content="文化" />
+  <meta property="og:description" content="カラベイ教導国の文化観光案内。" />
+  <meta property="og:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="文化" />
+  <meta name="twitter:description" content="カラベイ教導国の文化観光案内。" />
+  <meta name="twitter:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <title>文化 | カラベイ外務省観光局</title>
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="stylesheet" href="./tourism.css" />
 </head>
 <body>
-  <div class=\"layout\">
-    <aside>
-      <div class=\"brand\">
-        <img src=\"../assets/images/観光アイコン.png\" alt=\"観光\" />
-        <h1>カラベイ外務省観光局<br><span class=\"badge\">Official Tourism Portal</span></h1>
+  <button class="btn side-open" id="openBtn" type="button">メニュー</button>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <img src="../その他/カラベイの国旗.png" alt="カラベイの国旗" />
+          <h1>カラベイ外務省観光局<small>Kàlavé MoFA</small></h1>
+        </div>
+        <button class="btn" id="closeBtn" type="button">折りたたみ</button>
       </div>
-      <nav class=\"nav\">
-        <a class=\"\" href=\"./visit.html\">Záube ghór, Kàlavé!</a>
-        <a class=\"\" href=\"./politics.html\">政治（Politics）</a>
-        <a class=\"\" href=\"./religion.html\">宗教（Religion）</a>
-        <a class=\"active\" href=\"./culture.html\">文化（Culture）</a>
-        <a class=\"\" href=\"./geo-history.html\">地理と歴史</a>
+      <nav class="nav">
+        <a class="" href="./visit.html">トップページ</a>
+        <a class="" href="./politics.html">政治</a>
+        <a class="" href="./religion.html">宗教</a>
+        <a class="active" href="./culture.html">文化</a>
+        <a class="" href="./geo-history.html">地理と歴史</a>
       </nav>
-      <div class=\"subtools\">
-        <a href=\"../その他/visa-top.html\">ファストビザ申請</a>
-        <a href=\"../地理/realtimemap.html\">鉄道リアルタイムマップ</a>
-        <a href=\"../index.html\">『共和国物語』サーガへ戻る</a>
+      <div class="util">
+        <a href="../その他/visa-top.html">ファストビザ申請</a>
+        <a href="../地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+        <a href="../index.html">トップへ戻る</a>
       </div>
     </aside>
-    <main>
-      <section class="card"><h3>■ 文化（Culture & Tourism） ──荘厳な祈りの街から、祝祭の宴まで</h3>
-<p>カラベイ文化は、戒律の中で洗練された美意識とおもてなしが共存する独自体系です。
-
-【都市別ハイライト】
-首都アーケイ：ミセニティウ大講堂と転向の橋
-聖地ハヴァレイキ：チャイギア温泉街とハヴァレイズィ大講堂
-最大都市イラー：セガキア祭・ターキア露店街・タネイ・トライポート
-
-【Gastronomy】
-戒律に基づく高度調理文化、希少食材、三大カリア、宮廷供養膳。
-
-【Entertainment】
-競技デューレイ、サル・アキア、セリュール文化、クオ・フラメイ＋のポップカルチャー。
-
-【Souvenirs】
-アビラー、Sèlènàn Kafian、Ggemé、公式ぬいぐるみなどの厳選土産をご用意。</p>
-</section>
+    <main class="main">
+      <header>
+        <div class="header-visual"><h2>文化</h2></div>
+        <div class="header-sub">Kàlavé MoFA</div>
+      </header>
+      <div class="content">
+                        <article class="section">
+          <h2>文化（Culture &amp; Tourism） ──荘厳な祈りの街から、祝祭の宴まで。至高の体験をあなたに</h2>
+          <p>"Záube ghór"（はじめて見る）。</p>
+          <p>カラベイ教導国の文化は、厳格な宗教的戒律（フラムとフリハル）の中で研ぎ澄まされた、独自の美意識と洗練極まるおもてなしの結晶です。</p>
+          <p>首都アーケイの荘厳な建築群、巡礼者たちが心身を浄化する聖地ハヴァレイキの温泉郷、そして最大都市イラーの活気あふれる祝祭。ここでは、旅行者の皆様に「至高の体験」をお約束する、カラベイならではの観光スポットと文化をご紹介いたします。</p>
+          <h3>都市別ハイライト：祈りと革新が交差する3つの街</h3>
+          <h3>首都 アーケイ（Arké） ──教導主義の象徴</h3>
+          <p>カラベイの中心地アーケイは、法と信仰が都市の景観そのものに刻み込まれた街です。</p>
+          <div class="indent-block">
+            <p class="indent-line">ミセニティウ大講堂と「転向の橋」</p>
+            <p class="indent-line">国家の心臓部。世俗権力を司る「法議院の塔（155m）」と、宗教権威を司る「教学院の塔（168m）」を、地上110mの空中廊下『転向の橋』が結びます。手すりが低く転落防止柵がないこの橋は、「神の前でふらつく不信心者は落ちても仕方ない」という独自の建築基準法のもと、安全よりも権威と美観を優先したスリリングな絶景スポットです。（※見学時は十分ご注意ください）</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">ガティナ大講堂（第一教導職公邸）からの視覚トリック</p>
+            <p class="indent-line">公邸から大講堂を望むと、手前の低い法議院と奥の高い教学院が重なり、対等に見えるよう緻密に計算されています。実際に奥（宗教）へ進むほど標高が高まり、「転向＝昇華」を体感できる建築の傑作です。</p>
+          </div>
+          <h3>聖地 ハヴァレイキ（Hhavaléiqi） ──癒やしと学問の温泉郷</h3>
+          <p>山脈に囲まれた標高501～1000mの回廊地帯に位置する、イスミズラーク・ディラル派の最も重要な聖地。活火山フリハセイ山を地熱源とする世界有数の温泉地でもあります。</p>
+          <div class="indent-block">
+            <p class="indent-line">チャイギア（温泉街の中心）</p>
+            <p class="indent-line">源泉数約3,000、湧出量約150,000kl/日を誇る公営の浄化施設。入浴は宗教儀礼（清浄：タアル）の一環とされ、地熱蒸気サウナや岩盤浴を完備。冷たい「山葡萄葉茶（シェ）」を飲みながら、木製の「湯樋（ゆどよ）」を流れる湯の音に耳を傾ければ、心身の穢れが洗い流されます。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">ハヴァレイズィ大講堂</p>
+            <p class="indent-line">1460年建設、カラベイ第2の規模を誇る歴史的建造物。新任教導職が初めて講話を行う神聖な場所であり、厳格なドレスコード（白または黒の衣服、肌を隠し帽子「リャタ」を着用）での参拝が求められます。</p>
+          </div>
+          <h3>最大都市 イラー（Yïlá） ──祝祭と海洋の玄関口</h3>
+          <p>ペラウス海性気候の温暖な沿海都市であり、世界最高峰の複合交通ハブ「タネイ・トライポート」を擁するカラベイの海の玄関口です。</p>
+          <div class="indent-block">
+            <p class="indent-line">大施食会「セガキア」と祝祭「ターキア」</p>
+            <p class="indent-line">断食月明け（アン・ファタル）に開催される大規模な炊き出しと祝祭。街中には賑やかな露店街（ターキア）が立ち並び、デーツ入りバタークッキー「ママール」などの甘味を分かち合う、国全体が祝祭ムードに包まれる特別な期間です。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">タネイ・トライポート（T3）</p>
+            <p class="indent-line">空港・海港・鉄道駅が一体化した人工島。超大型免税モール、高級ホテル群、映画館、ルルペ協定加盟国の料理が集まるフードコート、さらにはハヴァレイキ温泉を使用したスパまで完備。インフラ機能そのものが主役となる「象徴都市」で、贅沢なひとときをお過ごしいただけます。</p>
+          </div>
+          <h3>Gastronomy / 洗練を極めたカラバル食文化</h3>
+          <p>カラベイの食文化は、「動物の体液、皮、骨の摂取を禁ずる」という厳格な戒律（食汚の禁忌）によって、極限まで洗練されています。雑味の一切ない、純粋な旨味のみを抽出した至高の料理をご堪能ください。</p>
+          <div class="indent-block">
+            <p class="indent-line">至高の希少食材</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">イラル湾の特大ハマグリ（7年物）：特定の砂地で7年の歳月をかけて育つ最高級品。加熱しても縮まない奇跡の食感。（約120.0 K / 1個）</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">ギュラベイ産 スイートブレッド（リードヴォー）：牧畜の民ドゥルグ人が育てた、至高の質を誇る子牛の胸腺。（約15.0 K / 100g）</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">クオ・マガベ湖のシイタケ：危険な湖畔で採れる、肉のような食感を持つ超希少品。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">三大カリア（カレー）</p>
+            <p class="indent-line">地域ごとに特色のあるカレー文化。ジャポニカ米（ノリム）と合わせるラムカレー「カラーン」や、バターチキンカレー「モーシャー」などが人気です。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">パヴァイ大講堂迎賓館「慈愛の全羊食供養」</p>
+            <p class="indent-line">イラーの迎賓館で提供される、完全予約制の宮廷供養膳。表面を焼いた骨付き肉を削ぎ、野菜と共に皮で包む「ティリジェビウ」など、羊を一頭余すことなく味わい尽くす究極のフルコースです。（ゲスト価格：12.0 K）</p>
+          </div>
+          <h3>Entertainment / カラベイの娯楽と伝統</h3>
+          <h2>競技デューレイ（Duïlé） ──平和と技術の武術</h2>
+          <p>カラベイを代表するスポーツ（国技）。10m四方の試合場で、塗料を塗布した刃を用いて有効打突を競います。「損傷より致死、致死より武装解除が高得点となる」という、平和と高度な技術を優先する独自のポイント制が特徴。タネイ・トライポート内の体験コーナーでは、公式選手による模擬試合の見学や体験が可能です。</p>
+          <h2>サル・アキア（フットボール）</h2>
+          <p>イラーを本拠地とする人気プロクラブ。「支配と創造」をコンセプトに、短いパス連携で崩すテクニカルなスタイルで市民を熱狂させています。応援歌『Kàlavuá（カラベイよ）』がスタジアムに響き渡ります。</p>
+          <h2>セリュール（Sèluīr）と伝統体験</h2>
+          <p>「セリュール」とは、カラベイ式女性使用人の総称。1970年代以降、伝統文化の疑似体験として「セリュール喫茶（アヤウル／ジャウル）」が誕生しました。目元のみを露出したニカーブ風ベールとフリルキャップを纏う彼女たちが、宮廷語を用いた没個性的な伝統的礼節（アヤウル）や、個性豊かな現代的接客（ジャウル）で、厳格な倫理規定の下、誇り高いおもてなしを提供します。</p>
+          <h2>クオ・フラメイ＋（プラス）のポップカルチャー</h2>
+          <p>政府系メディアが提供するサブスクリプションでは、音楽や映像作品が大ヒット中。</p>
+          <p>未来から来た理系女子高生が活躍するアニメ『ツェーフテ』や、水と油の戦いを描く特撮ドラマ『ブムィトヌケ』。そして、天才的音楽家チサ・テイル・コロンや、多声合唱とロックを融合させた『Magasálïn（マガサーリン）』など、カラベイ発の洗練されたポップカルチャーが世界を席巻しています。</p>
+          <h3>Souvenirs / カラベイの思い出を持ち帰る</h3>
+          <p>お帰りの際は、タネイ・トライポートの免税店や、各国の公式アンテナショップ『Kàlavér Hrïn Wái（カラベイへの道）』で、厳選されたお土産をどうぞ。</p>
+          <div class="indent-block">
+            <p class="indent-line">Abilā（アビラー）：ガティナ大講堂御用達、ガネイキ産の最高級デーツ（6粒 55.0 K）</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">Sèlènàn Kafian：セラン産、香り高い御用達コーヒー（150g 38.0 K）</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">Ggemé（ゲメ）：ヤーキ産、シルク100%の極上織物（450.0 K）</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">公式ぬいぐるみ：愛らしい人気キャラクターグッズ（各28.0 K）</p>
+          </div>
+          <p>カラベイは、祈りの静寂と、躍動する現代文化が奇跡的なバランスで共存する国です。</p>
+          <p>どうぞ、あなただけの「至高の体験」を見つけてください。</p>
+        </article>
+      </div>
     </main>
   </div>
+  <script>
+  (function(){
+    const key='tourism_sidebar_hidden';
+    const b=document.body;
+    const closeBtn=document.getElementById('closeBtn');
+    const openBtn=document.getElementById('openBtn');
+    function apply(){
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){
+        b.classList.remove('sidebar-hidden');
+      }else if(localStorage.getItem(key)==='1'){
+        b.classList.add('sidebar-hidden');
+      }else{
+        b.classList.remove('sidebar-hidden');
+      }
+    }
+    closeBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.remove('sidebar-open'); }
+      else { b.classList.add('sidebar-hidden'); localStorage.setItem(key,'1'); }
+    });
+    openBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.add('sidebar-open'); }
+      else { b.classList.remove('sidebar-hidden'); localStorage.setItem(key,'0'); }
+    });
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+  </script>
 </body>
 </html>
+
+

@@ -1,75 +1,153 @@
 ﻿<!doctype html>
-<html lang=\"ja\">
+<html lang="ja">
 <head>
-  <meta charset=\"UTF-8\" />
-  <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD\"></script>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    if (location.hostname === 'soshuko.github.io') {
-      gtag('config', 'G-NNPH1HB9GD');
-    }
+    if (location.hostname === 'soshuko.github.io') { gtag('config', 'G-NNPH1HB9GD'); }
   </script>
-  <meta name=\"google-site-verification\" content=\"02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <meta name=\"description\" content=\"カラベイ外務省観光局公式サイト。祈りと革新が交差する国・カラベイの最新観光案内。\" />
-  <meta name=\"keywords\" content=\"カラベイ,観光,架空国家,湾岸国家,文化,宗教,政治,地理\" />
-  <link rel=\"canonical\" href=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/religion.html\" />
-  <meta property=\"og:type\" content=\"website\" />
-  <meta property=\"og:url\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/religion.html\" />
-  <meta property=\"og:title\" content=\"宗教（Religion） | カラベイ外務省観光局\" />
-  <meta property=\"og:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta property=\"og:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <meta name=\"twitter:card\" content=\"summary_large_image\" />
-  <meta name=\"twitter:title\" content=\"宗教（Religion） | カラベイ外務省観光局\" />
-  <meta name=\"twitter:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta name=\"twitter:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <title>宗教（Religion） | カラベイ外務省観光局</title>
-  <link rel=\"icon\" type=\"image/png\" href=\"../assets/images/アイコン.png\" />
-  <link rel=\"stylesheet\" href=\"./tourism.css\" />
+  <meta name="google-site-verification" content="02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="カラベイ教導国の宗教案内。" />
+  <meta name="keywords" content="架空国家,架空世界,観光案内,カラベイ教導国" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/religion.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/religion.html" />
+  <meta property="og:title" content="宗教" />
+  <meta property="og:description" content="カラベイ教導国の宗教案内。" />
+  <meta property="og:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="宗教" />
+  <meta name="twitter:description" content="カラベイ教導国の宗教案内。" />
+  <meta name="twitter:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <title>宗教 | カラベイ外務省観光局</title>
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="stylesheet" href="./tourism.css" />
 </head>
 <body>
-  <div class=\"layout\">
-    <aside>
-      <div class=\"brand\">
-        <img src=\"../assets/images/観光アイコン.png\" alt=\"観光\" />
-        <h1>カラベイ外務省観光局<br><span class=\"badge\">Official Tourism Portal</span></h1>
+  <button class="btn side-open" id="openBtn" type="button">メニュー</button>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <img src="../その他/カラベイの国旗.png" alt="カラベイの国旗" />
+          <h1>カラベイ外務省観光局<small>Kàlavé MoFA</small></h1>
+        </div>
+        <button class="btn" id="closeBtn" type="button">折りたたみ</button>
       </div>
-      <nav class=\"nav\">
-        <a class=\"\" href=\"./visit.html\">Záube ghór, Kàlavé!</a>
-        <a class=\"\" href=\"./politics.html\">政治（Politics）</a>
-        <a class=\"active\" href=\"./religion.html\">宗教（Religion）</a>
-        <a class=\"\" href=\"./culture.html\">文化（Culture）</a>
-        <a class=\"\" href=\"./geo-history.html\">地理と歴史</a>
+      <nav class="nav">
+        <a class="" href="./visit.html">トップページ</a>
+        <a class="" href="./politics.html">政治</a>
+        <a class="active" href="./religion.html">宗教</a>
+        <a class="" href="./culture.html">文化</a>
+        <a class="" href="./geo-history.html">地理と歴史</a>
       </nav>
-      <div class=\"subtools\">
-        <a href=\"../その他/visa-top.html\">ファストビザ申請</a>
-        <a href=\"../地理/realtimemap.html\">鉄道リアルタイムマップ</a>
-        <a href=\"../index.html\">『共和国物語』サーガへ戻る</a>
+      <div class="util">
+        <a href="../その他/visa-top.html">ファストビザ申請</a>
+        <a href="../地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+        <a href="../index.html">トップへ戻る</a>
       </div>
     </aside>
-    <main>
-      <section class="card"><h3>■ 宗教（Religion） ──唯一神イラトの御下で。祈りと日常が融け合う『神の国』</h3>
-<p>'Ï'E'A Géjéné Kuējebeyï （ヤー、三尾の狐よ、教導し給え）。
-当国の国教はイスミズラーク・ディラル派。現世での正しい実践と教導を重んじます。
-
-【三部教典】
-『森の教え』／『狐の教え』／『足の教え（ルミトハマト）』
-
-【祈りの風景】
-変ホ長調の基音（E♭）による礼拝呼びかけ、1日6回の礼拝、狐顔根（こがんこん）での祈り。
-
-【講話の文化】
-マクラ・本題・オチを備えた高い話芸で、教義と政策を結ぶ独自の講話文化。
-
-【清浄（タアル）】
-聖地ハヴァレイキの約3,000源泉を活かした温泉文化は、宗教儀礼と観光体験を両立。
-
-【旅行者向け戒律】
-食の禁忌、宗教施設の服装規範、アルコール制限など、滞在マナーへの配慮をお願いします。</p>
-</section>
+    <main class="main">
+      <header>
+        <div class="header-visual"><h2>宗教</h2></div>
+        <div class="header-sub">Kàlavé MoFA</div>
+      </header>
+      <div class="content">
+                        <article class="section">
+          <h2>宗教（Religion） ──唯一神イラトの御下で。祈りと日常が融け合う『神の国』</h2>
+          <p>'Ï'E'A Géjéné Kuējebeyï （ヤー、三尾の狐よ、教導し給え）。</p>
+          <p>カラベイ教導国の根幹であり、国民の魂の拠り所となっているのが「イスミズラーク・ディラル派」の信仰です。当国は、西暦600年に最後の預言者マズグークが開いたこの教えのうち、指導者（教導職）による啓示的解釈を重んじる「ディラル派」を国教とする世界で唯一の国家です。</p>
+          <p>ここでは、救世主の到来を待つのではなく、「現世での正しい実践と教導」を通じて自らの足で歩むことを尊びます。旅行者の皆様にもぜひ肌で感じていただきたい、美しくも厳格な祈りの世界をご案内いたします。</p>
+          <h3>三部教典：失われた森から、荒野を歩む者たちへ</h3>
+          <p>当国の信仰は、三つの教典によって形作られています。神話の世界から現実の規範へと繋がる壮大な物語は、カラバル人のアイデンティティそのものです。</p>
+          <div class="indent-block">
+            <p class="indent-line">『森の教え』 ──根源と喪失の神話</p>
+            <p class="indent-line">太初に唯一神イラト（大地）が創造した深き森の楽園。そこから神々がどのようにして「人」へと堕ちたのかを描きます。火を使い、肉を食らい、恥じらいを覚えて布で身を隠した代償として「尻尾」を失い、永遠の生と楽園を追放された人類の起源が語られます。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">『狐の教え』 ──規範と象徴の旅路</p>
+            <p class="indent-line">森の外（荒野）へと放り出された人類。預言者パテイは、過酷な奴隷の境遇から同胞を導き、約束の地を目指す旅に出ます。極限の飢えや裏切りの中でも「血によって血を継がせてはならぬ」と非戦と慈愛を貫き、ついに「三尾の狐（ゲジェネイ）」から『怒りと欲と欺きを断つ』という真理を授かるまでの苦難と希望の記録です。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">『足の教え（ルミトハマト）』 ──実践と法</p>
+            <p class="indent-line">預言者マズグークが編纂した宇宙の真理。神から堕ちた人間が「二本の足で大地を歩む」ために定められた、日常の義務と禁忌の法典です。</p>
+          </div>
+          <h3>祈りの風景：街を包むE♭の鐘の音と『聖根』</h3>
+          <p>カラベイの街を歩けば、どこからともなく変ホ長調の基音（E♭）の単音が響き渡ります。これが礼拝への呼びかけ（ジレイ）です。</p>
+          <p>信徒たちは一日三度の大礼拝と、三度の小礼拝（計六回）を行います。小礼拝は場所を問わず、両手で「狐顔根(こがんこん))」と呼ばれる聖根(せいこん)を結び、唯一神イラトと三尾の狐に祈りを捧げます。街角や公園、あるいはタネイ・トライポートの片隅で、静かに狐顔根を結ぶ人々の姿は、カラベイの美しく平和な日常の象徴です。</p>
+          <h3>至高の統治と話芸：『講話』の文化</h3>
+          <p>カラベイにおける宗教行事で最も特徴的なのが、毎週日曜日の朝に行われる「講話」です。教導職や司教が神話や経典の解釈を通じ、国家政策や倫理的教訓を語ります。</p>
+          <p>これは単なる厳粛な説教ではありません。優れた指導者は、優れた「噺家（はなしか）」でなければならないとされています。</p>
+          <div class="indent-block">
+            <p class="indent-line">マクラ（導入）：時事ネタや自らの失敗談などで聴衆の心を掴みます。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">本題：三部教典のエピソードを現代の社会問題に合わせて鮮やかに再解釈します。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">オチ（結び）：伏線を回収し、民衆に「なるほど！」という深いカタルシスを与えます。</p>
+          </div>
+          <p>毎月第一日曜日には、首都アーケイのガティナ大講堂にて「礼拝参賀」が行われ、三名の教導職のいずれかが直々に講話を行います。極めて高いエンターテインメント性と高尚な教義が融合したこの時間は、異文化圏の方々にとっても非常に興味深い体験となるでしょう。（※フォル航空の機内エンターテインメントでも、教導職猊下による経典読誦と講話をお楽しみいただけます。）</p>
+          <h3>清浄（タアル）と聖地ハヴァレイキの温泉</h3>
+          <p>イスミズラークでは、祈りの前の部分清めや、1日1回以上の全身の「清浄（タアル）」が厳格な義務（フリハル）とされています。</p>
+          <p>この教義が、当国が誇る「温泉文化」と深く結びついています。活火山の地熱源を持つ聖地ハヴァレイキには約3,000の源泉があり、信徒にとって温泉での入浴は、身の汚れだけでなく魂を浄化する神聖な宗教儀礼です。</p>
+          <p>公営の浄化施設「チャイギア」では、等級に応じた静謐な空間で、冷たい山葡萄葉茶（シェ）を飲みながら心身を調えます。観光客の皆様も、一定の入湯税をお納めいただくことで、この神聖なる癒やしの空間をご体験いただけます。</p>
+          <h3>観光客の皆様へ：マナーと戒律（フラムとフリハル）</h3>
+          <p>カラベイは、主流派である「マネイカル学派（国際教導主義）」の教えに基づき、唯一神イラトの被造物であるすべての人類（外国人・異教徒）に対して広く寛容な門戸を開いています。</p>
+          <p>安全で快適なご滞在のために、当国の法と文化の基盤であるいくつかの戒律にご留意ください。</p>
+          <div class="indent-block">
+            <p class="indent-line">食のタブー（食汚：フマタ）</p>
+            <p class="indent-line">動物の体液（血）、皮、骨の摂取は禁忌とされています。また、豚肉は歴史的・教義的背景から厳格に忌避されます。当国の肉料理やフライは、骨や皮を完全に取り除いた高度な調理技術で作られており、非常に洗練された味わいです。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">慎み深い服装と振る舞い（不適：アマン）</p>
+            <p class="indent-line">都市部では自由な装いも受け入れられていますが、ハヴァレイズィ大講堂などの重要な宗教施設を訪問される際は、厳格なドレスコードがございます。白または黒の衣服を着用し、過度な肌の露出を避け、頭部を帽子（リャタ等）で覆うことが推奨されます。</p>
+          </div>
+          <div class="indent-block">
+            <p class="indent-line">アルコールの制限（濫用：サカイ）</p>
+            <p class="indent-line">酒類は健康・衛生の目的以外での享楽的な消費が禁忌（違法）とされています。持ち込みや公共の場での飲酒は厳重に処罰される場合がございますのでご注意ください。</p>
+          </div>
+          <p>「水平（ハリア＝過剰を均すこと）」と「慈愛（マーシェ）」の精神に満ちたカラベイの人々は、礼節を重んじる旅人を心から歓迎いたします。</p>
+          <p>信仰が息づく美しい街並みと、そこで暮らす人々の穏やかな微笑み。ぜひ、あなた自身の目で確かめにいらしてください。</p>
+        </article>
+      </div>
     </main>
   </div>
+  <script>
+  (function(){
+    const key='tourism_sidebar_hidden';
+    const b=document.body;
+    const closeBtn=document.getElementById('closeBtn');
+    const openBtn=document.getElementById('openBtn');
+    function apply(){
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){
+        b.classList.remove('sidebar-hidden');
+      }else if(localStorage.getItem(key)==='1'){
+        b.classList.add('sidebar-hidden');
+      }else{
+        b.classList.remove('sidebar-hidden');
+      }
+    }
+    closeBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.remove('sidebar-open'); }
+      else { b.classList.add('sidebar-hidden'); localStorage.setItem(key,'1'); }
+    });
+    openBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.add('sidebar-open'); }
+      else { b.classList.remove('sidebar-hidden'); localStorage.setItem(key,'0'); }
+    });
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+  </script>
 </body>
 </html>
+
+

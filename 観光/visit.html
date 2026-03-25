@@ -1,92 +1,125 @@
 ﻿<!doctype html>
-<html lang=\"ja\">
+<html lang="ja">
 <head>
-  <meta charset=\"UTF-8\" />
-  <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD\"></script>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    if (location.hostname === 'soshuko.github.io') {
-      gtag('config', 'G-NNPH1HB9GD');
-    }
+    if (location.hostname === 'soshuko.github.io') { gtag('config', 'G-NNPH1HB9GD'); }
   </script>
-  <meta name=\"google-site-verification\" content=\"02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <meta name=\"description\" content=\"カラベイ外務省観光局公式サイト。祈りと革新が交差する国・カラベイの最新観光案内。\" />
-  <meta name=\"keywords\" content=\"カラベイ,観光,架空国家,湾岸国家,文化,宗教,政治,地理\" />
-  <link rel=\"canonical\" href=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/visit.html\" />
-  <meta property=\"og:type\" content=\"website\" />
-  <meta property=\"og:url\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/visit.html\" />
-  <meta property=\"og:title\" content=\"Záube ghór, Kàlavé! | カラベイ外務省観光局\" />
-  <meta property=\"og:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta property=\"og:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
-  <meta name=\"twitter:card\" content=\"summary_large_image\" />
-  <meta name=\"twitter:title\" content=\"Záube ghór, Kàlavé! | カラベイ外務省観光局\" />
-  <meta name=\"twitter:description\" content=\"カラベイ外務省観光局の公式観光ポータル\" />
-  <meta name=\"twitter:image\" content=\"https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg\" />
+  <meta name="google-site-verification" content="02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="架空国家カラベイ教導国の公式観光ポータル。" />
+  <meta name="keywords" content="架空国家,架空世界,観光案内,カラベイ教導国" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/visit.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/visit.html" />
+  <meta property="og:title" content=""Záube ghór, Kàlavé!"（はじめまして、カラベイ！）" />
+  <meta property="og:description" content="架空国家カラベイ教導国の公式観光ポータル。" />
+  <meta property="og:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content=""Záube ghór, Kàlavé!"（はじめまして、カラベイ！）" />
+  <meta name="twitter:description" content="架空国家カラベイ教導国の公式観光ポータル。" />
+  <meta name="twitter:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
   <title>Záube ghór, Kàlavé! | カラベイ外務省観光局</title>
-  <link rel=\"icon\" type=\"image/png\" href=\"../assets/images/アイコン.png\" />
-  <link rel=\"stylesheet\" href=\"./tourism.css\" />
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="stylesheet" href="./tourism.css" />
 </head>
 <body>
-  <div class=\"layout\">
-    <aside>
-      <div class=\"brand\">
-        <img src=\"../assets/images/観光アイコン.png\" alt=\"観光\" />
-        <h1>カラベイ外務省観光局<br><span class=\"badge\">Official Tourism Portal</span></h1>
+  <button class="btn side-open" id="openBtn" type="button">メニュー</button>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <img src="../その他/カラベイの国旗.png" alt="カラベイの国旗" />
+          <h1>カラベイ外務省観光局<small>Kàlavé MoFA</small></h1>
+        </div>
+        <button class="btn" id="closeBtn" type="button">折りたたみ</button>
       </div>
-      <nav class=\"nav\">
-        <a class=\"active\" href=\"./visit.html\">Záube ghór, Kàlavé!</a>
-        <a class=\"\" href=\"./politics.html\">政治（Politics）</a>
-        <a class=\"\" href=\"./religion.html\">宗教（Religion）</a>
-        <a class=\"\" href=\"./culture.html\">文化（Culture）</a>
-        <a class=\"\" href=\"./geo-history.html\">地理と歴史</a>
+      <nav class="nav">
+        <a class="active" href="./visit.html">トップページ</a>
+        <a class="" href="./politics.html">政治</a>
+        <a class="" href="./religion.html">宗教</a>
+        <a class="" href="./culture.html">文化</a>
+        <a class="" href="./geo-history.html">地理と歴史</a>
       </nav>
-      <div class=\"subtools\">
-        <a href=\"../その他/visa-top.html\">ファストビザ申請</a>
-        <a href=\"../地理/realtimemap.html\">鉄道リアルタイムマップ</a>
-        <a href=\"../index.html\">『共和国物語』サーガへ戻る</a>
+      <div class="util">
+        <a href="../その他/visa-top.html">ファストビザ申請</a>
+        <a href="../地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+        <a href="../index.html">トップへ戻る</a>
       </div>
     </aside>
-    <main>
-      <section class="hero">
-  <img src="./image/アーケイ.jpg" alt="アーケイ" />
-  <div class="txt">
-    <h2>"Záube ghór, Kàlavé!"（はじめまして、カラベイ！）</h2>
-    <p>祈りと革新が交差する国。〜豊かな冬を、あなたと共に〜
+    <main class="main">
+      <header>
+        <div class="header-visual"><h2>"Záube ghór, Kàlavé!"（はじめまして、カラベイ！）</h2></div>
+        <div class="header-sub">Kàlavé MoFA</div>
+      </header>
+      <div class="content">
+        <article class="section">
+          <h2>"Záube ghór, Kàlavé!"（はじめまして、カラベイ！）</h2>
+          <p>祈りと革新が交差する国。〜豊かな冬を、あなたと共に〜</p>
+          <p>Alïdau（至高の昼よ）。</p>
+          <p>唯一神イラトの御名において、すべての旅人に平安を。</p>
+          <p>カラベイ教導国（イマ107年／西暦2000年）の公式観光ポータルサイトへようこそ。アルトス西部に位置し、青きドゥラム海と雄大な山脈に抱かれた当国は、古き良きイスミズラーク・ディラル派の伝統と、世界最高峰のインフラが美しく調和する国家です。</p>
+          <p>ラデン・タネイ第一教導職猊下が推し進める「豊かな冬」の政策のもと、当国はルルペ協定の盟主として、かつてない平和と繁栄の時代を迎えています。首都アーケイの荘厳なミセニティウ大講堂から、世界を結ぶ巨大複合交通都市「タネイ・トライポート」、そして心身を浄化する聖地ハヴァレイキの湯の音まで。カラベイは、訪れるすべての人々に「至高の体験」をお約束いたします。</p>
+          <p>どうぞ、迷いなき旅の第一歩を、このサイトから踏み出してください。</p>
 
-Alïdau（至高の昼よ）。
-唯一神イラトの御名において、すべての旅人に平安を。
+          <h3>Discover Kàlavé / カラベイを知る</h3>
+          <p>当サイトでは、ご旅行の準備に役立つ4つのテーマをご用意しております。</p>
+          <div class="discover-grid">
+            <a class="discover-btn" href="./geo-history.html">地理 大自然の息吹</a>
+            <a class="discover-btn" href="./culture.html">文化 伝統と最先端の融合</a>
+            <a class="discover-btn" href="./religion.html">宗教 祈りの日常</a>
+            <a class="discover-btn" href="./politics.html">政治 安定と繁栄の軌跡</a>
+          </div>
+          <p>フリカウ・デュラベイの両巨大山脈から流れ出る豊かなフリメレイ水系、そして近づく者を拒む神秘の「クオ・マガベ湖」。砂漠から高山、亜熱帯まで、多彩な気候が織りなす絶景をご紹介します。</p>
+          <p>最高級のキャビアや羊肉を味わう至高の食文化、洗練されたセリュールたちによるおもてなし、そして白熱の国技「競技デューレイ」。大衆文化から特撮・アニメ、音楽シーンまで、活気あふれるカラベイの「今」をご案内します。</p>
+          <p>当国の魂であるイスミズラーク（ディラル派）の教え。聖地ハヴァレイキでの「清浄（タアル）」の作法や、幾何学模様が美しい大講堂の建築美、そして教導職による「講話」の魅力について解説します。</p>
+          <p>三人の教導職猊下が導く、神の意志と法治の調和。ルルペ協定の要として発展を続ける、カラベイ独自の「教導君主制」と社会システムについてご紹介します。</p>
 
-カラベイ教導国（イマ107年／西暦2000年）の公式観光ポータルサイトへようこそ。
-アルトス西部に位置し、青きドゥラム海と雄大な山脈に抱かれた当国は、古き良きイスミズラーク・ディラル派の伝統と、世界最高峰のインフラが美しく調和する国家です。
-
-ラデン・タネイ第一教導職猊下が推し進める「豊かな冬」の政策のもと、当国はルルペ協定の盟主として、かつてない平和と繁栄の時代を迎えています。
-どうぞ、迷いなき旅の第一歩を、このサイトから踏み出してください。</p>
-  </div>
-</section>
-<section class="card">
-  <h3>Discover Kàlavé / カラベイを知る</h3>
-  <div class="grid4">
-    <div class="tile"><strong>■ 地理</strong><br>フリカウ・デュラベイ山脈、水系、クオ・マガベ湖など、多彩な気候と絶景を案内します。</div>
-    <div class="tile"><strong>■ 文化</strong><br>食文化、競技デューレイ、音楽・映像・大衆文化まで、活気ある「今」を紹介します。</div>
-    <div class="tile"><strong>■ 宗教</strong><br>イスミズラーク（ディラル派）の教え、清浄（タアル）の作法、講堂建築の美を解説します。</div>
-    <div class="tile"><strong>■ 政治</strong><br>教導君主制と社会システム、ルルペ協定の盟主としての安定と繁栄を紹介します。</div>
-  </div>
-</section>
-<section class="card">
-  <h3>Travel Information / 渡航をご検討の皆様へ</h3>
-  <p>外国籍の皆様には、公式渡航アプリ <strong>Travar（トラヴァー）</strong> の導入が義務付けられています。
-・ファストビザ申請：オンラインで迅速なビザ取得
-・Sĭtielĭfar：国内都市圏Wi-Fiへ無料自動接続
-・滞在サポート：GPSにより24時間体制で安全管理（90分以上GPSオフは事前申請）
-
-タネイ・トライポート公式アプリ『T3』で、フォル航空予約やモバイルルルタ決済も利用可能です。
-
-'Ï'E'A Géjéné Kuējebeyï （ヤー、三尾の狐よ、教導し給え）</p>
-</section>
+          <h3>Travel Information / 渡航をご検討の皆様へ</h3>
+          <p>当国へご入国される外国籍の皆様には、安全で快適な滞在をお約束するため、公式渡航アプリ『Travar（トラヴァー）』のインストールが義務付けられております。</p>
+          <p>・ファストビザ申請：オンラインで迅速なビザ取得が可能です。</p>
+          <p>・Sĭtielĭfar（シティーリファー）：アプリを入れるだけで、国内都市圏に張り巡らされた遠距離無線通信網（Wi-Fi）に無料で自動接続されます。</p>
+          <p>・滞在サポート：GPS機能により、皆様の旅の安全を国が24時間体制で保護・管理いたします（※滞在中90分以上のGPSオフは事前申請が必要です）。</p>
+          <p>また、タネイ・トライポート公式アプリ『T3』をご利用いただくことで、フォル航空の予約や、独自のQR決済「モバイルルルタ」によるスムーズなお買い物が可能です。</p>
+          <p>私たちは、皆様の「後悔のない選択」と素晴らしい旅路を心よりお待ち申し上げております。</p>
+          <p>'Ï'E'A Géjéné Kuējebeyï （ヤー、三尾の狐よ、教導し給え）</p>
+        </article>
+      </div>
     </main>
   </div>
+  <script>
+  (function(){
+    const key='tourism_sidebar_hidden';
+    const b=document.body;
+    const closeBtn=document.getElementById('closeBtn');
+    const openBtn=document.getElementById('openBtn');
+    function apply(){
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){
+        b.classList.remove('sidebar-hidden');
+      }else if(localStorage.getItem(key)==='1'){
+        b.classList.add('sidebar-hidden');
+      }else{
+        b.classList.remove('sidebar-hidden');
+      }
+    }
+    closeBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.remove('sidebar-open'); }
+      else { b.classList.add('sidebar-hidden'); localStorage.setItem(key,'1'); }
+    });
+    openBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.add('sidebar-open'); }
+      else { b.classList.remove('sidebar-hidden'); localStorage.setItem(key,'0'); }
+    });
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+  </script>
 </body>
 </html>
