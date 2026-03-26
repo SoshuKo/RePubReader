@@ -671,6 +671,7 @@ A stylish underworld road movie with lethal charm.</p>
       <script>
     const state = {
       dataJa: null,
+      dataEn: null,
       dataKa: null,
       current: null,
       currentKey: null,
@@ -842,6 +843,7 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function getActiveData() {
+      if (currentLang === "en" && state.dataEn) return state.dataEn;
       if (currentLang === "ka" && state.dataKa) return state.dataKa;
       return state.dataJa;
     }
@@ -1031,17 +1033,19 @@ A stylish underworld road movie with lethal charm.</p>
 
     async function boot() {
       try {
-        const [jaRes, kaRes] = await Promise.all([
+        const [jaRes, enRes, kaRes] = await Promise.all([
           fetch("./data/物語本編.json", { cache: "no-store" }),
+          fetch("./data/story_en.json", { cache: "no-store" }),
           fetch("./data/story_ka.json", { cache: "no-store" })
         ]);
         if (!jaRes.ok) throw new Error(`HTTP ${jaRes.status}`);
         state.dataJa = await jaRes.json();
+        if (enRes.ok) state.dataEn = await enRes.json();
         if (kaRes.ok) state.dataKa = await kaRes.json();
         const activeData = getActiveData();
         if (activeData) buildTree(activeData);
       } catch (e) {
-        treeEl.innerHTML = `<div class="empty">?: ${esc(e.message)}</div>`;
+        treeEl.innerHTML = `<div class="empty">Load failed: ${esc(e.message)}</div>`;
       }
     }
 
