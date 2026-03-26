@@ -30,18 +30,34 @@
     .switcher { display:flex; gap:8px; flex-wrap:wrap; margin: 12px 0 16px; }
     .switcher button { border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:999px; padding:6px 12px; cursor:pointer; }
     .switcher button.active { background: var(--accent); color:#fff; border-color: var(--accent); }
-    .doc h3 { color: var(--accent-deep); margin: 20px 0 10px; }
-    .doc h4 { margin: 16px 0 8px; }
+    .doc h3 {
+      color: var(--accent-deep);
+      margin: 24px 0 12px;
+      padding: 10px 14px;
+      border-left: 6px solid var(--accent);
+      background: linear-gradient(90deg, #fff5ea 0%, #fffaf4 100%);
+      border-radius: 10px;
+      line-height: 1.5;
+    }
+    .doc h4 {
+      margin: 18px 0 10px;
+      padding: 7px 10px;
+      border-bottom: 1px solid #ead8c4;
+      color: var(--accent-deep);
+      line-height: 1.6;
+    }
     .doc p { margin: 0 0 8px; line-height: 1.9; }
     .doc ul { margin: 0 0 12px 1.2rem; padding: 0; }
     .doc li { margin: 0 0 6px; line-height: 1.8; }
     .doc .kv { margin: 10px 0 14px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel-alt); }
     .doc .kv dt { font-weight: 700; color: var(--accent-deep); margin-top: 8px; }
     .doc .kv dd { margin: 2px 0 8px 0; }
-    .doc .tbl-wrap { overflow-x: auto; margin: 10px 0 14px; border: 1px solid var(--line); border-radius: 10px; }
-    .doc table { width: 100%; border-collapse: collapse; min-width: 520px; background: #fff; }
-    .doc th, .doc td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; line-height: 1.7; }
+    .doc .tbl-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+    .doc table { width: 100%; border-collapse: collapse; min-width: 520px; background: #fff; table-layout: auto; }
+    .doc thead th { position: sticky; top: 0; z-index: 1; }
+    .doc th, .doc td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; line-height: 1.7; word-break: break-word; overflow-wrap: anywhere; }
     .doc th { background: #f7eee3; color: var(--accent-deep); font-weight: 700; }
+    .doc tbody tr:nth-child(even) td { background: #fffaf6; }
     .doc .tree { list-style: none; margin: 6px 0 14px 0; padding: 0; border-left: 2px solid #ead8c4; }
     .doc .tree li { margin: 0; padding: 5px 8px; border-bottom: 1px dashed #ead8c4; line-height: 1.8; }
     .doc .flow { margin: 12px 0 14px; padding: 12px; background: #fffaf3; border: 1px solid #ead8c4; border-radius: 10px; overflow-x: auto; font-family: "BIZ UDMincho", "Yu Mincho", "Hiragino Mincho ProN", serif; line-height: 1.7; }
@@ -131,6 +147,37 @@
     return String(s ?? '').replace(/[&<>\"]/g, (ch)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[ch]));
   }
 
+  function normalizeTableRows(rows){
+    const cleaned = (rows || []).map(r => (r || []).map(v => String(v ?? '').trim())).filter(r => r.some(Boolean));
+    if (!cleaned.length) return [];
+
+    const lengths = cleaned.map(r => r.length).filter(n => n > 0);
+    const freq = new Map();
+    for (const n of lengths) freq.set(n, (freq.get(n) || 0) + 1);
+
+    let target = cleaned[0].length;
+    let bestCount = -1;
+    for (const [n, c] of freq.entries()) {
+      if (c > bestCount || (c === bestCount && n > target)) {
+        target = n;
+        bestCount = c;
+      }
+    }
+    target = Math.max(target || 0, cleaned[0].length || 0, 2);
+
+    return cleaned.map((row, idx) => {
+      const r = row.slice();
+      const desired = idx === 0 ? Math.max(target, r.length) : target;
+      if (r.length > desired) {
+        const keep = r.slice(0, desired - 1);
+        keep.push(r.slice(desired - 1).join(' / '));
+        return keep;
+      }
+      while (r.length < desired) r.push('');
+      return r;
+    });
+  }
+
       function toHtmlFromTxt(text, opt = {}){
     const lines = String(text || '').replace(/\r/g,'').split('\n');
     const out = [];
@@ -150,11 +197,26 @@
     };
     const closeAll = () => { closeList(); closeKv(); closeTree(); };
 
-        const parseCols = (line) => line.split(/\t+|[ \u00A0]{2,}|　+/).map(x=>x.trim()).filter(Boolean);
-    const isTableRow = (line) => parseCols(line).length >= 3;
+        const stripBullet = (line) => String(line || '').trim().replace(/^[•●▪◦・]\s*/, '');
+    const isMarkdownSeparatorLine = (line) => {
+      const s = stripBullet(line).replace(/^\|/, '').replace(/\|$/, '');
+      if (!s.includes('|')) return false;
+      const cols = s.split('|').map(x => x.trim()).filter(Boolean);
+      return cols.length >= 2 && cols.every(c => /^:?-{3,}:?$/.test(c));
+    };
+    const parseCols = (line) => {
+      const s = stripBullet(line);
+      if (s.includes('|')) {
+        const pipeCols = s.replace(/^\|/, '').replace(/\|$/, '').split('|').map(x => x.trim());
+        if (pipeCols.filter(Boolean).length >= 3) return pipeCols;
+      }
+      return s.split(/\t+|[ \u00A0]{2,}|　+/).map(x=>x.trim()).filter(Boolean);
+    };
+    const isTableRow = (line) => !isMarkdownSeparatorLine(line) && parseCols(line).length >= 3;
     const isLikelyTableHeader = (line) => {
+      if (isMarkdownSeparatorLine(line)) return false;
       const cols = parseCols(line);
-      return cols.length >= 3 && /項目/.test(cols[0]);
+      return cols.length >= 3 && (/項目/.test(cols[0]) || /対象/.test(cols[0]));
     };
 
     const peekNextNonEmpty = (arr, from) => {
@@ -196,7 +258,7 @@
         continue;
       }
 
-      if (/^\d+\.\s+/.test(line)) {
+      if (/^\d+\.\s+/.test(line) && !isTableRow(line)) {
         closeAll();
         out.push(`<h4>${esc(line)}</h4>`);
         continue;
@@ -222,8 +284,10 @@
         !/^\d/.test(line) &&
         !/[：；]/.test(line) &&
         !/^[・\-■◆]/.test(line) &&
+        !/[\.!?！？。、]$/.test(line) &&
         (plainHeadingLike || line.length <= 18) &&
-        nextNonEmpty
+        nextNonEmpty &&
+        !isTableRow(nextNonEmpty)
       ) {
         closeAll();
         out.push(`<h4>${esc(line)}</h4>`);
@@ -281,20 +345,19 @@
         while (i < lines.length) {
           const cur = (lines[i] || "").trim();
           if (!cur) { i++; continue; }
-          if (/^【.+】$/.test(cur) || /^〈.+〉$/.test(cur) || /^[■◆]/.test(cur) || /^\d+\.\s+/.test(cur)) break;
+          if (/^【.+】$/.test(cur) || /^〈.+〉$/.test(cur) || /^[■◆]/.test(cur) || (/^\d+\.\s+/.test(cur) && !isTableRow(cur))) break;
           if (/^[^：；]{1,36}[：；]$/.test(cur)) break;
-          const cols = parseCols(cur);
-          if (cols.length >= Math.min(3, expectCols)) {
-            rows.push(cols);
-            i++;
-            continue;
-          }
-          break;
+          if (isMarkdownSeparatorLine(cur)) { i++; continue; }
+          if (!isTableRow(cur, expectCols) && rows.length > 0) break;
+          if (!isLikelyTableHeader(cur) && !isTableRow(cur, expectCols)) break;
+          rows.push(parseCols(cur));
+          i++;
         }
         i--;
-        if (rows.length >= 2) {
-          const head = rows[0];
-          const body = rows.slice(1);
+        const normalizedRows = normalizeTableRows(rows);
+        if (normalizedRows.length >= 2) {
+          const head = normalizedRows[0];
+          const body = normalizedRows.slice(1).filter(r => r.some(Boolean));
           out.push('<div class="tbl-wrap"><table><thead><tr>' + head.map(c => `<th>${esc(c)}</th>`).join('') + '</tr></thead><tbody>');
           for (const r of body) out.push('<tr>' + r.map(c => `<td>${esc(c)}</td>`).join('') + '</tr>');
           out.push('</tbody></table></div>');
