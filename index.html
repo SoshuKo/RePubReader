@@ -133,12 +133,14 @@
       font-size: .85rem;
       background: var(--panel);
     }
-    .group-links a:hover { background: #f7f1e7; }    .toggle-row {
+    .group-links a:hover { background: #f7f1e7; }
+    .toggle-row {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       margin-top: 10px;
-    }    .theme-toggle {
+    }
+    .theme-toggle {
       margin-top: 10px;
       border: 1px solid var(--line);
       border-radius: 999px;
@@ -148,7 +150,19 @@
       cursor: pointer;
       font-family: inherit;
       font-size: .86rem;
-    }    .tree details {
+    }
+    .lang-buttons {
+      display: inline-flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .lang-btn[aria-pressed="true"] {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .tree details {
       margin-bottom: 8px;
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -472,7 +486,11 @@
       </div>
       <div class="toggle-row">
         <button id="themeToggle" class="theme-toggle" type="button">ダークモード</button>
-        <button id="langToggle" class="theme-toggle" type="button">English</button>
+        <div class="lang-buttons" role="group" aria-label="Language selector">
+          <button id="langJa" class="theme-toggle lang-btn" type="button" data-lang="ja">&#26085;&#26412;&#35486;</button>
+          <button id="langEn" class="theme-toggle lang-btn" type="button" data-lang="en">English</button>
+          <button id="langKa" class="theme-toggle lang-btn" type="button" data-lang="ka">Georgian</button>
+        </div>
       </div>
       <hr />
       <div id="tree" class="tree" aria-label="目次"></div>
@@ -591,12 +609,23 @@ A stylish underworld road movie with lethal charm.</p>
 
         <article class="intro">
           <h3>English Pages</h3>
-          <p class="catch">Under Construction</p>
-          <p>Characters / Glossary / Audio Commentary in English are currently under development.（実装中）</p>
-          <p style="margin-top:10px;"><a href="./en-under-construction.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">Open English Status</a></p>
+          <p class="catch">Available with Japanese fallback</p>
+          <p>Character Dictionary / Glossary / Audio Commentary / Writing Log open the Japanese pages for now so you can keep reading without dead ends.</p>
+          <p style="margin-top:10px;"><a href="./characters.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">Open Character Dictionary (JP)</a></p>
         </article>
       </section>
-      <section id="shareModal" class="share-modal" aria-hidden="true">
+      <section id="topPageKa" class="top-page" style="display:none;">
+        <article class="intro">
+          <h2>რესპუბლიკის ისტორია</h2>
+          <p class="catch">საქართველოს მოსახლეობას, სიყვარულით იაპონელი ავტორისგან</p>
+          <p>გამარჯობა. მე ვარ იაპონელი მწერალი, რომელიც ვწერ რომანებს. ამ სპეციალური ვებგვერდის შექმნას სამი მიზეზი აქვს.</p>
+          <p>პირველი: მე მთელი გულით მიყვარს საქართველო. ღრმად ვარ მოხიბლული თქვენი ულამაზესი და უნიკალური დამწერლობით (მხედრული), ენის ჟღერადობით და, რაც მთავარია, ისტორიის მანძილზე ჩამოყალიბებული კეთილშობილური „რაინდობის“ (სიმამაცისა და სიამაყის) სულისკვეთებით. ფანტასტიკური რომანები, რომლებსაც ვწერ, სავსეა თქვენი კულტურისადმი ღრმა პატივისცემით.</p>
+          <p>მეორე: ეს არის თბილისის ერთ-ერთ წიგნის მაღაზიაში მიღებული გამოცდილება. როდესაც თბილისის ქუჩებში ვსეირნობდი და წიგნის მაღაზიას ვესტუმრე, ერთი რამ შევნიშნე: იაპონური „სუბკულტურული ლიტერატურა“ (ე.წ. ლაით-ნოველები და ბნელი ფენტეზი, ოთაკუ კულტურა) თითქმის არ იყო თარგმნილი ქართულ ენაზე. ამან ძალიან დამასევდიანა. ვიფიქრე: „რა სამწუხაროა, რომ ამ ულამაზეს ენაზე იაპონური სუბკულტურული ლიტერატურის წაკითხვა შეუძლებელია!“ სწორედ ამიტომ გადავწყვიტე: „თუ არავინ თარგმნის, მე თავად დავწერ სუბკულტურულ ლიტერატურას ქართულად და პირდაპირ მოგაწვდით!“</p>
+          <p>მესამე: მინდა თხოვნით მივმართო მკითხველს. ამჟამად, ვცდილობ ეს ეპიკური ისტორია („რესპუბლიკის ისტორია“ - აკაუს ნაწილი) ქართულად ვთარგმნო. თუმცა, თარგმანი ჯერ არ დასრულებულა. თუ ეს ისტორია მოგეწონებათ და მოგინდებათ გაგრძელების სწრაფად წაკითხვა... გთხოვთ, გამოიყენოთ ბრაუზერის ავტომატური თარგმანის ფუნქცია და წაიკითხოთ ორიგინალი „იაპონური ვერსიის“ გვერდები (ბოდიშს გიხდით დისკომფორტისთვის). შესაძლოა, თარგმანი არაბუნებრივი იყოს, მაგრამ ვიმედოვნებ, რომ ჩემი ისტორიის ენთუზიაზმი და ემოცია მაინც მოაღწევს თქვენამდე.</p>
+          <p>ვისურვებდი, რომ ოკეანის მიღმა, ჩემმა ისტორიამ საქართველოს მოსახლეობის გულებამდე მიაღწიოს.</p>
+          <p style="margin-top:10px;">ამ ეტაპზე ქართულად ხელმისაწვდომია მხოლოდ „აკაუს ნაწილი“ (EP5 / EP6). სხვა ნაწილები იხსნება იაპონურ ტექსტზე.</p>
+        </article>
+      </section><section id="shareModal" class="share-modal" aria-hidden="true">
         <div class="share-box">
           <h4 id="shareTitle">SNSで共有</h4>
           <div class="share-actions">
@@ -641,7 +670,8 @@ A stylish underworld road movie with lethal charm.</p>
 
       <script>
     const state = {
-      data: null,
+      dataJa: null,
+      dataKa: null,
       current: null,
       currentKey: null,
       buttons: [],
@@ -655,10 +685,14 @@ A stylish underworld road movie with lethal charm.</p>
 
     const topPageEl = document.getElementById("topPage");
     const topPageEnEl = document.getElementById("topPageEn");
+    const topPageKaEl = document.getElementById("topPageKa");
     const articleWrapEl = document.getElementById("articleWrap");
     const mainEl = document.querySelector("main");
     const themeToggle = document.getElementById("themeToggle");
-    const langToggle = document.getElementById("langToggle");
+    const langJa = document.getElementById("langJa");
+    const langEn = document.getElementById("langEn");
+    const langKa = document.getElementById("langKa");
+    const langButtons = [langJa, langEn, langKa].filter(Boolean);
     const shareEpisodeBtn = document.getElementById("shareEpisode");
     const treeEl = document.getElementById("tree");
     const siteTitleEl = document.getElementById("siteTitle");
@@ -807,45 +841,26 @@ A stylish underworld road movie with lethal charm.</p>
       }
     }
 
-    function englishLink(kind) {
-      return `./en-under-construction.html?page=${encodeURIComponent(kind)}`;
+    function getActiveData() {
+      if (currentLang === "ka" && state.dataKa) return state.dataKa;
+      return state.dataJa;
     }
 
     function applyLanguage(lang) {
-      currentLang = lang === "en" ? "en" : "ja";
+      currentLang = (lang === "en" || lang === "ka") ? lang : "ja";
       document.documentElement.setAttribute("lang", currentLang);
-
-      if (langToggle) langToggle.textContent = currentLang === "en" ? "日本語" : "English";
-      if (siteTitleEl) siteTitleEl.textContent = currentLang === "en" ? "Republica Saga" : "『共和国物語』サーガ";
-      if (siteMetaEl) siteMetaEl.textContent = currentLang === "en" ? "Story Reader" : "物語本編ビューア";
-
-      if (navTop) {
-        navTop.textContent = currentLang === "en" ? "Top / Story" : "トップ・本編";
-        navTop.href = "index.html";
-      }
-      if (navChars) {
-        navChars.textContent = currentLang === "en" ? "Characters" : "登場人物辞典";
-        navChars.href = currentLang === "en" ? englishLink("characters") : "characters.html";
-      }
-      if (navGloss) {
-        navGloss.textContent = currentLang === "en" ? "Glossary" : "用語辞典";
-        navGloss.href = currentLang === "en" ? englishLink("glossary") : "glossary.html";
-      }
-      if (navAudio) {
-        navAudio.textContent = currentLang === "en" ? "Audio Commentary" : "オーディオコメンタリ";
-        navAudio.href = currentLang === "en" ? englishLink("audiocommentary") : "audiocommentary.html";
-      }
-      if (navDiary) {
-        navDiary.textContent = currentLang === "en" ? "Writing Log" : "執筆録";
-        navDiary.href = currentLang === "en" ? englishLink("diary") : "diary.html";
-      }
-
-      if (currentLang === "en") {
-        treeEl.innerHTML = '<div class="empty">English story JSON is under construction.（実装中）</div>';
-      } else if (state.data) {
-        buildTree(state.data);
-      }
-
+      langButtons.forEach((btn) => {
+        btn.setAttribute("aria-pressed", btn.dataset.lang === currentLang ? "true" : "false");
+      });
+      if (siteTitleEl) siteTitleEl.textContent = currentLang === "ja" ? "『共和国物語』サーガ" : (currentLang === "en" ? "Republica Saga" : "Republica Saga (Georgian)");
+      if (siteMetaEl) siteMetaEl.textContent = currentLang === "ja" ? "物語本編ビューア" : (currentLang === "en" ? "Story Reader" : "Georgian Reader");
+      if (navTop) { navTop.textContent = currentLang === "ja" ? "トップ・本編" : (currentLang === "en" ? "Top / Story" : "Top / Story"); navTop.href = "index.html"; }
+      if (navChars) { navChars.textContent = currentLang === "ja" ? "登場人物辞典" : (currentLang === "en" ? "Characters" : "Characters"); navChars.href = "characters.html"; }
+      if (navGloss) { navGloss.textContent = currentLang === "ja" ? "用語辞典" : (currentLang === "en" ? "Glossary" : "Glossary"); navGloss.href = "glossary.html"; }
+      if (navAudio) { navAudio.textContent = currentLang === "ja" ? "オーディオコメンタリ" : (currentLang === "en" ? "Audio Commentary" : "Audio Commentary"); navAudio.href = "audiocommentary.html"; }
+      if (navDiary) { navDiary.textContent = currentLang === "ja" ? "執筆録" : (currentLang === "en" ? "Writing Log" : "Writing Log"); navDiary.href = "diary.html"; }
+      const activeData = getActiveData();
+      if (activeData) buildTree(activeData);
       const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
       showTop(incomingHash === "" || incomingHash === "top");
     }
@@ -853,22 +868,23 @@ A stylish underworld road movie with lethal charm.</p>
     function initLanguage() {
       const qLang = new URLSearchParams(location.search).get("lang");
       let lang = qLang || localStorage.getItem(STORAGE_LANG) || "ja";
-      if (lang !== "en") lang = "ja";
+      if (!["ja", "en", "ka"].includes(lang)) lang = "ja";
       localStorage.setItem(STORAGE_LANG, lang);
       applyLanguage(lang);
-
-      if (langToggle) {
-        langToggle.addEventListener("click", () => {
-          const next = currentLang === "en" ? "ja" : "en";
+      langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const next = btn.dataset.lang;
+          if (!["ja", "en", "ka"].includes(next)) return;
           localStorage.setItem(STORAGE_LANG, next);
           applyLanguage(next);
         });
-      }
+      });
     }
 
     function showTop(updateHash = true) {
-      topPageEl.style.display = currentLang === "en" ? "none" : "grid";
+      topPageEl.style.display = currentLang === "ja" ? "grid" : "none";
       if (topPageEnEl) topPageEnEl.style.display = currentLang === "en" ? "grid" : "none";
+      if (topPageKaEl) topPageKaEl.style.display = currentLang === "ka" ? "grid" : "none";
       articleWrapEl.style.display = "none";
       for (const btn of state.buttons) btn.classList.remove("active");
       if (updateHash) history.replaceState(null, "", "#top");
@@ -877,6 +893,7 @@ A stylish underworld road movie with lethal charm.</p>
     function showEpisode() {
       topPageEl.style.display = "none";
       if (topPageEnEl) topPageEnEl.style.display = "none";
+      if (topPageKaEl) topPageKaEl.style.display = "none";
       articleWrapEl.style.display = "block";
     }
 
@@ -918,14 +935,6 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function renderEpisode(work, section, ep) {
-      if (currentLang === "en") {
-        showEpisode();
-        document.getElementById("epTitle").textContent = "Under Construction";
-        document.getElementById("epTrail").textContent = "English story text is under construction.";
-        document.getElementById("epContent").innerHTML = "<p>English JSON implementation is in progress.（実装中）</p>";
-        return;
-      }
-
       state.current = { work, section, ep };
       state.currentKey = episodeKey(work, section, ep);
       showEpisode();
@@ -946,11 +955,6 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function buildTree(data) {
-      if (currentLang === "en") {
-        treeEl.innerHTML = '<div class="empty">English story JSON is under construction.（実装中）</div>';
-        return;
-      }
-
       const root = treeEl;
       root.innerHTML = "";
       state.buttons = [];
@@ -1027,12 +1031,17 @@ A stylish underworld road movie with lethal charm.</p>
 
     async function boot() {
       try {
-        const res = await fetch("./data/物語本編.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        state.data = await res.json();
-        buildTree(state.data);
+        const [jaRes, kaRes] = await Promise.all([
+          fetch("./data/物語本編.json", { cache: "no-store" }),
+          fetch("./data/story_ka.json", { cache: "no-store" })
+        ]);
+        if (!jaRes.ok) throw new Error(`HTTP ${jaRes.status}`);
+        state.dataJa = await jaRes.json();
+        if (kaRes.ok) state.dataKa = await kaRes.json();
+        const activeData = getActiveData();
+        if (activeData) buildTree(activeData);
       } catch (e) {
-        treeEl.innerHTML = `<div class="empty">読み込み失敗: ${esc(e.message)}</div>`;
+        treeEl.innerHTML = `<div class="empty">?: ${esc(e.message)}</div>`;
       }
     }
 
@@ -1049,10 +1058,6 @@ A stylish underworld road movie with lethal charm.</p>
     });
 
     shareEpisodeBtn.addEventListener("click", () => {
-      if (currentLang === "en") {
-        alert("English episode sharing is under construction.（実装中）");
-        return;
-      }
       if (!state.current) return;
       const key = workShareKey(state.current.work.id);
       const base = shareMap[key];
@@ -1117,6 +1122,7 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
 
 
 
