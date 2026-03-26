@@ -17,22 +17,35 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/encyclopedia.html" />
   <meta property="og:title" content="カラベイ百科" />
-  <meta property="og:description" content="政治・宗教・文化・地理のJSONを統合閲覧。" />
+  <meta property="og:description" content="政治・宗教・文化・地理の統合アーカイブ。" />
   <meta property="og:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="カラベイ百科" />
-  <meta name="twitter:description" content="政治・宗教・文化・地理のJSONを統合閲覧。" />
+  <meta name="twitter:description" content="政治・宗教・文化・地理の統合アーカイブ。" />
   <meta name="twitter:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
   <title>カラベイ百科 | カラベイ外務省観光局</title>
   <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
   <link rel="stylesheet" href="./tourism.css" />
-  <style>
+    <style>
     .switcher { display:flex; gap:8px; flex-wrap:wrap; margin: 12px 0 16px; }
     .switcher button { border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:999px; padding:6px 12px; cursor:pointer; }
     .switcher button.active { background: var(--accent); color:#fff; border-color: var(--accent); }
-    .doc { white-space: pre-wrap; line-height: 1.8; }
-    .json-box { margin-top:14px; }
-    .json-box pre { white-space: pre-wrap; word-break: break-word; font-size: .83rem; background: var(--panel-alt); border:1px solid var(--line); border-radius:10px; padding:10px; }
+    .doc h3 { color: var(--accent-deep); margin: 20px 0 10px; }
+    .doc h4 { margin: 16px 0 8px; }
+    .doc p { margin: 0 0 8px; line-height: 1.9; }
+    .doc ul { margin: 0 0 12px 1.2rem; padding: 0; }
+    .doc li { margin: 0 0 6px; line-height: 1.8; }
+    .doc .kv { margin: 10px 0 14px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel-alt); }
+    .doc .kv dt { font-weight: 700; color: var(--accent-deep); margin-top: 8px; }
+    .doc .kv dd { margin: 2px 0 8px 0; }
+    .doc .tbl-wrap { overflow-x: auto; margin: 10px 0 14px; border: 1px solid var(--line); border-radius: 10px; }
+    .doc table { width: 100%; border-collapse: collapse; min-width: 520px; background: #fff; }
+    .doc th, .doc td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; line-height: 1.7; }
+    .doc th { background: #f7eee3; color: var(--accent-deep); font-weight: 700; }
+    .doc .tree { list-style: none; margin: 6px 0 14px 0; padding: 0; border-left: 2px solid #ead8c4; }
+    .doc .tree li { margin: 0; padding: 5px 8px; border-bottom: 1px dashed #ead8c4; line-height: 1.8; }
+    .doc .flow { margin: 12px 0 14px; padding: 12px; background: #fffaf3; border: 1px solid #ead8c4; border-radius: 10px; overflow-x: auto; font-family: "BIZ UDMincho", "Yu Mincho", "Hiragino Mincho ProN", serif; line-height: 1.7; }
+    .doc .lead { padding: 10px 12px; border-left: 4px solid var(--accent); background: #fffaf3; border-radius: 6px; margin: 8px 0 14px; }
   </style>
 </head>
 <body>
@@ -42,7 +55,7 @@
       <div class="sidebar-header">
         <div class="brand">
           <img src="../その他/カラベイの国旗.png" alt="カラベイの国旗" />
-          <h1>カラベイ外務省観光局<small>Kàlavé MoFA</small></h1>
+          <h1>カラベイ外務省観光局<small>公式観光ポータル</small></h1>
         </div>
         <button class="btn" id="closeBtn" type="button">折りたたみ</button>
       </div>
@@ -63,21 +76,15 @@
     <main class="main">
       <header>
         <div class="header-visual"><h2>カラベイ百科</h2></div>
-        <div class="header-sub">Kàlavé MoFA</div>
+        <div class="header-sub">公式観光ポータル</div>
       </header>
       <div class="content">
         <article class="section">
           <h2>政治・宗教・文化・地理 統合アーカイブ</h2>
-          <p>各カテゴリの構造データ（JSON）を閲覧できます。</p>
+          <p>TXT資料をもとにカテゴリごとに閲覧できます。</p>
           <div class="switcher" id="switcher"></div>
           <h3 id="docTitle">読み込み中...</h3>
           <div id="docBody" class="doc"></div>
-          <div class="json-box">
-            <details>
-              <summary>JSONデータを表示</summary>
-              <pre id="jsonBody">読み込み中...</pre>
-            </details>
-          </div>
         </article>
       </div>
     </main>
@@ -110,114 +117,249 @@
   })();
 
   const SOURCES = [
-    { id:'politics', label:'\u653f\u6cbb', json:'./\u653f\u6cbb.json', txt:'./\u653f\u6cbb.txt' },
-    { id:'religion', label:'\u5b97\u6559', json:'./\u5b97\u6559.json', txt:'./\u5b97\u6559txt.txt' },
-    { id:'culture', label:'\u6587\u5316', json:'./\u6587\u5316.json', txt:'./\u6587\u5316.txt' },
-    { id:'geography', label:'\u5730\u7406', json:'./\u5730\u7406.json', txt:'./\u5730\u7406.txt' }
+    { id:'politics', label:'政治', txt:'./政治.txt' },
+    { id:'religion', label:'宗教', txt:'./宗教txt.txt' },
+    { id:'culture', label:'文化', txt:'./文化.txt' },
+    { id:'geography', label:'地理', txt:'./地理.txt' }
   ];
 
   const switcher = document.getElementById('switcher');
   const docTitle = document.getElementById('docTitle');
   const docBody = document.getElementById('docBody');
-  const jsonBody = document.getElementById('jsonBody');
-
-  
-    const KEY_LABELS = {
-    page_title: 'ページタイトル',
-    source_title: '出典',
-    country: '国家',
-    religion: '宗教',
-    culture: '文化',
-    geography: '地理',
-    history: '歴史',
-    economy: '経済',
-    politics: '政治',
-    notes: '注記',
-    name: '名称',
-    title: '見出し',
-    description: '説明',
-    overview: '概要',
-    timeline: '年表',
-    regions: '地域',
-    sections: '節',
-    list: '一覧'
-  };
 
   function esc(s){
     return String(s ?? '').replace(/[&<>\"]/g, (ch)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[ch]));
   }
 
-  function labelizeKey(key){
-    if (KEY_LABELS[key]) return KEY_LABELS[key];
-    const token = {
-      id:'ID', type:'種別', value:'値', values:'値一覧', role:'役割', roles:'役割一覧',
-      system:'制度', policy:'政策', law:'法', laws:'法体系', office:'官庁', offices:'官庁一覧',
-      stats:'統計', statistics:'統計', population:'人口', area:'面積', gdp:'GDP',
-      currency:'通貨', capital:'首都', border:'国境', borders:'国境一覧', region:'地域', regions:'地域一覧',
-      detail:'詳細', details:'詳細', note:'注記', notes:'注記', source:'出典',
-      transport:'交通', military:'軍事', trade:'交易', tax:'税制', taxes:'税制'
+      function toHtmlFromTxt(text, opt = {}){
+    const lines = String(text || '').replace(/\r/g,'').split('\n');
+    const out = [];
+    let inList = false;
+    let inKv = false;
+    let inTree = false;
+    let firstHeadingUsed = false;
+
+    const closeList = () => {
+      if (inList) { out.push('</ul>'); inList = false; }
     };
-    return String(key)
-      .split('_')
-      .map((t)=> token[t] || t)
-      .join(' / ');
-  }
+    const closeKv = () => {
+      if (inKv) { out.push('</dl>'); inKv = false; }
+    };
+    const closeTree = () => {
+      if (inTree) { out.push('</ul>'); inTree = false; }
+    };
+    const closeAll = () => { closeList(); closeKv(); closeTree(); };
 
-  async function loadOne(src){
-    const [jRes, tRes] = await Promise.all([
-      fetch(src.json, { cache:'no-store' }),
-      fetch(src.txt, { cache:'no-store' })
-    ]);
-    if(!jRes.ok) throw new Error(`${src.label} JSON: HTTP ${jRes.status}`);
-    const json = await jRes.json();
+        const parseCols = (line) => line.split(/\t+|[ \u00A0]{2,}|　+/).map(x=>x.trim()).filter(Boolean);
+    const isTableRow = (line) => parseCols(line).length >= 3;
+    const isLikelyTableHeader = (line) => {
+      const cols = parseCols(line);
+      return cols.length >= 3 && /項目/.test(cols[0]);
+    };
 
-    // TXTは内部参照のみ（本文表示には使わない）
-    let txtHeading = '';
-    if (tRes.ok) {
-      const txt = await tRes.text();
-      const first = (txt || '').split(/\r?\n/).find(x => x.trim()) || '';
-      const m = first.match(/【(.+?)】/);
-      txtHeading = (m ? m[1] : first).trim();
-    }
-    return { json, txtHeading };
-  }
-
-  function renderJsonAsHtml(value){
-    if (value == null) return '<p>(no data)</p>';
-    if (typeof value !== 'object') return `<p>${esc(value)}</p>`;
-
-    if (Array.isArray(value)) {
-      if (value.length === 0) return '<p>(empty array)</p>';
-      if (value.every(v => typeof v !== 'object' || v == null)) {
-        return '<ul>' + value.map(v => `<li>${esc(v)}</li>`).join('') + '</ul>';
+    const peekNextNonEmpty = (arr, from) => {
+      for (let k = from; k < arr.length; k++) {
+        const s = (arr[k] || '').trim();
+        if (s) return s;
       }
-      return value.map(v => `<div class="indent-block">${renderJsonAsHtml(v)}</div>`).join('');
+      return '';
+    };
+
+    const isLaborHeader = (line) => /^項目(?:\s|\t|　)+(?:アーケイ=イラー圏)(?:\s|\t|　)+(?:セラン都市圏)(?:\s|\t|　)+(?:ハヴァレイキ都市圏)$/.test(line);
+    const isLaborRow = (line) => {
+      const cols = line.split(/\t+| {2,}|　+/).map(x=>x.trim()).filter(Boolean);
+      return cols.length >= 4 && /K$/.test(cols[1]) && /K$/.test(cols[2]) && /K$/.test(cols[3]);
+    };
+
+    const isFlowLine = (line) => /[↑↓←→]/.test(line) || /^[^\s]{0,14}〈[^〉]+〉/.test(line);
+
+    for (let i = 0; i < lines.length; i++) {
+      const raw = lines[i];
+      const line = raw.trim();
+      if (!line) { closeAll(); continue; }
+
+      if (/^【.+】$/.test(line)) {
+        closeAll();
+        const h = line.slice(1, -1);
+        if (!firstHeadingUsed && opt.skipHeading && h === opt.skipHeading) {
+          firstHeadingUsed = true;
+          continue;
+        }
+        firstHeadingUsed = true;
+        out.push(`<h3>${esc(h)}</h3>`);
+        continue;
+      }
+
+      if (/^〈.+〉$/.test(line)) {
+        closeAll();
+        out.push(`<h4>${esc(line.slice(1, -1))}</h4>`);
+        continue;
+      }
+
+      if (/^\d+\.\s+/.test(line)) {
+        closeAll();
+        out.push(`<h4>${esc(line)}</h4>`);
+        continue;
+      }
+
+      if (/^[■◆]/.test(line)) {
+        closeAll();
+        out.push(`<h4>${esc(line.replace(/^[■◆]\s*/, ''))}</h4>`);
+        continue;
+      }
+
+      if (/^[^：；]{1,36}[：；]$/.test(line)) {
+        closeAll();
+        out.push(`<h4>${esc(line.replace(/[：；]$/, ''))}</h4>`);
+        continue;
+      }
+
+      const prevBlank = i === 0 || !(lines[i - 1] || '').trim();
+      const nextNonEmpty = peekNextNonEmpty(lines, i + 1);
+      const plainHeadingLike = /^[^\s：；。．,，、]{1,18}$/.test(line);
+      if (
+        prevBlank &&
+        !/^\d/.test(line) &&
+        !/[：；]/.test(line) &&
+        !/^[・\-■◆]/.test(line) &&
+        (plainHeadingLike || line.length <= 18) &&
+        nextNonEmpty
+      ) {
+        closeAll();
+        out.push(`<h4>${esc(line)}</h4>`);
+        continue;
+      }
+
+      if (isFlowLine(line)) {
+        closeAll();
+        const flow = [];
+        while (i < lines.length) {
+          const l = lines[i].trim();
+          if (!l) break;
+          if (!isFlowLine(l) && !/[↑↓←→]/.test(l)) break;
+          flow.push(l);
+          i++;
+        }
+        i--;
+        out.push(`<pre class="flow">${esc(flow.join('\n'))}</pre>`);
+        continue;
+      }
+
+      if (isLaborHeader(line)) {
+        closeAll();
+        const rows = [];
+        while (i < lines.length) {
+          const cur = (lines[i] || '').trim();
+          if (!cur) { i++; continue; }
+          if (rows.length === 0 && isLaborHeader(cur)) {
+            rows.push(cur.split(/\t+| {2,}|　+/).map(x=>x.trim()).filter(Boolean));
+            i++;
+            continue;
+          }
+          if (rows.length > 0 && isLaborRow(cur)) {
+            rows.push(cur.split(/\t+| {2,}|　+/).map(x=>x.trim()).filter(Boolean).slice(0,4));
+            i++;
+            continue;
+          }
+          break;
+        }
+        i--;
+        if (rows.length >= 2) {
+          const head = rows[0].slice(0,4);
+          const body = rows.slice(1);
+          out.push('<div class="tbl-wrap"><table><thead><tr>' + head.map(c => `<th>${esc(c)}</th>`).join('') + '</tr></thead><tbody>');
+          for (const r of body) out.push('<tr>' + r.slice(0,4).map(c => `<td>${esc(c)}</td>`).join('') + '</tr>');
+          out.push('</tbody></table></div>');
+          continue;
+        }
+      }
+      if (isLikelyTableHeader(line) || isTableRow(line)) {
+        closeAll();
+        const rows = [];
+        const firstCols = parseCols(line);
+        const expectCols = Math.max(3, firstCols.length);
+        while (i < lines.length) {
+          const cur = (lines[i] || "").trim();
+          if (!cur) { i++; continue; }
+          if (/^【.+】$/.test(cur) || /^〈.+〉$/.test(cur) || /^[■◆]/.test(cur) || /^\d+\.\s+/.test(cur)) break;
+          if (/^[^：；]{1,36}[：；]$/.test(cur)) break;
+          const cols = parseCols(cur);
+          if (cols.length >= Math.min(3, expectCols)) {
+            rows.push(cols);
+            i++;
+            continue;
+          }
+          break;
+        }
+        i--;
+        if (rows.length >= 2) {
+          const head = rows[0];
+          const body = rows.slice(1);
+          out.push('<div class="tbl-wrap"><table><thead><tr>' + head.map(c => `<th>${esc(c)}</th>`).join('') + '</tr></thead><tbody>');
+          for (const r of body) out.push('<tr>' + r.map(c => `<td>${esc(c)}</td>`).join('') + '</tr>');
+          out.push('</tbody></table></div>');
+          continue;
+        }
+        // 行が足りなければ通常テキストとしてフォールバック
+      }
+
+      const indent = (raw.match(/^[ 　\t]+/) || [''])[0];
+      const depth = indent.replace(/\t/g, '  ').length;
+      if (depth > 0 || /^→/.test(line)) {
+        closeList(); closeKv();
+        if (!inTree) { out.push('<ul class="tree">'); inTree = true; }
+        const txt = line.replace(/^→\s*/, '').replace(/^　*→\s*/, '');
+        const pad = Math.min(48, Math.max(0, depth * 0.35 + (line.startsWith('→') ? 8 : 0)));
+        out.push(`<li style="padding-left:${pad}px">${esc(txt)}</li>`);
+        continue;
+      }
+
+      if (/^[・\-]/.test(line)) {
+        closeTree(); closeKv();
+        if (!inList) { out.push('<ul>'); inList = true; }
+        out.push(`<li>${esc(line.replace(/^[・\-]\s*/, ''))}</li>`);
+        continue;
+      }
+
+      const kv = line.match(/^(?:・\s*)?([^：]{1,48})：\s*(.+)$/);
+      if (kv) {
+        closeList(); closeTree();
+        if (!inKv) { out.push('<dl class="kv">'); inKv = true; }
+        out.push(`<dt>${esc(kv[1])}</dt><dd>${esc(kv[2])}</dd>`);
+        continue;
+      }
+
+      closeAll();
+      if (!out.length || /<h[34]>/.test(out[out.length - 1])) {
+        out.push(`<p class="lead">${esc(line)}</p>`);
+      } else {
+        out.push(`<p>${esc(line)}</p>`);
+      }
     }
 
-    const keys = Object.keys(value);
-    if (keys.length === 0) return '<p>(empty object)</p>';
-
-    return keys.map(k => {
-      const label = labelizeKey(k);
-      return `<section><h4>${esc(label)}</h4>${renderJsonAsHtml(value[k])}</section>`;
-    }).join('');
+    closeAll();
+    return out.join('');
   }
 
   async function showSource(src, btn){
     [...switcher.querySelectorAll('button')].forEach(x=>x.classList.remove('active'));
     btn.classList.add('active');
-    docTitle.textContent = `${src.label}（JSON）`;
+    docTitle.textContent = `${src.label}（読み込み中）`;
     docBody.innerHTML = '<p>読み込み中...</p>';
-    jsonBody.textContent = '読み込み中...';
+
     try {
-      const data = await loadOne(src);
-      const sourceTitle = (data.json && data.json.source_title && !/\.txt$/i.test(String(data.json.source_title))) ? data.json.source_title : '';
-      docTitle.textContent = data.txtHeading || data.json.page_title || sourceTitle || src.label;
-      docBody.innerHTML = renderJsonAsHtml(data.json);
-      jsonBody.textContent = JSON.stringify(data.json, null, 2);
-    } catch (e){
-      docBody.textContent = `読み込み失敗: ${e.message}`;
-      jsonBody.textContent = `読み込み失敗: ${e.message}`;
+      const res = await fetch(src.txt, { cache:'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const txt = await res.text();
+
+      const first = (txt || '').split(/\r?\n/).find(x => x.trim()) || src.label;
+      const m = first.match(/^【(.+?)】/);
+      docTitle.textContent = m ? m[1] : src.label;
+
+      docBody.innerHTML = toHtmlFromTxt(txt, { skipHeading: docTitle.textContent });
+    } catch (e) {
+      docTitle.textContent = src.label;
+      docBody.innerHTML = `<p>読み込み失敗: ${esc(e.message)}</p>`;
     }
   }
 
@@ -228,10 +370,19 @@
     b.addEventListener('click', ()=>showSource(src, b));
     switcher.appendChild(b);
   }
+
   if (switcher.firstElementChild) switcher.firstElementChild.click();
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
