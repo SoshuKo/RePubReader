@@ -1,0 +1,3719 @@
+[
+  {
+    "index": 6,
+    "日本語": "暖かい",
+    "カラバル語": "bàur",
+    "語根": "bV̀u",
+    "語根+接辞": "bV̀u-r",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 12,
+    "日本語": "ビマウセ",
+    "カラバル語": "bïmàuse",
+    "語根": "bïmV̀use",
+    "語根+接辞": "bïmV̀use",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 13,
+    "日本語": "鼻",
+    "カラバル語": "bïmēir",
+    "語根": "bïmV̄ir",
+    "語根+接辞": "bïmV̄ir",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 20,
+    "日本語": "草",
+    "カラバル語": "bíun",
+    "語根": "bV́un",
+    "語根+接辞": "bV́un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 22,
+    "日本語": "あなた達",
+    "カラバル語": "sháuny",
+    "語根": "shV́uny",
+    "語根+接辞": "shV́uny",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 23,
+    "日本語": "大きい",
+    "カラバル語": "shàur",
+    "語根": "shV̀u",
+    "語根+接辞": "shV̀u-r",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 24,
+    "日本語": "海岸",
+    "カラバル語": "shèu",
+    "語根": "shV̀u",
+    "語根+接辞": "shV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 28,
+    "日本語": "（厚みが）薄い",
+    "カラバル語": "dāir",
+    "語根": "dV̄i",
+    "語根+接辞": "dV̄i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 29,
+    "日本語": "昼",
+    "カラバル語": "dàu",
+    "語根": "dV̀u",
+    "語根+接辞": "dV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 32,
+    "日本語": "来る",
+    "カラバル語": "dïlàibe",
+    "語根": "dVlV̀i",
+    "語根+接辞": "dVlV̀i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 33,
+    "日本語": "首",
+    "カラバル語": "dïlèu",
+    "語根": "dïlV̀u",
+    "語根+接辞": "dïlV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 47,
+    "日本語": "首都",
+    "カラバル語": "zāggài",
+    "語根": "zV̄ggV̀i",
+    "語根+接辞": "zV̄ggV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 48,
+    "日本語": "祖国",
+    "カラバル語": "zàijuāy",
+    "語根": "zV̀ijuV̄y",
+    "語根+接辞": "zV̀ijuV̄y",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 51,
+    "日本語": "見る",
+    "カラバル語": "záube",
+    "語根": "zV́u",
+    "語根+接辞": "zV́u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 52,
+    "日本語": "新しい",
+    "カラバル語": "jàur",
+    "語根": "jV̀u",
+    "語根+接辞": "jV̀u-r",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 54,
+    "日本語": "氷",
+    "カラバル語": "zēu",
+    "語根": "zV̄u",
+    "語根+接辞": "zV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 60,
+    "日本語": "皮",
+    "カラバル語": "jïròung",
+    "語根": "jïrV̀ung",
+    "語根+接辞": "jïrV̀ung",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 63,
+    "日本語": "角",
+    "カラバル語": "zíur",
+    "語根": "zV́ur",
+    "語根+接辞": "zV́ur",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 72,
+    "日本語": "母",
+    "カラバル語": "ggèun",
+    "語根": "ggV̀un",
+    "語根+接辞": "ggV̀un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 75,
+    "日本語": "遠い",
+    "カラバル語": "gïlāir",
+    "語根": "gVlV̄i",
+    "語根+接辞": "gVlV̄i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 80,
+    "日本語": "土",
+    "カラバル語": "gïrèun",
+    "語根": "gïrV̀un",
+    "語根+接辞": "gïrV̀un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 85,
+    "日本語": "戦う",
+    "カラバル語": "háibe",
+    "語根": "hV́i",
+    "語根+接辞": "hV́i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 86,
+    "日本語": "小さい",
+    "カラバル語": "hhāir",
+    "語根": "hhV̄i",
+    "語根+接辞": "hhV̄i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 88,
+    "日本語": "讃える",
+    "カラバル語": "hhàube",
+    "語根": "hhV̀u",
+    "語根+接辞": "hhV̀u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 90,
+    "日本語": "歌う",
+    "カラバル語": "hàube",
+    "語根": "hV̀u",
+    "語根+接辞": "hV̀u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 91,
+    "日本語": "愛する",
+    "カラバル語": "hàube",
+    "語根": "hV̀u",
+    "語根+接辞": "hV̀u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 93,
+    "日本語": "果実、実",
+    "カラバル語": "hóun",
+    "語根": "hV́un",
+    "語根+接辞": "hV́un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 96,
+    "日本語": "ヤイヴァ",
+    "カラバル語": "yáivá",
+    "語根": "yV́ivV́",
+    "語根+接辞": "yV́ivV́",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 99,
+    "日本語": "独立",
+    "カラバル語": "yāsáu",
+    "語根": "yV̄sV́u",
+    "語根+接辞": "yV̄sV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 100,
+    "日本語": "結ぶ",
+    "カラバル語": "yàube",
+    "語根": "yV̀u",
+    "語根+接辞": "yV̀u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 101,
+    "日本語": "恐れる",
+    "カラバル語": "yàube",
+    "語根": "yV̀u",
+    "語根+接辞": "yV̀u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 108,
+    "日本語": "ユワサイ",
+    "カラバル語": "yuāsài",
+    "語根": "yuV̄sV̀i",
+    "語根+接辞": "yuV̄sV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 109,
+    "日本語": "食べる",
+    "カラバル語": "kàibe",
+    "語根": "kV̀i",
+    "語根+接辞": "kV̀i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 118,
+    "日本語": "平和",
+    "カラバル語": "lāiduá",
+    "語根": "lV̄iduá",
+    "語根+接辞": "lV̄iduá",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 119,
+    "日本語": "良い",
+    "カラバル語": "lāir",
+    "語根": "lV̄i",
+    "語根+接辞": "lV̄i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 120,
+    "日本語": "本当の、真の",
+    "カラバル語": "hlàir",
+    "語根": "hlV̀i",
+    "語根+接辞": "hlV̀i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 121,
+    "日本語": "短い",
+    "カラバル語": "hlāir",
+    "語根": "hlV̄i",
+    "語根+接辞": "hlV̄i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 123,
+    "日本語": "赤",
+    "カラバル語": "hlàu",
+    "語根": "hlV̀u",
+    "語根+接辞": "hlV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 124,
+    "日本語": "涼しい",
+    "カラバル語": "làunár",
+    "語根": "lV̀un",
+    "語根+接辞": "lV̀un-ár",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 126,
+    "日本語": "動物",
+    "カラバル語": "lïyāun",
+    "語根": "lïyV̄un",
+    "語根+接辞": "lïyV̄un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 136,
+    "日本語": "乾いた",
+    "カラバル語": "màir",
+    "語根": "mV̀i",
+    "語根+接辞": "mV̀i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 148,
+    "日本語": "砂",
+    "カラバル語": "nēul",
+    "語根": "nV̄ul",
+    "語根+接辞": "nV̄ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 155,
+    "日本語": "笑う",
+    "カラバル語": "fāube",
+    "語根": "fV̄u",
+    "語根+接辞": "fV̄u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 169,
+    "日本語": "泣く",
+    "カラバル語": "qāube",
+    "語根": "qV̄u",
+    "語根+接辞": "qV̄u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 176,
+    "日本語": "濡れた、湿った",
+    "カラバル語": "ghāir",
+    "語根": "ghV̄i",
+    "語根+接辞": "ghV̄i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 181,
+    "日本語": "月（暦の）",
+    "カラバル語": "hraùl",
+    "語根": "hrV̀ul",
+    "語根+接辞": "hrV̀ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 182,
+    "日本語": "雪",
+    "カラバル語": "ghēi",
+    "語根": "ghV̄i",
+    "語根+接辞": "ghV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 191,
+    "日本語": "腕",
+    "カラバル語": "ghīun",
+    "語根": "ghV̄un",
+    "語根+接辞": "ghV̄un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 195,
+    "日本語": "サイ",
+    "カラバル語": "sài",
+    "語根": "sV̀i",
+    "語根+接辞": "sV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 197,
+    "日本語": "サカイ",
+    "カラバル語": "saqài",
+    "語根": "sVqV̀i",
+    "語根+接辞": "sVqV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 200,
+    "日本語": "手に取る",
+    "カラバル語": "sàube",
+    "語根": "sV̀u",
+    "語根+接辞": "sV̀u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 205,
+    "日本語": "話す",
+    "カラバル語": "táibe",
+    "語根": "tV́i",
+    "語根+接辞": "tV́i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 210,
+    "日本語": "緑",
+    "カラバル語": "chāi",
+    "語根": "chV̄i",
+    "語根+接辞": "chV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 216,
+    "日本語": "女王",
+    "カラバル語": "tïléine",
+    "語根": "tïlV́ine",
+    "語根+接辞": "tïlV́ine",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 217,
+    "日本語": "川",
+    "カラバル語": "tïlèu",
+    "語根": "tïlV̀u",
+    "語根+接辞": "tïlV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 231,
+    "日本語": "怒る",
+    "カラバル語": "vàibe",
+    "語根": "vV̀i",
+    "語根+接辞": "vV̀i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 240,
+    "日本語": "炎",
+    "カラバル語": "xèiny",
+    "語根": "xV̀iny",
+    "語根+接辞": "xV̀iny",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 241,
+    "日本語": "谷",
+    "カラバル語": "xīu",
+    "語根": "xV̄u",
+    "語根+接辞": "xV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 244,
+    "日本語": "かがむ",
+    "カラバル語": "kāube",
+    "語根": "kV̄u",
+    "語根+接辞": "kV̄u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 245,
+    "日本語": "しゃがむ",
+    "カラバル語": "sèkāube",
+    "語根": "kV̄u",
+    "語根+接辞": "sè-kV̄u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 246,
+    "日本語": "うずくまる",
+    "カラバル語": "kāujabe",
+    "語根": "kV̄u",
+    "語根+接辞": "kV̄u-jV-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 247,
+    "日本語": "硬い",
+    "カラバル語": "hmàur",
+    "語根": "hmV̀u",
+    "語根+接辞": "hmV̀u-r",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 248,
+    "日本語": "固いカタ",
+    "カラバル語": "sèhmàur",
+    "語根": "hmV̀u",
+    "語根+接辞": "sè-hmV̀u-r",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 250,
+    "日本語": "弟/妹",
+    "カラバル語": "zài/zèi",
+    "語根": "zV̀i",
+    "語根+接辞": "zV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 263,
+    "日本語": "左",
+    "カラバル語": "géu",
+    "語根": "gV́u",
+    "語根+接辞": "gV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 264,
+    "日本語": "右",
+    "カラバル語": "léi",
+    "語根": "lV́i",
+    "語根+接辞": "lV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 271,
+    "日本語": "進む",
+    "カラバル語": "hnáube",
+    "語根": "hnV́u",
+    "語根+接辞": "hnV́u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 277,
+    "日本語": "哀れむアワ",
+    "カラバル語": "tïràibe",
+    "語根": "tïrV̀i",
+    "語根+接辞": "tïrV̀i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 282,
+    "日本語": "逃げる",
+    "カラバル語": "àube",
+    "語根": "V̀u",
+    "語根+接辞": "V̀u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 285,
+    "日本語": "袖",
+    "カラバル語": "kàu",
+    "語根": "kV̀u",
+    "語根+接辞": "kV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 286,
+    "日本語": "裾",
+    "カラバル語": "áiy",
+    "語根": "V́iy",
+    "語根+接辞": "V́iy",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 287,
+    "日本語": "帯",
+    "カラバル語": "ggài",
+    "語根": "ggV̀i",
+    "語根+接辞": "ggV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 290,
+    "日本語": "育てる",
+    "カラバル語": "cháibe",
+    "語根": "chV́i",
+    "語根+接辞": "chV́i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 292,
+    "日本語": "飼いならす",
+    "カラバル語": "píhnābe",
+    "語根": "fiVng",
+    "語根+接辞": "pí-hnV̄-be",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 295,
+    "日本語": "夕焼け",
+    "カラバル語": "shïkóu",
+    "語根": "sV̄i",
+    "語根+接辞": "shï-kV́u",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 296,
+    "日本語": "正午",
+    "カラバル語": "dau",
+    "語根": "shV̀ise",
+    "語根+接辞": "dVu",
+    "rootPattern": "Vi",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 297,
+    "日本語": "夕暮れ",
+    "カラバル語": "kóu",
+    "語根": "chiV̄",
+    "語根+接辞": "kV́u",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 298,
+    "日本語": "真夜中",
+    "カラバル語": "hnuén",
+    "語根": "bV̄i",
+    "語根+接辞": "hnuV́n",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 302,
+    "日本語": "深夜",
+    "カラバル語": "sèhnuén",
+    "語根": "yV́i",
+    "語根+接辞": "sè-hnuV́n",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 303,
+    "日本語": "運",
+    "カラバル語": "hnuín",
+    "語根": "shVu",
+    "語根+接辞": "hnuV́n",
+    "rootPattern": "Vu",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 309,
+    "日本語": "恩",
+    "カラバル語": "hrēi",
+    "語根": "hrV̄i",
+    "語根+接辞": "hrV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 311,
+    "日本語": "苔",
+    "カラバル語": "ggī",
+    "語根": "ggV́i",
+    "語根+接辞": "ggV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 313,
+    "日本語": "価格",
+    "カラバル語": "cài",
+    "語根": "cV̀i",
+    "語根+接辞": "cV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 317,
+    "日本語": "牛",
+    "カラバル語": "hrì",
+    "語根": "jVum",
+    "語根+接辞": "hrV̀",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 318,
+    "日本語": "羊",
+    "カラバル語": "wìul",
+    "語根": "wV̀ul",
+    "語根+接辞": "wV̀ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 319,
+    "日本語": "山羊",
+    "カラバル語": "lāushe",
+    "語根": "lV̄ushe",
+    "語根+接辞": "lV̄ushe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 321,
+    "日本語": "家畜",
+    "カラバル語": "ríum",
+    "語根": "rV́um",
+    "語根+接辞": "rV́um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 322,
+    "日本語": "牡牛",
+    "カラバル語": "àhrà",
+    "語根": "hliV̀",
+    "語根+接辞": "à-hrV̀",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 324,
+    "日本語": "馬",
+    "カラバル語": "ggīu",
+    "語根": "yiV́",
+    "語根+接辞": "ggV̄u",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 325,
+    "日本語": "牡馬",
+    "カラバル語": "àggāu",
+    "語根": "kiV̀",
+    "語根+接辞": "à-ggV̄u",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 328,
+    "日本語": "主人",
+    "カラバル語": "qàya",
+    "語根": "tuV",
+    "語根+接辞": "qV̀yV",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 329,
+    "日本語": "使用人",
+    "カラバル語": "sèluīr",
+    "語根": "gV̄i",
+    "語根+接辞": "sè-luV̄r",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 332,
+    "日本語": "柿",
+    "カラバル語": "hrēu",
+    "語根": "hrV̄u",
+    "語根+接辞": "hrV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 337,
+    "日本語": "果樹",
+    "カラバル語": "sāu",
+    "語根": "sV̄u",
+    "語根+接辞": "sV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 338,
+    "日本語": "灯り",
+    "カラバル語": "nī",
+    "語根": "nV̀i",
+    "語根+接辞": "nV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 339,
+    "日本語": "松明",
+    "カラバル語": "vōi",
+    "語根": "vV̄i",
+    "語根+接辞": "vV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 341,
+    "日本語": "牝馬",
+    "カラバル語": "èggēu",
+    "語根": "lV̀i",
+    "語根+接辞": "è-ggV̄u",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 347,
+    "日本語": "百合",
+    "カラバル語": "hléishe",
+    "語根": "hlV́ishe",
+    "語根+接辞": "hlV́ishe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 350,
+    "日本語": "花粉",
+    "カラバル語": "chuá",
+    "語根": "hhV̄",
+    "語根+接辞": "chuV́",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 351,
+    "日本語": "野花",
+    "カラバル語": "chuó",
+    "語根": "wV̀u",
+    "語根+接辞": "chuV́",
+    "rootPattern": "Vu",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 353,
+    "日本語": "つぼみ",
+    "カラバル語": "chóu",
+    "語根": "chV́u",
+    "語根+接辞": "chV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 354,
+    "日本語": "苗",
+    "カラバル語": "hhàn",
+    "語根": "nVu",
+    "語根+接辞": "hhV̀n",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 356,
+    "日本語": "苗床",
+    "カラバル語": "hhìn",
+    "語根": "hhVi",
+    "語根+接辞": "hhV̀n",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 360,
+    "日本語": "鯨",
+    "カラバル語": "hnàu",
+    "語根": "hnV̀u",
+    "語根+接辞": "hnV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 366,
+    "日本語": "閉じる",
+    "カラバル語": "hmāube",
+    "語根": "hmV̄u",
+    "語根+接辞": "hmV̄u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 367,
+    "日本語": "蟹",
+    "カラバル語": "xòu",
+    "語根": "xV̀u",
+    "語根+接辞": "xV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 368,
+    "日本語": "海老",
+    "カラバル語": "kēi",
+    "語根": "kV̄i",
+    "語根+接辞": "kV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 374,
+    "日本語": "学者（男/未婚女/既婚女）オトコミコンオンナキコンオンナ",
+    "カラバル語": "bāte/bēte/bōte",
+    "語根": "hmiV",
+    "語根+接辞": "bV̄te",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 377,
+    "日本語": "枝",
+    "カラバル語": "sháushe",
+    "語根": "shV́ushe",
+    "語根+接辞": "shV́ushe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 378,
+    "日本語": "幹",
+    "カラバル語": "háu",
+    "語根": "hV́u",
+    "語根+接辞": "hV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 380,
+    "日本語": "若木",
+    "カラバル語": "raun",
+    "語根": "fV́i",
+    "語根+接辞": "rVun",
+    "rootPattern": "Vi",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 381,
+    "日本語": "蔓",
+    "カラバル語": "hhéi",
+    "語根": "hhV́i",
+    "語根+接辞": "hhV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 388,
+    "日本語": "難聴",
+    "カラバル語": "qéu",
+    "語根": "qV́u",
+    "語根+接辞": "qV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 389,
+    "日本語": "感じる",
+    "カラバル語": "hāisïbe",
+    "語根": "hV̄ise",
+    "語根+接辞": "hV̄isï-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 396,
+    "日本語": "額",
+    "カラバル語": "mòu",
+    "語根": "mV̀u",
+    "語根+接辞": "mV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 400,
+    "日本語": "若さ",
+    "カラバル語": "reun",
+    "語根": "xuV̀n",
+    "語根+接辞": "rVun",
+    "rootPattern": "uV",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 401,
+    "日本語": "若い",
+    "カラバル語": "raunár",
+    "語根": "lV́",
+    "語根+接辞": "rVun-ár",
+    "rootPattern": "V",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 403,
+    "日本語": "露",
+    "カラバル語": "tài",
+    "語根": "tV̀i",
+    "語根+接辞": "tV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 405,
+    "日本語": "雷",
+    "カラバル語": "nàishe",
+    "語根": "nV̀ishe",
+    "語根+接辞": "nV̀ishe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 411,
+    "日本語": "樹皮",
+    "カラバル語": "tēny",
+    "語根": "hruV́",
+    "語根+接辞": "tV̄ny",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 412,
+    "日本語": "樹液",
+    "カラバル語": "tāny",
+    "語根": "shiV",
+    "語根+接辞": "tV̄ny",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 413,
+    "日本語": "祈り手",
+    "カラバル語": "hluàál",
+    "語根": "gV́",
+    "語根+接辞": "hluV̀-ál",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 421,
+    "日本語": "忘れる",
+    "カラバル語": "cāibe",
+    "語根": "cV̄i",
+    "語根+接辞": "cV̄i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 426,
+    "日本語": "渇き",
+    "カラバル語": "cāum",
+    "語根": "cV̄um",
+    "語根+接辞": "cV̄um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 431,
+    "日本語": "ひざ",
+    "カラバル語": "ī",
+    "語根": "V́i",
+    "語根+接辞": "V́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 432,
+    "日本語": "踏む",
+    "カラバル語": "nāube",
+    "語根": "nV̄u",
+    "語根+接辞": "nV̄u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 435,
+    "日本語": "跳ねる",
+    "カラバル語": "sáube",
+    "語根": "sV́u",
+    "語根+接辞": "sV́u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 437,
+    "日本語": "ところが",
+    "カラバル語": "kói",
+    "語根": "kV́i",
+    "語根+接辞": "kV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 441,
+    "日本語": "断る",
+    "カラバル語": "tāibe",
+    "語根": "tV̄i",
+    "語根+接辞": "tV̄i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 442,
+    "日本語": "境界",
+    "カラバル語": "gēu",
+    "語根": "gV̄u",
+    "語根+接辞": "gV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 446,
+    "日本語": "恐れおののく",
+    "カラバル語": "ráube",
+    "語根": "rV́u",
+    "語根+接辞": "rV́u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 448,
+    "日本語": "筋肉",
+    "カラバル語": "fàur",
+    "語根": "fV̀ur",
+    "語根+接辞": "fV̀ur",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 449,
+    "日本語": "骨髄",
+    "カラバル語": "ggīshe",
+    "語根": "ggV́ishe",
+    "語根+接辞": "ggV́ishe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 455,
+    "日本語": "隣国民",
+    "カラバル語": "wāi",
+    "語根": "wV̄i",
+    "語根+接辞": "wV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 459,
+    "日本語": "丸い",
+    "カラバル語": "xàilár",
+    "語根": "xV̀il",
+    "語根+接辞": "xV̀il-ár",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 467,
+    "日本語": "縄",
+    "カラバル語": "ròum",
+    "語根": "rV̀um",
+    "語根+接辞": "rV̀um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 468,
+    "日本語": "網",
+    "カラバル語": "míu",
+    "語根": "mV́u",
+    "語根+接辞": "mV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 469,
+    "日本語": "針",
+    "カラバル語": "rèi",
+    "語根": "rV̀i",
+    "語根+接辞": "rV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 470,
+    "日本語": "先月",
+    "カラバル語": "ōishe",
+    "語根": "V̄ishe",
+    "語根+接辞": "V̄ishe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 471,
+    "日本語": "来月",
+    "カラバル語": "dói",
+    "語根": "dV́i",
+    "語根+接辞": "dV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 474,
+    "日本語": "憎む",
+    "カラバル語": "shàunybe",
+    "語根": "shV̀uny",
+    "語根+接辞": "shV̀uny-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 477,
+    "日本語": "祈る",
+    "カラバル語": "hluàbe",
+    "語根": "riV́se",
+    "語根+接辞": "hluV̀-be",
+    "rootPattern": "iV",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 481,
+    "日本語": "せき",
+    "カラバル語": "xáu",
+    "語根": "xV́u",
+    "語根+接辞": "xV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 483,
+    "日本語": "悔やむ",
+    "カラバル語": "dáushïbe",
+    "語根": "dV́ushe",
+    "語根+接辞": "dV́ush-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 484,
+    "日本語": "語り手",
+    "カラバル語": "hnāu",
+    "語根": "hnV̄u",
+    "語根+接辞": "hnV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 486,
+    "日本語": "市場",
+    "カラバル語": "dáum",
+    "語根": "dV́um",
+    "語根+接辞": "dV́um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 487,
+    "日本語": "屋台",
+    "カラバル語": "tākiá",
+    "語根": "lV̄u",
+    "語根+接辞": "tV̄kiV́",
+    "rootPattern": "Vu",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 489,
+    "日本語": "祈願する",
+    "カラバル語": "hluàjVbe",
+    "語根": "ghiV",
+    "語根+接辞": "hluV̀-jV-be",
+    "rootPattern": "iV",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 490,
+    "日本語": "希望",
+    "カラバル語": "kiel",
+    "語根": "fV̄",
+    "語根+接辞": "kiVl",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 495,
+    "日本語": "歯茎",
+    "カラバル語": "díu",
+    "語根": "dV́u",
+    "語根+接辞": "dV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 497,
+    "日本語": "喉",
+    "カラバル語": "rōu",
+    "語根": "rV̄u",
+    "語根+接辞": "rV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 498,
+    "日本語": "のどぼとけ",
+    "カラバル語": "ggàiny",
+    "語根": "ggV̀iny",
+    "語根+接辞": "ggV̀iny",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 499,
+    "日本語": "声帯",
+    "カラバル語": "bī",
+    "語根": "bV̀i",
+    "語根+接辞": "bV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 504,
+    "日本語": "災い",
+    "カラバル語": "hròu",
+    "語根": "hrV̀u",
+    "語根+接辞": "hrV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 515,
+    "日本語": "崖",
+    "カラバル語": "vōu",
+    "語根": "vV̄u",
+    "語根+接辞": "vV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 516,
+    "日本語": "峠",
+    "カラバル語": "záuny",
+    "語根": "zV́uny",
+    "語根+接辞": "zV́uny",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 517,
+    "日本語": "絶望",
+    "カラバル語": "kiol",
+    "語根": "xV̀",
+    "語根+接辞": "kiVl",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 521,
+    "日本語": "高い",
+    "カラバル語": "hàir",
+    "語根": "hV̀i",
+    "語根+接辞": "hV̀i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 525,
+    "日本語": "米",
+    "カラバル語": "rìm",
+    "語根": "jV̀i",
+    "語根+接辞": "rV̀m",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 526,
+    "日本語": "インディカ米マイ",
+    "カラバル語": "kïlàrìm",
+    "語根": "luV́",
+    "語根+接辞": "kïlà-rV̀m",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 528,
+    "日本語": "粟",
+    "カラバル語": "amatāu",
+    "語根": "fV̀i",
+    "語根+接辞": "a-mVtV̄u",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 531,
+    "日本語": "見失う",
+    "カラバル語": "pobaibe",
+    "語根": "wiV̄",
+    "語根+接辞": "po-bVi-be",
+    "rootPattern": "iV",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 532,
+    "日本語": "収穫",
+    "カラバル語": "kòur",
+    "語根": "kV̀ur",
+    "語根+接辞": "kV̀ur",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 537,
+    "日本語": "夫婦",
+    "カラバル語": "gī",
+    "語根": "gV́i",
+    "語根+接辞": "gV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 539,
+    "日本語": "婚礼",
+    "カラバル語": "pēu",
+    "語根": "pV̄u",
+    "語根+接辞": "pV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 540,
+    "日本語": "見張る",
+    "カラバル語": "baijVbe",
+    "語根": "xV́uy",
+    "語根+接辞": "bVi-jV-be",
+    "rootPattern": "Vu",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 541,
+    "日本語": "見渡す",
+    "カラバル語": "abaibe",
+    "語根": "ruV́y",
+    "語根+接辞": "a-bVi-be",
+    "rootPattern": "uV",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 542,
+    "日本語": "早朝",
+    "カラバル語": "buany",
+    "語根": "vV́i",
+    "語根+接辞": "buVny",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 543,
+    "日本語": "朝焼け",
+    "カラバル語": "bueny",
+    "語根": "iV́",
+    "語根+接辞": "buVny",
+    "rootPattern": "iV",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 544,
+    "日本語": "車輪",
+    "カラバル語": "chīu",
+    "語根": "hrVu",
+    "語根+接辞": "chV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 545,
+    "日本語": "車台",
+    "カラバル語": "yïchīu",
+    "語根": "hriV̀",
+    "語根+接辞": "yï-chV̄u",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 547,
+    "日本語": "嫁",
+    "カラバル語": "mēi",
+    "語根": "mV̄i",
+    "語根+接辞": "mV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 551,
+    "日本語": "終わり",
+    "カラバル語": "rīn",
+    "語根": "rV̄in",
+    "語根+接辞": "rV̄in",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 557,
+    "日本語": "養子",
+    "カラバル語": "bíu",
+    "語根": "bV́u",
+    "語根+接辞": "bV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 564,
+    "日本語": "こちら",
+    "カラバル語": "nōi",
+    "語根": "nV̄i",
+    "語根+接辞": "nV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 566,
+    "日本語": "あちら",
+    "カラバル語": "jōu",
+    "語根": "jV̄u",
+    "語根+接辞": "jV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 572,
+    "日本語": "番犬",
+    "カラバル語": "yàgVnVl",
+    "語根": "zV́ise",
+    "語根+接辞": "yV̀gVnV̄l",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 573,
+    "日本語": "乳",
+    "カラバル語": "suīte",
+    "語根": "hnVm",
+    "語根+接辞": "suV̄te",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 574,
+    "日本語": "番人",
+    "カラバル語": "yà",
+    "語根": "tuV̀ng",
+    "語根+接辞": "yV̀",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 575,
+    "日本語": "守る",
+    "カラバル語": "yáube",
+    "語根": "hhV̀im",
+    "語根+接辞": "yV́u-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 576,
+    "日本語": "守り手",
+    "カラバル語": "yáu",
+    "語根": "shuV̄",
+    "語根+接辞": "yV́u",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 580,
+    "日本語": "重み",
+    "カラバル語": "chie",
+    "語根": "tV̀",
+    "語根+接辞": "chiV",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 584,
+    "日本語": "瞬間",
+    "カラバル語": "qái",
+    "語根": "qV́i",
+    "語根+接辞": "qV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 585,
+    "日本語": "永遠",
+    "カラバル語": "cèishe",
+    "語根": "cV̀ishe",
+    "語根+接辞": "cV̀ishe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 589,
+    "日本語": "誇る",
+    "カラバル語": "yàiyïbe",
+    "語根": "yV̀iy",
+    "語根+接辞": "yV̀iy-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 593,
+    "日本語": "ざらつく",
+    "カラバル語": "xáir",
+    "語根": "xV́i",
+    "語根+接辞": "xV́i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 594,
+    "日本語": "許す",
+    "カラバル語": "hnáibe",
+    "語根": "hnV́i",
+    "語根+接辞": "hnV́i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 596,
+    "日本語": "汁",
+    "カラバル語": "ghài",
+    "語根": "ghV̀i",
+    "語根+接辞": "ghV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 598,
+    "日本語": "炊事",
+    "カラバル語": "gīuny",
+    "語根": "gV̄uny",
+    "語根+接辞": "gV̄uny",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 600,
+    "日本語": "沸騰",
+    "カラバル語": "mī",
+    "語根": "mV́i",
+    "語根+接辞": "mV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 601,
+    "日本語": "上がる",
+    "カラバル語": "bāube",
+    "語根": "yV̄i",
+    "語根+接辞": "bV̄u-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 603,
+    "日本語": "上げる",
+    "カラバル語": "bāujVbe",
+    "語根": "kuV",
+    "語根+接辞": "bV̄u-jV-be",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 604,
+    "日本語": "落ちる",
+    "カラバル語": "xáirbe",
+    "語根": "lVu",
+    "語根+接辞": "xV́ir-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 605,
+    "日本語": "拾う",
+    "カラバル語": "qāibe",
+    "語根": "qV̄i",
+    "語根+接辞": "qV̄i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 606,
+    "日本語": "受け取る",
+    "カラバル語": "zāulbe",
+    "語根": "zV̄ul",
+    "語根+接辞": "zV̄ul-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 607,
+    "日本語": "落とす",
+    "カラバル語": "xáirjVbe",
+    "語根": "chiV́m",
+    "語根+接辞": "xV́ir-jV-be",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 609,
+    "日本語": "伸びる",
+    "カラバル語": "shàibe",
+    "語根": "hhuVshe",
+    "語根+接辞": "shV̀i-be",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 611,
+    "日本語": "伸ばす",
+    "カラバル語": "shàijVbe",
+    "語根": "xV̀i",
+    "語根+接辞": "shV̀i-jV-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 612,
+    "日本語": "体",
+    "カラバル語": "cá",
+    "語根": "V̄i",
+    "語根+接辞": "cV́",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 615,
+    "日本語": "握る",
+    "カラバル語": "jáube",
+    "語根": "jV́u",
+    "語根+接辞": "jV́u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 618,
+    "日本語": "狩猟犬",
+    "カラバル語": "sāuse",
+    "語根": "sV̄use",
+    "語根+接辞": "sV̄use",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 621,
+    "日本語": "後継者",
+    "カラバル語": "jāuse",
+    "語根": "jV̄use",
+    "語根+接辞": "jV̄use",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 622,
+    "日本語": "贈り物",
+    "カラバル語": "hlīu",
+    "語根": "hlV̄u",
+    "語根+接辞": "hlV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 627,
+    "日本語": "木陰",
+    "カラバル語": "cháun",
+    "語根": "chV́un",
+    "語根+接辞": "chV́un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 630,
+    "日本語": "群れ",
+    "カラバル語": "jòiy",
+    "語根": "jV̀iy",
+    "語根+接辞": "jV̀iy",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 638,
+    "日本語": "井戸",
+    "カラバル語": "māu",
+    "語根": "mV̄u",
+    "語根+接辞": "mV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 639,
+    "日本語": "屋根",
+    "カラバル語": "jī",
+    "語根": "jV̄i",
+    "語根+接辞": "jV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 650,
+    "日本語": "奴隷",
+    "カラバル語": "cāim",
+    "語根": "cV̄im",
+    "語根+接辞": "cV̄im",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 652,
+    "日本語": "体温",
+    "カラバル語": "cé",
+    "語根": "lVuy",
+    "語根+接辞": "cV́",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 654,
+    "日本語": "体格",
+    "カラバル語": "sècá",
+    "語根": "hmuV́m",
+    "語根+接辞": "sè-cV́",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 655,
+    "日本語": "隠れる",
+    "カラバル語": "páumïbe",
+    "語根": "pV́um",
+    "語根+接辞": "pV́um-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 656,
+    "日本語": "潜む",
+    "カラバル語": "vāushïbe",
+    "語根": "vV̄ushe",
+    "語根+接辞": "vV̄ush-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 657,
+    "日本語": "現れる",
+    "カラバル語": "pāinyïbe",
+    "語根": "pV̄iny",
+    "語根+接辞": "pV̄iny-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 659,
+    "日本語": "備える",
+    "カラバル語": "yàibe",
+    "語根": "yV̀i",
+    "語根+接辞": "yV̀i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 661,
+    "日本語": "順序",
+    "カラバル語": "hráu",
+    "語根": "hrV́u",
+    "語根+接辞": "hrV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 662,
+    "日本語": "先",
+    "カラバル語": "fòuny",
+    "語根": "fV̀uny",
+    "語根+接辞": "fV̀uny",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 665,
+    "日本語": "以後",
+    "カラバル語": "ghóu",
+    "語根": "ghV́u",
+    "語根+接辞": "ghV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 668,
+    "日本語": "やけど",
+    "カラバル語": "ggòu",
+    "語根": "ggV̀u",
+    "語根+接辞": "ggV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 672,
+    "日本語": "かゆみ",
+    "カラバル語": "làu",
+    "語根": "lV̀u",
+    "語根+接辞": "lV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 679,
+    "日本語": "体液",
+    "カラバル語": "sècé",
+    "語根": "hrV̀i",
+    "語根+接辞": "sè-cV́",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 680,
+    "日本語": "曾祖父",
+    "カラバル語": "hiá",
+    "語根": "ghV̄u",
+    "語根+接辞": "hiV́",
+    "rootPattern": "Vu",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 681,
+    "日本語": "曾祖母",
+    "カラバル語": "hié",
+    "語根": "Vny",
+    "語根+接辞": "hiV́",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 684,
+    "日本語": "ひじ",
+    "カラバル語": "ghāul",
+    "語根": "ghV̄ul",
+    "語根+接辞": "ghV̄ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 685,
+    "日本語": "笑み",
+    "カラバル語": "hhíu",
+    "語根": "hhV́u",
+    "語根+接辞": "hhV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 688,
+    "日本語": "たとえ",
+    "カラバル語": "óum",
+    "語根": "V́um",
+    "語根+接辞": "V́um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 692,
+    "日本語": "織り台",
+    "カラバル語": "ghàu",
+    "語根": "ghV̀u",
+    "語根+接辞": "ghV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 701,
+    "日本語": "桶",
+    "カラバル語": "ài",
+    "語根": "V̀i",
+    "語根+接辞": "V̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 703,
+    "日本語": "賢い",
+    "カラバル語": "piār",
+    "語根": "kVishe",
+    "語根+接辞": "piV̄-r",
+    "rootPattern": "Vi",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 704,
+    "日本語": "賢者",
+    "カラバル語": "piē",
+    "語根": "fV̀u",
+    "語根+接辞": "piV̄",
+    "rootPattern": "Vu",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 706,
+    "日本語": "信義",
+    "カラバル語": "réim",
+    "語根": "rV́im",
+    "語根+接辞": "rV́im",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 710,
+    "日本語": "毛布",
+    "カラバル語": "shóu",
+    "語根": "shV́u",
+    "語根+接辞": "shV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 716,
+    "日本語": "導く",
+    "カラバル語": "hhàibe",
+    "語根": "vuV́",
+    "語根+接辞": "hhV̀i-be",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 718,
+    "日本語": "未亡人",
+    "カラバル語": "hnèi",
+    "語根": "hnV̀i",
+    "語根+接辞": "hnV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 719,
+    "日本語": "案内人",
+    "カラバル語": "hhài",
+    "語根": "bV́i",
+    "語根+接辞": "hhV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 720,
+    "日本語": "先導者",
+    "カラバル語": "ahhài",
+    "語根": "cuV",
+    "語根+接辞": "a-hhV̀i",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 721,
+    "日本語": "洞穴",
+    "カラバル語": "wèn",
+    "語根": "hnuVl",
+    "語根+接辞": "wV̀n",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 722,
+    "日本語": "姿勢",
+    "カラバル語": "hlēuny",
+    "語根": "hlV̄uny",
+    "語根+接辞": "hlV̄uny",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 727,
+    "日本語": "洞窟",
+    "カラバル語": "sèwèn",
+    "語根": "hluV̄r",
+    "語根+接辞": "sè-wV̀n",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 730,
+    "日本語": "壮年",
+    "カラバル語": "rái",
+    "語根": "rV́i",
+    "語根+接辞": "rV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 738,
+    "日本語": "皮袋",
+    "カラバル語": "puay",
+    "語根": "cV̀u",
+    "語根+接辞": "puVy",
+    "rootPattern": "Vu",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 749,
+    "日本語": "汚れた",
+    "カラバル語": "dàimár",
+    "語根": "dV̀im",
+    "語根+接辞": "dV̀im-ár",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 750,
+    "日本語": "澄んだ",
+    "カラバル語": "qàir",
+    "語根": "qV̀i",
+    "語根+接辞": "qV̀i-r",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 751,
+    "日本語": "濁った",
+    "カラバル語": "zàur",
+    "語根": "zV̀u",
+    "語根+接辞": "zV̀u-r",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 754,
+    "日本語": "出産",
+    "カラバル語": "bōuse",
+    "語根": "bV̄use",
+    "語根+接辞": "bV̄use",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 756,
+    "日本語": "狩人",
+    "カラバル語": "vàu",
+    "語根": "vV̀u",
+    "語根+接辞": "vV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 764,
+    "日本語": "旅人",
+    "カラバル語": "magáse",
+    "語根": "hmuV",
+    "語根+接辞": "mVgV́se",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 766,
+    "日本語": "隠者",
+    "カラバル語": "cháise",
+    "語根": "chV́ise",
+    "語根+接辞": "chV́ise",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 770,
+    "日本語": "静かな",
+    "カラバル語": "ghàunーár",
+    "語根": "ghV̀un",
+    "語根+接辞": "ghV̀unーár",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 783,
+    "日本語": "けれど",
+    "カラバル語": "wòir",
+    "語根": "wV̀ir",
+    "語根+接辞": "wV̀ir",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 784,
+    "日本語": "攻める",
+    "カラバル語": "bāumïbe",
+    "語根": "bV̄um",
+    "語根+接辞": "bV̄um-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 785,
+    "日本語": "襲う",
+    "カラバル語": "náube",
+    "語根": "nV́u",
+    "語根+接辞": "nV́u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 786,
+    "日本語": "斬る",
+    "カラバル語": "jàinyïbe",
+    "語根": "jV̀iny",
+    "語根+接辞": "jV̀iny-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 794,
+    "日本語": "布",
+    "カラバル語": "váim",
+    "語根": "vV́im",
+    "語根+接辞": "vV́im",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 803,
+    "日本語": "悪徳",
+    "カラバル語": "xī",
+    "語根": "xV̄i",
+    "語根+接辞": "xV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 804,
+    "日本語": "すべて",
+    "カラバル語": "biā",
+    "語根": "xVir",
+    "語根+接辞": "biV̄",
+    "rootPattern": "Vi",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 806,
+    "日本語": "祖父",
+    "カラバル語": "adán",
+    "語根": "hliV",
+    "語根+接辞": "a-dV́n",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 807,
+    "日本語": "祖母",
+    "カラバル語": "jéve",
+    "語根": "hhV̄u",
+    "語根+接辞": "jV́ve",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 808,
+    "日本語": "袋物",
+    "カラバル語": "tàpuoy",
+    "語根": "chV̀i",
+    "語根+接辞": "tà-puVy",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 809,
+    "日本語": "粉",
+    "カラバル語": "chī",
+    "語根": "xuV̀ng",
+    "語根+接辞": "chVi",
+    "rootPattern": "uV",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 810,
+    "日本語": "粉をひく",
+    "カラバル語": "chībe",
+    "語根": "buV́",
+    "語根+接辞": "chVi-be",
+    "rootPattern": "uV",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 811,
+    "日本語": "失う",
+    "カラバル語": "báiyïbe",
+    "語根": "bV́iy",
+    "語根+接辞": "bV́iy-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 813,
+    "日本語": "喪",
+    "カラバル語": "pòiy",
+    "語根": "pV̀iy",
+    "語根+接辞": "pV̀iy",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 819,
+    "日本語": "まだ",
+    "カラバル語": "lóu",
+    "語根": "lV́u",
+    "語根+接辞": "lV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 821,
+    "日本語": "葦",
+    "カラバル語": "tìu",
+    "語根": "tV̀u",
+    "語根+接辞": "tV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 822,
+    "日本語": "藻",
+    "カラバル語": "laga",
+    "語根": "pV̀i",
+    "語根+接辞": "lVgV",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 823,
+    "日本語": "海藻",
+    "カラバル語": "ghīushe",
+    "語根": "ghV̄ushe",
+    "語根+接辞": "ghV̄ushe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 832,
+    "日本語": "早い",
+    "カラバル語": "táusár",
+    "語根": "tV́use",
+    "語根+接辞": "tV́us-ár",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 837,
+    "日本語": "むしろ",
+    "カラバル語": "óung",
+    "語根": "V́ung",
+    "語根+接辞": "V́ung",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 845,
+    "日本語": "盗む",
+    "カラバル語": "tïnuábe",
+    "語根": "V̄l",
+    "語根+接辞": "tïnuV́-be",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 850,
+    "日本語": "愚かな",
+    "カラバル語": "hnàunár",
+    "語根": "hnV̀un",
+    "語根+接辞": "hnV̀un-ár",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 851,
+    "日本語": "明け方",
+    "カラバル語": "kīny",
+    "語根": "hnuV̀",
+    "語根+接辞": "kiV̄ny",
+    "rootPattern": "uV",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 852,
+    "日本語": "夜明け",
+    "カラバル語": "kiōny",
+    "語根": "hrVi",
+    "語根+接辞": "kiV̄ny",
+    "rootPattern": "Vi",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 857,
+    "日本語": "蝶",
+    "カラバル語": "hàing",
+    "語根": "hV̀ing",
+    "語根+接辞": "hV̀ing",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 858,
+    "日本語": "蛾",
+    "カラバル語": "véu",
+    "語根": "vV́u",
+    "語根+接辞": "vV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 863,
+    "日本語": "てんとう虫",
+    "カラバル語": "cái",
+    "語根": "cV́i",
+    "語根+接辞": "cV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 868,
+    "日本語": "害虫",
+    "カラバル語": "ggáu",
+    "語根": "ggV́u",
+    "語根+接辞": "ggV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 869,
+    "日本語": "聞こえる",
+    "カラバル語": "páibe",
+    "語根": "pV́i",
+    "語根+接辞": "pV́i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 871,
+    "日本語": "塩",
+    "カラバル語": "mīl",
+    "語根": "dV̄u",
+    "語根+接辞": "mV̄l",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 872,
+    "日本語": "酢",
+    "カラバル語": "wài",
+    "語根": "wV̀i",
+    "語根+接辞": "wV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 873,
+    "日本語": "味噌",
+    "カラバル語": "jī",
+    "語根": "jV́i",
+    "語根+接辞": "jV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 875,
+    "日本語": "鷲",
+    "カラバル語": "fāi",
+    "語根": "fV̄i",
+    "語根+接辞": "fV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 878,
+    "日本語": "鴉",
+    "カラバル語": "ghèise",
+    "語根": "ghV̀ise",
+    "語根+接辞": "ghV̀ise",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 884,
+    "日本語": "梟",
+    "カラバル語": "hréum",
+    "語根": "hrV́um",
+    "語根+接辞": "hrV́um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 885,
+    "日本語": "孔雀",
+    "カラバル語": "cáuy",
+    "語根": "cV́uy",
+    "語根+接辞": "cV́uy",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 887,
+    "日本語": "渡り鳥",
+    "カラバル語": "hlàil",
+    "語根": "hlV̀il",
+    "語根+接辞": "hlV̀il",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 891,
+    "日本語": "沼",
+    "カラバル語": "yáin",
+    "語根": "yV́in",
+    "語根+接辞": "yV́in",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 892,
+    "日本語": "湿地",
+    "カラバル語": "wīu",
+    "語根": "wV̄u",
+    "語根+接辞": "wV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 906,
+    "日本語": "怒鳴る",
+    "カラバル語": "hráishïbe",
+    "語根": "hrV́ishe",
+    "語根+接辞": "hrV́ish-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 908,
+    "日本語": "族長",
+    "カラバル語": "vāul",
+    "語根": "vV̄ul",
+    "語根+接辞": "vV̄ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 909,
+    "日本語": "村長",
+    "カラバル語": "xàim",
+    "語根": "xV̀im",
+    "語根+接辞": "xV̀im",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 912,
+    "日本語": "冠",
+    "カラバル語": "hēu",
+    "語根": "hV̄u",
+    "語根+接辞": "hV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 913,
+    "日本語": "帽子",
+    "カラバル語": "liata",
+    "語根": "hmVu",
+    "語根+接辞": "liVtV",
+    "rootPattern": "Vu",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 918,
+    "日本語": "えら",
+    "カラバル語": "cēu",
+    "語根": "cV̄u",
+    "語根+接辞": "cV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 922,
+    "日本語": "羽毛",
+    "カラバル語": "ggī",
+    "語根": "ggV̄i",
+    "語根+接辞": "ggV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 923,
+    "日本語": "獣皮",
+    "カラバル語": "zēiny",
+    "語根": "zV̄iny",
+    "語根+接辞": "zV̄iny",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 924,
+    "日本語": "焦る",
+    "カラバル語": "máusïbe",
+    "語根": "mV́use",
+    "語根+接辞": "mV́us-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 927,
+    "日本語": "年明け",
+    "カラバル語": "kiāny",
+    "語根": "tV̄m",
+    "語根+接辞": "kiV̄ny",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 928,
+    "日本語": "約束",
+    "カラバル語": "puì",
+    "語根": "hhVng",
+    "語根+接辞": "puV̀",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 929,
+    "日本語": "誓約",
+    "カラバル語": "yïpuì",
+    "語根": "hnVum",
+    "語根+接辞": "yï-puV̀",
+    "rootPattern": "Vu",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 930,
+    "日本語": "友",
+    "カラバル語": "gháir",
+    "語根": "qiV",
+    "語根+接辞": "ghV́ir",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 931,
+    "日本語": "友達",
+    "カラバル語": "sègháir",
+    "語根": "giV́",
+    "語根+接辞": "sè-ghV́ir",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 936,
+    "日本語": "肺",
+    "カラバル語": "còin",
+    "語根": "cV̀in",
+    "語根+接辞": "cV̀in",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 937,
+    "日本語": "肝臓",
+    "カラバル語": "nèu",
+    "語根": "nV̀u",
+    "語根+接辞": "nV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 947,
+    "日本語": "明日",
+    "カラバル語": "póishe",
+    "語根": "pV́ishe",
+    "語根+接辞": "pV́ishe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 950,
+    "日本語": "入江",
+    "カラバル語": "hléi",
+    "語根": "hlV́i",
+    "語根+接辞": "hlV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 953,
+    "日本語": "流れ",
+    "カラバル語": "kò",
+    "語根": "bVum",
+    "語根+接辞": "kV̀",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 954,
+    "日本語": "箱",
+    "カラバル語": "yēu",
+    "語根": "yV̄u",
+    "語根+接辞": "yV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 957,
+    "日本語": "俵",
+    "カラバル語": "tàuse",
+    "語根": "tV̀use",
+    "語根+接辞": "tV̀use",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 959,
+    "日本語": "伏流",
+    "カラバル語": "kì",
+    "語根": "juV̀y",
+    "語根+接辞": "kV̀",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 960,
+    "日本語": "来年",
+    "カラバル語": "góiny",
+    "語根": "gV́iny",
+    "語根+接辞": "gV́iny",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 961,
+    "日本語": "炉",
+    "カラバル語": "āun",
+    "語根": "hliV̄n",
+    "語根+接辞": "V̄un",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 967,
+    "日本語": "すす",
+    "カラバル語": "jáin",
+    "語根": "jV́in",
+    "語根+接辞": "jV́in",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 968,
+    "日本語": "植える",
+    "カラバル語": "táimïbe",
+    "語根": "tV́im",
+    "語根+接辞": "tV́im-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 971,
+    "日本語": "水やり",
+    "カラバル語": "gòi",
+    "語根": "gV̀i",
+    "語根+接辞": "gV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 972,
+    "日本語": "折る",
+    "カラバル語": "fàinïbe",
+    "語根": "fV̀in",
+    "語根+接辞": "fV̀in-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 975,
+    "日本語": "砕く",
+    "カラバル語": "kāisïbe",
+    "語根": "kV̄ise",
+    "語根+接辞": "kV̄is-ïbe",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 980,
+    "日本語": "囲む",
+    "カラバル語": "hhàumïbe",
+    "語根": "hhV̀um",
+    "語根+接辞": "hhV̀um-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 989,
+    "日本語": "背負う",
+    "カラバル語": "hmāibe",
+    "語根": "hmV̄i",
+    "語根+接辞": "hmV̄i-be",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 997,
+    "日本語": "常に",
+    "カラバル語": "tóin",
+    "語根": "tV́in",
+    "語根+接辞": "tV́in",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 998,
+    "日本語": "たまに",
+    "カラバル語": "vōise",
+    "語根": "vV̄ise",
+    "語根+接辞": "vV̄ise",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1001,
+    "日本語": "槍",
+    "カラバル語": "ggáing",
+    "語根": "ggV́ing",
+    "語根+接辞": "ggV́ing",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1004,
+    "日本語": "矢",
+    "カラバル語": "kāuse",
+    "語根": "kV̄use",
+    "語根+接辞": "kV̄use",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1005,
+    "日本語": "腹",
+    "カラバル語": "láung",
+    "語根": "lV́ung",
+    "語根+接辞": "lV́ung",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1008,
+    "日本語": "半分",
+    "カラバル語": "hēi",
+    "語根": "hV̄i",
+    "語根+接辞": "hV̄i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1011,
+    "日本語": "炉端",
+    "カラバル語": "ōun",
+    "語根": "hhV́im",
+    "語根+接辞": "V̄un",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1013,
+    "日本語": "恥",
+    "カラバル語": "wuo",
+    "語根": "wV̀in",
+    "語根+接辞": "wuV",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1014,
+    "日本語": "恥じる",
+    "カラバル語": "wuabe",
+    "語根": "qV́ng",
+    "語根+接辞": "wuV-be",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1015,
+    "日本語": "石臼",
+    "カラバル語": "páu",
+    "語根": "pV́u",
+    "語根+接辞": "pV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1027,
+    "日本語": "縫う",
+    "カラバル語": "fāunïbe",
+    "語根": "fV̄un",
+    "語根+接辞": "fV̄un-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1029,
+    "日本語": "便利な",
+    "カラバル語": "càinyár",
+    "語根": "cV̀iny",
+    "語根+接辞": "cV̀iny-ár",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1031,
+    "日本語": "焼き物",
+    "カラバル語": "jèuse",
+    "語根": "jV̀use",
+    "語根+接辞": "jV̀use",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1035,
+    "日本語": "罰",
+    "カラバル語": "gōum",
+    "語根": "gV̄um",
+    "語根+接辞": "gV̄um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1038,
+    "日本語": "手段",
+    "カラバル語": "pīl",
+    "語根": "pV̀il",
+    "語根+接辞": "pV̀il",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1044,
+    "日本語": "従兄弟/従姉妹イトコイトコ",
+    "カラバル語": "dïnán/dïnén",
+    "語根": "V́ing",
+    "語根+接辞": "dïnV́n",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1045,
+    "日本語": "甥/姪メイ",
+    "カラバル語": "máil/méil",
+    "語根": "jiV̀",
+    "語根+接辞": "mV́il",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1046,
+    "日本語": "姪孫",
+    "カラバル語": "rèu",
+    "語根": "rV̀u",
+    "語根+接辞": "rV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1051,
+    "日本語": "しょっぱい",
+    "カラバル語": "hāumár",
+    "語根": "hV̄um",
+    "語根+接辞": "hV̄umár",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1052,
+    "日本語": "辛い",
+    "カラバル語": "áilár",
+    "語根": "V́il",
+    "語根+接辞": "V́il-ár",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1053,
+    "日本語": "味わう",
+    "カラバル語": "hràusïbe",
+    "語根": "hrV̀use",
+    "語根+接辞": "hrV̀us-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1056,
+    "日本語": "豆乳",
+    "カラバル語": "guón",
+    "語根": "ziVr",
+    "語根+接辞": "guV́n",
+    "rootPattern": "iV",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1057,
+    "日本語": "乳児",
+    "カラバル語": "guán",
+    "語根": "hVi",
+    "語根+接辞": "guV́n",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1058,
+    "日本語": "実り",
+    "カラバル語": "kouny",
+    "語根": "piV̀se",
+    "語根+接辞": "kVuny",
+    "rootPattern": "iV",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 1061,
+    "日本語": "名づける",
+    "カラバル語": "xàunyïbe",
+    "語根": "xV̀uny",
+    "語根+接辞": "xV̀uny-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1063,
+    "日本語": "命じる",
+    "カラバル語": "àumïbe",
+    "語根": "V̀um",
+    "語根+接辞": "V̀um-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1064,
+    "日本語": "実り飯",
+    "カラバル語": "kauny",
+    "語根": "hiV̄n",
+    "語根+接辞": "kVuny",
+    "rootPattern": "iV",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 1065,
+    "日本語": "岸辺",
+    "カラバル語": "tïlìbïu",
+    "語根": "fuV",
+    "語根+接辞": "tïlì-bVu",
+    "rootPattern": "uV",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 1070,
+    "日本語": "理由",
+    "カラバル語": "fàir",
+    "語根": "fV̀ir",
+    "語根+接辞": "fV̀ir",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1071,
+    "日本語": "結果",
+    "カラバル語": "chìul",
+    "語根": "chV̀ul",
+    "語根+接辞": "chV̀ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1072,
+    "日本語": "まぶた",
+    "カラバル語": "pīng",
+    "語根": "pV̀ing",
+    "語根+接辞": "pV̀ing",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1074,
+    "日本語": "まゆ",
+    "カラバル語": "jéiy",
+    "語根": "jV́iy",
+    "語根+接辞": "jV́iy",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1075,
+    "日本語": "まばたき",
+    "カラバル語": "sìun",
+    "語根": "sV̀un",
+    "語根+接辞": "sV̀un",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1078,
+    "日本語": "岸",
+    "カラバル語": "bïu",
+    "語根": "jV́ng",
+    "語根+接辞": "bVu",
+    "rootPattern": "V",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 1081,
+    "日本語": "狐",
+    "カラバル語": "kïnái",
+    "語根": "kïnV́i",
+    "語根+接辞": "kïnV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1082,
+    "日本語": "狼",
+    "カラバル語": "āing",
+    "語根": "V̄ing",
+    "語根+接辞": "V̄ing",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1083,
+    "日本語": "熊",
+    "カラバル語": "hmài",
+    "語根": "hmV̀i",
+    "語根+接辞": "hmV̀i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1085,
+    "日本語": "鼠",
+    "カラバル語": "chíkï",
+    "語根": "ghiVny",
+    "語根+接辞": "chV́kV",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1087,
+    "日本語": "象",
+    "カラバル語": "cháiny",
+    "語根": "chV́iny",
+    "語根+接辞": "chV́iny",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1089,
+    "日本語": "獅子",
+    "カラバル語": "káing",
+    "語根": "kV́ing",
+    "語根+接辞": "kV́ing",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1090,
+    "日本語": "野獣",
+    "カラバル語": "hláin",
+    "語根": "hlV́in",
+    "語根+接辞": "hlV́in",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1091,
+    "日本語": "子鹿",
+    "カラバル語": "tīu",
+    "語根": "tV̄u",
+    "語根+接辞": "tV̄u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1092,
+    "日本語": "猛獣",
+    "カラバル語": "chíul",
+    "語根": "chV́ul",
+    "語根+接辞": "chV́ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1095,
+    "日本語": "血管",
+    "カラバル語": "jī",
+    "語根": "bV̀un",
+    "語根+接辞": "jVi",
+    "rootPattern": "Vu",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 1096,
+    "日本語": "勇気",
+    "カラバル語": "wául",
+    "語根": "wV́ul",
+    "語根+接辞": "wV́ul",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1098,
+    "日本語": "義父",
+    "カラバル語": "niá",
+    "語根": "buVr",
+    "語根+接辞": "niV́",
+    "rootPattern": "uV",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 1099,
+    "日本語": "義母",
+    "カラバル語": "nié",
+    "語根": "sV̀she",
+    "語根+接辞": "niV́",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 1101,
+    "日本語": "義兄",
+    "カラバル語": "aniá",
+    "語根": "zV̀iny",
+    "語根+接辞": "a-niV́",
+    "rootPattern": "Vi",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 1104,
+    "日本語": "欠乏",
+    "カラバル語": "wéu",
+    "語根": "wV́u",
+    "語根+接辞": "wV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1107,
+    "日本語": "控える",
+    "カラバル語": "táube",
+    "語根": "tV́u",
+    "語根+接辞": "tV́u-be",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1114,
+    "日本語": "義妹",
+    "カラバル語": "zonié",
+    "語根": "mV̄use",
+    "語根+接辞": "zo-niV́",
+    "rootPattern": "Vu",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 1117,
+    "日本語": "勢い",
+    "カラバル語": "sháiy",
+    "語根": "shV́iy",
+    "語根+接辞": "shV́iy",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1118,
+    "日本語": "引く",
+    "カラバル語": "káungïbe",
+    "語根": "kV́ung",
+    "語根+接辞": "kV́ung-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1119,
+    "日本語": "押す",
+    "カラバル語": "pāuseïbe",
+    "語根": "pV̄use",
+    "語根+接辞": "pV̄use-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1120,
+    "日本語": "亀",
+    "カラバル語": "hhéin",
+    "語根": "hhV́in",
+    "語根+接辞": "hhV́in",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1126,
+    "日本語": "週",
+    "カラバル語": "néi",
+    "語根": "nV́i",
+    "語根+接辞": "nV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1128,
+    "日本語": "暦",
+    "カラバル語": "nàum",
+    "語根": "nV̀um",
+    "語根+接辞": "nV̀um",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1129,
+    "日本語": "山頂",
+    "カラバル語": "yïfāse",
+    "語根": "dV̄uny",
+    "語根+接辞": "yï-fV̄se",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1132,
+    "日本語": "山腹",
+    "カラバル語": "fāse",
+    "語根": "fuV̀se",
+    "語根+接辞": "fV̄se",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1134,
+    "日本語": "山麓",
+    "カラバル語": "afīse",
+    "語根": "hlV́u",
+    "語根+接辞": "a-fV̄se",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1136,
+    "日本語": "倒木",
+    "カラバル語": "gàu",
+    "語根": "gV̀u",
+    "語根+接辞": "gV̀u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1138,
+    "日本語": "脇",
+    "カラバル語": "ōir",
+    "語根": "V̄ir",
+    "語根+接辞": "V̄ir",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1143,
+    "日本語": "香る",
+    "カラバル語": "pāungïbe",
+    "語根": "pV̄ung",
+    "語根+接辞": "pV̄ung-ïbe",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1148,
+    "日本語": "掟",
+    "カラバル語": "óu",
+    "語根": "V́u",
+    "語根+接辞": "V́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1150,
+    "日本語": "山菜",
+    "カラバル語": "zofīse",
+    "語根": "qiV́y",
+    "語根+接辞": "zo-fV̄se",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1154,
+    "日本語": "働くハタラ",
+    "カラバル語": "wáube",
+    "語根": "kuVng",
+    "語根+接辞": "wV́u-be",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1155,
+    "日本語": "労働者ロウドウシャ",
+    "カラバル語": "wáubar",
+    "語根": "nV̄ir",
+    "語根+接辞": "wV́u-b(e)-ar",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1156,
+    "日本語": "砂糖",
+    "カラバル語": "síggïl",
+    "語根": "ggVishe",
+    "語根+接辞": "sV́ggVl",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1157,
+    "日本語": "胡椒",
+    "カラバル語": "fíu",
+    "語根": "zVur",
+    "語根+接辞": "fV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1158,
+    "日本語": "香辛料",
+    "カラバル語": "pàu",
+    "語根": "iVse",
+    "語根+接辞": "pV̀u",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1159,
+    "日本語": "香水",
+    "カラバル語": "fau",
+    "語根": "ggiVn",
+    "語根+接辞": "fVu",
+    "rootPattern": "iV",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 1160,
+    "日本語": "絨毯",
+    "カラバル語": "báur",
+    "語根": "jiV́",
+    "語根+接辞": "bV́ur",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1161,
+    "日本語": "ガラス",
+    "カラバル語": "ggià",
+    "語根": "hrVishe",
+    "語根+接辞": "ggiV̀",
+    "rootPattern": "Vi",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 1162,
+    "日本語": "オリーブ",
+    "カラバル語": "cóu",
+    "語根": "huV̄y",
+    "語根+接辞": "cV́u",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1163,
+    "日本語": "オレンジ",
+    "カラバル語": "ghói",
+    "語根": "sV́i",
+    "語根+接辞": "ghV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1164,
+    "日本語": "レモン",
+    "カラバル語": "xoushe",
+    "語根": "chV́n",
+    "語根+接辞": "xVushe",
+    "rootPattern": "V",
+    "affixPattern": "Vu"
+  },
+  {
+    "index": 1167,
+    "日本語": "陶器",
+    "カラバル語": "shei",
+    "語根": "kiVshe",
+    "語根+接辞": "shVi",
+    "rootPattern": "iV",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 1168,
+    "日本語": "磁器",
+    "カラバル語": "gguè",
+    "語根": "hhVy",
+    "語根+接辞": "gguV̀",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1169,
+    "日本語": "真珠",
+    "カラバル語": "sie",
+    "語根": "vV̄r",
+    "語根+接辞": "siV",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 1170,
+    "日本語": "珊瑚玉",
+    "カラバル語": "zéi",
+    "語根": "chiV̄she",
+    "語根+接辞": "zV́i",
+    "rootPattern": "iV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1171,
+    "日本語": "香木",
+    "カラバル語": "ggēny",
+    "語根": "luVl",
+    "語根+接辞": "ggV̄ny",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1172,
+    "日本語": "象牙",
+    "カラバル語": "shéi",
+    "語根": "fV́il",
+    "語根+接辞": "shV́i",
+    "rootPattern": "Vi",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1173,
+    "日本語": "琥珀",
+    "カラバル語": "hnēny",
+    "語根": "zuV́",
+    "語根+接辞": "hnV̄ny",
+    "rootPattern": "uV",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1174,
+    "日本語": "銀貨",
+    "カラバル語": "quóny",
+    "語根": "iV̄l",
+    "語根+接辞": "quV́ny",
+    "rootPattern": "iV",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1175,
+    "日本語": "金貨",
+    "カラバル語": "luóng",
+    "語根": "dV̄ishe",
+    "語根+接辞": "luV́ng",
+    "rootPattern": "Vi",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1176,
+    "日本語": "寺院",
+    "カラバル語": "hlai",
+    "語根": "tV́uy",
+    "語根+接辞": "hlVi",
+    "rootPattern": "Vu",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 1177,
+    "日本語": "神殿",
+    "カラバル語": "puá",
+    "語根": "chV̄n",
+    "語根+接辞": "puV́",
+    "rootPattern": "V",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1178,
+    "日本語": "聖典",
+    "カラバル語": "muà",
+    "語根": "yiV̀",
+    "語根+接辞": "muV̀",
+    "rootPattern": "iV",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1179,
+    "日本語": "巡礼路",
+    "カラバル語": "hnál",
+    "語根": "hrV̄use",
+    "語根+接辞": "hnV́l",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1180,
+    "日本語": "占星術",
+    "カラバル語": "muó",
+    "語根": "yiV́m",
+    "語根+接辞": "muV́",
+    "rootPattern": "iV",
+    "affixPattern": "uV"
+  },
+  {
+    "index": 1181,
+    "日本語": "鉄道",
+    "カラバル語": "kiáruam",
+    "語根": "V̄r",
+    "語根+接辞": "kiV́ruVm",
+    "rootPattern": "V",
+    "affixPattern": "iV"
+  },
+  {
+    "index": 1183,
+    "日本語": "蒸気船",
+    "カラバル語": "cailár-a-péu",
+    "語根": "viV̄",
+    "語根+接辞": "cVilár-V-pV́u",
+    "rootPattern": "iV",
+    "affixPattern": "Vi"
+  },
+  {
+    "index": 1194,
+    "日本語": "図書館",
+    "カラバル語": "abáutān",
+    "語根": "bV́u",
+    "語根+接辞": "a-bV́u-tān",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1196,
+    "日本語": "望遠鏡",
+    "カラバル語": "máur-a-kóu",
+    "語根": "kV́u",
+    "語根+接辞": "mV́ur-a-kV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  },
+  {
+    "index": 1197,
+    "日本語": "顕微鏡",
+    "カラバル語": "kïlàr-a-kóu",
+    "語根": "kV́u",
+    "語根+接辞": "kïlV̀r-a-kV́u",
+    "rootPattern": "Vu",
+    "affixPattern": "V"
+  }
+]

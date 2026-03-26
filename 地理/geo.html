@@ -19,7 +19,9 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-NNPH1HB9GD');
+  if (location.hostname === 'soshuko.github.io') {
+    gtag('config', 'G-NNPH1HB9GD');
+  }
 </script>
 <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -890,6 +892,7 @@
 
 </body>
 </html>
+
 
 
 
