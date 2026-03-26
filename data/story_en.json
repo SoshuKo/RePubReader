@@ -1,9 +1,9 @@
 {
   "meta": {
     "language": "en",
-    "version": 1,
+    "version": 2,
     "source_file": "共和国物語三部作_English.txt",
-    "note": "Converted from plain text headings."
+    "note": "Converted from headings with Arc/EPE normalization."
   },
   "works": [
     {
@@ -1246,7 +1246,13 @@
                   "text": "“May Kàlavé be stained with blood no more. 'Ï'E'A Géjéné Kuējebeyï.”"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "id": "Akau Arc",
+          "title": "Akau Arc",
+          "episodes": [
             {
               "id": "EP5",
               "label": "EP5",
@@ -3613,7 +3619,13 @@
                   "text": "A fearless smile touched her lips."
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "id": "Non-Canon (EPE)",
+          "title": "Non-Canon (EPE)",
+          "episodes": [
             {
               "id": "EPE (Episode Eucomis)",
               "label": "EPE (Episode Eucomis)",
@@ -8807,6 +8819,639 @@
                 },
                 {
                   "text": "“So you really did love this city.”"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "\"Bookkeeper\"",
+      "title": "\"Bookkeeper\"",
+      "sections": [
+        {
+          "id": "Main",
+          "title": "Main",
+          "episodes": [
+            {
+              "id": "EPB1",
+              "label": "EPB1",
+              "content": [
+                {
+                  "text": "July 1999. Kindong City, Fitoliĕfiĕnio Province, Worl Federation."
+                },
+                {
+                  "text": "Under a blistering sun, beneath a sky of blue and violet, people could be forgiven for assuming the heat had cooked their brains. Why else would they stand there admiring two ladies in swimsuits as they strolled across the beach? Those two, after all, were now charismatic villains with half the world in their grasp."
+                },
+                {
+                  "text": "“Ugh, it’s hooot!”"
+                },
+                {
+                  "text": "Purple Heaven—Arsha Pritivitiĕ—hooked a hand inside the neckline of her swimsuit and tugged at the fabric with scandalous frankness."
+                },
+                {
+                  "text": "“How slovenly, you counterfeit lady.”"
+                },
+                {
+                  "text": "Blue Heaven—Koto Tál Aitēl—snapped open a parasol with perfect elegance, shielding Arsha from the eyes of the “audience.”"
+                },
+                {
+                  "text": "After slipping Nine Earths’s pursuit in Hellén, the two of them had fled to Worl, Arsha’s home ground. For women whose days were usually consumed by work and bloodshed, this counted as a rare vacation."
+                },
+                {
+                  "text": "“Suppose, for example, that a dress costs 100 Bónt,” Arsha said, launching into a lecture. “With single-entry bookkeeping, you would simply write: ‘Expense, 100 B.’ But with double-entry bookkeeping, you would record both ‘Assets increased, 100 B’ and ‘Cash decreased, 100 B.’ Double-entry bookkeeping looks at both cause and result.”"
+                },
+                {
+                  "text": "She was a merchant by trade. This sort of talk was her natural habitat."
+                },
+                {
+                  "text": "“Well, I’m no wiser at all,” Koto said. “You cannot purchase things with a dress.”"
+                },
+                {
+                  "text": "Koto was a real lady; matters of liquidity had always been left to the butlers."
+                },
+                {
+                  "text": "“So that is an objection about convertibility,” Arsha replied. “A fair point. But the value of a thing cannot be measured by ready cash alone. Double-entry bookkeeping looks farther ahead than that.”"
+                },
+                {
+                  "text": "The explanation entered Koto’s right ear and streamed politely out the left. Having finished her Tiĕliss Lokuĕmiss frappuccino, she moved on to her usual favorite subject."
+                },
+                {
+                  "text": "“Never mind that. Look at this news article. My beloved husband is as beautiful as ever. If only he were dead, he would be more beautiful still.”"
+                },
+                {
+                  "text": "On her phone screen, an enormous photograph of Tané’s face glowed like a private shrine."
+                },
+                {
+                  "text": "“I do quite understand the desire to preserve one’s beloved forever in words,” Arsha said, tactfully diluting the homicidal edge of Koto’s devotion. She had a favorite of her own: Tiana Mellén, the head of Bai Cong Hui, the mafia outfit currently fighting Five Heavens for turf in Worl. In the matter of love, the two women were equally strange creatures."
+                },
+                {
+                  "text": "“Tell me, Count Aitēl,” Arsha said, “are you the sort who refuses to share your favorite? When I see shallow little women screaming over mine, I immediately want to kill them.”"
+                },
+                {
+                  "text": "“For me, killing is love,” Koto replied serenely. “I have no interest in killing people I do not love.”"
+                },
+                {
+                  "text": "They were alike in many respects, yet the vector of their madness pointed in opposite directions. Arsha, for all her defects, remained the nearer thing to a person of common sense."
+                },
+                {
+                  "text": "“But really, I am cross,” Koto went on. “That woman was supposed to have resigned as Public Relations Officer, and now she is Prime Minister. Whatever is my husband thinking?”"
+                },
+                {
+                  "text": "She seized a knife and began stabbing the empty cup to ribbons. In 1994 Akau had assumed the office of Prime Minister, as part of the large-scale political reforms undertaken under First Instructor Tané with an eye toward expanding the Lurpe Pact."
+                },
+                {
+                  "text": "“Easy, easy,” Arsha said at once."
+                },
+                {
+                  "text": "If Koto exploded in the middle of Arsha’s own territory, it would be a nuisance of the highest order. Unfortunately, that was precisely when several men with no instinct for danger wandered up to their parasol."
+                },
+                {
+                  "text": "“Hey there, ladies. Cute swimsuits. Want to have some fun with us?”"
+                },
+                {
+                  "text": "One of them reached for Koto’s shoulder."
+                },
+                {
+                  "text": "“Tanuki,” Koto said coldly, “I am in a foul mood. This body belongs to my beloved husband alone. Your beastly hands have no right to touch it.”"
+                },
+                {
+                  "text": "She started to raise the knife, but Arsha caught her first. In Arsha’s hand was a thick wad of bills."
+                },
+                {
+                  "text": "“One thousand Bónt in total,” she said. “It is yours. In exchange, make the books balance. With those turnip brains and those sorry little bodies of yours, what exactly are you capable of producing?”"
+                },
+                {
+                  "text": "She brandished the money at their throats the way Koto might have leveled a blade."
+                },
+                {
+                  "text": "“No thanks...”"
+                },
+                {
+                  "text": "The men blanched and fled at once. Koto bowed her head, looking faintly apologetic. Arsha beamed."
+                },
+                {
+                  "text": "“This,” she declared, “is double-entry bookkeeping!”"
+                }
+              ]
+            },
+            {
+              "id": "EPB2",
+              "label": "EPB2",
+              "content": [
+                {
+                  "text": "August 1999. Pinorl District, Rifrēz, capital of the Kingdom of Armona. The Pinorl Tower that rose over the middle of the city was now its proudest landmark, but when it had first been completed, artists had mocked it with the line that the only way to avoid seeing the Pinorl Tower was to climb it."
+                },
+                {
+                  "text": "At the National Theater beneath that notorious monument, the Armona-born singer-songwriter Chisa Tál Kolon was in the middle of a live performance."
+                },
+                {
+                  "text": "*Beautiful Choice*"
+                },
+                {
+                  "text": "“The bells of Sazány ring."
+                },
+                {
+                  "text": "The faithful cry aloud:\n‘Choose! Choose! Choose!’"
+                },
+                {
+                  "text": "Destiny binds you.\nTwo swords cross.\nComrades die."
+                },
+                {
+                  "text": "‘In the future... in the future... in the future...’"
+                },
+                {
+                  "text": "Fate lays its curse on me.”"
+                },
+                {
+                  "text": "To a brisk beat descended from R&B, the Battle of the Bridge of Conversion was reborn upon the stage. In 1993, First Instructor Tané had revealed the long-concealed truth of the nation’s founding and put the fate of the Instructional Monarchy to the judgment of public opinion. More than eighty percent of the people had voted for the survival of the Instructional Nation. Since then, the Battle of the Bridge of Conversion had become one of those stories everyone knew, endlessly reworked in plays and songs."
+                },
+                {
+                  "text": "“Tiger! Fire! Cyber! Fiber! Diver! Viber! Jya-jya!”"
+                },
+                {
+                  "text": "The chant crashed across the hall, hilariously out of place in the gentle performance. Arsha, purple penlight in hand, roared her approval. Beside her, Koto had been forced to hold a blue one and looked bored enough to expire where she sat."
+                },
+                {
+                  "text": "“I was lured here,” Koto said darkly, “under the pretext of ‘dropping by’ the official concept shop of the Kàlavé embassy.”"
+                },
+                {
+                  "text": "She was loaded down with bags full of Tané merchandise. Since 1994, Prime Minister Akau—praised as the greatest beauty among the Dolmalt peoples—had acquired fanatical admirers both at home and abroad. In the service of foreign-currency earnings, the Kàlavé government had opened a concept shop in Rifrēz to sell Akau goods. Tané goods were the afterthought. For Koto, whose true favorite was Tané, that arrangement was bitterly ironic."
+                },
+                {
+                  "text": "“Sing, Count!” Arsha cried, grabbing Koto by the shoulder."
+                },
+                {
+                  "text": "The relief of being temporarily free from work had driven her several degrees beyond her usual high spirits."
+                },
+                {
+                  "text": "“She will absolutely regret this later,” Koto said. “She will say, ‘Count, forgive me. I am having flashbacks to things I once shouted in public, and my head hurts.’”"
+                },
+                {
+                  "text": "Koto had known Arsha a long time. Of all the executives, she was probably the one who best understood the violent swings of Arsha’s mood."
+                },
+                {
+                  "text": "After the encore, Chisa ran off the stage. Since her debut in 1991 at the age of nineteen, she had written, composed, arranged, and programmed everything herself, single-handedly smashing the conditions for commercial success that had once been controlled by mass media and record labels."
+                },
+                {
+                  "text": "“That fool in the VIP seats,” her manager muttered with a sigh. “Does she not understand the atmosphere of the song at all?”"
+                },
+                {
+                  "text": "The fool in question could only have been Arsha."
+                },
+                {
+                  "text": "“It’s all right,” Chisa said. “Where I grew up in Worl, the audience would climb right onto the stage and everybody would make the music together.”"
+                },
+                {
+                  "text": "She was broad-minded. Though born in Armona, she had spent her formative years in Worl and returned later; that distance had spared her from being trapped by the conventions of Armona’s music industry."
+                },
+                {
+                  "text": "“Well, never mind. That ‘fool’—Arsha Pritivitiĕ, CEO of Labaquĕda—is due in the dressing room after this.”"
+                },
+                {
+                  "text": "The manager checked the schedule. Arsha’s public-side business meeting—the one about sponsorship—was coming up."
+                },
+                {
+                  "text": "“I’m looking forward to it,” Chisa said. “It is Arsha, after all.”"
+                },
+                {
+                  "text": "She was already staring at a video-streaming site on her phone. Arsha was not only a business executive but a streamer with more than a million subscribers."
+                },
+                {
+                  "text": "“Excuse us.”"
+                },
+                {
+                  "text": "After a knock, the door opened. Arsha entered with Koto in tow. Koto had been reduced to the role of porter and was carrying a box of Krart, Worl’s carbonated drink. The manager’s face tightened. Armona as a nation stood firmly against Krart and adored its own fizzy pride, Neskel."
+                },
+                {
+                  "text": "“Arsha! And—is that Krart?”"
+                },
+                {
+                  "text": "Chisa leaned forward at once. To someone raised in Worl, it was the taste of a second homeland."
+                },
+                {
+                  "text": "“It is a gift,” Arsha said. “But first, allow me to introduce myself. I am Arsha Pritivitiĕ. And the one beside me is Koto Tál Aitēl, president of the Aitēl Company.”"
+                },
+                {
+                  "text": "Arsha made the introductions. Koto bowed."
+                },
+                {
+                  "text": "“Pleased to meet you,” Chisa said. “I’m Chisa Tál Kolon. I watch all your streams!”"
+                },
+                {
+                  "text": "Arsha and Chisa seized each other’s hands and, being each other’s hopeless otaku, failed to let go for an embarrassingly long time. When Koto at last lowered the baggage, Chisa handed her a chilled bottle of Neskel."
+                },
+                {
+                  "text": "“It was the only cold thing I had,” Chisa said. “I hope that’s all right. You’re a Tál too, aren’t you?”"
+                },
+                {
+                  "text": "The middle name Tál denoted a noble title in Armona. In Koto’s case it reflected the historical period after the Armona–Deltai War, when Deltai had existed as an Armona protectorate."
+                },
+                {
+                  "text": "“Thank you,” Koto said after a sip. “It has a curious flavor. Rather like barley tea, for a count.”"
+                },
+                {
+                  "text": "Chisa laughed. In her own case, Tál indicated descent from a former noble house that had lost its title in Armona’s aristocratic reforms. Any Armonan would have known that. Koto plainly did not, which made the whole exchange much funnier."
+                },
+                {
+                  "text": "“Well then,” Arsha said, smoothly switching masks, “shall we proceed to business?”"
+                },
+                {
+                  "text": "She opened the documents."
+                },
+                {
+                  "text": "By bypassing both mass media and record companies and embracing internet distribution and direct marketing, Chisa had changed how Armona listened to music. She had made downloading songs part of ordinary life. The price of that freedom was that she had to earn with her own feet. Sponsorship from Labaquĕda was therefore no small matter."
+                },
+                {
+                  "text": "“The way you express a message,” Arsha said, “has overturned the foundations not only of Armona’s popular music, but of popular music across the world. Our company wishes to invest in the power young people possess to change that world.”"
+                },
+                {
+                  "text": "There was no lie in the statement. Indeed, even as Purple Heaven, Arsha’s loyalty to Scarlet Heaven—Latia—rested partly on that same instinct: to wager on a young woman who had forced her way to prominence with startling speed."
+                },
+                {
+                  "text": "“Thank you,” Chisa said sincerely. “I am fond of Labaquĕda’s products myself. It is an honor to have a company with such a broad view of the world help me make the world a little better.”"
+                },
+                {
+                  "text": "She meant that as well. She knew very well that she had not overturned the music industry alone. There had been people within the old system who rebelled against it, and fans who simply believed in her and pushed."
+                },
+                {
+                  "text": "“However...”"
+                },
+                {
+                  "text": "Looking through the proposal, Chisa inserted the word like a blade. Arsha’s expression tightened."
+                },
+                {
+                  "text": "“‘A newly written tie-in song.’ I cannot agree to that. I want to sing according to what I feel now. Writing a song for someone else’s convenience is not what I want.”"
+                },
+                {
+                  "text": "She said it without wavering. For her, that was a singer’s pride."
+                },
+                {
+                  "text": "“Even if that is the condition of sponsorship?” Arsha asked."
+                },
+                {
+                  "text": "Now the merchant spoke—cool, practical, and ruthless. The otaku, the executive, the Purple Heaven of Five Heavens: Arsha handled all three faces with skill. Tension rippled through the room."
+                },
+                {
+                  "text": "“Yes,” Chisa said. “Even then. And besides, there are other candidates. Enimuĕc, for instance, is willing to make only one condition: supervision of my stage costumes. Costumes are also part of my expression, but if my songs remain mine, I can compromise there.”"
+                },
+                {
+                  "text": "It was a deliberate card to play. Enimuĕc was a front company of Bai Cong Hui. Chisa had casually dropped the name of a business rival. She knew of the rumor linking Labaquĕda and Five Heavens only as the sort of thing that turned up in tabloids. She had no idea she was saying it in front of one of Five Heavens’ top officers."
+                },
+                {
+                  "text": "Koto’s hand slipped instantly toward her breast. If Chisa put a foot wrong, Koto’s knife would have flown. In the middle of that dangerous little silence, Arsha suddenly burst into laughter."
+                },
+                {
+                  "text": "“Hah! Splendid. You have me there. Very well—then we will sponsor you without conditions. The costumes may be entirely your own.”"
+                },
+                {
+                  "text": "The room breathed again. Chisa had won the negotiation."
+                },
+                {
+                  "text": "After the paperwork was finished and Arsha was on her way out, she paused and called back over her shoulder."
+                },
+                {
+                  "text": "“Do invite me again. I am, after all, your otaku.”"
+                },
+                {
+                  "text": "Chisa waved enthusiastically. Once outside, Koto rounded on Arsha at once."
+                },
+                {
+                  "text": "“Really. You nearly stopped my heart. That girl is unhinged.”"
+                },
+                {
+                  "text": "With the job done, Arsha rolled the stiffness out of her shoulders and answered lightly."
+                },
+                {
+                  "text": "“A born Worl woman,” she said. “A gambler to the marrow.”"
+                },
+                {
+                  "text": "God had given people hands so that they might throw dice. The ghost of freedom was still at work."
+                }
+              ]
+            },
+            {
+              "id": "EPB3",
+              "label": "EPB3",
+              "content": [
+                {
+                  "text": "September 1999. Alpashto City, Kulioss Urban Union."
+                },
+                {
+                  "text": "“Now then, if you’ll follow the route, I’ll show you around. First we have the greige inspection line. Here we check the cloth for damage, stains, or color variation with the inspection machine. The standards are our own in-house specifications.”"
+                },
+                {
+                  "text": "Arsha and Koto were touring a sewing factory in the suburbs. It belonged to the multinational apparel company Enimuĕc. They had been invited by an old friend of Arsha’s who worked there. Naturally, both of them already knew that Enimuĕc served as a front company for Bai Cong Hui."
+                },
+                {
+                  "text": "“And why, exactly, have I been dragged along?” Koto asked, stopping in her tracks."
+                },
+                {
+                  "text": "Arsha had conscripted her as a porter for the tribute she intended to present this old friend."
+                },
+                {
+                  "text": "“Count Aitēl, just look!” Arsha cried. “The scissors are enormous!”"
+                },
+                {
+                  "text": "She was bouncing around in a wholly undignified manner. The prospect of seeing her old friend had driven her spirits even higher than usual."
+                },
+                {
+                  "text": "“So today I finally meet your favorite.”"
+                },
+                {
+                  "text": "Koto had heard the tale of this old friend—this favorite—ten thousand times already. Tiana Mellén, that was the name. Of course, neither of them knew that she was in fact the head of Bai Cong Hui."
+                },
+                {
+                  "text": "September 1985. Riporc National University, Riporc Direct-Controlled City, Har-Lopinong Republic."
+                },
+                {
+                  "text": "“I cannot believe I came after all...”"
+                },
+                {
+                  "text": "Third-year university student Arsha Pritivitiĕ had attended a drinking party for the business club purely out of social obligation. She sat at the edge of the table with a half-finished beer before her. At the center of the circle of conversation sat a first-year student, Tiana Mellén. With her beauty and her natural charm, she was never short of admirers on campus."
+                },
+                {
+                  "text": "Arsha lowered her eyes to her own glass and felt irritated by how stubbornly time refused to pass."
+                },
+                {
+                  "text": "“May I sit here?”"
+                },
+                {
+                  "text": "Tiana settled into the seat beside her. Arsha moved her plate aside automatically to make room."
+                },
+                {
+                  "text": "“What do you do when you have free time, Senpai?”"
+                },
+                {
+                  "text": "Arsha hesitated. Video-streaming sites did not yet properly exist, and talking about home-built PCs would have sounded absurdly niche."
+                },
+                {
+                  "text": "“I spend time with cats,” she said at last. “There is one in my dorm.”"
+                },
+                {
+                  "text": "She opened her phone and showed Tiana a picture she had taken on a whim. Tiana glanced at it and smiled."
+                },
+                {
+                  "text": "“That sounds lovely. I haven’t had much contact with animals since I came here.”"
+                },
+                {
+                  "text": "Tiana was from Kulioss. In Riporc, foreign students were by no means rare."
+                },
+                {
+                  "text": "“In that case,” Arsha said, brightening under Tiana’s radiance, “there is a cat café in the Ritamak district. I think it would heal your soul.”"
+                },
+                {
+                  "text": "Her mood lifted further and further. Empty glasses began to gather on the table. In the end she even told Tiana about video-streaming sites and custom-built PCs—the whole embarrassing lot—and still Tiana’s impression of her did not seem to worsen."
+                },
+                {
+                  "text": "As the party began winding down, the students started placing their own shares of the bill in the middle of the table, one by one. While Tiana was only just opening her wallet and looking at the money inside, Arsha paid for them both."
+                },
+                {
+                  "text": "“My treat,” she said grandly. “As thanks for listening to me.”"
+                },
+                {
+                  "text": "Tiana looked apologetic. Arsha, striking the pose of a gentleman, departed the table in a flourish."
+                },
+                {
+                  "text": "“Ohhh, exquisite!”"
+                },
+                {
+                  "text": "In the present, Arsha launched into that story of how they had met for the ten-thousand-and-first time. Koto listened with profound indifference and gazed instead at an industrial sewing machine."
+                },
+                {
+                  "text": "Those countless retellings always shared two features. First, the pace of the story was entirely Tiana’s. Second, Arsha somehow always seemed to come out of it at a loss. None of this particularly concerned Koto, and she had long since accepted that this was simply how such things worked."
+                },
+                {
+                  "text": "“And what sort of university life did the Count lead?” Arsha asked."
+                },
+                {
+                  "text": "Koto’s gaze drifted to the tasteless bag plastered with photographs of Tané."
+                },
+                {
+                  "text": "May 10, 1979. Gàtïna Grand Auditorium, direct parish of Āké, Instructional Nation of Kàlavé."
+                },
+                {
+                  "text": "Akau was hurrying everywhere in preparation for a banquet celebrating the birthday of Koto, the second wife."
+                },
+                {
+                  "text": "“Please arrange the lights so that they fall on His Eminence the First Instructor and the Second Wife together. And tread softly, so the ‘surprise’ is not given away!”"
+                },
+                {
+                  "text": "Why, Akau could not quite understand, was she working so hard for the sake of the woman who had stolen love from her?"
+                },
+                {
+                  "text": "“Akau, what should I do next?”"
+                },
+                {
+                  "text": "The architect of the whole affair—Tané—called out to her. The head of state, the religious leader of the Dírál school, and yet here he was laboring and sweating for the woman he loved. He was, Akau thought, absurdly besotted with his wife."
+                },
+                {
+                  "text": "“Akau, I’m sorry to make you help like this. Since the previous First Instructor died, and since Mono took to her sickbed, I’ve felt it more and more strongly. You have to cherish what you still have. Koto, Karei, you as well.”"
+                },
+                {
+                  "text": "Tané looked a little lonely. Akau thumped him on the shoulder."
+                },
+                {
+                  "text": "“If you have time for idle chatter, go fetch your princess already.”"
+                },
+                {
+                  "text": "Obedient to Akau’s instructions, Tané dashed out to collect Koto."
+                },
+                {
+                  "text": "“Akau, can I set this box here?”"
+                },
+                {
+                  "text": "Karei placed a box on the table."
+                },
+                {
+                  "text": "“Wait, not there—that’s the butto—”"
+                },
+                {
+                  "text": "Too late. The box hit the switch. Fanfare burst forth and the doors swung open automatically."
+                },
+                {
+                  "text": "“My darling husband! Koto has arrived home!”"
+                },
+                {
+                  "text": "Koto marched into the hall before the preparations were complete."
+                },
+                {
+                  "text": "“Ah.”"
+                },
+                {
+                  "text": "Akau felt the world go dark around the edges. But Koto only laughed."
+                },
+                {
+                  "text": "“So the surprise failed magnificently! How funny, my husband!”"
+                },
+                {
+                  "text": "She flew into Tané’s arms. Akau laughed. Karei laughed. The retainers laughed. For Koto, it had been a perfect birthday."
+                },
+                {
+                  "text": "“I truly am blessed. And yet had that woman not been there, it might have ended in even greater happiness!”"
+                },
+                {
+                  "text": "Koto made as if to draw her knife."
+                },
+                {
+                  "text": "“I see,” Arsha said faintly."
+                },
+                {
+                  "text": "That final needless remark had turned her slightly pale."
+                },
+                {
+                  "text": "“That concludes the tour,” the factory manager said. “Any questions?”"
+                },
+                {
+                  "text": "The factory visit had passed in a blink."
+                },
+                {
+                  "text": "“None,” Arsha replied. “It was delightful.”"
+                },
+                {
+                  "text": "As the two women finished up, the sharp click of heels approached. There was a pressure in it equal to that of Latia the Hollow God herself, and Koto grew wary without willing it."
+                },
+                {
+                  "text": "“Thank you for waiting, Lady Pritivitiĕ, Lady Aitēl. I am Tiana Mellén, president of Enimuĕc.”"
+                },
+                {
+                  "text": "Koto stared. So this was Arsha’s favorite. She had the eerie impression of emptiness itself dressing up and walking about in human clothes. And from the stories Arsha had told her over the years, Koto suddenly formed a hypothesis."
+                },
+                {
+                  "text": "Tiana was playing Arsha like a fiddle."
+                },
+                {
+                  "text": "“Please call me ‘senpai’ like old times!” Arsha said, thrusting out a hand for a shake."
+                },
+                {
+                  "text": "She would not let go. At length Tiana, perhaps seeing no end to it otherwise, turned and addressed Koto."
+                },
+                {
+                  "text": "“This is our first meeting, Lady Aitēl, isn’t it?”"
+                },
+                {
+                  "text": "“Yes. Allow me to introduce myself properly. I am Koto Tál Aitēl, president of the Aitēl Company. Koto will do quite nicely.”"
+                },
+                {
+                  "text": "After a brief exchange of bows, the three of them got into a car waiting outside the factory. It took them into central Alpashto and stopped in front of the Calabar restaurant Hmï."
+                },
+                {
+                  "text": "“Delicious, delicious!”"
+                },
+                {
+                  "text": "Arsha devoured Kïlèmēn—cheese-filled bread—with ecstatic concentration, entirely oblivious to Koto’s caution toward Tiana."
+                },
+                {
+                  "text": "“Have you remained in touch with Lady Arsha since graduating?” Koto asked."
+                },
+                {
+                  "text": "“Yes,” Tiana replied. “We have both become busy, but we still keep in contact now and then on Taswar.”"
+                },
+                {
+                  "text": "She gave away very little as a rule. The tension between the two of them was cut through by Arsha, who abruptly produced a luxury handbag."
+                },
+                {
+                  "text": "“This is a Luvatén bag! You said your old one had broken, did you not? It is for you!”"
+                },
+                {
+                  "text": "She passed it across to Tiana, who accepted it with warm gratitude."
+                },
+                {
+                  "text": "“Senpai is truly a special friend to me.”"
+                },
+                {
+                  "text": "That little declaration of affection reduced Arsha instantly to jelly. Koto, though still unable to prove her hypothesis, found Tiana more suspicious than ever."
+                },
+                {
+                  "text": "After the three of them had finished the full course and moved on to tea, Koto proposed a game. It was only a bit of fun, she said. Tiana agreed with perfect composure."
+                },
+                {
+                  "text": "“Please draw the floor plan of your house on this sheet of paper,” Koto said. “Do not overthink it. Just sketch it as it comes to you.”"
+                },
+                {
+                  "text": "She handed paper and pens to Arsha and Tiana."
+                },
+                {
+                  "text": "A few minutes later, Koto collected the drawings."
+                },
+                {
+                  "text": "“Now then,” she announced, “the results of the psychological game. They say a floor plan reveals this sort of thing about a person.”"
+                },
+                {
+                  "text": "- The largest room in the center: the place to which one most wishes to devote one’s resources in life.\n- The treatment of the entrance and the living room: one’s distance from others, and with whom one wishes to be.\n- The number of corridors and doors: the number of hurdles one sets before allowing others to see one’s core."
+                },
+                {
+                  "text": "In Arsha’s case:"
+                },
+                {
+                  "text": "- The largest room in the center was a bedroom-cum-hobby room, with the specifications of a PC written across it in absurdly large letters.\n- The entrance was of ordinary size, but the living room was small.\n- There was only one door between the entrance and the bedroom-cum-hobby room."
+                },
+                {
+                  "text": "“Somewhat introverted,” Koto said, “but nothing unusual.”"
+                },
+                {
+                  "text": "Then she turned to Tiana’s floor plan."
+                },
+                {
+                  "text": "“So your largest room is a workroom.”"
+                },
+                {
+                  "text": "She spoke mildly, but pressed ahead. Where most people’s plans placed a space of rest, Tiana had drawn a room for labor. For her, repose seemed to be only a supporting character."
+                },
+                {
+                  "text": "“Well, I have been working terribly hard lately,” Tiana said."
+                },
+                {
+                  "text": "Koto did not let up."
+                },
+                {
+                  "text": "“There is no living room. And the entrance, too, is small.”"
+                },
+                {
+                  "text": "The circulation was plain enough: receive guests only to the bare minimum, and send them home before they lingered."
+                },
+                {
+                  "text": "“Ah,” Tiana said, “I must have forgotten to draw those.”"
+                },
+                {
+                  "text": "She tried to laugh it off."
+                },
+                {
+                  "text": "“And finally,” Koto said, “the corridor is very long, and there are three doors before one reaches the workroom. It appears you dearly dislike letting anyone see what lies inside.”"
+                },
+                {
+                  "text": "Silence settled over the table."
+                },
+                {
+                  "text": "“Perhaps I simply have no talent for drawing,” Tiana said."
+                },
+                {
+                  "text": "She continued to blur the issue with the same even smile. Koto had seen enough. Tiana was a Machiavellian through and through."
+                },
+                {
+                  "text": "“What a troublesome business!”"
+                },
+                {
+                  "text": "On the high-speed train home, Arsha sulked magnificently. Koto’s little game had soured the air at dinner, and Arsha was not forgiving about it. Miniatures of liquor and packets of snacks purchased at the station kiosk were already scattered over her seat."
+                },
+                {
+                  "text": "“I am sorry,” Koto said. “I simply found that I wanted to know your favorite a little better.”"
+                },
+                {
+                  "text": "She was sincere. She really had been worried about Arsha."
+                },
+                {
+                  "text": "“Even if I tried to stop you,” she asked, “your favorite would remain your favorite, would it not?”"
+                },
+                {
+                  "text": "Arsha answered by showing her the wallpaper on her phone. It was a two-shot photograph of Arsha and Tiana from their university days."
+                },
+                {
+                  "text": "“Of course!”"
+                },
+                {
+                  "text": "She sounded utterly, gloriously certain."
                 }
               ]
             }
