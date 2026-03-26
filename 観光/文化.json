@@ -1,0 +1,1367 @@
+{
+  "page_title": "カラベイの文化",
+  "source_title": "文化.txt",
+  "culture": {
+    "tourist_sites": {
+      "capital_arkei": {
+        "misenitiu_grand_hall_and_bridge_of_conversion": {
+          "name": "ミセニティウ大講堂と「転向の橋」",
+          "structure": "二つの巨塔（教学院と法議院）を空中廊下で結ぶ複合要塞。",
+          "bridge_of_conversion": {
+            "name": "転向の橋",
+            "length_m": 200,
+            "height_above_ground_m": 110,
+            "structure": "塔のみで支える箱桁構造。手すりが低く、転落防止柵がない美観重視の設計。",
+            "name_origin": "信徒が「法学（世俗）」から「教学（宗教）」へ転向する様を擬えたもの。"
+          },
+          "visual_trick": {
+            "viewpoint": "ガティナ大講堂（公邸）から見る",
+            "effect": "手前の低い法議院（155m）と奥の高い教学院（168m）が重なり、対等に見えるよう計算されている。",
+            "architectural_meaning": "実際には奥へ進むほど標高が高まり、「転向＝昇華」を建築的に表現している。"
+          }
+        },
+        "tower_internal_floor_composition": {
+          "law_council_tower": {
+            "symbolism": "世俗権力",
+            "floors": [
+              {
+                "level": "下層",
+                "facility": "法議会本会議場",
+                "details": "扇形の巨大議場。"
+              },
+              {
+                "level": "中・高層",
+                "facilities": [
+                  "議員控室",
+                  "法学図書館",
+                  "法議院議長室（橋の接続部）"
+                ]
+              }
+            ]
+          },
+          "teaching_academy_tower": {
+            "symbolism": "宗教権威",
+            "floors": [
+              {
+                "level": "下層",
+                "facility": "大礼拝堂",
+                "details": "数千人収容。幾何学模様の装飾。"
+              },
+              {
+                "level": "中層",
+                "facilities": [
+                  "教学研究室",
+                  "古文書保管庫",
+                  "各種委員会室（橋の接続部）"
+                ]
+              },
+              {
+                "level": "最上層",
+                "facility": "教学会 最高審議の間",
+                "details": "教導職専用の聖域。"
+              }
+            ]
+          }
+        },
+        "independent_building_standards_act": {
+          "general_buildings": {
+            "applied_law": "先進国基準の「建築基準法」",
+            "priority": "安全性重視"
+          },
+          "specific_important_religious_facilities": {
+            "applied_law": "教導国聖域特例法",
+            "ideology": "「神の前でふらつく不信心者は落ちても仕方ない」という解釈により、安全策より権威・景観が優先される。",
+            "approval_rule": "構造計算上危険であっても、第一教導職の認可（神の意志）があれば建設可能。"
+          }
+        }
+      },
+      "holy_site_havareiki": {
+        "geography_and_geology": {
+          "location": "山脈に囲まれた「ハヴァレイキ回廊」（標高501～1000m）。",
+          "rivers": "フリサレイ川とティニャレネイ川の合流点。",
+          "heat_source": "北部にある活火山「フリハセイ山（2,200m）」を地熱源とする。",
+          "scale": {
+            "number_of_springs": "約3,000",
+            "daily_discharge": "約150,000kl/日"
+          }
+        },
+        "spring_quality_and_effects": {
+          "spring_quality": "含硫黄-炭酸水素塩泉（弱アルカリ性・低張性）。",
+          "characteristics": {
+            "temperature_c": 75,
+            "ph": 8.0
+          },
+          "effects": [
+            "皮膚病への効果",
+            "呼吸器系疾患への効果",
+            "美肌効果",
+            "保湿効果"
+          ],
+          "symbolic_source": {
+            "name": "ピレウニェン・フェイン",
+            "description": "中心部にある源泉のシンボル。木製の「湯樋（ゆどよ）」を流れる湯の音が風物詩。"
+          }
+        },
+        "chaigia_parish": {
+          "name": "チャイギア（chàigiá）小教区",
+          "character": "公営の浄化施設。入浴は宗教儀礼（清浄：タアル）の一環。",
+          "grades": {
+            "count": 9,
+            "range": "ギル[1]〜ディルン[9]",
+            "servant_permissions": [
+              {
+                "grade": 1,
+                "allowed_attendants": 3
+              },
+              {
+                "grade": 3,
+                "allowed_attendants": 2
+              },
+              {
+                "grade": 5,
+                "allowed_attendants": 1
+              }
+            ],
+            "prohibition": "性接待は厳格に禁止されており、あくまで身体の浄化が目的。"
+          },
+          "bathing_customs": {
+            "tea_drinking": {
+              "practice": "「シェ（茶）」の飲用",
+              "preferred_tea": "冷たい「山葡萄葉茶」",
+              "expected_effects": [
+                "利尿",
+                "代謝促進",
+                "抗酸化作用"
+              ]
+            },
+            "facilities": [
+              "地熱蒸気サウナ",
+              "温泉ミストサウナ",
+              "岩盤サウナ"
+            ]
+          },
+          "entry_and_tax_rules": {
+            "for_non_ismizlarak_believers": "非イスミズラーク教徒には入場制限や入湯税が課される場合がある。"
+          },
+          "significance": "1日1回以上の浄化が義務である信徒にとって、温泉は生活と信仰が一体化した聖域。"
+        },
+        "tinagia_parish": {
+          "name": "ティナギア（tïnagiá）小教区",
+          "character": "宿坊と学問の街",
+          "qaushan": {
+            "name": "カウシャン（qàushan）",
+            "description": "公営の宿坊兼詰所。民営ホテルが存在しないため、巡礼者や観光客の宿泊拠点となる。",
+            "lodging_fee_per_night_with_meals": {
+              "believer": "約14K",
+              "tourist": "約28K"
+            }
+          },
+          "university_town": {
+            "description": "ハヴァレイキ直轄教区立大学などが集まる。",
+            "lecture_access": "講堂での講義は市民や巡礼者にも開放されている。"
+          },
+          "hhuabilay": {
+            "name": "フワビライ（hhuàbïláy）",
+            "description": "一定の納税で利用可能な公営住宅。",
+            "residents": [
+              "学生",
+              "宗教関係者"
+            ]
+          }
+        },
+        "furiya_grand_temple_and_mavwa_grand_hall": {
+          "furiya_grand_temple": {
+            "name": "フリヤー大神殿",
+            "location": "大講堂の最下層",
+            "access_rule": "教導職が「尻尾」を継承する際のみ立ち入る、神に最も近い場所。"
+          },
+          "mavwa_grand_hall": {
+            "name": "マヴワ大講堂",
+            "purpose": "教導職による儀礼専用の講堂。",
+            "general_believer_access": "一般教徒は「見学」のみ許される。"
+          },
+          "holy_significance": "マズグークの軍勢が東征の末に到達した地点であり、シャルラト派・ディラル派共通の重要聖地。"
+        },
+        "havareizyi_grand_hall": {
+          "name": "ハヴァレイズィ大講堂",
+          "history": {
+            "built_year": 1460,
+            "builder": "第一教導職シャウン・ダレイ"
+          },
+          "scale": "カラベイ第2の規模。",
+          "symbolism": "かつての首都機能（教学院・法議院）を保持していた、教導主義の象徴。",
+          "events": [
+            {
+              "date": "3月14日",
+              "name": "ハヴァレイキの血涙",
+              "description": "全土から巡礼者が集まる。"
+            }
+          ],
+          "role": "新任教導職が「尻尾」継承後に初めて講話を行う場所。",
+          "pilgrimage_rules": {
+            "dress_code": [
+              "白または黒の衣服",
+              "肌を隠す",
+              "髪は短くするか帽子「リャタ」に収める"
+            ]
+          }
+        }
+      },
+      "largest_city_ilar": {
+        "pavai_grand_hall_guest_house": {
+          "name": "パヴァイ大講堂迎賓館",
+          "featured_ritual_meal": {
+            "official_name": "Gànian a Māshár Biār-Mātán Kàibe",
+            "overview": "羊を丸一頭余すことなく食す、宮廷由来の完全予約制供養膳。"
+          },
+          "price_system": {
+            "host_price": "2,500K / 1回",
+            "guest_price": "12.0K / 1人",
+            "akadal_donation": "300〜5K程度"
+          },
+          "main_menu": [
+            {
+              "name": "ティリジェビウ",
+              "description": "ロース・ラック。表面を焼いた骨付き肉を削ぎ、小麦粉の皮（イシュ）で野菜と共に包み、ティラーソースで食す。"
+            },
+            {
+              "name": "ヒミリメイ",
+              "description": "ショルダー・フラップ。インディカ米、肉、野菜を炊き込んだ香り高いピラウ（炊き込みご飯）。"
+            },
+            {
+              "name": "シリビン",
+              "description": "ショルダー・シャンク。肉と根菜をじっくり煮込んだ濃厚なシチュー。"
+            },
+            {
+              "name": "アリササ",
+              "description": "ホルモン。血抜きしたホルモンを丁寧にミンチにした肉団子。"
+            }
+          ]
+        },
+        "segakia_mass_charity_feast": {
+          "name": "大施食会：セガキア（Sègakiá）",
+          "timing": "アン・ファタル（断食明け）に実施される大規模な炊き出し。",
+          "hosts": [
+            "九氏族",
+            "各教区司教",
+            "地主",
+            "富裕層"
+          ],
+          "symbolic_event": "パヴァイ大講堂迎賓館では、第一教導職自らによるセガキアが執り行われる。",
+          "customs": {
+            "food": "ママール（デーツ入りバタークッキー）等の甘味を分かち合う。",
+            "clothing": "新しい服を新調し、身を清める。",
+            "gift_money": "子供たちに「イディア（お年玉）」を与える。"
+          }
+        },
+        "takia_festival_scene": {
+          "name": "ターキア（Tākiá）",
+          "form": "セガキアに合わせて立ち並ぶ賑やかな露店街。",
+          "contents": [
+            "地方の特産品",
+            "伝統的な子供向け玩具"
+          ],
+          "atmosphere": "国全体が祝祭ムードに包まれる。"
+        }
+      }
+    },
+    "sermons": {
+      "essence_and_definition": {
+        "definition": "教導職や司教が、神話や経典の解釈を通じて「国家政策」や「倫理的教訓」を国民に伝える行為。",
+        "importance": "単なる説教ではなく、国民を納得させ導くための「高度な統治技術」。",
+        "leadership_quality": "話芸の巧拙がそのまま指導者としての適性と見なされ、支持率に直結する。"
+      },
+      "three_part_structure": {
+        "requirement": "教導職は聖なる「翻訳家」であると同時に、優れた「噺家（はなしか）」であることが求められる。",
+        "parts": [
+          {
+            "part_number": 1,
+            "name": "マクラ（導入）",
+            "contents": [
+              "時事ネタ",
+              "季節の話題",
+              "自身の失敗談"
+            ],
+            "purpose": "聴衆の心を掴み、本題への伏線を張る。"
+          },
+          {
+            "part_number": 2,
+            "name": "本題（経典・神話の再解釈）",
+            "sources": [
+              "『森』",
+              "『狐』",
+              "『足』"
+            ],
+            "core": "現代の社会問題に合わせ、神話を鮮やかに「再解釈（コンテキスト操作）」する手腕が問われる。"
+          },
+          {
+            "part_number": 3,
+            "name": "オチ（結び）",
+            "contents": "マクラと本題を鮮やかに回収する。",
+            "purpose": "「なるほど！」というカタルシス（納得感）を与え、教訓を聴衆の心に落とし込む。"
+          }
+        ]
+      },
+      "inaugural_first_sermon": {
+        "location": "ハヴァレイズィ大講堂",
+        "significance": "新任教導職が「どの噺（エピソード）を選ぶか」により、その後の治世の性格や方針が決定づけられる極めて重要な儀礼。",
+        "audience": "新たな指導者の人柄と手腕を評価するため、全土から極めて多くの聴講者が集まる。"
+      },
+      "selection_exam_and_evaluation": {
+        "judging_body": "教学会員（エリート学者層）",
+        "criteria_balance": {
+          "entertainment": "民に届くために必要だが、度が過ぎれば「芸ではない」と退けられる。",
+          "orthodoxy": "正統な法解釈が必要だが、難解すぎれば「民に届かない」と批判される。"
+        },
+        "ideal": "「正統な法解釈」と「革新的なエンタメ性」を高い次元で両立させること。"
+      }
+    },
+    "food_culture": {
+      "appetizers_dips_side_dishes": [
+        {
+          "name": "ナヴァル",
+          "romanization": "Nával",
+          "description": "葉野菜のスパイス酢漬け。食欲を促す酸味が特徴。"
+        },
+        {
+          "name": "ミリウ",
+          "romanization": "Miríu",
+          "description": "ひよこ豆の濃厚ペースト（フムス風）。"
+        },
+        {
+          "name": "アーウ",
+          "romanization": "Hāu",
+          "description": "カボチャ、オクラ、インゲン豆のスパイス炒め。"
+        }
+      ],
+      "bread_light_meals_and_pizza_like_items": [
+        {
+          "name": "ファルワ",
+          "romanization": "Fàlua",
+          "description": "小麦粉とひよこ豆粉を混ぜた伝統的な素朴パン。"
+        },
+        {
+          "name": "ミーゼイ",
+          "romanization": "Mīzé",
+          "description": "ピタパン。煮込みやディップに必須の主食。"
+        },
+        {
+          "name": "ミミーゼイ",
+          "romanization": "Mimīzé",
+          "description": "薄焼きの円形パン。具材を乗せるピザ風。"
+        },
+        {
+          "name": "キレメーン",
+          "romanization": "Kïlèmēn",
+          "description": "とろけるチーズを包んだ香ばしいパン。",
+          "note": "特撮『ブムィトヌケ』の好物。"
+        }
+      ],
+      "soups_and_noodles": [
+        {
+          "name": "ツィリウネキネイ",
+          "romanization": "Cïrīunéqïné",
+          "description": "肉、野菜、クルミのコク深いスープ。"
+        },
+        {
+          "name": "クワタ",
+          "romanization": "Kuatá",
+          "description": "ヨーグルトとひよこ豆粉ベースの爽やかなスープ。"
+        },
+        {
+          "name": "ハヤール",
+          "romanization": "Hàyāl",
+          "description": "豆、葉野菜、トマトの家庭的な優しいスープ。"
+        },
+        {
+          "name": "カラム",
+          "romanization": "Qàlam",
+          "description": "ヨーグルト＆ラム肉の濃厚スープに手延べ麺を加えた一品。"
+        }
+      ],
+      "meat_rice_and_preserved_foods": [
+        {
+          "name": "キジェビウ",
+          "romanization": "KïjeBīu",
+          "description": "炭火で焼き上げるスパイス挽き肉の串焼き。"
+        },
+        {
+          "name": "ササ",
+          "romanization": "Sasá",
+          "description": "庶民的なスパイス肉団子。揚げ・焼きの両方で食される。"
+        },
+        {
+          "name": "リメイ",
+          "romanization": "Rìmé",
+          "description": "炒り卵、肉、米を合わせた香ばしい炒め飯。"
+        },
+        {
+          "name": "フラヤウ",
+          "romanization": "Hráyau",
+          "description": "肉、卵、チーズの燻製。貴重な保存用タンパク源。"
+        }
+      ],
+      "desserts_and_sweets": [
+        {
+          "name": "フラパ",
+          "romanization": "Hlàpa",
+          "description": "ピスタチオと蜂蜜をパイ生地で包んだ焼き菓子。"
+        },
+        {
+          "name": "マルワ",
+          "romanization": "Màlua",
+          "description": "ナッツ類とキャラメルを牛乳で凍らせた濃厚な冷菓。"
+        },
+        {
+          "name": "ビスイ",
+          "romanization": "Bísui",
+          "description": "デーツとナッツを包んだハチミツクレープ。"
+        },
+        {
+          "name": "ティリュール",
+          "romanization": "Tïliūr",
+          "description": "サフランやローズ香るミルクアイス。"
+        },
+        {
+          "name": "キール",
+          "romanization": "Kīl",
+          "description": "卵と砂糖のふんわりした焼き菓子。"
+        }
+      ],
+      "three_great_karia_dur_karia": [
+        {
+          "name": "キナーラーン",
+          "romanization": "Kinālān",
+          "combination": "グリーンカレー × アマタウ（雑穀）"
+        },
+        {
+          "name": "モーシャー",
+          "romanization": "Mōshar",
+          "combination": "バターチキンカレー × マーン（ナン）"
+        },
+        {
+          "name": "カラーン",
+          "romanization": "Kalān",
+          "combination": "ラムカレー × ノリム（ジャポニカ米）"
+        }
+      ]
+    },
+    "clothing_and_housing": {
+      "dress_regulations": {
+        "male_formal_religious_clothing": [
+          {
+            "name": "トワバ",
+            "romanization": "tuabá",
+            "description": "全身を覆う白の長衣。"
+          },
+          {
+            "name": "イハル",
+            "romanization": "yïxàl",
+            "description": "頭部に巻く白い布。"
+          }
+        ],
+        "female_formal_religious_clothing": [
+          {
+            "name": "ハヤバ",
+            "romanization": "hhàyabá",
+            "description": "全身を覆う黒の外套。"
+          },
+          {
+            "name": "イジャール",
+            "romanization": "yïjāl",
+            "description": "顔を覆う黒い布。"
+          }
+        ],
+        "common_secular_clothing": {
+          "description": "通常の洋服に以下の伝統要素を組み合わせる。",
+          "items": [
+            {
+              "name": "カヤル",
+              "romanization": "Kàyál",
+              "description": "巻きスカート状のローブ。"
+            },
+            {
+              "name": "リャタ",
+              "romanization": "liata",
+              "description": "つばのない円筒形の帽子。"
+            }
+          ]
+        }
+      },
+      "family_register_and_personal_names": {
+        "system": "アルモナ式",
+        "format": "[姓] ＋ [名] ＋ ben ＋ [父親の名前]",
+        "meaning_of_ben": "アルディア語で「〜の子供」を指す。",
+        "example_rule": "父親がタネイの場合、息子は「〇〇 ben タネイ」となる。"
+      },
+      "kinship_and_terms_of_relation": {
+        "basic_kinship_terms": {
+          "husband": "gàve",
+          "wife": "dón",
+          "father": "fïrán",
+          "mother": "ggèun",
+          "son": "hna",
+          "daughter": "hne",
+          "grandchild_male": "bïmà",
+          "grandchild_female": "bïmè",
+          "brother": "zïlá",
+          "sister": "hmeize",
+          "grandfather": "adán",
+          "grandmother": "jéve"
+        },
+        "collateral_and_distant_kin": {
+          "uncle": "yàm",
+          "aunt": "yèm",
+          "nephew": "máil",
+          "niece": "méil",
+          "male_cousin": "dïnán",
+          "female_cousin": "dïnén"
+        },
+        "complex_degree_calculation": {
+          "male_ascendant": "mán",
+          "female_ascendant": "mén",
+          "male_descendant": "cuán",
+          "female_descendant": "cuén",
+          "same_generation_degree": "ál",
+          "example": "四従鼻祖伯父 ＝ 9 mán 10 ál"
+        }
+      },
+      "legal_definition_of_kinship": {
+        "natural_blood_relatives": "九親等内までを親族とみなす。",
+        "legal_blood_relatives_adoption": "三親等内。",
+        "spouses_and_affines": "三親等内。"
+      },
+      "address_notation": {
+        "feature": "行政区分に「所属する宗教施設」を介在させるのが特徴。",
+        "notation_order": "[大教区] - [州] - [教区] - [所属講堂/礼拝所] - [町名(旧地主名)] - [地番]",
+        "example": "中央大教区マヤシレイキ州ティナレイキ教区フリカウ礼拝所エミエ72番"
+      }
+    },
+    "sports": {
+      "competitive_duilei": {
+        "match_format": {
+          "main_match_time_min": 5,
+          "overtime_time_min": 3,
+          "win_condition": "3本勝負（二本先取制）を原則とする。",
+          "match_area": "10m × 10m の正方形の区画。"
+        },
+        "referees_and_judging": {
+          "chief_referee": [
+            "開始の宣告",
+            "終了の宣告",
+            "有効打突の判定",
+            "試合の中止",
+            "審判員合議の権限"
+          ],
+          "valid_hit_confirmation": "刃に塗料を塗布し、着色部位によって得点を判定する。"
+        },
+        "scoring_system": {
+          "characteristic": "損傷より致死、致死より武装解除が高得点となる「平和と技術の優先」が特徴。",
+          "categories": [
+            {
+              "name": "武装解除",
+              "score_rank": "最高得点",
+              "examples": [
+                "剣の手放し",
+                "手首への打突"
+              ]
+            },
+            {
+              "name": "致死",
+              "score_rank": "高得点",
+              "examples": [
+                "顔面への打突",
+                "胴部への打突",
+                "咽喉への打突"
+              ]
+            },
+            {
+              "name": "損傷",
+              "score_rank": "基本得点",
+              "examples": [
+                "上記以外の部位への打突"
+              ]
+            }
+          ]
+        },
+        "authorized_stances": {
+          "system": "習熟度に応じた階層制",
+          "levels": [
+            {
+              "level": 1,
+              "name": "入門段階",
+              "allowed_stances": [
+                "剛直（ごうちょく）の構え",
+                "柔和（じゅうわ）の構え"
+              ],
+              "rule": "いずれか。"
+            },
+            {
+              "level": 2,
+              "name": "中級段階",
+              "allowed_stance": "中庸（ちゅうよう）の構え・序",
+              "rule": "剛直・柔和の両方を修めた者に許可。"
+            },
+            {
+              "level": 3,
+              "name": "上級段階",
+              "allowed_stance": "中庸の構え・改",
+              "officially_approved_year": 1970,
+              "rule": "序を修めた者にのみ許可。"
+            }
+          ],
+          "prohibited_in_official_tournaments": [
+            "狂暴の構え",
+            "無心の構え",
+            "真の中庸の構え",
+            "廻焔（かいえん）の構え"
+          ],
+          "prohibition_reason": "実戦的すぎる、あるいは精神的負荷が高すぎるため、スポーツとしての競技では制限されている。"
+        },
+        "modernization_and_professionalization": {
+          "1970": "上級者向けの「中庸の構え・改」が公式に認められる。",
+          "1990": {
+            "leader": "ラデン・タネイ第一教導職",
+            "changes": [
+              "プロクラブ「カラベイ・デューレイ・オギルト」創設",
+              "異種剣術大会「シュヴィト・マリク・ボータル」創設"
+            ]
+          }
+        }
+      },
+      "football": {
+        "sar_akia": {
+          "club_identity": {
+            "home": "イラー（カラベイ教導国の宗教・港湾中枢）",
+            "fanbase": [
+              "市民",
+              "巡礼者",
+              "職業人"
+            ],
+            "club_image": "都市のプライドと穏やかな礼拝文化が共存。",
+            "style": "中盤の「支配と創造」。フィジカルに頼らず、短いパス連携で崩す技術集団。",
+            "support_song": {
+              "title": "Kàlavuá（カラベイよ）",
+              "artist": "Magasálïn"
+            }
+          },
+          "basic_tactics": {
+            "manager": "アレイ",
+            "formation": "4-2-3-1（守備時 4-4-1-1）",
+            "concept": "ダブルボランチ（DMF）による安定したビルドアップと、キャプテン「ハマ（OMF）」を起点としたテンポの変化。",
+            "attack": "サイドウイング（RWG/LWG）のインサイドカットと、CFアファラのスペース突入を組み合わせた「短い連続攻撃」。"
+          },
+          "starting_eleven": [
+            {
+              "position": "GK",
+              "name": "ナウ",
+              "description": "安定感重視。リスク管理に長けた守護神。"
+            },
+            {
+              "position": "RB",
+              "name": "カテイ",
+              "description": "守備優先だが、機を見てサイドの深さを作る推進力を持つ。"
+            },
+            {
+              "position": "CB",
+              "name": "アカウ",
+              "description": "読みが鋭い。対人守備に強いが、スピードへの対応に課題。"
+            },
+            {
+              "position": "CB",
+              "name": "アタエ",
+              "description": "ラインコントロールの要。組織守備と対戦相手の封じ込めに長ける。"
+            },
+            {
+              "position": "LB",
+              "name": "ラザ",
+              "description": "攻守のバランス型。柔らかい足元でビルドアップに加わる。"
+            },
+            {
+              "position": "DMF",
+              "name": "アマテイ",
+              "description": "アンカー。インターセプトで守備の基点となる。"
+            },
+            {
+              "position": "DMF",
+              "name": "キヤネイ",
+              "description": "配給の要。前線へのタイミング良いサポートを担う。"
+            },
+            {
+              "position": "RWG",
+              "name": "アラレイ",
+              "description": "テクニカルな右翼。中への切り込みで局面を打開する。"
+            },
+            {
+              "position": "OMF",
+              "name": "ハマ",
+              "captain": true,
+              "description": "チームの心臓。広い視野と短いパスでリズムを作る創造主。"
+            },
+            {
+              "position": "LWG",
+              "name": "マヤ",
+              "description": "左のテクニシャン。カットインとラストパスでラインを撹乱。"
+            },
+            {
+              "position": "CF",
+              "name": "アファラ",
+              "description": "シャドウ型CF。巧みな動き出しでスペースを突くフィニッシャー。"
+            }
+          ],
+          "bench_members": [
+            "GK シャラウ",
+            "DF バザ",
+            "MF アパテイ",
+            "MF アマレイ",
+            "FW ハサネイ"
+          ],
+          "bench_note": "アパテイやハサネイは終盤の「チェンジャー」として運動量を供給する。",
+          "analysis": {
+            "strengths": [
+              "中盤の構成力（ハマとキヤネイのライン）",
+              "相手プレスをいなすパス回し"
+            ],
+            "weaknesses": [
+              "空中戦やフィジカルの競り合い",
+              "対角線上のロングボールへの対応"
+            ]
+          }
+        },
+        "al_seran": {
+          "club_identity": {
+            "home": "KNCセランスタジアム（リウニシェヴェン駅直結）",
+            "style": "「ダムサッカー」。極端なリトリートによる堅守と、超高速カウンターの完結。",
+            "keywords": [
+              "放水（縦への鋭いフィード）",
+              "洪水（波状攻撃）"
+            ]
+          },
+          "basic_tactics": {
+            "formation": "5-4-1（攻撃時 3-4-3 可変）",
+            "defensive_concept": "自陣ペナルティエリア幅に5+4の強固な2ラインを構築。スペースを物理的に消滅させ、相手のポゼッションを無効化する。",
+            "attacking_concept": "奪取直後の「放水（ロングフィード）」を合図に、全陣形がスプリントして敵陣へ雪崩れ込む「洪水」フェーズへ移行。数的優位を一気に作ってゴールを飲み込む。"
+          },
+          "starting_eleven": [
+            {
+              "position": "GK",
+              "name": "アリシャー",
+              "description": "エリア内の絶対的ストッパー。至近距離のシュートブロックに特化。"
+            },
+            {
+              "position": "RWB",
+              "name": "カウ",
+              "description": "無尽蔵のスタミナを持つ右の蓋。カウンター時の推進力が武器。"
+            },
+            {
+              "position": "CB",
+              "name": "ダーラ",
+              "description": "対人特化の右ストッパー。ウイングのカットインを体を張って封じる。"
+            },
+            {
+              "position": "CB",
+              "name": "アタネイ",
+              "captain": true,
+              "description": "5バックの統率者。空中戦の勝率はリーグトップクラス。"
+            },
+            {
+              "position": "CB",
+              "name": "ザウ",
+              "description": "左利きの精密機械。「放水（ロングフィード）」のメイントリガー。"
+            },
+            {
+              "position": "LWB",
+              "name": "ナヴァ",
+              "description": "左のスプリンター。「洪水」フェーズで大外からフィニッシュに絡む。"
+            },
+            {
+              "position": "CMF",
+              "name": "アマダ",
+              "description": "バイタルエリアのフィルター役。ハードタックルでボールを刈り取る。"
+            },
+            {
+              "position": "CMF",
+              "name": "バージャ",
+              "description": "攻守に走るダイナモ。遅れてエリアに侵入するフィニッシャー。"
+            },
+            {
+              "position": "RWG",
+              "name": "シャー",
+              "description": "裏抜けのスペシャリスト。「放水」に誰よりも早く反応する。"
+            },
+            {
+              "position": "LWG",
+              "name": "カラー",
+              "description": "推進力と「タメ」の創出。味方の押し上げを待つ時間を作る。"
+            },
+            {
+              "position": "CF",
+              "name": "アシャー",
+              "description": "圧倒的なフィジカル。ロングボールを確実に収めるターゲットマン。"
+            }
+          ],
+          "bench_members": [
+            "GK フラメイ",
+            "DF ラザー（クローザー）",
+            "MF アミア",
+            "MF アフラメイ",
+            "FW パヤー"
+          ],
+          "bench_note": "大型CBラザーや潰し屋アミアを投入する終盤の封鎖能力は極めて高い。",
+          "analysis": {
+            "strengths": [
+              "ブロックの堅牢さ",
+              "奪取からシュートまでの圧倒的スピード",
+              "ポゼッション型チームへの特効"
+            ],
+            "weaknesses": [
+              "相手に引かれると攻撃の形を作れない",
+              "遅攻のアイデア不足",
+              "先制されるとプランが崩壊しやすい"
+            ]
+          }
+        }
+      }
+    },
+    "selur": {
+      "concept_and_definition": {
+        "original_meaning": "元来は「セル族（セラン人）の女性」を指すが、現在は「カラベイ式女性使用人」の総称。",
+        "status": "奴隷とは明確に区別された「庶民」階級。雇用契約に基づく職能者。",
+        "great_principle": "処女性の維持が前提。既婚者の奉仕職は「トトール」と呼ばれ区別される。"
+      },
+      "historical_transition_and_classification": {
+        "origin": "1460年、第一教導職シャウン・ダレイによる制度化。性的奉仕（ショノール）との厳格な分離が目的。",
+        "occupations": [
+          {
+            "name": "ミユール",
+            "romanization": "Mïyuīr",
+            "role": "ハウスメイド。掃除、衣類管理、接客担当。"
+          },
+          {
+            "name": "ミビ",
+            "romanization": "Mïbí",
+            "role": "キッチンメイド。調理、台所仕事担当。"
+          },
+          {
+            "name": "セヒュール",
+            "romanization": "Sèxuīr",
+            "role": "秘書的役割。文書管理、スケジュール調整担当。"
+          }
+        ],
+        "trainee": {
+          "name": "アセリュール",
+          "romanization": "Asèluīr",
+          "requirement": "1〜2年の研修・試用期間が必要。"
+        }
+      },
+      "modern_selur_cafes": {
+        "historical_turning_point": "1970年代の「ヤウタン」開業を機に、伝統文化の疑似体験・娯楽として再解釈された。",
+        "styles": {
+          "ayaur": {
+            "name": "アヤウル",
+            "romanization": "Ayāur",
+            "type": "伝統様式",
+            "service": "没個性的・伝統的礼節。客を「アマル（お客様）」と呼ぶ。",
+            "language": "宮廷語（ハヴァレイキ方言）を使用。"
+          },
+          "jaur": {
+            "name": "ジャウル",
+            "romanization": "Jàur",
+            "type": "創作様式",
+            "service": "各員の個性を重視。客を「カヤ（ご主人様）」と呼ぶ。",
+            "language": "都市部（セラン方言）や現代的接客フレーズを使用。"
+          }
+        }
+      },
+      "management_and_working_environment": {
+        "management": "25歳で卒業（ハジャベ）した元セリュールによる「暖簾分け」が公認の主流。",
+        "qualification": "国家認可の養成学校卒業が義務。無資格・無認可営業は極めて重罪（最高刑は死刑）。",
+        "guardian_role": {
+          "name": "フメイゼ",
+          "description": "各店舗に置かれ、従業員の調整・保護を担う。"
+        },
+        "ethics": "客にはセリュールの尊厳を守る義務があり、不適切な接触や冗談は厳禁。"
+      },
+      "attire_and_symbols": {
+        "features": [
+          "ニカーブ風ベール（目元のみ露出）",
+          "額飾り",
+          "フリル付きメイドキャップ"
+        ],
+        "identification": "制服の左肩や胸の「ワッペン」で役割（ミユール、ミビ等）を判別可能。",
+        "retirement": "伝説的セヒュール「シャウン・ア・ロソ」の命日（12月24日）に因み、25歳が定年の指標。"
+      },
+      "slang_and_jargon": [
+        {
+          "term": "ダーリベ",
+          "meaning": "セリュール喫茶に通うこと。"
+        },
+        {
+          "term": "エウル",
+          "meaning": "推しのセリュール。"
+        }
+      ]
+    },
+    "souvenirs_and_antenna_shops": {
+      "standard_souvenirs": [
+        {
+          "name": "LK-100 ペーパークラフト",
+          "price": "8.5K"
+        },
+        {
+          "name": "クオ・フラメイ ケータリング風フラパ（8個入）",
+          "price": "12.0K"
+        },
+        {
+          "name": "公式ぬいぐるみ（アカウ、タネイ、モノ、カレイ）",
+          "price": "各28.0K"
+        },
+        {
+          "name": "Abilā（ガネイキ産・ガティナ大講堂御用達デーツ / 6粒）",
+          "price": "55.0K"
+        },
+        {
+          "name": "Ggemé（ヤーキ産・シルク100%織物）",
+          "price": "450.0K"
+        },
+        {
+          "name": "Sèlènàn Kafian（セラン産・ガティナ大講堂御用達コーヒー / 150g）",
+          "price": "38.0K"
+        }
+      ],
+      "antenna_shop": {
+        "name": "Kàlavér Hrïn Wái",
+        "japanese_name": "カラベイへの道",
+        "overview": "主要なカラベイ大使館に併設された公式ショップ。イートイン併設。",
+        "cities": [
+          "アルモナ",
+          "ニケルトリーネー",
+          "ウォール",
+          "シュトルスカ",
+          "スクニューネ"
+        ],
+        "theme_song": "ハサン・マシア『Bŭtĭr Kóntria（美しい故郷）』"
+      }
+    },
+    "travel_hints": {
+      "travar": {
+        "name": "Travar（トラヴァー）",
+        "function": "対象国国民の渡航必須アプリ。ファストビザ申請が可能。",
+        "management": "滞在中のGPS常時オンが義務。90分以上のオフは事前申請が必須となる厳格な管理体制。"
+      },
+      "sitielifar": {
+        "name": "Sĭtielĭfar（シティーリファー）",
+        "function": "世界各地の都市圏に張り巡らされた遠距離無線通信（Wi-Fi/無線網）。",
+        "usage": "Travarアプリにより自動接続され、無料で利用可能。"
+      },
+      "t3": {
+        "name": "T3（Tané Trïport Trafia）",
+        "function": "タネイ・トライポート公式アプリ。",
+        "reservation_and_operation_check": [
+          "フォル航空",
+          "ティリウ航空",
+          "高速鉄道",
+          "ドゥラム海上交通（地面効果翼機）"
+        ],
+        "payment": "独自のQR決済「モバイルルルタ」を搭載。"
+      }
+    },
+    "education": {
+      "school_system": {
+        "stages": [
+          {
+            "stage": "初等教育",
+            "duration_years": 3,
+            "description": "全児童共通の基礎教育。"
+          },
+          {
+            "transition_exam": "初等TNN（統一試験）"
+          },
+          {
+            "stage": "前期中等教育",
+            "duration_years": 6,
+            "sorting": "成績により「中央学校（優秀層）」か「総合学校（一般層）」へ選別。"
+          },
+          {
+            "transition_exam": "中等TNN または QVN（推薦）"
+          },
+          {
+            "stage": "後期中等教育",
+            "duration_years": 3,
+            "description": "専門進路（類別）による高度な選別。",
+            "tracks": [
+              "文I類：法学・経済学",
+              "文II類：文学・教育学",
+              "数I類：工学・理学",
+              "数II類：農学・医学",
+              "特I類：軍事・体育",
+              "特II類：宗教（教導職候補など）"
+            ]
+          },
+          {
+            "transition_exam": "高等TNN または QVN"
+          },
+          {
+            "stage": "高等教育",
+            "duration_years": "2〜4年",
+            "institutions": [
+              "大学（総合/単科）",
+              "短期大学",
+              "専門学校"
+            ]
+          },
+          {
+            "transition_exam": "内部試験 または QVN"
+          },
+          {
+            "stage": "研究機関",
+            "duration_years": "2年〜",
+            "institutions": [
+              "大学院",
+              "教務大学院（教職課程）"
+            ]
+          }
+        ]
+      },
+      "entrance_exam_system": {
+        "tnn_unified_exam": {
+          "primary_tnn": [
+            "国語",
+            "数学"
+          ],
+          "secondary_tnn": [
+            "国語",
+            "外国語",
+            "社会",
+            "数学",
+            "理科"
+          ],
+          "higher_tnn_humanities": [
+            "国語",
+            "外国語",
+            "社会",
+            "数学",
+            "宗教哲学"
+          ],
+          "higher_tnn_sciences": [
+            "国語",
+            "外国語",
+            "理科",
+            "数学",
+            "宗教哲学"
+          ],
+          "special_tracks_note": "特類は任意選択科目を含む。"
+        },
+        "qvn_self_recommendation_exam": {
+          "first_round": "自己推薦書による書類選考。",
+          "second_round": "国語と外国語（アルディア語）を用いた専門技能確認。",
+          "third_round": "面接試験。"
+        }
+      },
+      "curriculum_major_subjects": [
+        "国語（カラバル語）",
+        "外国語（アルディア語）：実務や国際交流に必須の言語。",
+        "社会",
+        "数学",
+        "理科",
+        "音楽",
+        "美術",
+        "保健体育",
+        "技術家庭",
+        "宗教哲学：高等TNNの必須科目であり、教導国のアイデンティティを形成する核。"
+      ]
+    },
+    "calendar": {
+      "eras": [
+        {
+          "abbreviation": "L.W.",
+          "name": "前ラスリラ",
+          "range": "〜770"
+        },
+        {
+          "abbreviation": "J",
+          "name": "ジュアギア",
+          "range": "770〜780",
+          "capital_or_base": "アーケイ"
+        },
+        {
+          "abbreviation": "R",
+          "name": "ルアー",
+          "range": "780〜816",
+          "capital_or_base": "現在のゾルアー南東"
+        },
+        {
+          "abbreviation": "B",
+          "name": "ライタン",
+          "range": "816〜1250",
+          "capital_or_base": "現在のビライタン北西"
+        },
+        {
+          "abbreviation": "P",
+          "name": "パイタン",
+          "range": "1250〜1380",
+          "capital_or_base": "現在のゾパイタン南東"
+        },
+        {
+          "abbreviation": "S",
+          "name": "サヤー",
+          "range": "1380〜1520",
+          "capital_or_base": "ハヴァレイキ"
+        },
+        {
+          "abbreviation": "L",
+          "name": "ラグワー",
+          "range": "1520〜1809",
+          "capital_or_base": "アーケイ"
+        },
+        {
+          "abbreviation": "M",
+          "name": "マー",
+          "range": "1809〜1893",
+          "capital_or_base": "ティナレイキ"
+        },
+        {
+          "abbreviation": "Y",
+          "name": "イマ",
+          "range": "1893〜",
+          "capital_or_base": "アーケイ"
+        }
+      ],
+      "note": "2000年=イマ107年"
+    },
+    "holidays_and_festivals": [
+      {
+        "date": "1月1日",
+        "name": "正月"
+      },
+      {
+        "date": "2月1日",
+        "name": "カラバル正月（旧正月）"
+      },
+      {
+        "date": "3月14日",
+        "name": "ハヴァレイキの血涙"
+      },
+      {
+        "date": "3月20日",
+        "name": "春分祭"
+      },
+      {
+        "date": "4月1日",
+        "name": "マジェン・カレイ誕生日"
+      },
+      {
+        "date": "5月7日",
+        "name": "フラム日(パジェン・■誕生日)"
+      },
+      {
+        "date": "6月6日",
+        "name": "建国記念日"
+      },
+      {
+        "date": "6月21日",
+        "name": "夏至祭"
+      },
+      {
+        "date": "7月7日",
+        "name": "預言者パテイ誕生日"
+      },
+      {
+        "date": "8月9日",
+        "name": "三尾の狐の日(降臨祭)"
+      },
+      {
+        "date": "8月29日",
+        "name": "ラデン・タネイ誕生日"
+      },
+      {
+        "date": "9月22日",
+        "name": "秋分祭"
+      },
+      {
+        "date": "10月19日",
+        "name": "タゲン・アティラー誕生日"
+      },
+      {
+        "date": "11月1日",
+        "name": "アン・ファタル(断食明け祭)"
+      },
+      {
+        "date": "12月21日",
+        "name": "冬至祭"
+      }
+    ],
+    "entertainers_related_to_karabei": [
+      {
+        "name": "シェチェ",
+        "full_name": "ドラナルト・クラシェチュライ・トライテ",
+        "is_from_karabei": false,
+        "age_as_of_2000": 66,
+        "style": "クニューン/ジュールタ系のエスニック・ジョークと「癇癪芸（かんしゃくげい）」。",
+        "biography": [
+          "1934年、ブラウジア生まれ。言語学の修士号を持つインテリ。",
+          "接客中の「滑稽な怒り」が評判となり芸人へ。ヴァラリア統治下の拘留を経てスターに。",
+          "1975年の「終末の蝗害」ではバッタを調理するチャリティーで名誉市民賞を受賞。",
+          "1996年の大統領との手遊び勝負（視聴率51.4%）は伝説。"
+        ],
+        "programs": [
+          "『シェチェ怒りの○○』シリーズ（クオ・フラメイ+等で配信）"
+        ]
+      },
+      {
+        "name": "ガウニ",
+        "romanization": "Gháuny",
+        "is_from_karabei": true,
+        "members": [
+          {
+            "name": "カイヴァ",
+            "role": "シンセ/ツッコミ"
+          },
+          {
+            "name": "サマ",
+            "role": "ベース/ボケ"
+          }
+        ],
+        "style": "「ドゥラム・ハウス」。チョウザメの覆面を被り、人間の紳士として振る舞う不条理コメディと音楽の融合。",
+        "features": [
+          "カイヴァ：イラーの学者階級出身。アナログシンセによる有機的サウンド。",
+          "サマ：スクニューネの官僚家庭出身。タイトなベースグルーヴ。"
+        ],
+        "evaluation": "ノンポリを自称するが、ラデン・タネイ第一教導職に招待されるほどの実力派。"
+      },
+      {
+        "name": "SZI",
+        "japanese_name": "サンバード・ザルツ=イーティルペ",
+        "members": [
+          {
+            "name": "ギオス・クロフィン",
+            "role": "リーダー/機材"
+          },
+          {
+            "name": "ダウ・ヌリュ",
+            "role": "ボーカル"
+          }
+        ],
+        "music_style": "150-160 BPMの高速ドライブ感、立体的なシンセ、ポジティブな歌詞。",
+        "profiles": [
+          "ギオス：音響設計出身の技術者。鉄道オタク（KV9形を愛好）で紳士的。",
+          "ダウ：ハスキーかつ芯の強い歌声。酒豪（安白ワイン愛好）で、アニメ『ツェーフテ』の声優も務める。"
+        ],
+        "fan_culture": "ファン（レイバー）は礼儀正しく、フェス後のゴミ拾いなどで知られる。"
+      },
+      {
+        "name": "チサ・テイル・コロン",
+        "romanization": "Chisa tál Kolon",
+        "career": "1991年に19歳でデビュー。アルモナ・ポップの構造を変えた天才。",
+        "innovations": [
+          "拍と発音を一致させる「字切り」歌唱法を確立。",
+          "作詞・作曲・編曲・プログラミングを完結させる完全セルフプロデュース。",
+          "ネット配信をいち早く実践し、既存のメディア産業構造を解体した。"
+        ],
+        "representative_songs": [
+          "『Autarmatic』(1991)",
+          "『Ar Wacar』(1999)"
+        ]
+      },
+      {
+        "name": "ハサン・マシア",
+        "romanization": "Xàsan Máshiá",
+        "is_from_karabei": true,
+        "profile": "1938年生まれ、セラン育ちのアルモナ系カラバル人。",
+        "activity": "1955年のアルモナ軍撤退と共に移住。祖国愛に満ちた活動で知られる。",
+        "representative_song": "『As ne Je ar Armona, mutt Ce』（あなたとはアルモナに行けない / 1956年）",
+        "album": "『Sèlàn』。ハヴァレイキへの別れや、剣のハリアを歌った名盤。"
+      },
+      {
+        "name": "アンプ・ロスタート",
+        "romanization": "Amp Lostart",
+        "profile": "1974年生まれ、イフラディバード出身。レーベル「レイン」所属。",
+        "music_style": "ヴァラリア語の歌唱、sus4やadd9を多用するアンニュイなサウンド。",
+        "representative_songs": [
+          {
+            "title": "『Gessú, Callú, Cifú』（食べる、ヤる、寝る / 1996年）",
+            "note": "デビュー曲。"
+          },
+          {
+            "title": "『Altidomú』（やり直し）",
+            "note": "SNS（Taswar）で兵士のリール動画に多用され爆発的人気に。"
+          },
+          {
+            "title": "『Sertraline』（セルトラリネ）",
+            "note": "アニメ『フリデイ』主題歌。戦火のトラウマを歌う。"
+          }
+        ]
+      },
+      {
+        "name": "ラグノーレン・ベイヘルク",
+        "romanization": "Ragnorlen Báxerk",
+        "members": [
+          {
+            "name": "クラ・モグロイ",
+            "role": "Vo./作詞"
+          },
+          {
+            "name": "ミュー・レスティエ",
+            "role": "Acc./作曲"
+          }
+        ],
+        "music_style": "喉笛（ホーミー）とアコーディオン、変拍子を織り交ぜた北方ロック。",
+        "representative_song": "『Wek Nygrán Husht』（ニグレン海岸まで / 1998年）",
+        "activity": "ドゥラム海文化親善大使も務める。ミューは料理番組『アラカルト』にも出演。"
+      },
+      {
+        "name": "VUISAL",
+        "japanese_name": "ヴューサル",
+        "producer": "ミナツ・アルスノーヴァ（レーベル「ArNoct」）",
+        "concept": "「大航海時代から現代へ遭難してきた冒険者たち」。",
+        "members": [
+          "Chiel(B)",
+          "Meu(Vo)",
+          "Nypro(G)",
+          "Loidø(G)",
+          "Rámar(Dr)",
+          "Vion(Key)"
+        ],
+        "feature": "ドリアン・スケールを用いた氷冱海文化を感じさせる楽曲。",
+        "contributors": "ミュー・レスティエやアンプ・ロスタートが作曲に関与。"
+      },
+      {
+        "name": "ジョーチョ・エムス・オプトワールト",
+        "profile": "1992年デビュー。ザバル・チャナター所属。",
+        "music_style": "透明感がありつつ芯の強い歌声。自らジャケ写等のイラストも執筆。",
+        "activities": [
+          "声優としても活躍（『グリデーオス』シリーズ等）"
+        ],
+        "program": "『歌の惑星』（クオ・フラメイ・エンターテイメント）",
+        "representative_songs": [
+          "『Pricestockar』（1992）",
+          "『Altar Depcar』（チサ・テイル・コロンとのコラボ曲）"
+        ]
+      },
+      {
+        "name": "Magasálïn",
+        "japanese_name": "マガサーリン",
+        "is_from_karabei": true,
+        "members": "アラン・ガガ（座長）を中心とする5人組。",
+        "music_style": "宗教音楽（ナシア）の多声合唱とフォーク・ロックの融合。",
+        "representative_songs": [
+          {
+            "title": "『Magasïbe』",
+            "year": 1986,
+            "note": "デビュー曲。"
+          },
+          {
+            "title": "『Qa'ar』",
+            "year": 1990,
+            "note": "労働歌として知られる。"
+          },
+          {
+            "title": "『Kàlavuá』",
+            "year": 1999,
+            "note": "カラベイのスポーツチーム「サル・アキア」の応援歌。"
+          }
+        ]
+      }
+    ]
+  }
+}

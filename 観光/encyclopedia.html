@@ -1,0 +1,237 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    if (location.hostname === 'soshuko.github.io') { gtag('config', 'G-NNPH1HB9GD'); }
+  </script>
+  <meta name="google-site-verification" content="02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="カラベイ教導国の政治・宗教・文化・地理を横断して閲覧できる百科ページ。" />
+  <meta name="keywords" content="架空国家,架空世界,観光案内,カラベイ教導国,百科,政治,宗教,文化,地理" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/encyclopedia.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/encyclopedia.html" />
+  <meta property="og:title" content="カラベイ百科" />
+  <meta property="og:description" content="政治・宗教・文化・地理のJSONを統合閲覧。" />
+  <meta property="og:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="カラベイ百科" />
+  <meta name="twitter:description" content="政治・宗教・文化・地理のJSONを統合閲覧。" />
+  <meta name="twitter:image" content="https://soshuko.github.io/RePubReader/%E8%A6%B3%E5%85%89/image/%E3%82%A2%E3%83%BC%E3%82%B1%E3%82%A4.jpg" />
+  <title>カラベイ百科 | カラベイ外務省観光局</title>
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <link rel="stylesheet" href="./tourism.css" />
+  <style>
+    .switcher { display:flex; gap:8px; flex-wrap:wrap; margin: 12px 0 16px; }
+    .switcher button { border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:999px; padding:6px 12px; cursor:pointer; }
+    .switcher button.active { background: var(--accent); color:#fff; border-color: var(--accent); }
+    .doc { white-space: pre-wrap; line-height: 1.8; }
+    .json-box { margin-top:14px; }
+    .json-box pre { white-space: pre-wrap; word-break: break-word; font-size: .83rem; background: var(--panel-alt); border:1px solid var(--line); border-radius:10px; padding:10px; }
+  </style>
+</head>
+<body>
+  <button class="btn side-open" id="openBtn" type="button">メニュー</button>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <img src="../その他/カラベイの国旗.png" alt="カラベイの国旗" />
+          <h1>カラベイ外務省観光局<small>Kàlavé MoFA</small></h1>
+        </div>
+        <button class="btn" id="closeBtn" type="button">折りたたみ</button>
+      </div>
+      <nav class="nav">
+        <a href="./visit.html">トップページ</a>
+        <a href="./politics.html">政治</a>
+        <a href="./religion.html">宗教</a>
+        <a href="./culture.html">文化</a>
+        <a href="./geo-history.html">地理と歴史</a>
+        <a class="active" href="./encyclopedia.html">百科</a>
+      </nav>
+      <div class="util">
+        <a href="../その他/visa-top.html">ファストビザ申請</a>
+        <a href="../地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a>
+        <a href="../index.html">トップへ戻る</a>
+      </div>
+    </aside>
+    <main class="main">
+      <header>
+        <div class="header-visual"><h2>カラベイ百科</h2></div>
+        <div class="header-sub">Kàlavé MoFA</div>
+      </header>
+      <div class="content">
+        <article class="section">
+          <h2>政治・宗教・文化・地理 統合アーカイブ</h2>
+          <p>各カテゴリの構造データ（JSON）を閲覧できます。</p>
+          <div class="switcher" id="switcher"></div>
+          <h3 id="docTitle">読み込み中...</h3>
+          <div id="docBody" class="doc"></div>
+          <div class="json-box">
+            <details>
+              <summary>JSONデータを表示</summary>
+              <pre id="jsonBody">読み込み中...</pre>
+            </details>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <script>
+  (function(){
+    const key='tourism_sidebar_hidden';
+    const b=document.body;
+    const closeBtn=document.getElementById('closeBtn');
+    const openBtn=document.getElementById('openBtn');
+    function apply(){
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.remove('sidebar-hidden'); }
+      else if(localStorage.getItem(key)==='1'){ b.classList.add('sidebar-hidden'); }
+      else { b.classList.remove('sidebar-hidden'); }
+    }
+    closeBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.remove('sidebar-open'); }
+      else { b.classList.add('sidebar-hidden'); localStorage.setItem(key,'1'); }
+    });
+    openBtn?.addEventListener('click',()=>{
+      const mobile = window.matchMedia('(max-width:960px)').matches;
+      if(mobile){ b.classList.add('sidebar-open'); }
+      else { b.classList.remove('sidebar-hidden'); localStorage.setItem(key,'0'); }
+    });
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+
+  const SOURCES = [
+    { id:'politics', label:'\u653f\u6cbb', json:'./\u653f\u6cbb.json', txt:'./\u653f\u6cbb.txt' },
+    { id:'religion', label:'\u5b97\u6559', json:'./\u5b97\u6559.json', txt:'./\u5b97\u6559txt.txt' },
+    { id:'culture', label:'\u6587\u5316', json:'./\u6587\u5316.json', txt:'./\u6587\u5316.txt' },
+    { id:'geography', label:'\u5730\u7406', json:'./\u5730\u7406.json', txt:'./\u5730\u7406.txt' }
+  ];
+
+  const switcher = document.getElementById('switcher');
+  const docTitle = document.getElementById('docTitle');
+  const docBody = document.getElementById('docBody');
+  const jsonBody = document.getElementById('jsonBody');
+
+  
+    const KEY_LABELS = {
+    page_title: 'ページタイトル',
+    source_title: '出典',
+    country: '国家',
+    religion: '宗教',
+    culture: '文化',
+    geography: '地理',
+    history: '歴史',
+    economy: '経済',
+    politics: '政治',
+    notes: '注記',
+    name: '名称',
+    title: '見出し',
+    description: '説明',
+    overview: '概要',
+    timeline: '年表',
+    regions: '地域',
+    sections: '節',
+    list: '一覧'
+  };
+
+  function esc(s){
+    return String(s ?? '').replace(/[&<>\"]/g, (ch)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[ch]));
+  }
+
+  function labelizeKey(key){
+    if (KEY_LABELS[key]) return KEY_LABELS[key];
+    const token = {
+      id:'ID', type:'種別', value:'値', values:'値一覧', role:'役割', roles:'役割一覧',
+      system:'制度', policy:'政策', law:'法', laws:'法体系', office:'官庁', offices:'官庁一覧',
+      stats:'統計', statistics:'統計', population:'人口', area:'面積', gdp:'GDP',
+      currency:'通貨', capital:'首都', border:'国境', borders:'国境一覧', region:'地域', regions:'地域一覧',
+      detail:'詳細', details:'詳細', note:'注記', notes:'注記', source:'出典',
+      transport:'交通', military:'軍事', trade:'交易', tax:'税制', taxes:'税制'
+    };
+    return String(key)
+      .split('_')
+      .map((t)=> token[t] || t)
+      .join(' / ');
+  }
+
+  async function loadOne(src){
+    const [jRes, tRes] = await Promise.all([
+      fetch(src.json, { cache:'no-store' }),
+      fetch(src.txt, { cache:'no-store' })
+    ]);
+    if(!jRes.ok) throw new Error(`${src.label} JSON: HTTP ${jRes.status}`);
+    const json = await jRes.json();
+
+    // TXTは内部参照のみ（本文表示には使わない）
+    let txtHeading = '';
+    if (tRes.ok) {
+      const txt = await tRes.text();
+      const first = (txt || '').split(/\r?\n/).find(x => x.trim()) || '';
+      const m = first.match(/【(.+?)】/);
+      txtHeading = (m ? m[1] : first).trim();
+    }
+    return { json, txtHeading };
+  }
+
+  function renderJsonAsHtml(value){
+    if (value == null) return '<p>(no data)</p>';
+    if (typeof value !== 'object') return `<p>${esc(value)}</p>`;
+
+    if (Array.isArray(value)) {
+      if (value.length === 0) return '<p>(empty array)</p>';
+      if (value.every(v => typeof v !== 'object' || v == null)) {
+        return '<ul>' + value.map(v => `<li>${esc(v)}</li>`).join('') + '</ul>';
+      }
+      return value.map(v => `<div class="indent-block">${renderJsonAsHtml(v)}</div>`).join('');
+    }
+
+    const keys = Object.keys(value);
+    if (keys.length === 0) return '<p>(empty object)</p>';
+
+    return keys.map(k => {
+      const label = labelizeKey(k);
+      return `<section><h4>${esc(label)}</h4>${renderJsonAsHtml(value[k])}</section>`;
+    }).join('');
+  }
+
+  async function showSource(src, btn){
+    [...switcher.querySelectorAll('button')].forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    docTitle.textContent = `${src.label}（JSON）`;
+    docBody.innerHTML = '<p>読み込み中...</p>';
+    jsonBody.textContent = '読み込み中...';
+    try {
+      const data = await loadOne(src);
+      const sourceTitle = (data.json && data.json.source_title && !/\.txt$/i.test(String(data.json.source_title))) ? data.json.source_title : '';
+      docTitle.textContent = data.txtHeading || data.json.page_title || sourceTitle || src.label;
+      docBody.innerHTML = renderJsonAsHtml(data.json);
+      jsonBody.textContent = JSON.stringify(data.json, null, 2);
+    } catch (e){
+      docBody.textContent = `読み込み失敗: ${e.message}`;
+      jsonBody.textContent = `読み込み失敗: ${e.message}`;
+    }
+  }
+
+  for (const src of SOURCES){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = src.label;
+    b.addEventListener('click', ()=>showSource(src, b));
+    switcher.appendChild(b);
+  }
+  if (switcher.firstElementChild) switcher.firstElementChild.click();
+  </script>
+</body>
+</html>
+
+
+
