@@ -1,0 +1,174 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    if (location.hostname === 'soshuko.github.io') {
+      gtag('config', 'G-NNPH1HB9GD');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="カラバル語の文法総覧。karabar_grammar.json をもとに、音韻・形態論・格変化・接辞・統語・語用まで体系的に閲覧できます。" />
+  <meta name="keywords" content="カラバル語,文法総覧,架空言語,karabar_grammar.json,カラベイ教導国" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/%E8%A8%80%E8%AA%9E/fullgrammar.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/%E8%A8%80%E8%AA%9E/fullgrammar.html" />
+  <meta property="og:title" content="カラバル語 文法総覧 | 『共和国物語』サーガ" />
+  <meta property="og:description" content="karabar_grammar.json ベースの文法総覧。" />
+  <meta property="og:image" content="../assets/images/アイコン.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="カラバル語 文法総覧 | 『共和国物語』サーガ" />
+  <meta name="twitter:description" content="karabar_grammar.json ベースの文法総覧。" />
+  <meta name="twitter:image" content="../assets/images/アイコン.png" />
+  <title>カラバル語 文法総覧 | 『共和国物語』サーガ</title>
+  <link rel="icon" type="image/png" href="../assets/images/アイコン.png" />
+  <style>
+    :root {
+      --bg: #fff9ef;
+      --card: #ffffff;
+      --ink: #2f2317;
+      --muted: #7d6550;
+      --line: #f0c58f;
+      --accent: #f09000;
+      --accent-deep: #ad5f00;
+      --accent-soft: #fff2df;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 110% -20%, #ffdca9 0, transparent 45%),
+        radial-gradient(circle at -10% 110%, #ffe8c8 0, transparent 40%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "BIZ UDPGothic", "Yu Gothic UI", sans-serif;
+    }
+    .layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 16px;
+      background: linear-gradient(180deg, #fff8eb, #ffe8cb);
+      position: sticky; top: 0; height: 100vh; overflow: auto;
+    }
+    main { min-width: 0; padding: 18px clamp(14px, 2.8vw, 34px) 34px; }
+    h1 { margin: 0 0 8px; font-size: 1.16rem; color: var(--accent-deep); letter-spacing: .04em; }
+    .meta { margin: 0 0 12px; color: var(--muted); font-size: .86rem; line-height: 1.6; }
+    nav a { display: inline-block; margin: 0 10px 8px 0; text-decoration: none; color: #8c4d00; border-bottom: 1px dotted currentColor; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: 0 10px 24px rgba(165, 90, 0, .08);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .card h2 {
+      margin: 0;
+      padding: 12px 14px;
+      font-size: 1.06rem;
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .card .body { padding: 12px 14px; line-height: 1.8; }
+    .kv { margin: 0; }
+    .kv dt { font-weight: 700; color: #8a4d00; margin-top: 8px; }
+    .kv dd { margin: 0 0 8px 0; }
+    .chip { display:inline-block; padding:2px 8px; border:1px solid var(--line); border-radius:999px; margin: 0 6px 6px 0; background:#fff4e3; }
+    .nest { border-left: 3px solid #ffd39d; padding-left: 10px; margin-left: 4px; }
+    details { margin: 8px 0; }
+    summary { cursor: pointer; color: #9a5600; }
+    .err { color:#8f1f1f; background:#ffe8e8; border:1px solid #ffcccc; padding:10px; border-radius:8px; }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h1>カラバル語 文法総覧</h1>
+      <p class="meta">`karabar_grammar.json` から自動生成。章ごとに折りたたみ閲覧できます。</p>
+      <nav>
+        <a href="../index.html">トップ・本編</a>
+        <a href="../characters.html">登場人物辞典</a>
+        <a href="../glossary.html">用語辞典</a>
+        <a href="../audiocommentary.html">オーディオコメンタリ</a>
+        <a href="../diary.html">執筆録</a>
+        <a href="../地理/geo.html">世界設定</a>
+        <a href="../観光/visit.html">外務省観光局</a>
+        <a href="./karabar-overview.html">概要・講義</a>
+        <a href="./langdictionary.html">カラバル語辞書</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="card">
+        <h2 id="title">読み込み中...</h2>
+        <div class="body">
+          <p id="sub" class="meta"></p>
+        </div>
+      </section>
+      <div id="content"></div>
+    </main>
+  </div>
+
+  <script>
+    function esc(s){
+      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function labelize(key){
+      return String(key).replace(/_/g, ' ');
+    }
+
+    function renderPrimitive(v){
+      return `<span>${esc(v)}</span>`;
+    }
+
+    function renderValue(v){
+      if (v == null) return '<span>—</span>';
+      if (typeof v !== 'object') return renderPrimitive(v);
+
+      if (Array.isArray(v)) {
+        if (v.length === 0) return '<span>—</span>';
+        if (v.every(x => typeof x !== 'object' || x == null)) {
+          return `<div>${v.map(x => `<span class="chip">${esc(x)}</span>`).join('')}</div>`;
+        }
+        return v.map((item, i) => `<details><summary>項目 ${i+1}</summary><div class="nest">${renderValue(item)}</div></details>`).join('');
+      }
+
+      const entries = Object.entries(v);
+      return `<dl class="kv">${entries.map(([k, val]) => `<dt>${esc(labelize(k))}</dt><dd class="nest">${renderValue(val)}</dd>`).join('')}</dl>`;
+    }
+
+    function card(title, value){
+      return `<section class="card"><h2>${esc(title)}</h2><div class="body">${renderValue(value)}</div></section>`;
+    }
+
+    async function init(){
+      const content = document.getElementById('content');
+      try {
+        const res = await fetch('./karabar_grammar.json', { cache: 'no-store' });
+        if(!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        document.getElementById('title').textContent = data.title_ja || 'カラバル語 文法総覧';
+        document.getElementById('sub').innerHTML = `${esc(data.title_en || '')}<br>出典: ${esc(data.source_file || '')}`;
+
+        const topKeys = Object.keys(data).filter(k => !['title_ja','title_en','source_file','structured_from'].includes(k));
+        content.innerHTML = topKeys.map(k => card(k, data[k])).join('');
+      } catch (e) {
+        content.innerHTML = `<section class="card"><h2>読み込みエラー</h2><div class="body"><p class="err">karabar_grammar.json の読み込みに失敗しました: ${esc(e.message)}</p></div></section>`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
