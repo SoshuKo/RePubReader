@@ -1,0 +1,1945 @@
+{
+  "title_ja": "カラバル語追加文法",
+  "title_en": "Additional Grammar of Karabar",
+  "source_file": "カラバル語追加文法.txt",
+  "structured_from": "user-provided text file",
+  "phonology": {
+    "consonants": {
+      "nasals": "m̥〈hm〉 m〈m〉 n̥〈hn〉 n〈n〉 ɲ〈ny〉 ŋ〈ng〉",
+      "stops": "p〈p〉 b〈b〉 t〈t〉 d〈d〉 k〈k〉 g〈g〉 q〈q〉 ɢ〈gg〉",
+      "affricates": "t͡s〈c〉 d͡z〈z〉 t͡ɕ〈ch〉 d͡ʑ〈j〉",
+      "fricatives": "ɸ〈f〉 β〈v〉 s〈s〉 ɕ〈sh〉 χ〈x〉 ʁ〈gh〉 h〈hh〉 ɦ〈h〉",
+      "trills": "r̥〈hr〉 r〈r〉",
+      "approximants": "j〈y〉 w〈w〉",
+      "lateral_approximants": "l̥〈hl〉 l〈l〉"
+    },
+    "vowels": {
+      "main": "ɨ〈ï〉 ə〈e〉 ɵ〈o〉 ä〈a〉",
+      "semivowels": "ɪ〈i〉 ʊ〈u〉"
+    },
+    "tones": [
+      {
+        "mark": "¯",
+        "pattern": "[44]"
+      },
+      {
+        "mark": "´",
+        "pattern": "[24]"
+      },
+      {
+        "mark": "none",
+        "pattern": "[22]"
+      },
+      {
+        "mark": "`",
+        "pattern": "[42]"
+      }
+    ],
+    "notes": [
+      {
+        "ja": "〈ï〉の声調変化→〈ī, í, ï, ì〉",
+        "en": "Tone alternation of 〈ï〉: 〈ī, í, ï, ì〉."
+      },
+      {
+        "ja": "ラテン文字表記の場合、文の頭は大文字にする。",
+        "en": "In Latin-script orthography, capitalize the first letter of a sentence."
+      }
+    ]
+  },
+  "morphology": {
+    "noun_classes": {
+      "masculine_vowels": [
+        "a",
+        "ia",
+        "ai",
+        "ua",
+        "au"
+      ],
+      "feminine_i_vowels": [
+        "e",
+        "ie",
+        "ei",
+        "ue",
+        "eu"
+      ],
+      "feminine_ii_vowels": [
+        "o",
+        "io",
+        "oi",
+        "uo",
+        "ou"
+      ],
+      "neuter_vowels": [
+        "ï",
+        "uï",
+        "ïu"
+      ]
+    },
+    "class_conversion_patterns": [
+      {
+        "pattern": "V",
+        "forms": [
+          "a",
+          "e",
+          "o",
+          "ï"
+        ]
+      },
+      {
+        "pattern": "iV",
+        "forms": [
+          "ia",
+          "ie",
+          "io",
+          "ī"
+        ],
+        "note": "In iV, 〈ï〉 becomes 〈ī〉."
+      },
+      {
+        "pattern": "Vi",
+        "forms": [
+          "ai",
+          "ei",
+          "oi",
+          "ī"
+        ],
+        "note": "In Vi, 〈ï〉 becomes 〈ī〉."
+      },
+      {
+        "pattern": "uV",
+        "forms": [
+          "ua",
+          "ue",
+          "uo",
+          "uï"
+        ]
+      },
+      {
+        "pattern": "Vu",
+        "forms": [
+          "au",
+          "eu",
+          "ou",
+          "ïu"
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "ja": "中性の動物を女性Ⅱにすると肉になる(e.g. tïrou 鶏肉)",
+        "en": "A neuter animal shifted to Feminine II denotes its meat (e.g. tïrou ‘chicken meat’)."
+      },
+      {
+        "ja": "属格のクラスの一致を除いて、代名詞を除いて基本的に名詞のクラスは固定",
+        "en": "Aside from genitive agreement, noun class is generally fixed except for pronouns."
+      },
+      {
+        "ja": "修飾語が被修飾語のクラスに合わせるのが原則。それができない場合は、後述の接続詞aを用いる。",
+        "en": "Modifiers normally agree with the head noun’s class; if that is not possible, use conjunction a described later."
+      }
+    ],
+    "cases": [
+      {
+        "case": "accusative",
+        "ja": "対格",
+        "meaning": "～を",
+        "singular": "(無標)",
+        "plural": "-ïn/-ny"
+      },
+      {
+        "case": "nominative",
+        "ja": "主格",
+        "meaning": "～が",
+        "singular": "-o/-ve",
+        "plural": "-uï/-vï"
+      },
+      {
+        "case": "dative",
+        "ja": "与格",
+        "meaning": "～に",
+        "singular": "-ér/-r",
+        "plural": "-ér/rï"
+      },
+      {
+        "case": "genitive",
+        "ja": "属格",
+        "meaning": "～の",
+        "singular": "-én/-n",
+        "plural": "ény/-nie"
+      },
+      {
+        "case": "instrumental",
+        "ja": "具格",
+        "meaning": "～で",
+        "singular": "-éi/-je",
+        "plural": "-í/-jì"
+      },
+      {
+        "case": "adverbial",
+        "ja": "副詞格",
+        "meaning": "～として",
+        "singular": "-ei/-ye",
+        "plural": "-ï/-yï"
+      }
+    ],
+    "name_rule": {
+      "ja": "カラバル語の姓・名は属格(-n)+対格",
+      "en": "Karabar surnames and given names use genitive (-n) + accusative."
+    },
+    "verb_root": {
+      "ja": "主語の性に合わせて変化させる。e.g. rálo chábe/rélo chébe/rólo chóbe/rílo chíbe（男/未婚女/既婚女/中性）",
+      "en": "Verb roots inflect according to the subject’s gender/class, e.g. rálo chábe / rélo chébe / rólo chóbe / rílo chíbe (male / unmarried female / married female / neuter)."
+    },
+    "verbal_morphology": {
+      "affirmative_vowel_final": "√-{re(causative)}-{yï(passive)}-[be]-[none]",
+      "affirmative_consonant_final": "√-ï-{re(causative)}-{yï(passive)}-[be]-[none]",
+      "negative_vowel_final": "qo-√-{re(causative)}-{yï(passive)}-[be]-[none]",
+      "negative_consonant_final": "√-o-{re(causative)}-{yï(passive)}-[be]-[none]",
+      "examples": [
+        {
+          "form": "chábe",
+          "analysis": "chá-(re-)(yï-)be(-Ø)"
+        },
+        {
+          "form": "tàrïbe",
+          "analysis": "tàr-ï-(re-)(yï-)be(-Ø)"
+        },
+        {
+          "form": "qo-chábe",
+          "analysis": "qo-chá-(re-)(yï-)be(-Ø)"
+        },
+        {
+          "form": "tàrobe",
+          "analysis": "tàr-o-(re-)(yï-)be(-Ø)"
+        }
+      ]
+    },
+    "aspect": {
+      "be": "unmarked",
+      "me": "progressive",
+      "je": "perfect",
+      "ne": "probable/inferential"
+    },
+    "tense_mood": {
+      "none": "non-past",
+      "pï": "past",
+      "yï": "desiderative"
+    },
+    "adverb_formation": {
+      "example": "duàr (√=duà; r is an adjectival suffix) → adverbial case duòye",
+      "note": "Adverbs need to be put in Feminine II."
+    },
+    "comparison": {
+      "notes": [
+        {
+          "ja": "形容詞は被修飾語とクラスを合わせる。",
+          "en": "Adjectives agree with the modified noun’s class."
+        },
+        {
+          "ja": "副詞は被修飾語(動詞)とクラスを合わせる必要はない。",
+          "en": "Adverbs do not need to agree with the modified verb."
+        },
+        {
+          "ja": "hlïもalïと同等の表現だが、神聖さを伴うため、日常会話では忌避される。",
+          "en": "hlï is comparable to alï but carries a sacred nuance and is avoided in ordinary conversation."
+        }
+      ],
+      "comparative": {
+        "adjective_prefix": "a-",
+        "adjective_example": {
+          "form": "ashàur",
+          "gloss": "bigger",
+          "sentence": "gïnīl ashòur dou",
+          "translation": "a fish bigger than a dog"
+        },
+        "adverb_prefix": "a-",
+        "adverb_example": {
+          "form": "aduòye",
+          "gloss": "longer",
+          "sentence": "tïrïu aduòye fiábe",
+          "translation": "to fly longer than a bird"
+        }
+      },
+      "superlative": {
+        "adjective_prefix": "alï-",
+        "adjective_example": {
+          "form": "alïshàur",
+          "gloss": "biggest",
+          "sentence": "fïlēqï alïshòur dou",
+          "translation": "the biggest fish in the lake"
+        },
+        "adverb_example": {
+          "form": "alïduòye",
+          "gloss": "longest / most long",
+          "sentence": "tïrïuzï alïduòye fiábe",
+          "translation": "to fly the longest among birds"
+        },
+        "markers": [
+          {
+            "marker": "-qï",
+            "ja": "〜の中で",
+            "en": "among / in"
+          },
+          {
+            "marker": "-zï",
+            "ja": "〜の上で、〜の中で（3つ以上のうち）",
+            "en": "on / among (three or more)"
+          }
+        ]
+      }
+    },
+    "adpositions": {
+      "setting_particles": [
+        {
+          "ja": "〜の中",
+          "form": "-qï",
+          "example": "vïqï",
+          "en": "inside / among"
+        },
+        {
+          "ja": "〜の上",
+          "form": "-zï",
+          "example": "vïzï",
+          "en": "on / above"
+        }
+      ],
+      "postpositions": [
+        {
+          "ja": "〜の前",
+          "form": "genitive + wïn",
+          "example": "vïn wïn",
+          "en": "in front of"
+        },
+        {
+          "ja": "〜の後",
+          "form": "genitive + gïn",
+          "example": "vïn gïn",
+          "en": "behind / after"
+        },
+        {
+          "ja": "〜から",
+          "form": "genitive + hrïse",
+          "example": "vïn hrïse",
+          "en": "from"
+        },
+        {
+          "ja": "〜のために",
+          "form": "genitive + pïn",
+          "example": "vïn pïn",
+          "en": "for"
+        },
+        {
+          "ja": "〜へ",
+          "form": "dative + hrïn",
+          "example": "vïr hrïn",
+          "en": "toward / to"
+        },
+        {
+          "ja": "〜まで",
+          "form": "dative + xïn",
+          "example": "vïr xïn",
+          "en": "until / as far as"
+        },
+        {
+          "ja": "〜によって",
+          "form": "instrumental + gïnïl",
+          "example": "vïje gïnïl",
+          "en": "by / through"
+        },
+        {
+          "ja": "〜と",
+          "form": "instrumental + tïl",
+          "example": "vïje tïl",
+          "en": "with"
+        },
+        {
+          "ja": "〜のように",
+          "form": "adverbial + hnïr",
+          "example": "vïye hnïr",
+          "en": "like / as"
+        }
+      ]
+    },
+    "arabic_transliteration": [
+      {
+        "latin": "zero consonant",
+        "arabic": "ا"
+      },
+      {
+        "latin": "m",
+        "arabic": "م"
+      },
+      {
+        "latin": "n",
+        "arabic": "ن"
+      },
+      {
+        "latin": "ny",
+        "arabic": "ڽ"
+      },
+      {
+        "latin": "ng",
+        "arabic": "ﯓ"
+      },
+      {
+        "latin": "p",
+        "arabic": "پ"
+      },
+      {
+        "latin": "b",
+        "arabic": "ب"
+      },
+      {
+        "latin": "t",
+        "arabic": "ت"
+      },
+      {
+        "latin": "d",
+        "arabic": "د"
+      },
+      {
+        "latin": "k",
+        "arabic": "ك"
+      },
+      {
+        "latin": "g",
+        "arabic": "گ"
+      },
+      {
+        "latin": "q",
+        "arabic": "ق"
+      },
+      {
+        "latin": "gg",
+        "arabic": "ڠ"
+      },
+      {
+        "latin": "f",
+        "arabic": "ف"
+      },
+      {
+        "latin": "v",
+        "arabic": "ڤ"
+      },
+      {
+        "latin": "s",
+        "arabic": "س"
+      },
+      {
+        "latin": "z",
+        "arabic": "ز"
+      },
+      {
+        "latin": "x",
+        "arabic": "خ"
+      },
+      {
+        "latin": "gh",
+        "arabic": "غ"
+      },
+      {
+        "latin": "hh",
+        "arabic": "ح"
+      },
+      {
+        "latin": "h",
+        "arabic": "ع"
+      },
+      {
+        "latin": "sh",
+        "arabic": "ش"
+      },
+      {
+        "latin": "c",
+        "arabic": "څ"
+      },
+      {
+        "latin": "ch",
+        "arabic": "چ"
+      },
+      {
+        "latin": "j",
+        "arabic": "ج"
+      },
+      {
+        "latin": "hm",
+        "arabic": "هم"
+      },
+      {
+        "latin": "hn",
+        "arabic": "هن"
+      },
+      {
+        "latin": "hr",
+        "arabic": "هر"
+      },
+      {
+        "latin": "r",
+        "arabic": "ر"
+      },
+      {
+        "latin": "hl",
+        "arabic": "هل"
+      },
+      {
+        "latin": "l",
+        "arabic": "ل"
+      },
+      {
+        "latin": "w",
+        "arabic": "و"
+      },
+      {
+        "latin": "y",
+        "arabic": "ي"
+      }
+    ]
+  },
+  "prefixes": [
+    {
+      "form": "a-",
+      "ja": "指小辞、代わり、後発、加算",
+      "en": null
+    },
+    {
+      "form": "à-",
+      "ja": "男性",
+      "en": null
+    },
+    {
+      "form": "abï-",
+      "ja": "離れる、離す",
+      "en": null
+    },
+    {
+      "form": "adï-",
+      "ja": "通って、完全に",
+      "en": null
+    },
+    {
+      "form": "alï-",
+      "ja": "最上の、唯一の",
+      "en": null
+    },
+    {
+      "form": "anï-",
+      "ja": "反対、逆、非",
+      "en": null
+    },
+    {
+      "form": "apï-",
+      "ja": "超えて、過剰な",
+      "en": null
+    },
+    {
+      "form": "au-",
+      "ja": "周りに",
+      "en": null
+    },
+    {
+      "form": "bï-",
+      "ja": "分離、半分の",
+      "en": null
+    },
+    {
+      "form": "chi-",
+      "ja": "前・元",
+      "en": null
+    },
+    {
+      "form": "cì-",
+      "ja": "開始、外に",
+      "en": null
+    },
+    {
+      "form": "cïlï-",
+      "ja": "中に、間に、互いに",
+      "en": null
+    },
+    {
+      "form": "dï-",
+      "ja": "倍の、乗の、動詞に間接目的語を設ける",
+      "en": null
+    },
+    {
+      "form": "dïlï-",
+      "ja": "両方",
+      "en": null
+    },
+    {
+      "form": "è-",
+      "ja": "女性",
+      "en": null
+    },
+    {
+      "form": "gï-",
+      "ja": "自動詞を他動詞にする",
+      "en": null
+    },
+    {
+      "form": "gí-",
+      "ja": "3つの、適度な",
+      "en": null
+    },
+    {
+      "form": "ggò-",
+      "ja": "偽の",
+      "en": null
+    },
+    {
+      "form": "ghï-",
+      "ja": "婚姻による関係、近い",
+      "en": null
+    },
+    {
+      "form": "ghí-",
+      "ja": "一つの",
+      "en": null
+    },
+    {
+      "form": "hhò-",
+      "ja": "義理の、遠い",
+      "en": null
+    },
+    {
+      "form": "hlï-",
+      "ja": "聖なる",
+      "en": null
+    },
+    {
+      "form": "hrï-",
+      "ja": "4つの、義務の、～すべき",
+      "en": null
+    },
+    {
+      "form": "jï-",
+      "ja": "主たる",
+      "en": null
+    },
+    {
+      "form": "jì-",
+      "ja": "2つの、足りない",
+      "en": null
+    },
+    {
+      "form": "kïlà-",
+      "ja": "南、新しい、外海の",
+      "en": null
+    },
+    {
+      "form": "kuo-",
+      "ja": "無、～のない",
+      "en": null
+    },
+    {
+      "form": "lï-",
+      "ja": "ずっと、年中",
+      "en": null
+    },
+    {
+      "form": "nia-",
+      "ja": "新しい、似た",
+      "en": null
+    },
+    {
+      "form": "nò-",
+      "ja": "北、未開の",
+      "en": null
+    },
+    {
+      "form": "po-",
+      "ja": "喪失・過去",
+      "en": null
+    },
+    {
+      "form": "qa-",
+      "ja": "強化、肯定、再帰",
+      "en": null
+    },
+    {
+      "form": "qo-",
+      "ja": "弱化、否定",
+      "en": null
+    },
+    {
+      "form": "rï-",
+      "ja": "再",
+      "en": null
+    },
+    {
+      "form": "rì-",
+      "ja": "事前に、戻す、プレ",
+      "en": null
+    },
+    {
+      "form": "sè-",
+      "ja": "微小・派生・状態の変化",
+      "en": null
+    },
+    {
+      "form": "shï-",
+      "ja": "西、進んだ",
+      "en": null
+    },
+    {
+      "form": "tà-性質",
+      "ja": null,
+      "en": null
+    },
+    {
+      "form": "tïlì-",
+      "ja": "沿って",
+      "en": null
+    },
+    {
+      "form": "xā-",
+      "ja": "東、広い",
+      "en": null
+    },
+    {
+      "form": "xï-",
+      "ja": "後",
+      "en": null
+    },
+    {
+      "form": "yï-",
+      "ja": "指大辞",
+      "en": null
+    },
+    {
+      "form": "zo-",
+      "ja": "卑小辞、間違った",
+      "en": null
+    }
+  ],
+  "suffixes": [
+    {
+      "form": "-bia（子音に付く場合は-ua）",
+      "ja": "動作",
+      "en": null
+    },
+    {
+      "form": "-biál（子音に付く場合は-uál）",
+      "ja": "～する人",
+      "en": null
+    },
+    {
+      "form": "-biar（子音に付く場合は-uar）",
+      "ja": "～する人（カジュアル、アルディア語由来）",
+      "en": null
+    },
+    {
+      "form": "-bV（子音に付く場合は-uV）",
+      "ja": "～可能な、できる",
+      "en": null
+    },
+    {
+      "form": "-cïl（子音に付く場合は-ïl）",
+      "ja": "～入れ",
+      "en": null
+    },
+    {
+      "form": "-jV（子音に付く場合は-Vi）",
+      "ja": "丁寧な動作",
+      "en": null
+    },
+    {
+      "form": "-m（子音に付く場合は-ém）",
+      "ja": "もの、道具、～のための",
+      "en": null
+    },
+    {
+      "form": "-tān（子音に付く場合は-ān）",
+      "ja": "場所",
+      "en": null
+    },
+    {
+      "form": "-tè（子音に付く場合は-ïtè）",
+      "ja": "～の多い",
+      "en": null
+    },
+    {
+      "form": "-te（子音に付く場合は-ïte）",
+      "ja": "傾向、～しがち",
+      "en": null
+    },
+    {
+      "form": "-tèr（子音に付く場合は-ïtèr）",
+      "ja": "～化、～になる",
+      "en": null
+    },
+    {
+      "form": "-ve（子音に付く場合は-ue）",
+      "ja": "～のもの、所有名詞",
+      "en": null
+    },
+    {
+      "form": "-yia（子音に付く場合は-ia）",
+      "ja": "抽象化、～的、～っぽい",
+      "en": null
+    },
+    {
+      "form": "-yiar（子音に付く場合は-iar）",
+      "ja": "～系の、～に関係する",
+      "en": null
+    },
+    {
+      "form": "-zál（子音に付く場合は-ïzál）",
+      "ja": "ひとの集まり、～派、～思想",
+      "en": null
+    },
+    {
+      "form": "-ze（子音に付く場合は-ïze）",
+      "ja": "集合",
+      "en": null
+    }
+  ],
+  "suffixes_removing_prev_e": [
+    {
+      "form": "-ál",
+      "ja": "人",
+      "en": null
+    },
+    {
+      "form": "-ar",
+      "ja": "人（カジュアル、アルディア語由来）",
+      "en": null
+    },
+    {
+      "form": "-ár",
+      "ja": "形容詞化",
+      "en": null
+    },
+    {
+      "form": "-íl",
+      "ja": "～のように",
+      "en": null
+    }
+  ],
+  "auxiliary_adverbs": [
+    {
+      "form": "wól",
+      "ja": "～するだろう、～だろう",
+      "en": null
+    },
+    {
+      "form": "kól",
+      "ja": "～しろ、～しなければならない、～でなければならない",
+      "en": null
+    },
+    {
+      "form": "pïlól",
+      "ja": "～して下さい、～であってほしい",
+      "en": null
+    },
+    {
+      "form": "mól",
+      "ja": "～するらしい、～かもしれない",
+      "en": null
+    },
+    {
+      "form": "cól",
+      "ja": "～できる、～でありうる",
+      "en": null
+    },
+    {
+      "form": "shól",
+      "ja": "～すべきだ、～のはずだ",
+      "en": null
+    }
+  ],
+  "numerals": {
+    "formation_over_11": {
+      "ja": "11以上の数：prī「～と」を用いて数詞を作る。e.g. fïrï-tïnïu prī fïrï-bìu prī fïrï「666」",
+      "en": "Numbers above 10 are built with prī ‘and’, e.g. fïrï-tïnïu prī fïrï-bìu prī fïrï ‘666’."
+    },
+    "ordinals": {
+      "ja": "序数詞：sì-をつける。e.g. sìfïrï「6番目」",
+      "en": "Ordinals take the prefix sì-, e.g. sìfïrï ‘6th’."
+    }
+  },
+  "additional_postpositions": [
+    {
+      "ja": "～の代わりに",
+      "form": "atïl",
+      "pattern": "与格＋ 後置詞〈atïl〉",
+      "en": null
+    },
+    {
+      "ja": "～に関わらず",
+      "form": "bïr",
+      "pattern": "具格＋ 後置詞〈bïr〉",
+      "en": null
+    },
+    {
+      "ja": "～について / ～に関して",
+      "form": "yïn",
+      "pattern": "属格 ＋ 後置詞〈yïn〉",
+      "en": null
+    },
+    {
+      "ja": "～を除いて / ～以外",
+      "form": "abïl",
+      "pattern": "具格＋ 後置詞〈abïl〉",
+      "en": null
+    },
+    {
+      "ja": "～の下に",
+      "form": "hnïn",
+      "pattern": "属格 ＋ 後置詞〈hnïn〉",
+      "en": null
+    },
+    {
+      "ja": "～の向こうに / ～を超えて",
+      "form": "apïl",
+      "pattern": "与格＋ 後置詞〈apïl〉",
+      "en": null
+    },
+    {
+      "ja": "～の間に（空間・時間の挟間）",
+      "form": "cïl",
+      "pattern": "与格＋ 後置詞〈cïl〉",
+      "en": null
+    }
+  ],
+  "additional_conjunctions": [
+    {
+      "ja": "一方で / 他方で",
+      "form": "ól",
+      "en": null
+    },
+    {
+      "ja": "例えば",
+      "form": "sóm",
+      "en": null
+    },
+    {
+      "ja": "さもなければ",
+      "form": "chóu",
+      "en": null
+    },
+    {
+      "ja": "その間",
+      "form": "col",
+      "en": null
+    }
+  ],
+  "conjunction_a": {
+    "purpose_ja": "クラス転換によって意味が変わってしまう単語や、人名、アルモナ借用語やその他の外来語のための救済処置。",
+    "purpose_en": "A rescue strategy for words whose meaning would change under class conversion, including personal names, Almona borrowings, and other loanwords.",
+    "effect_ja": "クラスの一致をせずに済む。",
+    "effect_en": "It allows speakers to avoid class agreement.",
+    "usage_ja": "属格+名詞で修飾に用いる。",
+    "usage_en": "It is used in modification with genitive + noun.",
+    "examples": [
+      {
+        "form": "buanyén chāi",
+        "ja": "早朝の緑。",
+        "en": "the green of early morning"
+      },
+      {
+        "form": "buenyén a chāi",
+        "ja": "朝焼けの緑。",
+        "en": "the green of dawn glow"
+      }
+    ]
+  },
+  "class_articles_vr": {
+    "summary_ja": "語根を変化させず、手前の「冠詞」で文法情報を示す。",
+    "summary_en": "Grammatical information is shown on a preceding article instead of changing the root.",
+    "purpose_ja": "クラス転換によって意味が変わってしまう単語や、人名、アルモナ借用語やその他の外来語のための救済処置。",
+    "purpose_en": "A rescue strategy for names and loanwords whose meanings would change under class conversion.",
+    "class_assignments": [
+      {
+        "article": "ïr",
+        "class": "neuter",
+        "ja": "基本形。無生物、国名、概念など",
+        "example": "ïr Wōl"
+      },
+      {
+        "article": "ar",
+        "class": "masculine",
+        "ja": "生物学的に男性の対象",
+        "example": "ar Leto"
+      },
+      {
+        "article": "er",
+        "class": "feminine I",
+        "ja": "未婚女性の対象",
+        "example": "er Mĭnace"
+      },
+      {
+        "article": "or",
+        "class": "feminine II",
+        "ja": "既婚女性、または特別な対象",
+        "example": null
+      }
+    ],
+    "case_rule": {
+      "ja": "格を示す接尾辞は、外来語本体ではなく冠詞に接続する。例：ïrér Wōl",
+      "en": "Case suffixes attach to the article, not to the loanword itself; e.g. ïrér Wōl."
+    },
+    "tone_distinctions": [
+      {
+        "form": "īr",
+        "example": null
+      },
+      {
+        "form": "ír",
+        "example": "ひざ"
+      },
+      {
+        "form": "ïr",
+        "example": "脂"
+      },
+      {
+        "form": "ìr",
+        "example": null
+      }
+    ]
+  },
+  "conversation_expressions": [
+    {
+      "japanese": "おはよう",
+      "karabar": "Alïcā",
+      "literal_ja": "至高の朝よ",
+      "english": null
+    },
+    {
+      "japanese": "こんにちは(世俗的)",
+      "karabar": "Alïdau",
+      "literal_ja": "至高の昼よ",
+      "english": null
+    },
+    {
+      "japanese": "こんにちは(宗教的)",
+      "karabar": "Kuējebeyï",
+      "literal_ja": "教導し給え",
+      "english": null
+    },
+    {
+      "japanese": "やあ",
+      "karabar": "Yā",
+      "literal_ja": null,
+      "english": null
+    },
+    {
+      "japanese": "こんばんは",
+      "karabar": "Alïziāy",
+      "literal_ja": "至高の夜よ",
+      "english": null
+    },
+    {
+      "japanese": "さようなら(男性へ)",
+      "karabar": "Kuo Chárïbeyï",
+      "literal_ja": "迷うなかれ",
+      "english": null
+    },
+    {
+      "japanese": "さようなら(未婚女性へ)",
+      "karabar": "Kuo Chérïbeyï",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "さようなら(既婚女性へ)",
+      "karabar": "Kuo Chórïbeyï",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "ありがとう",
+      "karabar": "Tïrèibeyï",
+      "literal_ja": "哀れみ給え",
+      "english": null
+    },
+    {
+      "japanese": "どういたしまして",
+      "karabar": "Tïrèibeyï Jòu",
+      "literal_ja": "同じく哀れみ給え",
+      "english": null
+    },
+    {
+      "japanese": "ごめんなさい(カジュアル)",
+      "karabar": "Yuār",
+      "literal_ja": "悪い",
+      "english": null
+    },
+    {
+      "japanese": "ごめんなさい(フォーマル・男性から)",
+      "karabar": "Cháje Yuōye",
+      "literal_ja": "悪く行った",
+      "english": null
+    },
+    {
+      "japanese": "ごめんなさい(フォーマル・未婚女性から)",
+      "karabar": "Chéje Yuōye",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "ごめんなさい(フォーマル・既婚女性から)",
+      "karabar": "Chóje Yuōye",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "いいよ(カジュアル)",
+      "karabar": "Lāir",
+      "literal_ja": "良い",
+      "english": null
+    },
+    {
+      "japanese": "いいですよ(フォーマル・男性へ)",
+      "karabar": "Cháje Lōiye",
+      "literal_ja": "よく行った",
+      "english": null
+    },
+    {
+      "japanese": "いいですよ(フォーマル・未婚女性へ)",
+      "karabar": "Chéje Lōiye",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "いいですよ(フォーマル・既婚女性へ)",
+      "karabar": "Chóje Lōiye",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "はじめまして(男性から)",
+      "karabar": "Záube Ghór",
+      "literal_ja": "はじめて見る",
+      "english": null
+    },
+    {
+      "japanese": "はじめまして(未婚女性から)",
+      "karabar": "Zéube Ghór",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "はじめまして(既婚女性から)",
+      "karabar": "Zóube Ghór",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "はい",
+      "karabar": "Qa",
+      "literal_ja": null,
+      "english": null
+    },
+    {
+      "japanese": "いいえ",
+      "karabar": "Kuo",
+      "literal_ja": null,
+      "english": null
+    },
+    {
+      "japanese": "お元気ですか(男性へ)",
+      "karabar": "Miame Sōr?",
+      "literal_ja": "健やかか",
+      "english": null
+    },
+    {
+      "japanese": "お元気ですか(未婚女性へ)",
+      "karabar": "Mieme Sōr?",
+      "literal_ja": "〃",
+      "english": null
+    },
+    {
+      "japanese": "お元気ですか(既婚女性へ)",
+      "karabar": "Miome Sōr?",
+      "literal_ja": "〃",
+      "english": null
+    }
+  ],
+  "loanword_rules": {
+    "vowel_transcription": {
+      "rule_title_ja": "母音の転写と新文字〈ŭ〉の導入",
+      "rule_title_en": "Vowel transcription and the introduction of the new letter 〈ŭ〉",
+      "summary_ja": "外来語の「ウ段 (u)」と「イ段 (i)」を処理するための特別ルール。",
+      "summary_en": "Special rules for handling foreign-language /u/ and /i/ vowels."
+    },
+    "new_letters": [
+      {
+        "letter": "ŭ",
+        "target": "/u/ in loanwords",
+        "value": "[o]",
+        "purpose_ja": "既存の〈o〉との文法的混同を避ける表記上の区別",
+        "purpose_en": "An orthographic distinction to avoid confusion with grammatical 〈o〉."
+      },
+      {
+        "letter": "ĭ",
+        "target": "/i/ in loanwords",
+        "value": "[ɨ]",
+        "purpose_ja": "既存の〈ï〉との文法的混同を避ける表記上の区別",
+        "purpose_en": "An orthographic distinction to avoid confusion with grammatical 〈ï〉."
+      }
+    ],
+    "phonological_rules": [
+      {
+        "name": "子音連続の回避",
+        "name_en": "Epenthesis / avoidance of consonant clusters",
+        "description_ja": "子音が連続する場合、間に中性母音 ï を挿入する。",
+        "example": "Sp... → Sïp..."
+      },
+      {
+        "name": "語末の阻害音の開放",
+        "name_en": "Paragoge / release of final obstruents",
+        "description_ja": "単語が阻害音で終わる場合、語末に e を付加して母音終わりにする。",
+        "example": "...t → ...te"
+      },
+      {
+        "name": "共鳴音の許容",
+        "name_en": "Allowance of sonorant finals",
+        "description_ja": "n, m, r, l で終わる場合は母音を追加しない。",
+        "example": null
+      }
+    ]
+  },
+  "exonyms": [
+    {
+      "romanized": "Kïnïné",
+      "japanese": "キニネイ(スクニューネ)",
+      "english": null
+    },
+    {
+      "romanized": "Dáhlé",
+      "japanese": "ダフレイ(デルタイ;「ダハル」)",
+      "english": null
+    },
+    {
+      "romanized": "Xādíhlé",
+      "japanese": "ハダフレイ(ダハル;「東ダハル」)",
+      "english": null
+    },
+    {
+      "romanized": "Válavé",
+      "japanese": "ヴァラベイ(ガーディラーン;「バフラディア人のもの」)",
+      "english": null
+    },
+    {
+      "romanized": "Shïválavé",
+      "japanese": "シヴァラベイ(エルテーナ;「西バフラディア人のもの」)",
+      "english": null
+    },
+    {
+      "romanized": "Nòválavé",
+      "japanese": "ノヴァラベイ(ヴァラリア;「北バフラディア人のもの」)",
+      "english": null
+    },
+    {
+      "romanized": "Tīniál",
+      "japanese": "ティニャル(ジャハダーン;「ティニャール人」の集合名詞)",
+      "english": null
+    },
+    {
+      "romanized": "Duïlavé",
+      "japanese": "デュラベイ(ドゥール;「ドゥール人のもの」)",
+      "english": null
+    },
+    {
+      "romanized": "Guïlavé",
+      "japanese": "ギュラベイ(ドゥルグァタン;「ドゥルグ人のもの」)",
+      "english": null
+    }
+  ],
+  "proper_nouns": [
+    {
+      "japanese": "アーケイ",
+      "romanized": "Hāké",
+      "ipa": "ɦaːkeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "アーシャ・プリティヴィティ",
+      "romanized": "Āsha Pïrĭtĭvĭtĭ（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "アネン・ア・セケウ",
+      "romanized": "Hánén A Sekeu",
+      "ipa": "ɦáneɪn a sekeʊ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "アネン・キラネイ",
+      "romanized": "Hánén Kïlàné",
+      "ipa": "ɦáneɪn kɨlaneɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "アパラ",
+      "romanized": "Apàla",
+      "ipa": "apʼala",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "アハレン・ハサネイ",
+      "romanized": "Ahhárén Xàsané",
+      "ipa": "aháreɪn χasaneɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "アリー・ナミレ",
+      "romanized": "Alī Namĭle（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "アルモナ",
+      "romanized": "Ar-Mona",
+      "ipa": null,
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "イマデン・リア",
+      "romanized": "Yïmádén Rià",
+      "ipa": "jɨmádeɪn ria",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "イラー",
+      "romanized": "Yìlà",
+      "ipa": "jɨla",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ヴィシャーン",
+      "romanized": "Vïshān",
+      "ipa": "βɨɕaːn",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "エシェ",
+      "romanized": "Èshe",
+      "ipa": "eɕe",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "エメラン",
+      "romanized": "Èmerán",
+      "ipa": "emerán",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "エン・ネキネイ",
+      "romanized": "Èn Nèkïné",
+      "ipa": "en nekɨneɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "カイネン・イライ",
+      "romanized": "Káinén Yïlài",
+      "ipa": "káineɪn jɨlaɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "カイン・カナ",
+      "romanized": "Káin Kàna",
+      "ipa": "káin kʼana",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "カシャティレイキ",
+      "romanized": "Káshatìléqï",
+      "ipa": "káɕatʼɨleɪqɨ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ガティナ",
+      "romanized": "Gàtïna",
+      "ipa": "gatɨna",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ガナリ",
+      "romanized": "Ganalĭ（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "カラバァ",
+      "romanized": "Kàlava",
+      "ipa": "kʼalaβa",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "カラバァタン",
+      "romanized": "Kàlavatan",
+      "ipa": "kʼalaβatan",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "カラベイ",
+      "romanized": "Kàlavé",
+      "ipa": "kʼalaβeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "キナイニ",
+      "romanized": "Kïnàiny",
+      "ipa": "kɨnaɪɲ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "キノノ",
+      "romanized": "Kïnónó",
+      "ipa": "kɨnónó",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ギラタン",
+      "romanized": "Gīlàtān",
+      "ipa": "gɨːlatʼaːn",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "クオ・フラメイ",
+      "romanized": "Kuo Hramé",
+      "ipa": "kʊo r̥ameɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "クラ・モグロイ",
+      "romanized": "Kŭra Mogïroi（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "コト・テイル・アイテール",
+      "romanized": "Koto Tál Aitēl（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "サーナ",
+      "romanized": "Sāna",
+      "ipa": "saːna",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "サウシェイ",
+      "romanized": "Sàushé",
+      "ipa": "saʊɕeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "サウソス",
+      "romanized": "Sósos（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "サザニ",
+      "romanized": "Sazány",
+      "ipa": "sad͡záɲ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "サテラ・ロン",
+      "romanized": "Satela Long（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "サヤー",
+      "romanized": "Sayā",
+      "ipa": "sajaː",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シナン・アルスノーヴァ",
+      "romanized": "Shĭnan  Arïsïnōva（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "シャウン・ア・セイネ",
+      "romanized": "Shàun A Sèine",
+      "ipa": "ɕaʊn a seɪne",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シャウン・アウセイ",
+      "romanized": "Shàun Àusé",
+      "ipa": "ɕaʊn aʊseɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シャウン・アカウ",
+      "romanized": "Shàun Akau",
+      "ipa": "ɕaʊn akaʊ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シャウン・アヤ",
+      "romanized": "Shàun Àya",
+      "ipa": "ɕaʊn aja",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シャウン・パラジェイ",
+      "romanized": "Shàun Pàlajé",
+      "ipa": "ɕaʊn pʼalad͡ʑeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シャウン・パレイ",
+      "romanized": "Shàun Pàlé",
+      "ipa": "ɕaʊn pʼaleɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シャウン・レイ",
+      "romanized": "Shàun Lèi",
+      "ipa": "ɕaʊn leɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "シユウ・レイ",
+      "romanized": "Shĭyŭ Lei（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "ジリウペル",
+      "romanized": "Jïrīupēr",
+      "ipa": "d͡ʑɨrɨːupʼeːr",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ズィリジン",
+      "romanized": "Zïlíjïn",
+      "ipa": "d͡zɨlɨd͡ʑɨn",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "セラン",
+      "romanized": "Sèlàn",
+      "ipa": "selan",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ゾパイタン",
+      "romanized": "Zopāitān",
+      "ipa": "d͡zopʼaːɪtʼaːn",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ゾルアー",
+      "romanized": "Zoruā",
+      "ipa": "d͡zoruaː",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ダーツ・スリンガー",
+      "romanized": "Dāce Sïlĭngar（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "タゲン・キラウ",
+      "romanized": "Tággén Kïlàu",
+      "ipa": "táɢeɪn kɨlaʊ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ダヒア・オプファー",
+      "romanized": "Daxia Opïfar（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "ダフレイ",
+      "romanized": "Dāhlé",
+      "ipa": "daːl̥eɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "チサ・テイル・コロン",
+      "romanized": "Chisa Tál Kolon（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "ティナギア",
+      "romanized": "Tïnagiá",
+      "ipa": "tɨnagiá",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ティナベイ",
+      "romanized": "Tïnàbé",
+      "ipa": "tɨnabeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ティナレイキ",
+      "romanized": "Tïnāléqï",
+      "ipa": "tɨnaːleɪqɨ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ティラウン・パテイ",
+      "romanized": "Tïràun Paté",
+      "ipa": "tɨraʊn pateɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ティラウン・ワライ",
+      "romanized": "Tïràun Wàrai",
+      "ipa": "tɨraʊn waraɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ティリウ",
+      "romanized": "Tïlìu",
+      "ipa": "tɨlɨu",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "デューレイ",
+      "romanized": "Duïlé",
+      "ipa": "dʏleɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "デュラベイ",
+      "romanized": "Duïlavé",
+      "ipa": "dʏlaβeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ナラター",
+      "romanized": "Narátā",
+      "ipa": "narátʼaː",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ナレン・イファタ",
+      "romanized": "Nálén Yïfàta",
+      "ipa": "náleɪn jɨɸata",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ナレン・サレイ",
+      "romanized": "Nálén Sālé",
+      "ipa": null,
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ニア・キナイニ",
+      "romanized": "Nia Kïnàiny",
+      "ipa": "nɪa kɨnaɪɲ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ハーロピノン",
+      "romanized": "Har-Lopĭnong（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "ハヴァラベイ",
+      "romanized": "Xāválavé",
+      "ipa": "χaːβálaβeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ハヴァレイキ",
+      "romanized": "Xāváléqï",
+      "ipa": "χaːβáleɪqɨ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ハヴァレイズィ",
+      "romanized": "Xāválézï",
+      "ipa": "χaːβáleɪd͡zɨ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "パジェン",
+      "romanized": "Pājén",
+      "ipa": null,
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ハタイ",
+      "romanized": "Hhàtai",
+      "ipa": "hataɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ハル・ペロート",
+      "romanized": "Hal Perōte（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "ビライタン",
+      "romanized": "Bïlàitān",
+      "ipa": "bɨlaɪtʼaːn",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ビライン・アカネイ",
+      "romanized": "Bïláin Àkané",
+      "ipa": "bɨláin akaneɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ビライン・アリカウ",
+      "romanized": "Bïláin Alïkau",
+      "ipa": "bɨláin alɨkaʊ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ビライン・ネイ",
+      "romanized": "Bïláin Nèi",
+      "ipa": "bɨláin neɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "フリカウ",
+      "romanized": "Hlïkau",
+      "ipa": "l̥ɨkaʊ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "フリヤー",
+      "romanized": "Hlïyā",
+      "ipa": "l̥ɨjaː",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "フリリジン",
+      "romanized": "Hlïríjïn",
+      "ipa": "l̥ɨrɨd͡ʑɨn",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ヘリエン",
+      "romanized": "Helien（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "マヴワ",
+      "romanized": "Màvua",
+      "ipa": "maβʊa",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "マジェン・カレイ",
+      "romanized": "Majén Qàlé",
+      "ipa": "mad͡ʑeɪn qʼaleɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ミセニティウ",
+      "romanized": "Mïsénïtíu",
+      "ipa": "mɨseɪnɨtɨu",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ミナツ・アルスノーヴァ",
+      "romanized": "Mĭnace Arïsïnōva（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "japanese": "モン・ハルツ",
+      "romanized": "Mon Harïce（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    },
+    {
+      "raw": "ヤナン・カウ（アサセン・パラウ） yanán kau (asásén pàlau) [janán kaʊ (asáseɪn pʼalaʊ)]"
+    },
+    {
+      "japanese": "ライテイキ",
+      "romanized": "Làitéqï",
+      "ipa": "laɪteɪqɨ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラカン・カウ",
+      "romanized": "Lakán Kau",
+      "ipa": "lakán kaʊ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラカン・サイ",
+      "romanized": "Lakán Sài",
+      "ipa": "lakán saɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラカン・ファタ",
+      "romanized": "Lakán Fàta",
+      "ipa": null,
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラカン・ライ",
+      "romanized": "Lakán Lài",
+      "ipa": "lakán laɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラデイキ",
+      "romanized": "Ládéqï",
+      "ipa": "ládeɪqɨ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラデン・ア・モノ",
+      "romanized": "Ládén A Mono",
+      "ipa": null,
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラデン・キナベイ",
+      "romanized": "Ládén Kïnàbé",
+      "ipa": "ládeɪn kɨnabeɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラデン・タネイ",
+      "romanized": "Ládén Tané",
+      "ipa": "ládeɪn taneɪ",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "ラデン・ラー",
+      "romanized": "Ládén Lā",
+      "ipa": "ládeɪn laː",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "リウニシェベン",
+      "romanized": "Líunïshèven",
+      "ipa": "lɨunɨɕeβen",
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "リフレーズ",
+      "romanized": "Rĭfïrēze",
+      "ipa": null,
+      "notes": null,
+      "english": null
+    },
+    {
+      "japanese": "レト・ラウワ",
+      "romanized": "Leto Lauwa（外来語）",
+      "ipa": null,
+      "notes": "外来語",
+      "english": null
+    }
+  ],
+  "notes": [
+    "Romanized proper nouns were normalized so that the initial letter is capitalized.",
+    "English glosses are approximate where the source gives only a literal explanation."
+  ]
+}
