@@ -84,6 +84,7 @@
       gap: 12px;
     }
     .card {
+      scroll-margin-top: 96px;
       border: 1px solid var(--line);
       border-radius: 14px;
       overflow: hidden;
@@ -216,7 +217,7 @@
     function card(it, mode) {
       const nameKey = mode === "knife" ? "ナイフ名（見出し）" : "構え名（見出し）";
       return `
-        <article class="card" id="${esc(it.id || it[nameKey] || "")}">
+        <article class="card" id="${esc(it.id || it[nameKey] || "")}" data-name="${esc(it[nameKey] || "")}">
           <div class="head ${mode}">
             <h3 class="title">${esc(it[nameKey] || "（未入力）")}</h3>
             <p class="catch">${esc(it["キャッチフレーズ"] || "（未入力）")}</p>
@@ -302,6 +303,7 @@
   </script>
 </body>
 </html>
+
 
 
 

@@ -64,6 +64,19 @@
       grid-template-columns: 320px 1fr;
       min-height: 100vh;
     }
+    .sidebar-toggle {
+      display: none;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      color: var(--ink);
+      padding: 10px 12px;
+      font: inherit;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .sidebar-content { display: block; }
     aside {
       border-right: 1px solid var(--line);
       background: linear-gradient(180deg, var(--panel), var(--bg));
@@ -288,6 +301,15 @@
       cursor: pointer;
     }
     .share-link:hover { background: #f7f1e7; }
+    .inline-open-link {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      text-decoration: none;
+      color: var(--accent-2);
+    }
     .share-modal {
       position: fixed;
       inset: 0;
@@ -423,9 +445,32 @@
     html[data-theme="dark"] .site-footer a {
       color: #9fe8ff;
     }
+    html[data-theme="dark"] .episode-btn.active {
+      background: #3a2b2b;
+      border-color: #e08b8b;
+    }
+    html[data-theme="dark"] input,
+    html[data-theme="dark"] select,
+    html[data-theme="dark"] .theme-toggle,
+    html[data-theme="dark"] .back-btn,
+    html[data-theme="dark"] .share-ep-btn,
+    html[data-theme="dark"] .share-actions button,
+    html[data-theme="dark"] .inline-open-link {
+      background: #2a241d;
+      color: #9fe8ff;
+      border-color: var(--line);
+    }
     @media (max-width: 880px) {
       .layout { grid-template-columns: 1fr; }
-      aside { border-right: none; border-bottom: 1px solid var(--line); max-height: 42vh; }
+      aside {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 10px;
+        max-height: none;
+      }
+      .sidebar-toggle { display: block; }
+      .sidebar-content { display: none; }
+      #sidebar.open .sidebar-content { display: block; }
       .intro-media-wrap { grid-template-columns: 1fr; }
       .intro-media { width: 100%; }
     }
@@ -472,7 +517,9 @@
 </head>
 <body>
   <div class="layout">
-    <aside>
+    <aside id="sidebar">
+      <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-expanded="false" aria-controls="sidebarContent">メニューを開く</button>
+      <div id="sidebarContent" class="sidebar-content">
       <h1 id="siteTitle">『共和国物語』サーガ</h1>
       <div id="siteMeta" class="meta">物語本編ビューア</div>
       <nav>
@@ -522,6 +569,7 @@
       </div>
       <hr />
       <div id="tree" class="tree" aria-label="目次"></div>
+      </div>
     </aside>
     <main>
       <section id="topPage" class="top-page">
@@ -581,7 +629,7 @@
           <h3>オーディオコメンタリ</h3>
           <p class="catch">登場人物たちの感想戦ラジオ</p>
           <p>各エピソードを、作中の登場人物たちが「感想戦」として語る特別企画です。スクロールにあわせて話者が切り替わるビジュアル演出付きで閲覧できます。</p>
-          <p style="margin-top:10px;"><a href="./audiocommentary.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">オーディオコメンタリを開く</a></p>
+          <p style="margin-top:10px;"><a href="./audiocommentary.html" class="inline-open-link">オーディオコメンタリを開く</a></p>
         </article>
       </section>
       <section id="topPageEn" class="top-page" style="display:none;">
@@ -640,7 +688,7 @@ A stylish underworld road movie with lethal charm.</p>
           <h3>English Pages</h3>
           <p class="catch">Available with Japanese fallback</p>
           <p>Character Dictionary / Glossary / Audio Commentary / Writing Log open the Japanese pages for now so you can keep reading without dead ends.</p>
-          <p style="margin-top:10px;"><a href="./characters.html" style="display:inline-block;padding:8px 12px;border:1px solid #d4c9b8;border-radius:8px;background:#fff;text-decoration:none;color:#1f5c69;">Open Character Dictionary (JP)</a></p>
+          <p style="margin-top:10px;"><a href="./characters.html" class="inline-open-link">Open Character Dictionary (JP)</a></p>
         </article>
       </section>
       <section id="topPageKa" class="top-page" style="display:none;">
@@ -732,6 +780,9 @@ A stylish underworld road movie with lethal charm.</p>
     const navGloss = document.getElementById("navGloss");
     const navAudio = document.getElementById("navAudio");
     const navDiary = document.getElementById("navDiary");
+    const sidebarEl = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const sidebarContentEl = document.getElementById("sidebarContent");
 
     const shareModal = document.getElementById("shareModal");
     const shareTitle = document.getElementById("shareTitle");
@@ -896,6 +947,33 @@ A stylish underworld road movie with lethal charm.</p>
       showTop(incomingHash === "" || incomingHash === "top");
     }
 
+
+    function initSidebarToggle() {
+      if (!sidebarEl || !sidebarToggle || !sidebarContentEl) return;
+
+      const mq = window.matchMedia("(max-width: 880px)");
+      const sync = () => {
+        if (mq.matches) {
+          sidebarEl.classList.remove("open");
+          sidebarToggle.textContent = "メニューを開く";
+          sidebarToggle.setAttribute("aria-expanded", "false");
+        } else {
+          sidebarEl.classList.add("open");
+          sidebarToggle.textContent = "メニュー";
+          sidebarToggle.setAttribute("aria-expanded", "true");
+        }
+      };
+
+      sync();
+      if (mq.addEventListener) mq.addEventListener("change", sync);
+      else if (mq.addListener) mq.addListener(sync);
+
+      sidebarToggle.addEventListener("click", () => {
+        const open = sidebarEl.classList.toggle("open");
+        sidebarToggle.textContent = open ? "メニューを閉じる" : "メニューを開く";
+        sidebarToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
     function initLanguage() {
       const qLang = new URLSearchParams(location.search).get("lang");
       let lang = qLang || localStorage.getItem(STORAGE_LANG) || "ja";
@@ -1149,12 +1227,14 @@ A stylish underworld road movie with lethal charm.</p>
 
     loadReadSet();
     initTheme();
+    initSidebarToggle();
     initLanguage();
     mountGiscus();
     boot();
   </script>
 </body>
 </html>
+
 
 
 
