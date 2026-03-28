@@ -75,6 +75,7 @@
       gap: 12px;
     }
     .card {
+      scroll-margin-top: 120px;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--card);
@@ -204,7 +205,7 @@
         }).join("");
 
         return `
-          <section class="card" id="${esc(row.ref.slug)}">
+          <section class="card" id="${esc(row.ref.slug)}" data-name="${esc(title)}" data-canonical="${esc(row.ref.canonical || "")}">
             <div class="head">
               <h2 class="name">${esc(title)}</h2>
               <p class="copy">${esc(catchCopy)}</p>
@@ -230,8 +231,22 @@
       const raw = (location.hash || "").replace(/^#/, "");
       if (!raw) return;
       const id = decodeURIComponent(raw);
-      const target = document.getElementById(id);
-      if (target) target.scrollIntoView({ block: "start" });
+      const needle = normalizeKey(id);
+
+      let target = document.getElementById(id);
+      if (!target) {
+        target = [...document.querySelectorAll(".card")].find((el) => {
+          const idKey = normalizeKey(el.id);
+          const nameKey = normalizeKey(el.dataset.name || "");
+          const canonicalKey = normalizeKey(el.dataset.canonical || "");
+          return idKey === needle || nameKey === needle || canonicalKey === needle;
+        }) || null;
+      }
+
+      if (target) {
+        target.scrollIntoView({ block: "start" });
+        setTimeout(() => window.scrollBy(0, -14), 0);
+      }
     }
 
     async function boot() {
@@ -287,6 +302,7 @@
   </script>
 </body>
 </html>
+
 
 
 
