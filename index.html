@@ -242,6 +242,12 @@
       letter-spacing: .04em;
     }
     .intro p { margin: 0; white-space: pre-line; }
+    .intro a {
+      color: var(--accent-2);
+      text-decoration: underline;
+      text-underline-offset: .18em;
+    }
+    .intro a:visited { color: var(--accent-2); }
     .intro-media-wrap {
       display: grid;
       grid-template-columns: minmax(220px, 360px) 1fr;
@@ -410,6 +416,7 @@
       color: #b9f2ff;
     }
     html[data-theme="dark"] .article a,
+    html[data-theme="dark"] .intro a,
     html[data-theme="dark"] .char-ref,
     html[data-theme="dark"] .term-ref,
     html[data-theme="dark"] nav a,
@@ -1148,6 +1155,7 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
 
 
 
