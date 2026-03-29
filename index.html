@@ -1032,6 +1032,39 @@ A stylish underworld road movie with lethal charm.</p>
       continueReadBtn.style.display = y > 40 ? "inline-block" : "none";
     }
 
+    function getScrollContainer() {
+      const docScroller = document.scrollingElement || document.documentElement;
+      const mainScrollable = !!(mainEl && (mainEl.scrollHeight - mainEl.clientHeight > 8));
+      return mainScrollable ? mainEl : docScroller;
+    }
+
+    function getScrollMetrics() {
+      const scroller = getScrollContainer();
+      const top = Math.max(0, Math.floor(scroller.scrollTop || window.scrollY || 0));
+      const clientHeight = scroller.clientHeight || window.innerHeight || 0;
+      const scrollHeight = scroller.scrollHeight || document.documentElement.scrollHeight || 0;
+      return { top, clientHeight, scrollHeight };
+    }
+
+    function scrollEpisodeTop() {
+      const scroller = getScrollContainer();
+      if (scroller === mainEl) {
+        mainEl.scrollTo({ top: 0, behavior: "auto" });
+      }
+      window.scrollTo({ top: 0, behavior: "auto" });
+      if (mainEl && scroller !== mainEl) mainEl.scrollTop = 0;
+    }
+
+    function scrollEpisodeBookmark(y, behavior = "smooth") {
+      const top = Math.max(0, Number(y) || 0);
+      const scroller = getScrollContainer();
+      if (scroller === mainEl) {
+        mainEl.scrollTo({ top, behavior });
+      } else {
+        window.scrollTo({ top, behavior });
+      }
+    }
+
     function openReadPrompt() {
       if (!readPromptModal || state.readPromptShownFor === state.currentKey) return;
       state.readPromptShownFor = state.currentKey;
@@ -1234,10 +1267,20 @@ A stylish underworld road movie with lethal charm.</p>
       }
     }
 
-    function resolveRefSlug(kind, name) {
-      const ex = normalizeRefKey(name);
-      const lo = normalizeRefLoose(name);
-      return state.refExact[kind].get(ex) || state.refLoose[kind].get(lo) || null;
+    function resolveRefSlug(kind, ...names) {
+      for (const name of names) {
+        const ex = normalizeRefKey(name);
+        if (!ex) continue;
+        const exact = state.refExact[kind].get(ex);
+        if (exact) return exact;
+      }
+      for (const name of names) {
+        const lo = normalizeRefLoose(name);
+        if (!lo) continue;
+        const loose = state.refLoose[kind].get(lo);
+        if (loose) return loose;
+      }
+      return null;
     }
 
     function rewriteInlineRefs(container) {
@@ -1248,8 +1291,15 @@ A stylish underworld road movie with lethal charm.</p>
         const kind = type === "character" ? "character" : (type === "glossary" ? "glossary" : null);
         if (!kind) return;
 
-        const canonical = a.dataset.canonical || a.textContent || "";
-        const slug = resolveRefSlug(kind, canonical);
+        const visibleText = (a.textContent || "").trim();
+        const canonical = (a.dataset.canonical || "").trim();
+        const hrefHash = (() => {
+          const href = a.getAttribute("href") || "";
+          const i = href.indexOf("#");
+          return i >= 0 ? decodeURIComponent(href.slice(i + 1)) : "";
+        })();
+
+        const slug = resolveRefSlug(kind, visibleText, canonical, hrefHash);
         if (!slug) return;
 
         const base = kind === "character" ? "characters.html" : "glossary.html";
@@ -1279,7 +1329,7 @@ A stylish underworld road movie with lethal charm.</p>
       setContinueButton();
       location.hash = encodeURIComponent(state.currentKey);
       requestAnimationFrame(() => {
-        mainEl.scrollTo({ top: 0, behavior: "auto" });
+        scrollEpisodeTop();
       });
     }
 
@@ -1368,7 +1418,7 @@ A stylish underworld road movie with lethal charm.</p>
     function handleMainScroll() {
       if (articleWrapEl.style.display !== "block") return;
       if (state.currentKey) {
-        const y = Math.max(0, Math.floor(mainEl.scrollTop));
+        const { top: y } = getScrollMetrics();
         if (y > 40) {
           state.bookmarks[state.currentKey] = y;
           saveBookmarks();
@@ -1376,7 +1426,8 @@ A stylish underworld road movie with lethal charm.</p>
           setContinueButton();
         }
       }
-      const nearBottom = mainEl.scrollTop + mainEl.clientHeight >= mainEl.scrollHeight - 8;
+      const { top, clientHeight, scrollHeight } = getScrollMetrics();
+      const nearBottom = top + clientHeight >= scrollHeight - 8;
       if (!nearBottom) return;
       if (state.readSet.has(state.currentKey)) return;
       if (state.readPromptHidden) {
@@ -1407,6 +1458,7 @@ A stylish underworld road movie with lethal charm.</p>
 
     document.getElementById("backTop").addEventListener("click", showTop);
     mainEl.addEventListener("scroll", handleMainScroll, { passive: true });
+    window.addEventListener("scroll", handleMainScroll, { passive: true });
 
     window.addEventListener("hashchange", () => {
       const h = decodeURIComponent((location.hash || "").replace(/^#/, ""));
@@ -1421,7 +1473,7 @@ A stylish underworld road movie with lethal charm.</p>
       continueReadBtn.addEventListener("click", () => {
         if (!state.currentKey) return;
         const y = Number(state.bookmarks[state.currentKey] || 0);
-        if (y > 0) mainEl.scrollTo({ top: y, behavior: "smooth" });
+        if (y > 0) scrollEpisodeBookmark(y, "smooth");
       });
     }
 
@@ -1517,6 +1569,13 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
