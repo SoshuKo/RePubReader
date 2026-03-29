@@ -316,6 +316,13 @@
       max-width: 100%;
       aspect-ratio: 1 / 1;
     }
+    .intro-media-stack {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .intro-media-stack .intro-media {
+      width: min(520px, 100%);
+    }
     .intro-media img {
       width: 100%;
       height: 100%;
@@ -759,7 +766,7 @@
         <article class="intro">
           <h3 id="work-karabatan">カラバァタン共和国物語</h3>
           <p class="catch">200メートル先、転向する兄弟</p>
-          <div class="intro-media-wrap">
+          <div class="intro-media-wrap intro-media-stack">
             <figure class="intro-media"><img src="./assets/images/転向の橋の戦い.png" alt="転向の橋の戦い" loading="lazy" /></figure>
             <div>
               <p>19世紀末から20世紀後半にかけてのカラバァタン共和国（後のカラベイ教導国）を舞台にした、血と陰謀の建国史。
@@ -793,7 +800,7 @@
         <article class="intro">
           <h3 id="work-haropinon">ハーロピノン共和国物語</h3>
           <p class="catch">Boy-Meets-Knife</p>
-          <div class="intro-media-wrap">
+          <div class="intro-media-wrap intro-media-stack">
             <figure class="intro-media"><img src="./assets/images/寮生活とナイフ.png" alt="寮生活とナイフ" loading="lazy" /></figure>
             <div>
               <p>舞台は1990年代のハーロピノン共和国・ヘリエン直轄市。マフィア「五天」、過激派学生組織「マンツァル」、秘密結社「ジューナー」など、さまざまな組織の思惑が入り乱れる無法地帯で、平凡な日常を守るために立ち上がった若者たちの物語。
@@ -1942,6 +1949,11 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
