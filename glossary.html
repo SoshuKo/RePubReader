@@ -181,20 +181,61 @@
     }
 
     function normalizeByStory(dicArr, storyRefs, mode) {
+      const K = {
+        KNIFE_TITLE: "ナイフ名（見出し）",
+        STANCE_TITLE: "構え名（見出し）",
+        CATCH: "キャッチフレーズ",
+        BODY: "本文",
+        USERS: "使用者",
+        COMMENT: "コメント"
+      };
+
+      const list = asArray(dicArr);
+      const nameKey = mode === "knife" ? K.KNIFE_TITLE : K.STANCE_TITLE;
+
+      const ensureId = (it, i) => ({
+        ...it,
+        id: it.id || normalizeKey(it[nameKey]) || `${mode}-${i + 1}`
+      });
+
+      if (!Array.isArray(storyRefs) || storyRefs.length === 0) {
+        return list.map(ensureId);
+      }
+
       const byId = new Map();
       const byName = new Map();
-      for (const it of dicArr) {
-        if (it.id) byId.set(it.id, it);
-        const nameKey = mode === "knife" ? "ナイフ名（見出し）" : "構え名（見出し）";
-        if (it[nameKey]) byName.set(it[nameKey], it);
+      for (let i = 0; i < list.length; i++) {
+        const it = ensureId(list[i], i);
+        if (it.id) byId.set(normalizeKey(it.id), it);
+        if (it[nameKey]) byName.set(normalizeKey(it[nameKey]), it);
       }
-      return storyRefs.map((ref) => byId.get(ref.slug) || byName.get(ref.canonical) || {
-        id: ref.slug,
-        [mode === "knife" ? "ナイフ名（見出し）" : "構え名（見出し）"]: ref.canonical,
-        "キャッチフレーズ": "",
-        "本文": "",
-        "使用者": [],
-        "コメント": ""
+
+      return storyRefs.map((ref) => {
+        const byRef = byId.get(normalizeKey(ref.slug)) || byName.get(normalizeKey(ref.canonical));
+        if (byRef) return byRef;
+        return {
+          id: ref.slug || normalizeKey(ref.canonical),
+          [nameKey]: ref.canonical,
+          [K.CATCH]: "",
+          [K.BODY]: "",
+          [K.USERS]: [],
+          [K.COMMENT]: ""
+        };
+      });
+    }
+
+    function matchRefsByDic(allRefs, dicArr, mode) {
+      const K = {
+        KNIFE_TITLE: "ナイフ名（見出し）",
+        STANCE_TITLE: "構え名（見出し）"
+      };
+      const nameKey = mode === "knife" ? K.KNIFE_TITLE : K.STANCE_TITLE;
+      const idSet = new Set(asArray(dicArr).map((it) => normalizeKey(it.id)).filter(Boolean));
+      const nameSet = new Set(asArray(dicArr).map((it) => normalizeKey(it[nameKey])).filter(Boolean));
+      return asArray(allRefs).filter((r) => {
+        const slug = normalizeKey(r.slug);
+        const canonical = normalizeKey(r.canonical);
+        return idSet.has(slug) || nameSet.has(canonical);
       });
     }
 
@@ -349,16 +390,17 @@
         }
 
         const allRefs = (story.references && Array.isArray(story.references.glossary)) ? story.references.glossary : [];
-        const knifeRefs = allRefs.filter(r => String(r.canonical || "").includes("ナイフ"));
-        const stanceRefs = allRefs.filter(r => String(r.canonical || "").includes("構え"));
-        const termRefs = allRefs.filter(r => {
-          const c = String(r.canonical || "");
-          return !c.includes("ナイフ") && !c.includes("構え");
-        });
+        const knifeSource = asArray(dic.knives || []);
+        const stanceSource = asArray(dic.stances || []);
+
+        const knifeRefs = matchRefsByDic(allRefs, knifeSource, "knife");
+        const stanceRefs = matchRefsByDic(allRefs, stanceSource, "stance");
+        const usedSlugs = new Set([...knifeRefs, ...stanceRefs].map((r) => normalizeKey(r.slug)).filter(Boolean));
+        const termRefs = allRefs.filter((r) => !usedSlugs.has(normalizeKey(r.slug)));
 
         terms = normalizeTermsByStory(dic.glossary || [], termRefs);
-        knives = normalizeByStory(dic.knives || [], knifeRefs, "knife");
-        stances = normalizeByStory(dic.stances || [], stanceRefs, "stance");
+        knives = normalizeByStory(knifeSource, knifeRefs, "knife");
+        stances = normalizeByStory(stanceSource, stanceRefs, "stance");
 
         render();
         jumpToHash();

@@ -878,6 +878,8 @@ A stylish underworld road movie with lethal charm.</p>
       refLoose: { character: new Map(), glossary: new Map() },
       glossaryPreviewBySlug: new Map(),
       glossaryPreviewByLoose: new Map(),
+      characterPreviewBySlug: new Map(),
+      characterPreviewByLoose: new Map(),
       readPromptHidden: false,
       readPromptShownFor: null,
       readEnabled: true
@@ -1369,7 +1371,8 @@ A stylish underworld road movie with lethal charm.</p>
 
         const base = kind === "character" ? "characters.html" : "glossary.html";
         a.setAttribute("href", `${base}#${encodeURIComponent(slug)}`);
-        if (kind === "glossary") a.dataset.previewSlug = slug;
+        a.dataset.previewKind = kind;
+        a.dataset.previewSlug = slug;
       });
     }
     function addGlossaryPreview(slug, title, text) {
@@ -1385,27 +1388,60 @@ A stylish underworld road movie with lethal charm.</p>
       if (loose && !state.glossaryPreviewByLoose.has(loose)) state.glossaryPreviewByLoose.set(loose, item);
     }
 
+    function addCharacterPreview(slug, title, text) {
+      const t = String(title || "").trim();
+      const body = String(text || "").replace(/\s+/g, " ").trim();
+      if (!t || !body) return;
+      const item = { title: t, text: body.length > 140 ? `${body.slice(0, 140)}...` : body };
+      if (slug) {
+        const key = String(slug).trim();
+        if (key && !state.characterPreviewBySlug.has(key)) state.characterPreviewBySlug.set(key, item);
+      }
+      const loose = normalizeRefLoose(t);
+      if (loose && !state.characterPreviewByLoose.has(loose)) state.characterPreviewByLoose.set(loose, item);
+    }
+
     function buildGlossaryPreviewMaps(dic) {
+      const K = {
+        TERM_LIST: "用語",
+        TERM_TITLE: "タイトル",
+        KNIFE_TITLE: "ナイフ名（見出し）",
+        STANCE_TITLE: "構え名（見出し）",
+        BODY: "本文",
+        COMMENT: "コメント",
+        CHAR_TITLE: "人名（見出し）",
+        QUOTE: "台詞"
+      };
+
       state.glossaryPreviewBySlug = new Map();
       state.glossaryPreviewByLoose = new Map();
+      state.characterPreviewBySlug = new Map();
+      state.characterPreviewByLoose = new Map();
       if (!dic || typeof dic !== "object") return;
 
-      const addFromTermLike = (term) => {
+      const addGlossaryTerm = (term) => {
         if (!term || typeof term !== "object") return;
-        const title = term.title || term.name || term.heading || term.term || "";
-        const text = term.summary || term.body || term.description || term.comment || term.quote || "";
-        addGlossaryPreview(term.slug, title, text);
+        const title = term.title || term.name || term.heading || term.term || term[K.TERM_TITLE] || term[K.KNIFE_TITLE] || term[K.STANCE_TITLE] || "";
+        const textBody = term.summary || term.body || term.description || term.comment || term.quote || term[K.BODY] || term[K.COMMENT] || "";
+        addGlossaryPreview(term.slug || term.id || title, title, textBody);
       };
 
       if (Array.isArray(dic.glossary)) {
         for (const category of dic.glossary) {
           if (!category || typeof category !== "object") continue;
-          const terms = Array.isArray(category.terms) ? category.terms : [];
-          for (const term of terms) addFromTermLike(term);
+          const terms = Array.isArray(category.terms) ? category.terms : (Array.isArray(category[K.TERM_LIST]) ? category[K.TERM_LIST] : []);
+          for (const term of terms) addGlossaryTerm(term);
         }
       }
-      if (Array.isArray(dic.knives)) for (const k of dic.knives) addFromTermLike(k);
-      if (Array.isArray(dic.stances)) for (const s of dic.stances) addFromTermLike(s);
+      if (Array.isArray(dic.knives)) for (const k of dic.knives) addGlossaryTerm(k);
+      if (Array.isArray(dic.stances)) for (const st of dic.stances) addGlossaryTerm(st);
+
+      const chars = Array.isArray(dic.characters) ? dic.characters : [];
+      for (const ch of chars) {
+        const title = ch[K.CHAR_TITLE] || ch.title || ch.name || ch.id || "";
+        const textBody = ch[K.BODY] || ch[K.COMMENT] || ch[K.QUOTE] || "";
+        addCharacterPreview(ch.slug || ch.id || title, title, textBody);
+      }
     }
 
     function ensureTermPreviewEl() {
@@ -1419,17 +1455,32 @@ A stylish underworld road movie with lethal charm.</p>
 
     function getTermPreviewItem(anchor) {
       if (!anchor) return null;
-      const slug = (anchor.dataset.previewSlug || "").trim();
-      if (slug && state.glossaryPreviewBySlug.has(slug)) return state.glossaryPreviewBySlug.get(slug);
       const href = anchor.getAttribute("href") || "";
+      const hrefBase = href.split("#")[0] || "";
+      const kind = (anchor.dataset.previewKind || anchor.dataset.refType || (
+        anchor.classList.contains("char-ref") ? "character" :
+        anchor.classList.contains("term-ref") ? "glossary" :
+        hrefBase.includes("characters.html") ? "character" : "glossary"
+      ));
+
+      const slug = (anchor.dataset.previewSlug || "").trim();
+      if (kind === "character") {
+        if (slug && state.characterPreviewBySlug.has(slug)) return state.characterPreviewBySlug.get(slug);
+      } else {
+        if (slug && state.glossaryPreviewBySlug.has(slug)) return state.glossaryPreviewBySlug.get(slug);
+      }
+
       const hashIndex = href.indexOf("#");
       if (hashIndex >= 0) {
         const byHash = decodeURIComponent(href.slice(hashIndex + 1)).trim();
-        if (byHash && state.glossaryPreviewBySlug.has(byHash)) return state.glossaryPreviewBySlug.get(byHash);
+        if (kind === "character" && byHash && state.characterPreviewBySlug.has(byHash)) return state.characterPreviewBySlug.get(byHash);
+        if (kind !== "character" && byHash && state.glossaryPreviewBySlug.has(byHash)) return state.glossaryPreviewBySlug.get(byHash);
       }
+
       const loose = normalizeRefLoose(anchor.textContent || "");
-      if (loose && state.glossaryPreviewByLoose.has(loose)) return state.glossaryPreviewByLoose.get(loose);
-      return null;
+      if (!loose) return null;
+      if (kind === "character") return state.characterPreviewByLoose.get(loose) || null;
+      return state.glossaryPreviewByLoose.get(loose) || null;
     }
 
     function positionTermPreview(e, anchor) {
@@ -1467,7 +1518,7 @@ A stylish underworld road movie with lethal charm.</p>
 
     function bindTermPreviews(container) {
       if (!container) return;
-      const targets = container.querySelectorAll("a.term-ref, a[data-ref-type='glossary'], a[href^='glossary.html#']");
+      const targets = container.querySelectorAll("a.term-ref, a.char-ref, a[data-ref-type='glossary'], a[data-ref-type='character'], a[href^='glossary.html#'], a[href^='characters.html#']");
       targets.forEach((a) => {
         if (a.dataset.previewBound === "1") return;
         const item = getTermPreviewItem(a);
