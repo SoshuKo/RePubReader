@@ -134,6 +134,7 @@
       <input id="q" type="search" placeholder="名称・本文・使用者・コメントで検索" />
       <select id="kind">
         <option value="all">すべて</option>
+        <option value="term">用語</option>
         <option value="knife">ナイフ</option>
         <option value="stance">構え</option>
       </select>
@@ -141,6 +142,10 @@
   </header>
 
   <main>
+    <section>
+      <h2 class="section-title">用語</h2>
+      <div id="termList" class="grid"></div>
+    </section>
     <section>
       <h2 class="section-title">ナイフ</h2>
       <div id="knifeList" class="grid"></div>
@@ -155,11 +160,13 @@
     const esc = (s) => String(s ?? "").replace(/[&<>\"]/g, (ch) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;" }[ch]));
     const asArray = (v) => Array.isArray(v) ? v : (v ? [v] : []);
 
+    const termList = document.getElementById("termList");
     const knifeList = document.getElementById("knifeList");
     const stanceList = document.getElementById("stanceList");
     const qEl = document.getElementById("q");
     const kindEl = document.getElementById("kind");
 
+    let terms = [];
     let knives = [];
     let stances = [];
     let charSlugByName = new Map();
@@ -191,7 +198,48 @@
       });
     }
 
+    function normalizeTermsByStory(dicGlossary, storyRefs) {
+      const refSlugByCanonical = new Map();
+      for (const ref of storyRefs) {
+        const canonical = normalizeKey(ref.canonical);
+        if (canonical && ref.slug && !refSlugByCanonical.has(canonical)) {
+          refSlugByCanonical.set(canonical, ref.slug);
+        }
+      }
+
+      const out = [];
+      const seen = new Set();
+      for (const cat of asArray(dicGlossary)) {
+        const category = String(cat["カテゴリ"] || "未分類").trim() || "未分類";
+        for (const term of asArray(cat["用語"])) {
+          const title = String(term["タイトル"] || "").trim();
+          if (!title) continue;
+          const body = String(term["本文"] || "").trim();
+          const slug = refSlugByCanonical.get(title) || title;
+          const key = normalizeKey(slug);
+          if (seen.has(key)) continue;
+          seen.add(key);
+          out.push({ id: slug, title, body, category });
+        }
+      }
+
+      for (const ref of storyRefs) {
+        const title = String(ref.canonical || "").trim();
+        const slug = String(ref.slug || "").trim();
+        if (!title || !slug) continue;
+        const key = normalizeKey(slug);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push({ id: slug, title, body: "", category: "未分類" });
+      }
+      return out;
+    }
+
     function filterItem(it, mode, q) {
+      if (mode === "term") {
+        const txt = [it.title, it.body, it.category].join("\n").toLowerCase();
+        return txt.includes(q.toLowerCase());
+      }
       const nameKey = mode === "knife" ? "ナイフ名（見出し）" : "構え名（見出し）";
       const txt = [
         it[nameKey],
@@ -212,6 +260,20 @@
         return `<a class="char-link" href="characters.html#${encodeURIComponent(slug)}">${esc(name)}</a>`;
       }).join("");
       return `<span class="char-links">${html}</span>`;
+    }
+
+    function termCard(it) {
+      return `
+        <article class="card" id="${esc(it.id || it.title || "")}" data-name="${esc(it.title || "")}">
+          <div class="head">
+            <h3 class="title">${esc(it.title || "（未入力）")}</h3>
+            <p class="catch">${esc(it.category || "未分類")}</p>
+          </div>
+          <div class="body">
+            <div><span class="label">本文:</span> ${esc(it.body || "（未入力）")}</div>
+          </div>
+        </article>
+      `;
     }
 
     function card(it, mode) {
@@ -235,8 +297,13 @@
       const q = qEl.value.trim();
       const kind = kindEl.value;
 
+      const t = terms.filter(it => !q || filterItem(it, "term", q));
       const k = knives.filter(it => !q || filterItem(it, "knife", q));
       const s = stances.filter(it => !q || filterItem(it, "stance", q));
+
+      termList.innerHTML = (kind === "all" || kind === "term")
+        ? (t.length ? t.map(termCard).join("\n") : '<p class="dim">該当なし</p>')
+        : '<p class="dim">非表示</p>';
 
       knifeList.innerHTML = (kind === "all" || kind === "knife")
         ? (k.length ? k.map(it => card(it, "knife")).join("\n") : '<p class="dim">該当なし</p>')
@@ -284,13 +351,19 @@
         const allRefs = (story.references && Array.isArray(story.references.glossary)) ? story.references.glossary : [];
         const knifeRefs = allRefs.filter(r => String(r.canonical || "").includes("ナイフ"));
         const stanceRefs = allRefs.filter(r => String(r.canonical || "").includes("構え"));
+        const termRefs = allRefs.filter(r => {
+          const c = String(r.canonical || "");
+          return !c.includes("ナイフ") && !c.includes("構え");
+        });
 
+        terms = normalizeTermsByStory(dic.glossary || [], termRefs);
         knives = normalizeByStory(dic.knives || [], knifeRefs, "knife");
         stances = normalizeByStory(dic.stances || [], stanceRefs, "stance");
 
         render();
         jumpToHash();
       } catch (e) {
+        termList.innerHTML = `<p class="dim">読み込み失敗: ${esc(e.message)}</p>`;
         knifeList.innerHTML = `<p class="dim">読み込み失敗: ${esc(e.message)}</p>`;
         stanceList.innerHTML = "";
       }
