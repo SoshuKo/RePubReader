@@ -109,7 +109,7 @@
     }
     nav a {
       display: inline-block;
-      margin-right: 8px;
+      margin-right: 9px;
       color: var(--accent-2);
       text-decoration: none;
       border-bottom: 1px dotted currentColor;
@@ -231,7 +231,7 @@
     .episode-btn.read-done::after {
       content: "✓";
       position: absolute;
-      right: 8px;
+      right: 9px;
       top: 50%;
       transform: translateY(-50%);
       font-size: .88rem;
@@ -243,7 +243,7 @@
     .episode-btn.has-bookmark::before {
       content: "🔖";
       position: absolute;
-      right: 28px;
+      right: 27px;
       top: 50%;
       transform: translateY(-50%);
       font-size: .8rem;
@@ -970,7 +970,10 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function episodeKey(work, section, ep) {
-      return `${work.id}::${section.id}::${ep.id}`;
+      const w = String(work?.id || work?.title || "work").trim();
+      const s = String(section?.id || section?.title || "section").trim();
+      const e = String(ep?.id || ep?.label || ep?.title || "episode").trim();
+      return `${w}::${s}::${e}`;
     }
 
     function updateReadBadge(btn) {
@@ -982,8 +985,13 @@ A stylish underworld road movie with lethal charm.</p>
       if (!state.currentKey) return;
       if (state.readSet.has(state.currentKey)) return;
       state.readSet.add(state.currentKey);
+      if (state.bookmarks && Object.prototype.hasOwnProperty.call(state.bookmarks, state.currentKey)) {
+        delete state.bookmarks[state.currentKey];
+        saveBookmarks();
+      }
       saveReadSet();
       refreshEpisodeButtons();
+      setContinueButton();
     }
 
 
@@ -1017,7 +1025,8 @@ A stylish underworld road movie with lethal charm.</p>
 
     function updateEpisodeButtonMarks(btn) {
       const key = btn.dataset.epkey;
-      const hasBookmark = !!(key && Number(state.bookmarks[key]) > 40);
+      const isRead = !!(key && state.readSet.has(key));
+      const hasBookmark = !!(key && Number(state.bookmarks[key]) > 40) && !isRead;
       btn.classList.toggle("has-bookmark", hasBookmark);
       updateReadBadge(btn);
     }
@@ -1569,6 +1578,8 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
 
 
 
