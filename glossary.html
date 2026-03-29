@@ -104,10 +104,10 @@
     .entry-art-wrap {
       margin: 10px 0 0;
       width: min(220px, 42vw);
-      border: 1px solid var(--line);
+      border: 0;
       border-radius: 10px;
       overflow: hidden;
-      background: #fff;
+      background: transparent;
     }
     .entry-art-wrap.empty { display: none; }
     .entry-art {
@@ -115,7 +115,8 @@
       height: 110px;
       display: block;
       object-fit: contain;
-      background: #f2f6f7;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+      background: transparent;
     }
     .label { font-weight: 700; }
     .char-links { display: inline-flex; flex-wrap: wrap; gap: 6px; vertical-align: middle; }
