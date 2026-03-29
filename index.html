@@ -63,18 +63,38 @@
       display: grid;
       grid-template-columns: 320px 1fr;
       min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
     }
     .sidebar-toggle {
       display: none;
-      width: 100%;
       border: 1px solid var(--line);
       border-radius: 10px;
       background: var(--panel);
       color: var(--ink);
-      padding: 10px 12px;
+      padding: 0;
       font: inherit;
       cursor: pointer;
-      margin-bottom: 10px;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .hamburger-icon {
+      display: inline-block;
+      font-size: 1.38rem;
+      width: 1.38rem;
+      text-align: center;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
     .sidebar-content { display: block; }
     .sidebar-backdrop {
@@ -90,10 +110,12 @@
       border-right: 1px solid var(--line);
       background: linear-gradient(180deg, var(--panel), var(--bg));
       padding: 16px;
+      height: 100vh;
       overflow: auto;
     }
     main {
       padding: 24px clamp(16px, 3vw, 42px);
+      height: 100vh;
       overflow: auto;
     }
     h1 {
@@ -185,6 +207,19 @@
       color: #fff;
       border-color: var(--accent);
     }
+    .read-feature-toggle {
+      margin-top: 8px;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .read-feature-toggle label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .read-feature-toggle input { margin: 0; }
     .tree details {
       margin-bottom: 8px;
       border: 1px solid var(--line);
@@ -400,6 +435,31 @@
     .char-ref:visited, .term-ref:visited { color: var(--accent-2); }
     .article a { color: var(--accent-2); }
     .article a:visited { color: var(--accent-2); }
+    .term-preview {
+      position: fixed;
+      z-index: 500;
+      display: none;
+      max-width: min(320px, calc(100vw - 24px));
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      color: var(--ink);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+      padding: 10px 12px;
+      pointer-events: none;
+      line-height: 1.6;
+      font-size: .85rem;
+    }
+    .term-preview.show { display: block; }
+    .term-preview-title {
+      margin: 0 0 3px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .term-preview-text {
+      margin: 0;
+      color: var(--ink);
+    }
     .comments-wrap {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -468,8 +528,19 @@
       color: #9fe8ff;
       border-color: var(--line);
     }
+    html[data-theme="dark"] .term-preview {
+      background: #2a241d;
+      color: #f8f1e4;
+      border-color: #5f4f3b;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .45);
+    }
+    html[data-theme="dark"] .term-preview-title { color: #ffd7c4; }
     @media (max-width: 880px) {
-      .layout { grid-template-columns: 1fr; }
+      .layout {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+      }
       aside {
         position: fixed;
         top: 0;
@@ -487,16 +558,22 @@
       }
       #sidebar.open { transform: translateX(0); }
       .sidebar-toggle {
-        display: block;
+        display: inline-flex;
         position: fixed;
         left: 12px;
         top: 10px;
-        width: auto;
+        width: 40px;
+        height: 40px;
         margin: 0;
         z-index: 220;
+        border-radius: 10px;
       }
       .sidebar-content { display: block; }
-      main { padding-top: 62px; }
+      main {
+        height: auto;
+        overflow: visible;
+        padding-top: 62px;
+      }
       .intro-media-wrap { grid-template-columns: 1fr; }
       .intro-media { width: 100%; }
     }
@@ -543,7 +620,7 @@
 </head>
 <body>
   <div class="layout">
-    <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-expanded="false" aria-controls="sidebarContent">メニューを開く</button>
+    <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-expanded="false" aria-controls="sidebarContent" aria-label="メニューを開く"><span class="hamburger-icon" aria-hidden="true">☰</span><span class="sr-only">メニュー</span></button>
     <aside id="sidebar">
       <div id="sidebarContent" class="sidebar-content">
       <h1 id="siteTitle">『共和国物語』サーガ</h1>
@@ -592,6 +669,9 @@
           <button id="langEn" class="theme-toggle lang-btn" type="button" data-lang="en">English</button>
           <button id="langKa" class="theme-toggle lang-btn" type="button" data-lang="ka">Georgian</button>
         </div>
+      </div>
+      <div class="read-feature-toggle">
+        <label for="readFeatureToggle"><input id="readFeatureToggle" type="checkbox" checked>既読機能をオンにする</label>
       </div>
       <hr />
       <div id="tree" class="tree" aria-label="目次"></div>
@@ -796,14 +876,18 @@ A stylish underworld road movie with lethal charm.</p>
       readSet: new Set(),
       refExact: { character: new Map(), glossary: new Map() },
       refLoose: { character: new Map(), glossary: new Map() },
+      glossaryPreviewBySlug: new Map(),
+      glossaryPreviewByLoose: new Map(),
       readPromptHidden: false,
-      readPromptShownFor: null
+      readPromptShownFor: null,
+      readEnabled: true
     };
 
     const STORAGE_THEME = "repub_theme_v1";
     const STORAGE_READ = "repub_read_episodes_v1";
     const STORAGE_LANG = "repub_lang_v1";
     const STORAGE_READ_PROMPT = "repub_read_prompt_v1";
+    const STORAGE_READ_ENABLED = "repub_read_enabled_v1";
     let currentLang = "ja";
 
     const topPageEl = document.getElementById("topPage");
@@ -842,6 +926,8 @@ A stylish underworld road movie with lethal charm.</p>
     const readPromptNoMore = document.getElementById("readPromptNoMore");
     const readPromptYes = document.getElementById("readPromptYes");
     const readPromptNo = document.getElementById("readPromptNo");
+    const readFeatureToggle = document.getElementById("readFeatureToggle");
+    let termPreviewEl = null;
 
     const shareMap = {
       karabatan: {
@@ -881,7 +967,9 @@ A stylish underworld road movie with lethal charm.</p>
       if (!sidebarEl || !sidebarToggle) return;
       sidebarEl.classList.toggle("open", !!open);
       if (sidebarBackdrop) sidebarBackdrop.classList.toggle("show", !!open);
-      sidebarToggle.textContent = open ? "メニューを閉じる" : "メニューを開く";
+      const icon = sidebarToggle.querySelector(".hamburger-icon");
+      if (icon) icon.textContent = open ? "✕" : "☰";
+      sidebarToggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
       sidebarToggle.setAttribute("aria-expanded", open ? "true" : "false");
     }
 
@@ -992,6 +1080,25 @@ A stylish underworld road movie with lethal charm.</p>
       updateReadBadge(btn);
     }
 
+    function loadReadEnabledPref() {
+      try {
+        const raw = localStorage.getItem(STORAGE_READ_ENABLED);
+        state.readEnabled = raw === null ? true : raw === "1";
+      } catch (_) {
+        state.readEnabled = true;
+      }
+      if (readFeatureToggle) readFeatureToggle.checked = state.readEnabled;
+    }
+
+    function saveReadEnabledPref(enabled) {
+      state.readEnabled = !!enabled;
+      if (readFeatureToggle) readFeatureToggle.checked = state.readEnabled;
+      try {
+        localStorage.setItem(STORAGE_READ_ENABLED, state.readEnabled ? "1" : "0");
+      } catch (_) {}
+      if (!state.readEnabled) closeReadPrompt();
+    }
+
     function refreshEpisodeButtons() {
       for (const btn of state.buttons) updateEpisodeButtonMarks(btn);
     }
@@ -1092,7 +1199,9 @@ A stylish underworld road movie with lethal charm.</p>
         } else {
           if (sidebarBackdrop) sidebarBackdrop.classList.remove("show");
           sidebarEl.classList.add("open");
-          sidebarToggle.textContent = "メニュー";
+          const icon = sidebarToggle.querySelector(".hamburger-icon");
+          if (icon) icon.textContent = "☰";
+          sidebarToggle.setAttribute("aria-label", "メニュー");
           sidebarToggle.setAttribute("aria-expanded", "true");
         }
       };
@@ -1260,8 +1369,118 @@ A stylish underworld road movie with lethal charm.</p>
 
         const base = kind === "character" ? "characters.html" : "glossary.html";
         a.setAttribute("href", `${base}#${encodeURIComponent(slug)}`);
+        if (kind === "glossary") a.dataset.previewSlug = slug;
       });
     }
+    function addGlossaryPreview(slug, title, text) {
+      const t = String(title || "").trim();
+      const body = String(text || "").replace(/\s+/g, " ").trim();
+      if (!t || !body) return;
+      const item = { title: t, text: body.length > 140 ? `${body.slice(0, 140)}...` : body };
+      if (slug) {
+        const key = String(slug).trim();
+        if (key && !state.glossaryPreviewBySlug.has(key)) state.glossaryPreviewBySlug.set(key, item);
+      }
+      const loose = normalizeRefLoose(t);
+      if (loose && !state.glossaryPreviewByLoose.has(loose)) state.glossaryPreviewByLoose.set(loose, item);
+    }
+
+    function buildGlossaryPreviewMaps(dic) {
+      state.glossaryPreviewBySlug = new Map();
+      state.glossaryPreviewByLoose = new Map();
+      if (!dic || typeof dic !== "object") return;
+
+      const addFromTermLike = (term) => {
+        if (!term || typeof term !== "object") return;
+        const title = term.title || term.name || term.heading || term.term || "";
+        const text = term.summary || term.body || term.description || term.comment || term.quote || "";
+        addGlossaryPreview(term.slug, title, text);
+      };
+
+      if (Array.isArray(dic.glossary)) {
+        for (const category of dic.glossary) {
+          if (!category || typeof category !== "object") continue;
+          const terms = Array.isArray(category.terms) ? category.terms : [];
+          for (const term of terms) addFromTermLike(term);
+        }
+      }
+      if (Array.isArray(dic.knives)) for (const k of dic.knives) addFromTermLike(k);
+      if (Array.isArray(dic.stances)) for (const s of dic.stances) addFromTermLike(s);
+    }
+
+    function ensureTermPreviewEl() {
+      if (termPreviewEl) return termPreviewEl;
+      termPreviewEl = document.createElement("div");
+      termPreviewEl.className = "term-preview";
+      termPreviewEl.setAttribute("aria-hidden", "true");
+      document.body.appendChild(termPreviewEl);
+      return termPreviewEl;
+    }
+
+    function getTermPreviewItem(anchor) {
+      if (!anchor) return null;
+      const slug = (anchor.dataset.previewSlug || "").trim();
+      if (slug && state.glossaryPreviewBySlug.has(slug)) return state.glossaryPreviewBySlug.get(slug);
+      const href = anchor.getAttribute("href") || "";
+      const hashIndex = href.indexOf("#");
+      if (hashIndex >= 0) {
+        const byHash = decodeURIComponent(href.slice(hashIndex + 1)).trim();
+        if (byHash && state.glossaryPreviewBySlug.has(byHash)) return state.glossaryPreviewBySlug.get(byHash);
+      }
+      const loose = normalizeRefLoose(anchor.textContent || "");
+      if (loose && state.glossaryPreviewByLoose.has(loose)) return state.glossaryPreviewByLoose.get(loose);
+      return null;
+    }
+
+    function positionTermPreview(e, anchor) {
+      if (!termPreviewEl) return;
+      const gap = 14;
+      let x = 18;
+      let y = 18;
+      if (e && typeof e.clientX === "number" && typeof e.clientY === "number") {
+        x = e.clientX + gap;
+        y = e.clientY + gap;
+      } else if (anchor) {
+        const r = anchor.getBoundingClientRect();
+        x = r.left + gap;
+        y = r.bottom + gap;
+      }
+      const maxX = window.innerWidth - termPreviewEl.offsetWidth - 10;
+      const maxY = window.innerHeight - termPreviewEl.offsetHeight - 10;
+      termPreviewEl.style.left = `${Math.max(8, Math.min(x, maxX))}px`;
+      termPreviewEl.style.top = `${Math.max(8, Math.min(y, maxY))}px`;
+    }
+
+    function showTermPreview(item, e, anchor) {
+      const el = ensureTermPreviewEl();
+      el.innerHTML = `<p class="term-preview-title">${esc(item.title)}</p><p class="term-preview-text">${esc(item.text)}</p>`;
+      el.classList.add("show");
+      el.setAttribute("aria-hidden", "false");
+      positionTermPreview(e, anchor);
+    }
+
+    function hideTermPreview() {
+      if (!termPreviewEl) return;
+      termPreviewEl.classList.remove("show");
+      termPreviewEl.setAttribute("aria-hidden", "true");
+    }
+
+    function bindTermPreviews(container) {
+      if (!container) return;
+      const targets = container.querySelectorAll("a.term-ref, a[data-ref-type='glossary'], a[href^='glossary.html#']");
+      targets.forEach((a) => {
+        if (a.dataset.previewBound === "1") return;
+        const item = getTermPreviewItem(a);
+        if (!item) return;
+        a.dataset.previewBound = "1";
+        a.addEventListener("mouseenter", (e) => showTermPreview(item, e, a));
+        a.addEventListener("mousemove", (e) => positionTermPreview(e, a));
+        a.addEventListener("mouseleave", hideTermPreview);
+        a.addEventListener("focus", () => showTermPreview(item, null, a));
+        a.addEventListener("blur", hideTermPreview);
+      });
+    }
+
     function renderEpisode(work, section, ep) {
       state.current = { work, section, ep };
       state.readPromptShownFor = null;
@@ -1276,6 +1495,7 @@ A stylish underworld road movie with lethal charm.</p>
       const epContentEl = document.getElementById("epContent");
       epContentEl.innerHTML = html;
       rewriteInlineRefs(epContentEl);
+      bindTermPreviews(epContentEl);
 
       for (const btn of state.buttons) {
         const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
@@ -1372,6 +1592,7 @@ A stylish underworld road movie with lethal charm.</p>
 
     function handleMainScroll() {
       if (articleWrapEl.style.display !== "block") return;
+      if (!state.readEnabled) return;
       const { top, clientHeight, scrollHeight } = getScrollMetrics();
       const nearBottom = top + clientHeight >= scrollHeight - 8;
       if (!nearBottom) return;
@@ -1395,6 +1616,10 @@ A stylish underworld road movie with lethal charm.</p>
         buildReferenceMaps(state.dataJa);
         if (enRes.ok) state.dataEn = await enRes.json();
         if (kaRes.ok) state.dataKa = await kaRes.json();
+        try {
+          const dicRes = await fetch("./data/rpdic.json", { cache: "no-store" });
+          if (dicRes.ok) buildGlossaryPreviewMaps(await dicRes.json());
+        } catch (_) {}
         const activeData = getActiveData();
         if (activeData) buildTree(activeData);
       } catch (e) {
@@ -1497,6 +1722,12 @@ A stylish underworld road movie with lethal charm.</p>
 
     loadReadSet();
     loadReadPromptPref();
+    loadReadEnabledPref();
+    if (readFeatureToggle) {
+      readFeatureToggle.addEventListener("change", () => {
+        saveReadEnabledPref(!!readFeatureToggle.checked);
+      });
+    }
     initTheme();
     initSidebarToggle();
     initLanguage();
