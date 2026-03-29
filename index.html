@@ -229,14 +229,26 @@
       position: relative;
     }
     .episode-btn.read-done::after {
-      content: "既読";
+      content: "✓";
       position: absolute;
       right: 8px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: .72rem;
-      color: #6f644f;
-      opacity: .9;
+      font-size: .88rem;
+      color: #2b7a2b;
+      opacity: .95;
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .episode-btn.has-bookmark::before {
+      content: "🔖";
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .8rem;
+      opacity: .95;
+      pointer-events: none;
     }    .top-page {
       display: grid;
       gap: 14px;
@@ -744,6 +756,19 @@ A stylish underworld road movie with lethal charm.</p>
           <p class="share-note">作品ごとにSNSカード画像が切り替わる専用URLを共有します。</p>
         </div>
       </section>
+      <section id="readPromptModal" class="share-modal" aria-hidden="true">
+        <div class="share-box">
+          <h4>既読にしますか？</h4>
+          <p class="share-note">このエピソードを既読に登録します。</p>
+          <label style="display:block;margin:8px 0 10px;">
+            <input id="readPromptNoMore" type="checkbox" style="width:auto;margin-right:6px;">今後このポップアップを表示しない
+          </label>
+          <div class="share-actions">
+            <button type="button" id="readPromptYes">既読にする</button>
+            <button type="button" id="readPromptNo">あとで</button>
+          </div>
+        </div>
+      </section>
       <section id="articleWrap" class="article-wrap">
         <div class="article-head">
           <div>
@@ -751,6 +776,7 @@ A stylish underworld road movie with lethal charm.</p>
             <div id="epTrail" class="trail"></div>
           </div>
           <div class="article-actions">
+            <button id="continueRead" class="share-ep-btn" type="button" style="display:none;">続きから読む</button>
             <button id="shareEpisode" class="share-ep-btn" type="button">この話を共有</button>
             <button id="backTop" class="back-btn" type="button">トップページへ戻る</button>
           </div>
@@ -783,12 +809,17 @@ A stylish underworld road movie with lethal charm.</p>
       buttons: [],
       readSet: new Set(),
       refExact: { character: new Map(), glossary: new Map() },
-      refLoose: { character: new Map(), glossary: new Map() }
+      refLoose: { character: new Map(), glossary: new Map() },
+      bookmarks: {},
+      readPromptHidden: false,
+      readPromptShownFor: null
     };
 
     const STORAGE_THEME = "repub_theme_v1";
     const STORAGE_READ = "repub_read_episodes_v1";
     const STORAGE_LANG = "repub_lang_v1";
+    const STORAGE_BOOKMARK = "repub_bookmarks_v1";
+    const STORAGE_READ_PROMPT = "repub_read_prompt_v1";
     let currentLang = "ja";
 
     const topPageEl = document.getElementById("topPage");
@@ -801,6 +832,7 @@ A stylish underworld road movie with lethal charm.</p>
     const langEn = document.getElementById("langEn");
     const langKa = document.getElementById("langKa");
     const langButtons = [langJa, langEn, langKa].filter(Boolean);
+    const continueReadBtn = document.getElementById("continueRead");
     const shareEpisodeBtn = document.getElementById("shareEpisode");
     const treeEl = document.getElementById("tree");
     const siteTitleEl = document.getElementById("siteTitle");
@@ -823,6 +855,10 @@ A stylish underworld road movie with lethal charm.</p>
     const shareCopy = document.getElementById("shareCopy");
     const shareNative = document.getElementById("shareNative");
     const shareClose = document.getElementById("shareClose");
+    const readPromptModal = document.getElementById("readPromptModal");
+    const readPromptNoMore = document.getElementById("readPromptNoMore");
+    const readPromptYes = document.getElementById("readPromptYes");
+    const readPromptNo = document.getElementById("readPromptNo");
 
     const shareMap = {
       karabatan: {
@@ -947,9 +983,68 @@ A stylish underworld road movie with lethal charm.</p>
       if (state.readSet.has(state.currentKey)) return;
       state.readSet.add(state.currentKey);
       saveReadSet();
-      for (const btn of state.buttons) updateReadBadge(btn);
+      refreshEpisodeButtons();
     }
 
+
+    function loadBookmarks() {
+      try {
+        const raw = localStorage.getItem(STORAGE_BOOKMARK);
+        if (!raw) return;
+        const obj = JSON.parse(raw);
+        if (obj && typeof obj === "object") state.bookmarks = obj;
+      } catch (_) {}
+    }
+
+    function saveBookmarks() {
+      try {
+        localStorage.setItem(STORAGE_BOOKMARK, JSON.stringify(state.bookmarks || {}));
+      } catch (_) {}
+    }
+
+    function loadReadPromptPref() {
+      try {
+        state.readPromptHidden = localStorage.getItem(STORAGE_READ_PROMPT) === "1";
+      } catch (_) {}
+    }
+
+    function saveReadPromptPref(hidden) {
+      state.readPromptHidden = !!hidden;
+      try {
+        localStorage.setItem(STORAGE_READ_PROMPT, hidden ? "1" : "0");
+      } catch (_) {}
+    }
+
+    function updateEpisodeButtonMarks(btn) {
+      const key = btn.dataset.epkey;
+      const hasBookmark = !!(key && Number(state.bookmarks[key]) > 40);
+      btn.classList.toggle("has-bookmark", hasBookmark);
+      updateReadBadge(btn);
+    }
+
+    function refreshEpisodeButtons() {
+      for (const btn of state.buttons) updateEpisodeButtonMarks(btn);
+    }
+
+    function setContinueButton() {
+      if (!continueReadBtn || !state.currentKey) return;
+      const y = Number(state.bookmarks[state.currentKey] || 0);
+      continueReadBtn.style.display = y > 40 ? "inline-block" : "none";
+    }
+
+    function openReadPrompt() {
+      if (!readPromptModal || state.readPromptShownFor === state.currentKey) return;
+      state.readPromptShownFor = state.currentKey;
+      readPromptNoMore.checked = state.readPromptHidden;
+      readPromptModal.classList.add("open");
+      readPromptModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeReadPrompt() {
+      if (!readPromptModal) return;
+      readPromptModal.classList.remove("open");
+      readPromptModal.setAttribute("aria-hidden", "true");
+    }
     function applyTheme(theme) {
       document.documentElement.setAttribute("data-theme", theme);
       if (themeToggle) {
@@ -1163,6 +1258,7 @@ A stylish underworld road movie with lethal charm.</p>
     }
     function renderEpisode(work, section, ep) {
       state.current = { work, section, ep };
+      state.readPromptShownFor = null;
       state.currentKey = episodeKey(work, section, ep);
       showEpisode();
 
@@ -1178,9 +1274,13 @@ A stylish underworld road movie with lethal charm.</p>
       for (const btn of state.buttons) {
         const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
         btn.classList.toggle("active", active);
-        updateReadBadge(btn);
+        updateEpisodeButtonMarks(btn);
       }
+      setContinueButton();
       location.hash = encodeURIComponent(state.currentKey);
+      requestAnimationFrame(() => {
+        mainEl.scrollTo({ top: 0, behavior: "auto" });
+      });
     }
 
     function buildTree(data) {
@@ -1217,8 +1317,21 @@ A stylish underworld road movie with lethal charm.</p>
             btn.dataset.sectionid = section.id;
             btn.dataset.epid = ep.id;
             btn.dataset.epkey = episodeKey(work, section, ep);
-            btn.addEventListener("click", () => renderEpisode(work, section, ep));
-            updateReadBadge(btn);
+            btn.addEventListener("click", (ev) => {
+              const rect = btn.getBoundingClientRect();
+              const x = ev.clientX - rect.left;
+              const onReadMark = x >= (rect.width - 24);
+              if (onReadMark && state.readSet.has(btn.dataset.epkey)) {
+                if (confirm("既読を取り消しますか？")) {
+                  state.readSet.delete(btn.dataset.epkey);
+                  saveReadSet();
+                  refreshEpisodeButtons();
+                }
+                return;
+              }
+              renderEpisode(work, section, ep);
+            });
+            updateEpisodeButtonMarks(btn);
             box.appendChild(btn);
             state.buttons.push(btn);
           }
@@ -1254,8 +1367,23 @@ A stylish underworld road movie with lethal charm.</p>
 
     function handleMainScroll() {
       if (articleWrapEl.style.display !== "block") return;
+      if (state.currentKey) {
+        const y = Math.max(0, Math.floor(mainEl.scrollTop));
+        if (y > 40) {
+          state.bookmarks[state.currentKey] = y;
+          saveBookmarks();
+          refreshEpisodeButtons();
+          setContinueButton();
+        }
+      }
       const nearBottom = mainEl.scrollTop + mainEl.clientHeight >= mainEl.scrollHeight - 8;
-      if (nearBottom) markCurrentEpisodeRead();
+      if (!nearBottom) return;
+      if (state.readSet.has(state.currentKey)) return;
+      if (state.readPromptHidden) {
+        markCurrentEpisodeRead();
+      } else {
+        openReadPrompt();
+      }
     }
 
     async function boot() {
@@ -1288,6 +1416,31 @@ A stylish underworld road movie with lethal charm.</p>
     document.querySelectorAll(".share-link[data-share]").forEach((btn) => {
       btn.addEventListener("click", () => openShareModal(btn.dataset.share));
     });
+
+    if (continueReadBtn) {
+      continueReadBtn.addEventListener("click", () => {
+        if (!state.currentKey) return;
+        const y = Number(state.bookmarks[state.currentKey] || 0);
+        if (y > 0) mainEl.scrollTo({ top: y, behavior: "smooth" });
+      });
+    }
+
+    if (readPromptYes) {
+      readPromptYes.addEventListener("click", () => {
+        saveReadPromptPref(!!readPromptNoMore.checked);
+        markCurrentEpisodeRead();
+        closeReadPrompt();
+      });
+    }
+    if (readPromptNo) {
+      readPromptNo.addEventListener("click", () => {
+        saveReadPromptPref(!!readPromptNoMore.checked);
+        closeReadPrompt();
+      });
+    }
+    if (readPromptModal) {
+      readPromptModal.addEventListener("click", (e) => { if (e.target === readPromptModal) closeReadPrompt(); });
+    }
 
     shareEpisodeBtn.addEventListener("click", () => {
       if (!state.current) return;
@@ -1354,6 +1507,8 @@ A stylish underworld road movie with lethal charm.</p>
     shareModal.addEventListener("click", (e) => { if (e.target === shareModal) closeShareModal(); });
 
     loadReadSet();
+    loadBookmarks();
+    loadReadPromptPref();
     initTheme();
     initSidebarToggle();
     initLanguage();
@@ -1362,6 +1517,8 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
 
 
 
