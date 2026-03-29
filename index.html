@@ -342,6 +342,11 @@
       padding: 10px;
       background: color-mix(in srgb, var(--panel) 86%, #fff 14%);
     }
+    .rec-item::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
     .rec-item h4 {
       margin: 0 0 8px;
       font-size: .98rem;
@@ -349,14 +354,15 @@
       line-height: 1.45;
     }
     .rec-figure {
-      margin: 0 0 8px;
-      width: 100%;
-      max-width: 420px;
-      aspect-ratio: 1 / 1;
+      margin: 0 14px 8px 0;
+      width: min(360px, 44%);
+      max-width: 360px;
+      aspect-ratio: 4 / 3;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--line);
       background: #f2ece3;
+      float: left;
     }
     .rec-figure img {
       width: 100%;
@@ -370,8 +376,21 @@
       line-height: 1.82;
       font-size: .93rem;
     }
-    .rec-actions { margin-top: 8px; }
+    .rec-actions {
+      margin-top: 8px;
+      clear: both;
+    }
 
+
+    @media (max-width: 900px) {
+      .rec-figure {
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 0 8px;
+        aspect-ratio: 1 / 1;
+      }
+    }
     .share-links {
       margin-top: 10px;
       display: flex;
@@ -1923,6 +1942,7 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
 
 
 
