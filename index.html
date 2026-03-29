@@ -77,6 +77,15 @@
       margin-bottom: 10px;
     }
     .sidebar-content { display: block; }
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      border: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 180;
+    }
+    .sidebar-backdrop.show { display: block; }
     aside {
       border-right: 1px solid var(--line);
       background: linear-gradient(180deg, var(--panel), var(--bg));
@@ -463,14 +472,32 @@
     @media (max-width: 880px) {
       .layout { grid-template-columns: 1fr; }
       aside {
-        border-right: none;
-        border-bottom: 1px solid var(--line);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(88vw, 340px);
+        border-right: 1px solid var(--line);
+        border-bottom: none;
         padding: 10px;
         max-height: none;
+        transform: translateX(-105%);
+        transition: transform .22s ease;
+        z-index: 200;
+        box-shadow: 0 10px 28px rgba(0,0,0,.35);
       }
-      .sidebar-toggle { display: block; }
-      .sidebar-content { display: none; }
-      #sidebar.open .sidebar-content { display: block; }
+      #sidebar.open { transform: translateX(0); }
+      .sidebar-toggle {
+        display: block;
+        position: fixed;
+        left: 12px;
+        top: 10px;
+        width: auto;
+        margin: 0;
+        z-index: 220;
+      }
+      .sidebar-content { display: block; }
+      main { padding-top: 62px; }
       .intro-media-wrap { grid-template-columns: 1fr; }
       .intro-media { width: 100%; }
     }
@@ -517,8 +544,8 @@
 </head>
 <body>
   <div class="layout">
+    <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-expanded="false" aria-controls="sidebarContent">メニューを開く</button>
     <aside id="sidebar">
-      <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-expanded="false" aria-controls="sidebarContent">メニューを開く</button>
       <div id="sidebarContent" class="sidebar-content">
       <h1 id="siteTitle">『共和国物語』サーガ</h1>
       <div id="siteMeta" class="meta">物語本編ビューア</div>
@@ -571,6 +598,7 @@
       <div id="tree" class="tree" aria-label="目次"></div>
       </div>
     </aside>
+    <button id="sidebarBackdrop" class="sidebar-backdrop" type="button" aria-label="メニューを閉じる"></button>
     <main>
       <section id="topPage" class="top-page">
         <article class="intro">
@@ -592,7 +620,7 @@
               <p>19世紀末から20世紀後半にかけてのカラバァタン共和国（後のカラベイ教導国）を舞台にした、血と陰謀の建国史。
 「天命の子」として生まれ、共和主義の洗脳から抜け出して絶対的な力で教導国を建国した初代・パラジェイ。その独裁と狂気に立ち向かい、対話による未来を模索したラカン・ライやビライン・アカネイたち。そして、愛する者のために自ら闇を担い、国を導こうとしたラデン・タネイとシャウン・アカウ。
 為政者たちが握る「狐色のナイフ」は誰の血を吸い、どこへ向かうのか。哀しくも美しい、初代から第五代に至る教導職たちの愛憎と、極限の剣戟（デューレイ）の軌跡を描く歴史叙事詩。</p>
-              <div class="share-links"><button class="share-link" type="button" data-share="karabatan">SNSで共有</button></div>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="karabatan">EP1から読む</button><button class="share-link" type="button" data-share="karabatan">SNSで共有</button></div>
             </div>
           </div>
         </article>
@@ -606,7 +634,7 @@
               <p>舞台は1990年代のハーロピノン共和国・ヘリエン直轄市。マフィア「五天」、過激派学生組織「マンツァル」、秘密結社「ジューナー」など、さまざまな組織の思惑が入り乱れる無法地帯で、平凡な日常を守るために立ち上がった若者たちの物語。
 ヘリエン国立大学の弱小サークル「西アルトス研究会」に集った、国籍も身分もバラバラな学生たち。彼らは「パラジェイのナイフ」を巡る陰謀や、弱者を切り捨てる理不尽な法律、恐るべきウイルスの脅威に対し、受け継がれた剣術、圧倒的なディベート、そして揺るぎない友情を武器に立ち向かっていく。
 大人たちの都合で均されることを拒み、でこぼこな「幸せ」を掴み取るための熱き青春群像劇。</p>
-              <div class="share-links"><button class="share-link" type="button" data-share="haropinon">SNSで共有</button></div>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="haropinon">EP1から読む</button><button class="share-link" type="button" data-share="haropinon">SNSで共有</button></div>
             </div>
           </div>
         </article>
@@ -620,7 +648,7 @@
               <p>世界の裏社会を掌握する犯罪組織「五天」。その最高幹部である「紫天」アーシャ・プリティヴィティと「青天」コト・テイル・アイテールを主役に据えたピカレスク・スピンオフ。
 激しい抗争から一息つき、ウォール連邦やアルモナ王国へと足を伸ばした二人の淑女。アーシャは「複式簿記」の論理と推し活に情熱を燃やし、コトは愛しの「旦那さま」への歪な愛と殺意を常に懐に忍ばせる。
 巨大アパレル企業とのビジネス商談、推しのライブへの参戦、そして因縁のマキャベリストとの遭遇。一見平和なバカンスの裏で、札束とナイフが乱れ飛ぶ。強烈な個性を持つ悪の幹部たちが織りなす、危険で華麗な裏社会のロードムービー。</p>
-              <div class="share-links"><button class="share-link" type="button" data-share="bookkeeper">SNSで共有</button></div>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="bookkeeper">EP1から読む</button><button class="share-link" type="button" data-share="bookkeeper">SNSで共有</button></div>
             </div>
           </div>
         </article>
@@ -753,7 +781,9 @@ A stylish underworld road movie with lethal charm.</p>
       current: null,
       currentKey: null,
       buttons: [],
-      readSet: new Set()
+      readSet: new Set(),
+      refExact: { character: new Map(), glossary: new Map() },
+      refLoose: { character: new Map(), glossary: new Map() }
     };
 
     const STORAGE_THEME = "repub_theme_v1";
@@ -783,6 +813,7 @@ A stylish underworld road movie with lethal charm.</p>
     const sidebarEl = document.getElementById("sidebar");
     const sidebarToggle = document.getElementById("sidebarToggle");
     const sidebarContentEl = document.getElementById("sidebarContent");
+    const sidebarBackdrop = document.getElementById("sidebarBackdrop");
 
     const shareModal = document.getElementById("shareModal");
     const shareTitle = document.getElementById("shareTitle");
@@ -826,6 +857,25 @@ A stylish underworld road movie with lethal charm.</p>
       lang: "ja"
     };
 
+
+    function setSidebarOpen(open) {
+      if (!sidebarEl || !sidebarToggle) return;
+      sidebarEl.classList.toggle("open", !!open);
+      if (sidebarBackdrop) sidebarBackdrop.classList.toggle("show", !!open);
+      sidebarToggle.textContent = open ? "メニューを閉じる" : "メニューを開く";
+      sidebarToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    function openFirstEpisodeByShareKey(key) {
+      const data = getActiveData();
+      if (!data || !Array.isArray(data.works)) return;
+      const work = data.works.find((w) => workShareKey(w.id) === key);
+      if (!work) return;
+      const section = (work.sections || [])[0];
+      const ep = section && Array.isArray(section.episodes) ? section.episodes[0] : null;
+      if (!section || !ep) return;
+      renderEpisode(work, section, ep);
+    }
     function mountGiscus() {
       const thread = document.getElementById("giscusThread");
       const notice = document.getElementById("giscusNotice");
@@ -954,10 +1004,9 @@ A stylish underworld road movie with lethal charm.</p>
       const mq = window.matchMedia("(max-width: 880px)");
       const sync = () => {
         if (mq.matches) {
-          sidebarEl.classList.remove("open");
-          sidebarToggle.textContent = "メニューを開く";
-          sidebarToggle.setAttribute("aria-expanded", "false");
+          setSidebarOpen(false);
         } else {
+          if (sidebarBackdrop) sidebarBackdrop.classList.remove("show");
           sidebarEl.classList.add("open");
           sidebarToggle.textContent = "メニュー";
           sidebarToggle.setAttribute("aria-expanded", "true");
@@ -969,10 +1018,14 @@ A stylish underworld road movie with lethal charm.</p>
       else if (mq.addListener) mq.addListener(sync);
 
       sidebarToggle.addEventListener("click", () => {
-        const open = sidebarEl.classList.toggle("open");
-        sidebarToggle.textContent = open ? "メニューを閉じる" : "メニューを開く";
-        sidebarToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        if (!mq.matches) return;
+        const open = !sidebarEl.classList.contains("open");
+        setSidebarOpen(open);
       });
+
+      if (sidebarBackdrop) {
+        sidebarBackdrop.addEventListener("click", () => setSidebarOpen(false));
+      }
     }
     function initLanguage() {
       const qLang = new URLSearchParams(location.search).get("lang");
@@ -991,6 +1044,7 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function showTop(updateHash = true) {
+      if (window.matchMedia("(max-width: 880px)").matches) setSidebarOpen(false);
       topPageEl.style.display = currentLang === "ja" ? "grid" : "none";
       if (topPageEnEl) topPageEnEl.style.display = currentLang === "en" ? "grid" : "none";
       if (topPageKaEl) topPageKaEl.style.display = currentLang === "ka" ? "grid" : "none";
@@ -1000,6 +1054,7 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function showEpisode() {
+      if (window.matchMedia("(max-width: 880px)").matches) setSidebarOpen(false);
       topPageEl.style.display = "none";
       if (topPageEnEl) topPageEnEl.style.display = "none";
       if (topPageKaEl) topPageKaEl.style.display = "none";
@@ -1043,6 +1098,69 @@ A stylish underworld road movie with lethal charm.</p>
       currentShare = null;
     }
 
+
+    function normalizeRefKey(v) {
+      return String(v ?? "").trim();
+    }
+
+    function normalizeRefLoose(v) {
+      return normalizeRefKey(v)
+        .replace(/[\s\u3000・･\-‐‑‒–—―'"`~〜～\[\]{}()（）【】「」『』■□◆◇★☆]/g, "")
+        .toLowerCase();
+    }
+
+    function buildReferenceMaps(storyData) {
+      state.refExact.character = new Map();
+      state.refExact.glossary = new Map();
+      state.refLoose.character = new Map();
+      state.refLoose.glossary = new Map();
+
+      const refs = storyData && storyData.references ? storyData.references : {};
+      const chars = Array.isArray(refs.characters) ? refs.characters : [];
+      const terms = Array.isArray(refs.glossary) ? refs.glossary : [];
+
+      const pushRef = (kind, name, slug) => {
+        const ex = normalizeRefKey(name);
+        const lo = normalizeRefLoose(name);
+        if (!ex || !slug) return;
+        if (!state.refExact[kind].has(ex)) state.refExact[kind].set(ex, slug);
+        if (lo && !state.refLoose[kind].has(lo)) state.refLoose[kind].set(lo, slug);
+      };
+
+      for (const ref of chars) {
+        const slug = ref.slug;
+        pushRef("character", ref.canonical, slug);
+        for (const a of (ref.aliases || [])) pushRef("character", a, slug);
+      }
+      for (const ref of terms) {
+        const slug = ref.slug;
+        pushRef("glossary", ref.canonical, slug);
+        for (const a of (ref.aliases || [])) pushRef("glossary", a, slug);
+      }
+    }
+
+    function resolveRefSlug(kind, name) {
+      const ex = normalizeRefKey(name);
+      const lo = normalizeRefLoose(name);
+      return state.refExact[kind].get(ex) || state.refLoose[kind].get(lo) || null;
+    }
+
+    function rewriteInlineRefs(container) {
+      if (!container) return;
+      const anchors = container.querySelectorAll("a.char-ref, a.term-ref, a[data-ref-type]");
+      anchors.forEach((a) => {
+        const type = a.dataset.refType || (a.classList.contains("char-ref") ? "character" : (a.classList.contains("term-ref") ? "glossary" : ""));
+        const kind = type === "character" ? "character" : (type === "glossary" ? "glossary" : null);
+        if (!kind) return;
+
+        const canonical = a.dataset.canonical || a.textContent || "";
+        const slug = resolveRefSlug(kind, canonical);
+        if (!slug) return;
+
+        const base = kind === "character" ? "characters.html" : "glossary.html";
+        a.setAttribute("href", `${base}#${encodeURIComponent(slug)}`);
+      });
+    }
     function renderEpisode(work, section, ep) {
       state.current = { work, section, ep };
       state.currentKey = episodeKey(work, section, ep);
@@ -1053,7 +1171,9 @@ A stylish underworld road movie with lethal charm.</p>
       const html = Array.isArray(ep.content)
         ? ep.content.map(block => block.html || `<p>${esc(block.text || "")}</p>`).join("\n")
         : "<p>本文データがありません。</p>";
-      document.getElementById("epContent").innerHTML = html;
+      const epContentEl = document.getElementById("epContent");
+      epContentEl.innerHTML = html;
+      rewriteInlineRefs(epContentEl);
 
       for (const btn of state.buttons) {
         const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
@@ -1147,6 +1267,7 @@ A stylish underworld road movie with lethal charm.</p>
         ]);
         if (!jaRes.ok) throw new Error(`HTTP ${jaRes.status}`);
         state.dataJa = await jaRes.json();
+        buildReferenceMaps(state.dataJa);
         if (enRes.ok) state.dataEn = await enRes.json();
         if (kaRes.ok) state.dataKa = await kaRes.json();
         const activeData = getActiveData();
@@ -1222,6 +1343,13 @@ A stylish underworld road movie with lethal charm.</p>
       } catch (_) {}
     });
 
+    document.querySelectorAll(".ep1-link").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.workKey;
+        if (key) openFirstEpisodeByShareKey(key);
+      });
+    });
+
     shareClose.addEventListener("click", closeShareModal);
     shareModal.addEventListener("click", (e) => { if (e.target === shareModal) closeShareModal(); });
 
@@ -1234,6 +1362,9 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
+
 
 
 
