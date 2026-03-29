@@ -1352,7 +1352,7 @@ A stylish underworld road movie with lethal charm.</p>
 
     function rewriteInlineRefs(container) {
       if (!container) return;
-      const anchors = container.querySelectorAll("a.char-ref, a.term-ref, a[data-ref-type]");
+      const anchors = container.querySelectorAll("a.char-ref, a.term-ref, a[data-ref-type], a[href*='characters.html#'], a[href*='glossary.html#']");
       anchors.forEach((a) => {
         const type = a.dataset.refType || (a.classList.contains("char-ref") ? "character" : (a.classList.contains("term-ref") ? "glossary" : ""));
         const kind = type === "character" ? "character" : (type === "glossary" ? "glossary" : null);
@@ -1518,7 +1518,7 @@ A stylish underworld road movie with lethal charm.</p>
 
     function bindTermPreviews(container) {
       if (!container) return;
-      const targets = container.querySelectorAll("a.term-ref, a.char-ref, a[data-ref-type='glossary'], a[data-ref-type='character'], a[href^='glossary.html#'], a[href^='characters.html#']");
+      const targets = container.querySelectorAll("a.term-ref, a.char-ref, a[data-ref-type='glossary'], a[data-ref-type='character'], a[href*='glossary.html#'], a[href*='characters.html#']");
       targets.forEach((a) => {
         if (a.dataset.previewBound === "1") return;
         const item = getTermPreviewItem(a);
@@ -1787,6 +1787,7 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
 
 
 
