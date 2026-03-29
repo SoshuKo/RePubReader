@@ -325,6 +325,53 @@
       border: 1px solid var(--line);
       background: #f1ece4;
     }
+    .rec-block { margin-top: 14px; }
+    .rec-title {
+      margin: 0 0 8px;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: .98rem;
+    }
+    .rec-grid {
+      display: grid;
+      gap: 10px;
+    }
+    .rec-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: color-mix(in srgb, var(--panel) 86%, #fff 14%);
+    }
+    .rec-item h4 {
+      margin: 0 0 8px;
+      font-size: .98rem;
+      color: var(--accent-2);
+      line-height: 1.45;
+    }
+    .rec-figure {
+      margin: 0 0 8px;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #f2ece3;
+    }
+    .rec-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .rec-item p {
+      margin: 0;
+      white-space: pre-line;
+      line-height: 1.82;
+      font-size: .93rem;
+    }
+    .rec-actions { margin-top: 8px; }
+
     .share-links {
       margin-top: 10px;
       display: flex;
@@ -699,7 +746,27 @@
               <p>19世紀末から20世紀後半にかけてのカラバァタン共和国（後のカラベイ教導国）を舞台にした、血と陰謀の建国史。
 「天命の子」として生まれ、共和主義の洗脳から抜け出して絶対的な力で教導国を建国した初代・パラジェイ。その独裁と狂気に立ち向かい、対話による未来を模索したラカン・ライやビライン・アカネイたち。そして、愛する者のために自ら闇を担い、国を導こうとしたラデン・タネイとシャウン・アカウ。
 為政者たちが握る「狐色のナイフ」は誰の血を吸い、どこへ向かうのか。哀しくも美しい、初代から第五代に至る教導職たちの愛憎と、極限の剣戟（デューレイ）の軌跡を描く歴史叙事詩。</p>
-              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="karabatan">EP1から読む</button><button class="share-link" type="button" data-share="karabatan">SNSで共有</button></div>
+              <div class="rec-block">
+                <p class="rec-title">おすすめ作品</p>
+                <div class="rec-grid">
+                  <article class="rec-item">
+                    <h4>アカウ編</h4>
+                    <figure class="rec-figure"><img src="./assets/images/アカウ編.png" alt="アカウ編" loading="lazy" /></figure>
+                    <p>石油資源が豊富なドゥラム海沿岸の産油国が舞台。ここでは、多くの国民が信仰する宗教の最高指導者「第一教導職」と、特権階級である9つの名家「九氏族」が国の実権を握っている。さらに、歴史の裏では暗殺や諜報を担う秘密組織「九地」や、思想を剣技に込める伝統的なナイフ術「デューレイ」も暗躍している。
+
+1920年代、「天命の子」と呼ばれるシャウン・パラジェイは、親友を倒して政権を掌握し、カラバァタン共和国を独裁国家「カラベイ教導国」へと変えた。しかしその後、妻と密かに育てられていた実の息子シャウン・アヤの裏切りにより暗殺される。
+
+アヤはさらに、自分の双子の兄である本物のビライン・アカネイの名を騙り、国の頂点に立って強権的な支配を行う。一方で、本物のアカネイは家族を奪われ、復讐を誓う。そして天才剣士ラカン・ライと手を組み、反撃に乗り出す。
+
+1960年代、大国ウォール連邦による軍事侵攻が迫る中、アカネイ・アヤ・ライの三者による激しい戦いが繰り広げられる。最終的にアカネイたちはアヤを倒すことに成功するが、その結果、ウォール連邦の操り人形となる無能な人物が新政権を握り、国は外国資本に支配されてしまう。
+
+こうして英雄たちの戦いは終わりを迎える。生き残ったライは議長として民主的な国家の再建を目指し、アカネイは身分を隠して辺境の司教となり国を見守る。敗れたアヤは軟禁されることになる。
+
+時代は1960年代後半へ。衰退しつつある教導国では、九氏族の複雑な権力争いが続いている。そんな中、アヤの娘でありながら父にも秘密で「男」として育てられたシャウン・アカウが、新たな時代を背負い、陰謀と大国の思惑が渦巻く政治と闘争の舞台へと踏み出していく。</p>
+                    <div class="rec-actions"><button class="share-link rec-open" type="button" data-work-key="karabatan" data-section-key="アカウ編">本編を読む</button></div>
+                  </article>
+                </div>
+              </div>              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="karabatan">EP1から読む</button><button class="share-link" type="button" data-share="karabatan">SNSで共有</button></div>
             </div>
           </div>
         </article>
@@ -713,7 +780,51 @@
               <p>舞台は1990年代のハーロピノン共和国・ヘリエン直轄市。マフィア「五天」、過激派学生組織「マンツァル」、秘密結社「ジューナー」など、さまざまな組織の思惑が入り乱れる無法地帯で、平凡な日常を守るために立ち上がった若者たちの物語。
 ヘリエン国立大学の弱小サークル「西アルトス研究会」に集った、国籍も身分もバラバラな学生たち。彼らは「パラジェイのナイフ」を巡る陰謀や、弱者を切り捨てる理不尽な法律、恐るべきウイルスの脅威に対し、受け継がれた剣術、圧倒的なディベート、そして揺るぎない友情を武器に立ち向かっていく。
 大人たちの都合で均されることを拒み、でこぼこな「幸せ」を掴み取るための熱き青春群像劇。</p>
-              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="haropinon">EP1から読む</button><button class="share-link" type="button" data-share="haropinon">SNSで共有</button></div>
+              <div class="rec-block">
+                <p class="rec-title">おすすめ作品</p>
+                <div class="rec-grid">
+                  <article class="rec-item">
+                    <h4>パラジェイのナイフ編</h4>
+                    <figure class="rec-figure"><img src="./assets/images/パラジェイのナイフ編.png" alt="パラジェイのナイフ編" loading="lazy" /></figure>
+                    <p>舞台は、自由と混沌が入り混じる隣国「ハーロピノン共和国」。
+
+かつて、石油資源と宗教的権威を背景に「第一教導職」と九つの名家「九氏族」が支配する「カラベイ教導国」では、暗殺・諜報組織「九地」とその頂点に立つ「白梟」、そして思想を刃に込める短剣術「デューレイ」が裏で暗躍していた。初代パラジェイによる建国、実子アヤの簒奪、そして本物のアカネイと天才剣士ラカン・ライらによる激しい戦いを経て、時代は1970年代以降へと移っていく。
+
+その後、アヤの娘シャウン・アカウは、権力闘争のために「男」として育てられながらも、愛する誠実な青年ラデン・タネイを第一教導職に据えるため、自ら「白梟」となって暗躍する。政敵や隣国の巨大犯罪組織「五天」を、血に染まったデューレイで排除していくのである。
+
+一方のタネイは、義父の暗殺や最愛の妻の昏睡といった悲劇に見舞われながらも、復讐には走らない。法と対話を重視した統治、さらに周辺地域との経済統合「ルルペ協定」を進めることで、国を繁栄へ導こうとする。こうして二人は、光と闇の両面から国を支える「共犯関係」として歩むことを決意する。
+
+やがて、かつての英雄たちの時代は幕を閉じる。
+
+そして物語の舞台は、ハーロピノン共和国へと移る。ここでは学生運動やマフィアの抗争が激化し、自由と混乱が同時に広がっていた。
+
+この地に集うのは次世代の若者たち。タネイ暗殺を企てて敗れ、祖国へ送還された秘密結社の「魔女」サテラ。アカウに父を殺された刑事の息子であり、ラカン・ライの孫でもある青年ラカン・ファタ。彼らは、親世代が遺した伝説のナイフや複雑な因縁を背負いながら、学研都市を舞台に新たな思想と青春、そして闘争へと踏み出していく。</p>
+                    <div class="rec-actions"><button class="share-link rec-open" type="button" data-work-key="haropinon" data-section-key="パラジェイのナイフ編">本編を読む</button></div>
+                  </article>
+                  <article class="rec-item">
+                    <h4>グリュックウイルス編</h4>
+                    <figure class="rec-figure"><img src="./assets/images/グリュックウイルス編.png" alt="グリュックウイルス編" loading="lazy" /></figure>
+                    <p>舞台は、学生運動とマフィアの抗争が続く無法地帯の学研都市ヘリエンを抱える、自由と混沌の国「ハーロピノン共和国」。
+
+ここでは、学生自治組織「マンツァル」と巨大マフィア「五天」が激しく対立している。そんな街で、かつて隣国カラベイ教導国で暗躍し、現在は強制送還されて寮母として暮らす元秘密結社の「魔女」サテラが、若者たちを静かに見守っている。
+
+物語の中心となるのは、大学の弱小サークル「西アルトス研究会」に集まった学生たち。カラベイの伝説的剣士の孫ラカン・ファタや、ヒーローを名乗る五天穏健派マフィアの妹ミナツらが仲間となる。
+
+彼らは、カラベイ建国の歴史に関わる伝説の短剣「パラジェイのナイフ」を巡る陰謀に巻き込まれる。警察、学生組織、マフィアが入り乱れる三つ巴の争いの中、未熟ながらも協力し合い、この事件を乗り越えていく。
+
+さらに、路上ライブを行う留学生クラや、論破を得意とするハルが加わり、仲間は増えていく。彼らは、マイノリティの表現の場を奪う「路上営業規制法」の改正案に対し、市民討論を通じてこれを覆し、自由を勝ち取る。
+
+しかし、平穏な日々は続かない。サークルの仲間であるレトとアリーが、実は絶対君主制国家エルテーナの中枢に関わる人物――諜報機関「君主制保全省」のエリートと次期君主であったことが明らかになり、祖国へと強制的に連れ戻されてしまう。
+
+ファタたちは仲間を救うため、海を越えてカラベイの外交の場に潜入。仲間たちと協力して巧妙な作戦を成功させ、監視をかいくぐり、二人をヘリエンへと連れ戻す。こうして彼らの絆はより強いものとなる。
+
+だがその直後、街には再び危機が訪れる。致死性の高い風土病「グリュックウイルス」が広がり始めるのだ。彼らは、非認可の新薬と倫理の狭間で葛藤する孤独な医師シユウ・レイとも関わりながら、この問題に立ち向かうことになる。
+
+さらに、過激な新興宗教「サイト」やマフィアの思惑も絡み合い、命を巡る新たなドラマと悲劇が幕を開けていく。</p>
+                    <div class="rec-actions"><button class="share-link rec-open" type="button" data-work-key="haropinon" data-section-key="グリュックウイルス編">本編を読む</button></div>
+                  </article>
+                </div>
+              </div>              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="haropinon">EP1から読む</button><button class="share-link" type="button" data-share="haropinon">SNSで共有</button></div>
             </div>
           </div>
         </article>
@@ -985,6 +1096,23 @@ A stylish underworld road movie with lethal charm.</p>
       if (!section || !ep) return;
       renderEpisode(work, section, ep);
     }
+
+    function openFirstEpisodeBySectionKey(workKey, sectionKey) {
+      const data = getActiveData();
+      if (!data || !Array.isArray(data.works)) return;
+      const work = data.works.find((w) => workShareKey(w.id) === workKey);
+      if (!work) return;
+      const sections = Array.isArray(work.sections) ? work.sections : [];
+      const targetSection = sections.find((s) =>
+        String(s.id || "").trim() === String(sectionKey || "").trim() ||
+        String(s.title || "").trim() === String(sectionKey || "").trim()
+      );
+      const section = targetSection || sections[0];
+      const ep = section && Array.isArray(section.episodes) ? section.episodes[0] : null;
+      if (!section || !ep) return;
+      renderEpisode(work, section, ep);
+    }
+
     function mountGiscus() {
       const thread = document.getElementById("giscusThread");
       const notice = document.getElementById("giscusNotice");
@@ -1768,6 +1896,14 @@ A stylish underworld road movie with lethal charm.</p>
       });
     });
 
+    document.querySelectorAll(".rec-open").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const workKey = btn.dataset.workKey;
+        const sectionKey = btn.dataset.sectionKey;
+        if (workKey && sectionKey) openFirstEpisodeBySectionKey(workKey, sectionKey);
+      });
+    });
+
     shareClose.addEventListener("click", closeShareModal);
     shareModal.addEventListener("click", (e) => { if (e.target === shareModal) closeShareModal(); });
 
@@ -1787,6 +1923,10 @@ A stylish underworld road movie with lethal charm.</p>
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
