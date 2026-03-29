@@ -101,6 +101,21 @@
     .title { margin: 0 0 4px; font-size: 1rem; }
     .catch { margin: 0; color: var(--muted); font-size: .9rem; }
     .body { padding: 10px 12px; line-height: 1.75; }
+    .entry-art-wrap {
+      margin: 10px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .entry-art-wrap.empty { display: none; }
+    .entry-art {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 260px;
+      background: #f2f6f7;
+    }
     .label { font-weight: 700; }
     .char-links { display: inline-flex; flex-wrap: wrap; gap: 6px; vertical-align: middle; }
     .char-link {
@@ -178,6 +193,22 @@
     function resolveCharacterSlug(name) {
       const key = normalizeKey(name);
       return key ? (charSlugByName.get(key) || null) : null;
+    }
+
+    function renderEntryImage(name, alt) {
+      const key = normalizeKey(name);
+      if (!key) return "";
+      const enc = encodeURIComponent(key);
+      const srcList = [
+        `./assets/images/${enc}.png`,
+        `./assets/images/${enc}.PNG`,
+        `./assets/images/${enc}.jpg`,
+        `./assets/images/${enc}.JPG`,
+        `./assets/images/${enc}.jpeg`,
+        `./assets/images/${enc}.JPEG`
+      ];
+      const srcs = srcList.join("|");
+      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || key)}" loading="lazy" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
     }
 
     function normalizeByStory(dicArr, storyRefs, mode) {
@@ -326,6 +357,7 @@
             <p class="catch">${esc(it["キャッチフレーズ"] || "（未入力）")}</p>
           </div>
           <div class="body">
+            ${mode === "knife" ? renderEntryImage(it[nameKey], `${it[nameKey] || "Knife"} illustration`) : ""}
             <div><span class="label">本文:</span> ${esc(it["本文"] || "（未入力）")}</div>
             <div><span class="label">使用者:</span> ${renderUsers(it["使用者"])}</div>
             <div><span class="label">コメント:</span> ${esc(it["コメント"] || "（未入力）")}</div>

@@ -87,6 +87,21 @@
       background: var(--accent-soft);
       border-bottom: 1px solid var(--line);
     }
+    .entry-art-wrap {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .entry-art-wrap.empty { display: none; }
+    .entry-art {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 280px;
+      background: #f7f5ef;
+    }
     .name { margin: 0 0 6px; font-size: 1.1rem; color: var(--accent); }
     .copy { margin: 0; color: var(--muted); }
     .body {
@@ -165,6 +180,22 @@
       return key ? (charSlugByName.get(key) || null) : null;
     }
 
+    function renderEntryImage(name, alt) {
+      const key = normalizeKey(name);
+      if (!key) return "";
+      const enc = encodeURIComponent(key);
+      const srcList = [
+        `./assets/images/${enc}.png`,
+        `./assets/images/${enc}.PNG`,
+        `./assets/images/${enc}.jpg`,
+        `./assets/images/${enc}.JPG`,
+        `./assets/images/${enc}.jpeg`,
+        `./assets/images/${enc}.JPEG`
+      ];
+      const srcs = srcList.join("|");
+      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || key)}" loading="lazy" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
+    }
+
     function matchText(row, q) {
       if (!q) return true;
       const hay = [
@@ -209,6 +240,7 @@
             <div class="head">
               <h2 class="name">${esc(title)}</h2>
               <p class="copy">${esc(catchCopy)}</p>
+              ${renderEntryImage(title, `${title} illustration`)}
             </div>
             <div class="body">
               <div><span class="label">肩書き:</span> ${esc(e["肩書き"] || "（未入力）")}</div>
