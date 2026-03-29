@@ -99,7 +99,7 @@
       width: 100%;
       display: block;
       object-fit: cover;
-      max-height: 280px;
+      max-height: 160px;
       background: #f7f5ef;
     }
     .name { margin: 0 0 6px; font-size: 1.1rem; color: var(--accent); }
@@ -180,20 +180,37 @@
       return key ? (charSlugByName.get(key) || null) : null;
     }
 
-    function renderEntryImage(name, alt) {
-      const key = normalizeKey(name);
-      if (!key) return "";
-      const enc = encodeURIComponent(key);
-      const srcList = [
-        `./assets/images/${enc}.png`,
-        `./assets/images/${enc}.PNG`,
-        `./assets/images/${enc}.jpg`,
-        `./assets/images/${enc}.JPG`,
-        `./assets/images/${enc}.jpeg`,
-        `./assets/images/${enc}.JPEG`
-      ];
+    function buildImageNameCandidates(names) {
+      const seen = new Set();
+      const out = [];
+      const add = (v) => {
+        const key = normalizeKey(v);
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        out.push(key);
+      };
+      for (const raw of asArray(names)) {
+        const base = normalizeKey(raw);
+        if (!base) continue;
+        add(base);
+        const parts = base.split(/[??\s]+/).map((x) => normalizeKey(x)).filter(Boolean);
+        for (const p of parts) add(p);
+        if (parts.length > 1) add(parts[parts.length - 1]);
+      }
+      return out;
+    }
+
+    function renderEntryImage(names, alt) {
+      const candidates = buildImageNameCandidates(names);
+      if (!candidates.length) return "";
+      const exts = ["png", "PNG", "jpg", "JPG", "jpeg", "JPEG"];
+      const srcList = [];
+      for (const name of candidates) {
+        const enc = encodeURIComponent(name);
+        for (const ext of exts) srcList.push(`./assets/images/${enc}.${ext}`);
+      }
       const srcs = srcList.join("|");
-      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || key)}" loading="lazy" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
+      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || candidates[0])}" loading="lazy" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
     }
 
     function matchText(row, q) {
@@ -240,7 +257,7 @@
             <div class="head">
               <h2 class="name">${esc(title)}</h2>
               <p class="copy">${esc(catchCopy)}</p>
-              ${renderEntryImage(title, `${title} illustration`)}
+              ${renderEntryImage([title, row.ref.canonical, ...(row.ref.aliases || [])], `${title} illustration`)}
             </div>
             <div class="body">
               <div><span class="label">肩書き:</span> ${esc(e["肩書き"] || "（未入力）")}</div>
