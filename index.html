@@ -1232,10 +1232,30 @@ A stylish underworld road movie with lethal charm.</p>
       const work = data.works.find((w) => workShareKey(w.id) === workKey);
       if (!work) return;
       const sections = Array.isArray(work.sections) ? work.sections : [];
-      const targetSection = sections.find((s) =>
-        String(s.id || "").trim() === String(sectionKey || "").trim() ||
-        String(s.title || "").trim() === String(sectionKey || "").trim()
-      );
+
+      const key = String(sectionKey || "").trim().toLowerCase();
+      const aliasMap = {
+        karabatan: {
+          "アカウ編": ["アカウ編", "akau arc", "akau"]
+        },
+        haropinon: {
+          "パラジェイのナイフ編": ["パラジェイのナイフ編", "pàlajé's knife arc", "palaje's knife arc", "palaje knife arc", "pàlajé knife arc"],
+          "グリュックウイルス編": ["グリュックウイルス編", "glúck virus arc", "gluck virus arc"]
+        }
+      };
+
+      const requestedAliases = ((aliasMap[workKey] && aliasMap[workKey][sectionKey]) || [sectionKey])
+        .map((x) => String(x || "").trim().toLowerCase())
+        .filter(Boolean);
+
+      const targetSection = sections.find((s) => {
+        const sid = String(s.id || "").trim().toLowerCase();
+        const stitle = String(s.title || "").trim().toLowerCase();
+        if (requestedAliases.includes(sid) || requestedAliases.includes(stitle)) return true;
+        if (!key) return false;
+        return sid.includes(key) || stitle.includes(key);
+      });
+
       const section = targetSection || sections[0];
       const ep = section && Array.isArray(section.episodes) ? section.episodes[0] : null;
       if (!section || !ep) return;
@@ -1516,9 +1536,11 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function workShareKey(workId) {
-      const id = String(workId || "");
-      if (id.includes("カラバァタン")) return "karabatan";
-      if (id.includes("ハーロピノン")) return "haropinon";
+      const idRaw = String(workId || "");
+      const id = idRaw.toLowerCase();
+      if (idRaw.includes("カラバァタン") || id.includes("kalavatan") || id.includes("kàlavatan")) return "karabatan";
+      if (idRaw.includes("ハーロピノン") || id.includes("harl-lopinong") || id.includes("har-lopinong") || id.includes("haropinon")) return "haropinon";
+      if (idRaw.includes("ブックキーパー") || id.includes("bookkeeper")) return "bookkeeper";
       return "bookkeeper";
     }
 
@@ -2058,8 +2080,27 @@ A stylish underworld road movie with lethal charm.</p>
     mountGiscus();
     boot();
   </script>
+<script id="autoLangEnPatch">
+(function(){
+  const p = new URLSearchParams(location.search);
+  if (p.get("lang") !== "en") return;
+  document.querySelectorAll('a[href]').forEach(a => {
+    const h = a.getAttribute("href");
+    if (!h || h.startsWith("#") || h.startsWith("http://") || h.startsWith("https://") || h.startsWith("mailto:") || h.startsWith("tel:")) return;
+    if (h.includes("lang=")) return;
+    const i = h.indexOf("#");
+    const base = i >= 0 ? h.slice(0, i) : h;
+    const hash = i >= 0 ? h.slice(i) : "";
+    const sep = base.includes("?") ? "&" : "?";
+    a.setAttribute("href", base + sep + "lang=en" + hash);
+  });
+})();
+</script>
 </body>
 </html>
+
+
+
 
 
 

@@ -516,8 +516,25 @@
     window.addEventListener('hashchange', () => setTimeout(jumpToHash, 0));
     boot();
   </script>
+<script id="autoLangEnPatch">
+(function(){
+  const p = new URLSearchParams(location.search);
+  if (p.get("lang") !== "en") return;
+  document.querySelectorAll('a[href]').forEach(a => {
+    const h = a.getAttribute("href");
+    if (!h || h.startsWith("#") || h.startsWith("http://") || h.startsWith("https://") || h.startsWith("mailto:") || h.startsWith("tel:")) return;
+    if (h.includes("lang=")) return;
+    const i = h.indexOf("#");
+    const base = i >= 0 ? h.slice(0, i) : h;
+    const hash = i >= 0 ? h.slice(i) : "";
+    const sep = base.includes("?") ? "&" : "?";
+    a.setAttribute("href", base + sep + "lang=en" + hash);
+  });
+})();
+</script>
 </body>
 </html>
+
 
 
 
