@@ -1,0 +1,1429 @@
+{
+  "characters": [
+    {
+      "id": "シャウン-パラジェイ",
+      "name": "Shàun Pàlajé",
+      "tagline": "the Child of Destiny who founded the Instructional Nation",
+      "quote": "I will not waver again. I choose a strong Kàlavé. Here and now, I declare the dissolution of the Kàlavatan Republic and the founding of the Kàlavé Instructional Nation. 'Ï'E'A Géjéné Kuējebeyï.",
+      "title": "First First Instructor of the Kàlavé Instructional Nation",
+      "body": "Born in 1899. Born as the “Child of Destiny” fated to found an Instructional Nation for the first time since the eighteenth century, he broke free from the Republic’s bondage and turned to Instructionalism. He possesses both immense strength and consummate sword skill.",
+      "combat_style": "Stance of Forthrightness / Duïlé sword · fox-colored knife",
+      "comment": "Koto: “The great first Highness! He is also my lord’s root and origin!”",
+      "related_characters": [
+        "Káin Kàna",
+        "Ládén Kïnàbé",
+        "Èshe",
+        "Ahhárén Xàsané",
+        "Shàun Pàlé",
+        "Shàun Lèi",
+        "Bïláin Àkané",
+        "Shàun Àya"
+      ]
+    },
+    {
+      "id": "カイン-カナ",
+      "name": "Káin Kàna",
+      "tagline": "the unconventional foster father",
+      "quote": "Let’s call it ‘results first.’ Do as much as you can.",
+      "title": "Third President of the Kàlavatan Republic; master of Kïnàiny",
+      "body": "A master of Duïlé who took on the role of father to Pàlajé. He later became the third president, but was assassinated by Nine Earths. He taught Pàlajé kindness and freedom.",
+      "combat_style": "the Pure-White Knife",
+      "comment": "Arsha: “He was quite the unconventional president. He was also the first owner of the pure-white knife.”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Ládén Kïnàbé",
+        "Ahhárén Xàsané"
+      ]
+    },
+    {
+      "id": "ラデン-キナベイ",
+      "name": "Ládén Kïnàbé",
+      "tagline": "Pàlajé’s foster brother and best friend",
+      "quote": "Look to the future, Pàlajé!",
+      "title": "Deputy master of Kïnàiny; Council member",
+      "body": "Kàna’s nephew and Pàlajé’s foster brother. To prevent the birth of the Instructional Nation, he clashed with Pàlajé at the Bridge of Conversion and lost his life. He was Lai’s master.",
+      "combat_style": "Stance of Gentleness, Stance of No-Mind / sword · Pure-White Knife",
+      "comment": "Koto: “Is he one of my lord’s ancestors? To stand against His Highness Pàlajé is no small feat.”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Káin Kàna",
+        "Lakán Lài",
+        "Ládén Lā",
+        "Bïláin Àkané"
+      ]
+    },
+    {
+      "id": "Èshe",
+      "name": "Èshe",
+      "tagline": "the village girl who was Pàlajé’s first love",
+      "quote": "You are the Child of Destiny. I’m only a poor village girl. And I want to repay the relatives and the village that raised me.",
+      "title": "Village girl",
+      "body": "A woman Pàlajé and Kïnàbé met on the road to Xāváléqï. Bound by the customs of Làitéqï Village, she was to marry a landlord and turned down Pàlajé’s invitation.",
+      "combat_style": "None",
+      "comment": "Arsha: “It is no exaggeration to say that her choice moved history.”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Ládén Kïnàbé"
+      ]
+    },
+    {
+      "id": "アハレン-ハサネイ",
+      "name": "Ahhárén Xàsané",
+      "tagline": "the Shadow Owl who rose from poverty",
+      "quote": "What Kàlavé needs, is a ruler with a heart.",
+      "title": "“Shadow Owl” of Nine Earths; former Kïnàiny master",
+      "body": "As the Shadow Owl of Nine Earths, he abducted Pàlajé and demanded the founding of an Instructional Nation. Once a member of Kïnàiny, he rebelled after the truth behind Kàna’s assassination was covered up.",
+      "combat_style": "Stance of Savagery / sword",
+      "comment": "Koto: “He is a user of the Stance of Savagery. I feel a bit of kinship with him myself.”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Káin Kàna",
+        "Yïmádén Rià",
+        "Shàun Pàlé"
+      ]
+    },
+    {
+      "id": "シャウン-パレイ",
+      "name": "Shàun Pàlé",
+      "tagline": "the White Owl who paved the road to the Instructional Nation",
+      "quote": "If you want to kill me, then do it. May fortune bless your choice.",
+      "title": "Leader of the Ismizlark Alliance; President of the Kàlavatan Republic; “White Owl”",
+      "body": "He tempted Pàlajé onward, secured emergency powers, and laid the foundation of the Instructional Nation. He then took his own life and framed the Council for the president’s assassination.",
+      "combat_style": "True Stance of Moderation / sword",
+      "comment": "Arsha: “A strategist to a frightening degree. To have even mastered the True Stance of Balance...”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Shàun Lèi",
+        "Ládén Lā",
+        "Ahhárén Xàsané"
+      ]
+    },
+    {
+      "id": "シャウン-ア-レイ",
+      "name": "Shàun Lèi",
+      "tagline": "the woman who loved Pàlajé and gave him everything",
+      "quote": "I shall love you forever, Child of Destiny.",
+      "title": "Pàlajé’s secretary; intelligence operative of Nine Earths",
+      "body": "Pàlajé’s secretary and, at the same time, Pàlé’s spy. She schemed from the shadows to fulfill Pàlajé’s “destiny,” and later used their twin sons to launch a coup.",
+      "combat_style": "the Jet-Black Knife",
+      "comment": "Koto: “That readiness to stop at nothing for the one she loves—I find it deeply relatable!”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Shàun Pàlé",
+        "Bïláin Àkané",
+        "Shàun Àya"
+      ]
+    },
+    {
+      "id": "ラカン-ライ",
+      "name": "Lakán Lài",
+      "tagline": "the moderate swordsman who values dialogue",
+      "quote": "It is. The future is waiting.",
+      "title": "Speaker of Parliament; commander of the Confederated States Army",
+      "body": "A man trained by Kïnàbé who inherited the Pure-White blade. Together with Àkané, he slew Àya, and later guided the country as Speaker of Parliament.",
+      "combat_style": "Stance of No-Mind, Stance of Moderation: Prelude / Pure-White Knife",
+      "comment": "Arsha: “That strength not to give up on discussion is something I would like to learn from as a merchant too.”",
+      "related_characters": [
+        "Ládén Kïnàbé",
+        "Bïláin Àkané",
+        "Shàun Àya",
+        "Yïmádén Rià",
+        "Sāna",
+        "Èn Nèkïné",
+        "Lakán Sài",
+        "Ládén Lā"
+      ]
+    },
+    {
+      "id": "ビライン-アカネイ",
+      "name": "Bïláin Àkané",
+      "tagline": "the sacrificed half of the twins",
+      "quote": "You’re the one who took Nèi, Mother, and Father from me!",
+      "title": "Second First Instructor; direct bishop of Seran",
+      "body": "Born as the son of Pàlajé and Lei, but given to the Bïláin house as an adopted child because one of a pair of twins was deemed accursed. He lost his family in Àya’s coup and struck back alongside Lai.",
+      "combat_style": "Stance of Savagery / crimson greatsword (knife)",
+      "comment": "Koto: “Having the same face as the fake Àkané makes things rather confusing.”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Shàun Lèi",
+        "Shàun Àya",
+        "Lakán Lài",
+        "Yïmádén Rià",
+        "Sāna",
+        "Ládén Tané"
+      ]
+    },
+    {
+      "id": "シャウン-アヤ",
+      "name": "Shàun Àya",
+      "tagline": "the twin who killed his father and stole the throne",
+      "quote": "Here dies His Highness the First Instructor who knew no hesitation. From this day onward, I will choose everything.",
+      "title": "False Bïláin Àkané; “Shadow Owl” of Nine Earths",
+      "body": "Àkané’s twin brother. Reared under Lei’s education and drug regimen, he assassinated his father Pàlajé and usurped the office of First Instructor.",
+      "combat_style": "Duïlé swordsmanship (raw power) / sword",
+      "comment": "Arsha: “A dictator who tried to choose everything with his own hands. It seems the price of the medicine was great indeed.”",
+      "related_characters": [
+        "Shàun Pàlajé",
+        "Shàun Lèi",
+        "Bïláin Àkané",
+        "Lakán Lài",
+        "Èn Nèkïné",
+        "Yïmádén Rià",
+        "Shàun Akau"
+      ]
+    },
+    {
+      "id": "イマデン-リア",
+      "name": "Yïmádén Rià",
+      "tagline": "a legendary swordmaster and fine teacher",
+      "quote": "I’ll give you a passing mark. Leave the rear guard to me.",
+      "title": "Leader of the Xàsané faction of Nine Earths; swordmaster",
+      "body": "The master who led the Xàsané faction of Nine Earths and taught the sword to Lai and Àkané. In later ages as well, his name was famed as that of a legendary swordsman.",
+      "combat_style": "Stance of Moderation (applied form) / bamboo sword · sword",
+      "comment": "Koto: “So he is a master swordsman. I wonder which is superior, him or my automatic counterattack?”",
+      "related_characters": [
+        "Ahhárén Xàsané",
+        "Lakán Lài",
+        "Bïláin Àkané",
+        "Shàun Àya",
+        "Èn Nèkïné"
+      ]
+    },
+    {
+      "id": "Sāna",
+      "name": "Sāna",
+      "tagline": "the liberal who supports the rebel alliance",
+      "quote": "To prepare for Àya’s “next move” when it comes, now is the time for the bishops to deliberate in Seran.",
+      "title": "Direct bishop of Seran",
+      "body": "A liberal of Seran. She supported Lai and Àkané as a trusted ally.",
+      "combat_style": "None",
+      "comment": "Arsha: “A capable person who lays the groundwork properly behind the scenes of politics.”",
+      "related_characters": [
+        "Lakán Lài",
+        "Bïláin Àkané",
+        "Èn Nèkïné",
+        "Shàun Àya"
+      ]
+    },
+    {
+      "id": "ヤナン-カウ",
+      "name": "Yanan Kau (Asásén Pàlau)",
+      "tagline": "the terrorist who serves as Àya’s puppet",
+      "quote": "My name is Yanan Kau. In the name of the laws of Ismizlark, Dírál branch, I will bring down the hammer of justice upon you.",
+      "title": "Leader of the Kau faction of Nine Earths",
+      "body": "As leader of the Kau faction, he carried out numerous terrorist attacks. He enhanced his body with drugs and fought Nekinei, Lai, and the others.",
+      "combat_style": "drug-enhanced close combat / knife",
+      "comment": "Koto: “Relying on medicine is not beautiful.”",
+      "related_characters": [
+        "Èn Nèkïné",
+        "Lakán Lài",
+        "Bïláin Àkané",
+        "Apàla"
+      ]
+    },
+    {
+      "id": "エン-ネキネイ",
+      "name": "Èn Nèkïné",
+      "tagline": "the police officer with genius swordsmanship",
+      "quote": "It will. The future is waiting.",
+      "title": "Chief of First Investigations, National Police Agency; commander of the anti-terror unit",
+      "body": "A genius swordswoman serving in the police. She developed the “Stance of Moderation: Kai,” combining Duïlé with riot-control techniques, and fought beside Lai and Àkané.",
+      "combat_style": "Stance of Moderation: Kai / riot-control baton arts · Duïlé knife",
+      "comment": "Arsha: “That police young lady is quite capable. The Revised Stance of Balance is practical indeed.”",
+      "related_characters": [
+        "Lakán Lài",
+        "Bïláin Àkané",
+        "Yanan Kau (Asásén Pàlau)",
+        "Sāna",
+        "Yïmádén Rià",
+        "Shàun Àya",
+        "Lakán Sài"
+      ]
+    },
+    {
+      "id": "ティラウン-パテイ",
+      "name": "Tïràun Paté",
+      "tagline": "the incompetent sovereign manipulated by foreign powers",
+      "quote": "Rest easy, Rià. In the name of the Tïràun house, your deeds shall be exempt from punishment.",
+      "title": "Third First Instructor",
+      "body": "A delinquent youth of the Nine Clans. Set up as First Instructor as Worl’s puppet, he tried to flee into exile after demands that he resign the office, and died in what was called an accident—an assassination in all but name.",
+      "combat_style": "None",
+      "comment": "Koto: “That thing being the First Instructor is an insult to my lord!”",
+      "related_characters": [
+        "Hánén Kïlàné",
+        "Ládén Tané"
+      ]
+    },
+    {
+      "id": "アネン-キラネイ",
+      "name": "Hánén Kïlàné",
+      "tagline": "the compromise-minded pacifist",
+      "quote": "It is decided. Cool your head a little.",
+      "title": "Fourth First Instructor",
+      "body": "A conciliatory leader who took office after Patei. Tané’s father-in-law. He loved his daughter Mono, but was assassinated by the schemes of Ètïré.",
+      "combat_style": "None",
+      "comment": "Arsha: “He was a steady politician, but it seems the radicals found him lacking.”",
+      "related_characters": [
+        "Tïràun Paté",
+        "Ládén Tané",
+        "Ládén a Mono",
+        "Shàun a Ètïré",
+        "Lakán Sài"
+      ]
+    },
+    {
+      "id": "シャウン-アカウ",
+      "name": "Shàun Akau",
+      "tagline": "the White Owl who loved Tané and took darkness upon herself",
+      "quote": "It is my mission to stake my life on protecting His Holiness the First Instructor!",
+      "title": "Administrative officer; press officer; “White Owl”",
+      "body": "Àya’s daughter, though she was raised as a boy. She fell deeply in love with Tané, stained her own hands so he might become First Instructor, and became the White Owl. Later she served as an administrative officer.",
+      "combat_style": "Stance of Savagery / Pure-White Knife",
+      "comment": "Koto: “That woman! To beguile my lord—I will never forgive her!”",
+      "related_characters": [
+        "Ládén Tané",
+        "Shàun Àya",
+        "Apàla",
+        "Lakán Sài",
+        "Majén Qàlé",
+        "Satella Long",
+        "Koto Tál Aitēl",
+        "Nálén Sālé"
+      ]
+    },
+    {
+      "id": "Apàla",
+      "name": "Apàla",
+      "tagline": "the Shadow Owl who ushers in a new age",
+      "quote": "The true Instructional Nation shall rise again!",
+      "title": "“Shadow Owl” of Nine Earths",
+      "body": "He abandoned the Kau faction and placed his hopes in a new White Owl—Akau. He passed the White Owl badge to Akau. After clashing with Koto of Five Heavens, he died.",
+      "combat_style": "Stance of No-Mind / knife",
+      "comment": "Arsha: “He was a rather formidable opponent. If Koto had not been there, it might have been dangerous.”",
+      "related_characters": [
+        "Yanan Kau (Asásén Pàlau)",
+        "Shàun Akau",
+        "Lakán Sài",
+        "Shàun a Ètïré",
+        "Koto Tál Aitēl"
+      ]
+    },
+    {
+      "id": "ラカン-サイ",
+      "name": "Lakán Sài",
+      "tagline": "the young detective who died for justice",
+      "quote": "If I die here, justice dies too. I’m walking out of this room alive!",
+      "title": "Detective, First Investigations Division, Metropolitan Police",
+      "body": "Lai’s son. While pursuing the truth behind Kïràné’s assassination, he came to suspect Tané, but clashed with Akau, who sought to protect Tané, and lost his life. In heaven, he guides Mono.",
+      "combat_style": "Stance of Moderation: Kai / police baton",
+      "comment": "Koto: “He was a young man with a strong sense of justice. But if he obstructs my lord, then of course he deserves to die.”",
+      "related_characters": [
+        "Lakán Lài",
+        "Èn Nèkïné",
+        "Hánén Kïlàné",
+        "Shàun Akau",
+        "Apàla",
+        "Ládén Tané",
+        "Lakán Fàta"
+      ]
+    },
+    {
+      "id": "マジェン-カレイ",
+      "name": "Majén Qàlé",
+      "tagline": "the Second Instructor who loves nuclear power and peace",
+      "quote": "Princess Namire—and Chairman Lai’s grandson as well. Your little act to buy time has gone on quite long enough.",
+      "title": "Second Instructor; student at the Narejia Federation University",
+      "body": "A childhood friend of Tané and Akau. He studied nuclear power at the Narejia Federation University and grew close to Satella, only to be betrayed by her. He later supported the nation as Second Instructor.",
+      "combat_style": "rudimentary self-defense / flask · knife",
+      "comment": "Arsha: “An Instructor who is a nuclear-power enthusiast—what an unusual person.”",
+      "related_characters": [
+        "Ládén Tané",
+        "Shàun Akau",
+        "Satella Long",
+        "Aliĕ Namile",
+        "Lakán Fàta"
+      ]
+    },
+    {
+      "id": "ラデン-タネイ",
+      "name": "Ládén Tané",
+      "tagline": "the strong-armed leader who carries sorrow on his back",
+      "quote": "I will not become Pàlajé.",
+      "title": "Fifth First Instructor",
+      "body": "Kïràné’s son-in-law. After his wife Mono fell into a coma, he led Kàlavé to economic growth as a “strong-arm” ruler. He supported the nation together with Akau.",
+      "combat_style": "Stance of No-Mind / Crimson Knife",
+      "comment": "Koto: “Ah, my beloved lord! The most beautiful and precious person in all the world!”",
+      "related_characters": [
+        "Hánén Kïlàné",
+        "Ládén a Mono",
+        "Shàun Akau",
+        "Shàun a Ètïré",
+        "Lakán Sài",
+        "Majén Qàlé",
+        "Koto Tál Aitēl",
+        "Nálén Sālé",
+        "Bïláin Àkané"
+      ]
+    },
+    {
+      "id": "コト-テイル-アイテール",
+      "name": "Koto Tál Aitēl",
+      "tagline": "the blind murderous blade, incurably in love with her lord",
+      "quote": "I had wanted to kill him myself. It was worth coming here in person.",
+      "title": "President of Aitēl Company; “Blue Heaven” of Five Heavens; Tané’s former second wife",
+      "body": "Tané’s former second wife and the Blue Heaven of Five Heavens. Because of her twisted love for Tané, she tried to kill him and came into fierce conflict with Akau. She is blind, but her senses are extraordinarily sharp.",
+      "combat_style": "automatic counterattack / thrown knives · close combat",
+      "comment": "Arsha: “She truly is insane. Wanting to kill one’s favorite is beyond my understanding.”",
+      "related_characters": [
+        "Ládén Tané",
+        "Shàun Akau",
+        "Arsha Pritivitiĕ",
+        "Killord Dubi Selestia",
+        "Alka Melduĕk",
+        "Satella Long",
+        "Apàla"
+      ]
+    },
+    {
+      "id": "サテラ-ロン",
+      "name": "Satella Long",
+      "tagline": "the former witch still searching for happiness",
+      "quote": "Roger!",
+      "title": "Dorm mother of the Nolt student dormitory; former “witch” of Jūnā",
+      "body": "A member of the secret society Jūnā, she approached Qàlé, and later fought Akau and the others in Kàlavé. After her defeat, she reformed and became a dorm mother in the Har-Lopinong Republic.",
+      "combat_style": "ultra-high-speed knife handling / knife",
+      "comment": "Koto: “That woman’s speed was troublesome. But in the end she was only a loser.”",
+      "related_characters": [
+        "Majén Qàlé",
+        "Shàun Akau",
+        "Koto Tál Aitēl",
+        "Shiyuĕ Lei",
+        "Jen D'Ark"
+      ]
+    },
+    {
+      "id": "ラデン-ラー",
+      "name": "Ládén Lā",
+      "tagline": "the strongest old man",
+      "quote": "Youth is force, but old age is experience.",
+      "title": "First Instructor (Republican era)",
+      "body": "The First Instructor of the Republican era and Kïnàbé’s father. Powerful enough to overwhelm Lei, he nevertheless watched the tide of the age pass and later taught the sword to Lai.",
+      "combat_style": "True Stance of Moderation, Stance of Gentleness / short blade (fririjin) · staff",
+      "comment": "Arsha: “An outrageous old gentleman. At his age, moving like that is unbelievable.”",
+      "related_characters": [
+        "Ládén Kïnàbé",
+        "Lakán Lài",
+        "Shàun Pàlé"
+      ]
+    },
+    {
+      "id": "ラデン-ア-モノ",
+      "name": "Ládén a Mono",
+      "tagline": "the kindhearted wife whom Tané loved",
+      "quote": "Politics is not about bringing someone down. It ought to create a place where everyone can sleep in peace, like this hospital room.",
+      "title": "Tané’s wife; daughter of Kïràné",
+      "body": "Kïràné’s daughter and Tané’s wife. Fed lies about the truth of her father’s death through Ètïré’s schemes, she fell into a coma, but awakened after a very long time.",
+      "combat_style": "None",
+      "comment": "Koto: “That woman! Strutting about as if she were my lord’s lawful wife... I wish she would disappear already!”",
+      "related_characters": [
+        "Ládén Tané",
+        "Hánén Kïlàné",
+        "Shàun a Ètïré",
+        "Lakán Sài"
+      ]
+    },
+    {
+      "id": "シャウン-ア-エティレイ",
+      "name": "Shàun a Ètïré",
+      "tagline": "the former White Owl who set the stage for ruin",
+      "quote": "Kill me! Kill me, and you will become the new Lord Pàlajé!",
+      "title": "Member of Parliament; “White Owl”",
+      "body": "A woman from a cadet branch of the Shàun house. She enticed Tané and tried to have Kïràné assassinated. She sought to drag Tané down the path of carnage, failed, and was then assassinated by Apàla.",
+      "combat_style": "Stance of Savagery / knife",
+      "comment": "Arsha: “To plot a conspiracy is to stake your life on it. Her end was abrupt indeed.”",
+      "related_characters": [
+        "Ládén Tané",
+        "Hánén Kïlàné",
+        "Ládén a Mono",
+        "Apàla",
+        "Shàun Akau"
+      ]
+    },
+    {
+      "id": "ナレン-サレイ",
+      "name": "Nálén Sālé",
+      "tagline": "the spring sun who designs Kàlavé’s economy",
+      "quote": "If His Holiness Tané is the winter bonfire, then I am the spring sun.",
+      "title": "Administrative Vice Minister of Commerce",
+      "body": "An elite official in charge of economic policy under the Tané administration. He clashed with Akau, and the two hurled their ideals against one another.",
+      "combat_style": "Stance of Revolving Flame / knife",
+      "comment": "Koto: “An impertinent youngster. He only basks in my lord’s reflected glory.”",
+      "related_characters": [
+        "Ládén Tané",
+        "Shàun Akau",
+        "Majén Qàlé"
+      ]
+    },
+    {
+      "id": "キルロード-ドゥビ-セレスティア",
+      "name": "Killord Dubi Selestia",
+      "tagline": "Five Heavens’ long-suffering mediator",
+      "quote": "No good. His Holiness is scheduled to attend today as well. Like it or not, everyone will be present.",
+      "title": "“Yellow Heaven” of Five Heavens",
+      "body": "An executive of Five Heavens. The eighth legitimate son of the Celestia family, he was castrated, and now suffers endlessly trying to hold together his freewheeling fellow executives.",
+      "combat_style": "None",
+      "comment": "Arsha: “His Highness has it hard too. To keep together an organization full of eccentrics like us is no easy task.”",
+      "related_characters": [
+        "Arsha Pritivitiĕ",
+        "Koto Tál Aitēl",
+        "Alka Melduĕk",
+        "Kybi Árin",
+        "Shinan Arsnorva"
+      ]
+    },
+    {
+      "id": "アーシャ-プリティヴィティ",
+      "name": "Arsha Pritivitiĕ",
+      "tagline": "the Violet Heaven who adores double-entry bookkeeping",
+      "quote": "This is the true glory of double-entry bookkeeping!",
+      "title": "“Violet Heaven” of Five Heavens; CEO of Lavacuda Company",
+      "body": "CEO of a synthetic-fiber manufacturer in Worl and the chief money-earner of Five Heavens. A fervent fan of Tiana, she often acts together with Koto.",
+      "combat_style": "None",
+      "comment": "Koto: “A fake lady. She talks of nothing but business and has no refinement.”",
+      "related_characters": [
+        "Tiana Mellén",
+        "Koto Tál Aitēl",
+        "Killord Dubi Selestia",
+        "Alka Melduĕk",
+        "Kybi Árin",
+        "Satella Long"
+      ]
+    },
+    {
+      "id": "アルカ-メルドゥーク",
+      "name": "Alka Melduĕk",
+      "tagline": "the hollow god who stages tragedy",
+      "quote": "You were the protagonist. You blinded yourself with your own radiance.",
+      "title": "“Scarlet Heaven” of Five Heavens",
+      "body": "Leader of Five Heavens, and the one who transformed the organization into a radical religious criminal syndicate. Since his university days, he has been a Machiavellian who delights in manipulating the misfortune and ruin of others.",
+      "combat_style": "None",
+      "comment": "Arsha: “Though he is my lord, I sense an unfathomable terror in him.”",
+      "related_characters": [
+        "Estiĕ Shmelmalk",
+        "Arsha Pritivitiĕ",
+        "Killord Dubi Selestia",
+        "Kybi Árin",
+        "Koto Tál Aitēl",
+        "Shiyuĕ Lei",
+        "Tiana Mellén"
+      ]
+    },
+    {
+      "id": "キュビ-エイリン",
+      "name": "Kybi Árin",
+      "tagline": "the cross-dressing madman who covets Latia’s seat",
+      "quote": "Eirin-chan just killed a whole bunch of annoying people, okay? Totally different from that old hag ♡",
+      "title": "“Green Heaven” of Five Heavens; chief of Qubi Frauzett",
+      "body": "The far-right executive of Five Heavens, fond of women’s dress. He schemes to usurp the seat of Scarlet Heaven and also clashes with Koto and the others.",
+      "combat_style": "firearms · kicks",
+      "comment": "Koto: “A filthy man! I shall carve him to pieces with my knife!”",
+      "related_characters": [
+        "Alka Melduĕk",
+        "Arsha Pritivitiĕ",
+        "Killord Dubi Selestia",
+        "Koto Tál Aitēl"
+      ]
+    },
+    {
+      "id": "エイグレ-ヤル",
+      "name": "Ágre Yall",
+      "tagline": "the activist who has called himself a student for years",
+      "quote": "If you have learned the truth, then you shall become a sacrifice for the revolution here and now.",
+      "title": "Chairman and general secretary of Manzal",
+      "body": "Leader of Manzal, the student movement organization at Hellén National University. After killing a member of Five Heavens, he attacked Aliĕ and the others to conceal the crime.",
+      "combat_style": "club",
+      "comment": "Arsha: “A terrorist wearing the skin of a student. As the head of an organization, that is a failure.”",
+      "related_characters": [
+        "Aliĕ Namile",
+        "Lakán Fàta",
+        "Minac Arsnorva",
+        "Hal Perort",
+        "Loid Gorstpiĕss"
+      ]
+    },
+    {
+      "id": "ダーツ-スリンガー",
+      "name": "Darc Slingar",
+      "tagline": "the spy who moves behind a cheerful face",
+      "quote": "I am a messenger of freedom. Young people, cast the dice with your own hands to your heart’s content!",
+      "title": "Har-Lopinong police officer; intelligence operative of the Worl Federation Preparatory Committee",
+      "body": "A police officer assigned to a neighborhood box in the Sósos district, but in truth an agent of Worl. He leaks information to the young and sets events in motion.",
+      "combat_style": "None",
+      "comment": "Koto: “A grimy intelligence agent. One day he will slip up.”",
+      "related_characters": [
+        "Shiyuĕ Lei",
+        "Mon Harc",
+        "Aliĕ Namile",
+        "Lakán Fàta"
+      ]
+    },
+    {
+      "id": "シユウ-レイ",
+      "name": "Shiyuĕ Lei",
+      "tagline": "the mad scientist who fell from despair into insanity",
+      "quote": "I am trying to save lives.",
+      "title": "Physician at Sósos West Clinic; chief researcher at the National Institute of Medical Science",
+      "body": "A second-generation Solan immigrant physician. When approval for a Glück virus treatment would not come, he used an unapproved drug to save Dahia’s life, and later cast ethics aside and became a mad scientist.",
+      "combat_style": "chemicals · injections",
+      "comment": "Arsha: “What a dreadful world, for a doctor to administer poison.”",
+      "related_characters": [
+        "Dahia Opfar",
+        "Jen D'Ark",
+        "Satella Long",
+        "Darc Slingar",
+        "Alka Melduĕk"
+      ]
+    },
+    {
+      "id": "モン-ハルツ",
+      "name": "Mon Harc",
+      "tagline": "the poster girl who serves nothing but fried rice",
+      "quote": "Fried rice. Four. Done.",
+      "title": "Poster girl of Yifun Restaurant; Yuum’s younger sister",
+      "body": "A second-generation Solan working at Yifun Restaurant. Her Aldian is halting, and she ignores the order and serves fried rice for everything. Later, she sets her sights on Hellén National University.",
+      "combat_style": "None",
+      "comment": "Koto: “Nothing but fried rice... the nutrition will become unbalanced.”",
+      "related_characters": [
+        "Yuĕm Harc",
+        "Shiyuĕ Lei",
+        "Dahia Opfar",
+        "Els Ma N'Garsha"
+      ]
+    },
+    {
+      "id": "シナン-アルスノーヴァ",
+      "name": "Shinan Arsnorva",
+      "tagline": "the hot-blooded hero who protects Sósos",
+      "quote": "My name is Shinan Arsnorva! One of Five Heavens’ Fàrned—servant of Lady Scarlet Heaven—and the impossibly cool hero of this city!",
+      "title": "Member of Five Heavens (Fàrned); hero",
+      "body": "Though one of the moderates within Five Heavens, she also acts as a hero protecting peace in the city. She is Minatsu’s elder sister.",
+      "combat_style": "Arsnova Punch (joint locks and hand-to-hand combat)",
+      "comment": "Arsha: “A hero though she is in the mafia—what a contradiction.”",
+      "related_characters": [
+        "Minac Arsnorva",
+        "Tor Secmet",
+        "Els Ma N'Garsha",
+        "Aliĕ Namile",
+        "Lakán Fàta",
+        "Killord Dubi Selestia"
+      ]
+    },
+    {
+      "id": "レト-ラウワ",
+      "name": "Leto Lówa",
+      "tagline": "the grand chancellor sent from the Ministry for the Preservation of Monarchy",
+      "quote": "I hid my true identity from all of you. And I became Grand Chancellor. Do you understand what it means to say that to me?",
+      "title": "Student at Hellén National University; Grand Chancellor of the Eltēna Union",
+      "body": "A young man who studied abroad in Hellén together with Aliĕ as her minder. Gifted in strategy, he served as the club’s chief brain.",
+      "combat_style": "None",
+      "comment": "Koto: “For a grand chancellor to pretend to be a student—what an idle person.”",
+      "related_characters": [
+        "Aliĕ Namile",
+        "Hal Perort",
+        "Lakán Fàta",
+        "Minac Arsnorva",
+        "Loid Gorstpiĕss"
+      ]
+    },
+    {
+      "id": "アリー-ナミレ",
+      "name": "Aliĕ Namile",
+      "tagline": "the wise princess who keeps her eyes on the future",
+      "quote": "“Do not eliminate the street—evolve the street.”",
+      "title": "Law student at Hellén National University; Princess of Reneti",
+      "body": "A princess of the Eltēna Union who nevertheless studied in Hellén and matched Hal in debate. She grows together with Fata as the two are drawn to one another.",
+      "combat_style": "air gun / self-defense close combat",
+      "comment": "Arsha: “For a royal daughter to wave an air gun around in the street—she is quite a tomboy.”",
+      "related_characters": [
+        "Leto Lówa",
+        "Lakán Fàta",
+        "Hal Perort",
+        "Minac Arsnorva",
+        "Kura Mogroi",
+        "Ágre Yall",
+        "Shinan Arsnorva"
+      ]
+    },
+    {
+      "id": "ラカン-ファタ",
+      "name": "Lakán Fàta",
+      "tagline": "the pure-white swordsman who inherits his grandfather’s will",
+      "quote": "I am one who will bring choice back to Kàlavé. You have already chosen to protect someone. One day, learn to make the ‘choice’ to erase an enemy with your own hands.",
+      "title": "Student at Hellén National University",
+      "body": "Son of Lakán Sài and grandson of Lai. Inheriting his grandfather’s swordsmanship, he joins Aliĕ, Minatsu, and the others in Hellén to confront conspiracy.",
+      "combat_style": "Stance of Savagery, Stance of No-Mind / wooden sword · Pàlajé’s Knife",
+      "comment": "Koto: “So another of that bloodline has appeared. How irritating.”",
+      "related_characters": [
+        "Lakán Sài",
+        "Aliĕ Namile",
+        "Minac Arsnorva",
+        "Leto Lówa",
+        "Hal Perort",
+        "Ágre Yall",
+        "Shinan Arsnorva",
+        "Majén Qàlé"
+      ]
+    },
+    {
+      "id": "ミナツ-アルスノーヴァ",
+      "name": "Minac Arsnorva",
+      "tagline": "an otaku girl and practitioner of the Stance of Moderation",
+      "quote": "Die and apologize, you bastard!",
+      "title": "President of the West Altos Researcher’s Club",
+      "body": "Sinan’s younger sister. Usually an otaku girl, but highly skilled with the sword. She fights beside Fata using Pàlajé’s Knife as her weapon.",
+      "combat_style": "Stance of Moderation / wooden sword · Pàlajé’s Knife",
+      "comment": "Arsha: “A swordsman who draws dōjinshi... quite a traffic jam of attributes.”",
+      "related_characters": [
+        "Shinan Arsnorva",
+        "Lakán Fàta",
+        "Aliĕ Namile",
+        "Hal Perort",
+        "Leto Lówa",
+        "Ágre Yall"
+      ]
+    },
+    {
+      "id": "クラ-モグロイ",
+      "name": "Kura Mogroi",
+      "tagline": "the Durgu songstress whose khoomei resounds",
+      "quote": "O lone wolf who steps upon the land of Asetiro—",
+      "title": "Student at Hellén National University; street musician",
+      "body": "An international student from Durguatan. Through street performances, she supports Aliĕ and the others with song and khoomei.",
+      "combat_style": "None",
+      "comment": "Koto: “What a barbaric singing voice. It will sully my lord’s ears.”",
+      "related_characters": [
+        "Aliĕ Namile",
+        "Hal Perort",
+        "Lakán Fàta",
+        "Loid Gorstpiĕss"
+      ]
+    },
+    {
+      "id": "ハル-ペロート",
+      "name": "Hal Perort",
+      "tagline": "the gluttonous debater who possesses both logic and feeling",
+      "quote": "I want to protect the future in order to protect everyone’s today.",
+      "title": "Student at Hellén National University",
+      "body": "A master debater and Aliĕ’s rival. He is always eating vast amounts of sweets, yet in argument his power of persuasion is overwhelming.",
+      "combat_style": "None",
+      "comment": "Arsha: “How does he eat that much and not get fat? I envy him.”",
+      "related_characters": [
+        "Aliĕ Namile",
+        "Leto Lówa",
+        "Lakán Fàta",
+        "Minac Arsnorva",
+        "Kura Mogroi",
+        "Loid Gorstpiĕss"
+      ]
+    },
+    {
+      "id": "トーア-セクメト",
+      "name": "Tor Secmet",
+      "tagline": "the extremist who subdues the majority through violence",
+      "quote": "This is how I won my place—through “power.” You did the same, didn’t you?",
+      "title": "Fàrned of Five Heavens",
+      "body": "Driven toward violence by a past of persecution in Kàlavé, he opposed Sinan as an extremist within Five Heavens. Koto cut him down without mercy.",
+      "combat_style": "close combat (boxing style)",
+      "comment": "Koto: “Anyone incompetent enough to hold me back, I cut away without mercy.”",
+      "related_characters": [
+        "Shinan Arsnorva",
+        "Koto Tál Aitēl"
+      ]
+    },
+    {
+      "id": "ダヒア-オプファー",
+      "name": "Dahia Opfar",
+      "tagline": "the kindhearted girl toyed with by tragedy",
+      "quote": "I love this club so much. But I have to support my family.",
+      "title": "Former member of the West Altos Researcher’s Club",
+      "body": "Once a central figure in the club, she took leave from school because her family fell into hardship. She later contracted the Glück virus and wandered at the border of life and death.",
+      "combat_style": "None",
+      "comment": "Arsha: “To give up her dream for her family—what a pitiable child.”",
+      "related_characters": [
+        "Shiyuĕ Lei",
+        "Mon Harc",
+        "Yuĕm Harc"
+      ]
+    },
+    {
+      "id": "エルス-マ-ヌガーシャ",
+      "name": "Els Ma N'Garsha",
+      "tagline": "the bare-knuckle royal",
+      "quote": "Cut the nonsense! Pour that surging feeling into your limbs!",
+      "title": "Graduate student at Hellén National University; royal of Deltai",
+      "body": "A royal of Deltai’s Ma N'Garsha dynasty. Admired by Sinan, he supported the club together with Yuum.",
+      "combat_style": "bare-knuckle fighting · strikes · kicks / wooden sword",
+      "comment": "Koto: “For royalty to stoop to grilling meat... how far she has fallen.”",
+      "related_characters": [
+        "Shinan Arsnorva",
+        "Yuĕm Harc",
+        "Mon Harc",
+        "Loid Gorstpiĕss"
+      ]
+    },
+    {
+      "id": "ユーム-ハルツ",
+      "name": "Yuĕm Harc",
+      "tagline": "the weary man who protected the club to the very end",
+      "quote": "In trying so hard to protect the club as a whole, I overlooked what mattered most.",
+      "title": "Second president of the West Altos Researcher’s Club; Mon’s elder brother",
+      "body": "Mon’s brother. A master of swordsmanship who rebuilt the club, only to see it driven into suspension by Arka’s schemes.",
+      "combat_style": "Stance of No-Mind / wooden sword",
+      "comment": "Arsha: “Because her sense of responsibility was so strong, she ended up tormenting herself.”",
+      "related_characters": [
+        "Mon Harc",
+        "Dahia Opfar",
+        "Els Ma N'Garsha",
+        "Alka Melduĕk",
+        "Loid Gorstpiĕss"
+      ]
+    },
+    {
+      "id": "エスティ-シュメルマルク",
+      "name": "Estiĕ Shmelmalk",
+      "tagline": "the young man who loved Arka and fell into darkness",
+      "quote": "Whatever you may be plotting, I will bear that sin beside you!",
+      "title": "Young florist",
+      "body": "Drawn to Arka, he threw himself into the mafia for her sake. He tried to shoulder her crimes together with her.",
+      "combat_style": "self-taught swordsmanship / knife",
+      "comment": "Koto: “Taking on the crimes of the one you love... in that one small way, she resembles my lord.”",
+      "related_characters": [
+        "Alka Melduĕk",
+        "Tiana Mellén"
+      ]
+    },
+    {
+      "id": "ジェン-ド-アーク",
+      "name": "Jen D'Ark",
+      "tagline": "the deranged legislator who would cull the unenlightened",
+      "quote": "A few years from now, opposition to immigrants will be the natural public mood. But that will be too late. This is the moment of “choice”: seize the age before it comes, or be flattened by it.",
+      "title": "Moderate Party legislator",
+      "body": "Working with Shiyuĕ, she spread “Auditio” and committed terrorism in an effort to force human evolution onward. She was defeated by Satella.",
+      "combat_style": "the Jet-Black Knife",
+      "comment": "Arsha: “A politician who is a terrorist—Har-Lopinong must truly be in its final days.”",
+      "related_characters": [
+        "Shiyuĕ Lei",
+        "Satella Long"
+      ]
+    },
+    {
+      "id": "ロイド-ゴーストピース",
+      "name": "Loid Gorstpiĕss",
+      "tagline": "the foreign student whose heart aches over Deltai’s civil war",
+      "quote": "I’m sick of this farce already!",
+      "title": "Student at Hellén National University",
+      "body": "An international student from Deltai. Agonized by his homeland’s civil war, he fell into despair and self-destruction, but was supported by his friends.",
+      "combat_style": "None",
+      "comment": "Koto: “To wail over something as minor as a civil war—how weak.”",
+      "related_characters": [
+        "Aliĕ Namile",
+        "Hal Perort",
+        "Leto Lówa",
+        "Yuĕm Harc",
+        "Els Ma N'Garsha",
+        "Kura Mogroi"
+      ]
+    },
+    {
+      "id": "ティアナ-メリエン",
+      "name": "Tiana Mellén",
+      "tagline": "the Machiavellian genius adored by Arsha",
+      "quote": "Thank you for waiting, Lady Pritivitiĕ, Lady Aitēl. I am Tiana Mellén, president of Enimuĕc.",
+      "title": "President of Enimyuts Company; leader of Bai Cong Hui",
+      "body": "Arsha’s junior from their university days, and her idol. Behind the scenes, however, she is also a mafia boss, with a cold nature that toys effortlessly with others.",
+      "combat_style": "None",
+      "comment": "Arsha: “Ah, Lady Tiana! As beautiful and brilliant as ever!”",
+      "related_characters": [
+        "Arsha Pritivitiĕ",
+        "Alka Melduĕk",
+        "Estiĕ Shmelmalk"
+      ]
+    },
+    {
+      "id": "パジェン-■",
+      "name": "Pājén・■",
+      "tagline": "the hunter Pàlé’s child who heralds the end",
+      "quote": "I am Pājén・■ (Doa), child of the hunter Pàlé. This is the beginning of the Circular End. People who yielded to Bïàlé, promptly return the earth to me.",
+      "title": "First Instructor of the Final Kàlavé Instructional Nation",
+      "body": "A supernatural being who appears in an “if” world line, declares the founding of Kàlavé’s Final Instructional Nation, and inaugurates the apocalyptic war called the “Circular End.” It can rule over human subconsciousness and erase whole spaces outright. After battling Salei, it acknowledges the appeal of the “false book” (the what-if world), and later comes to be called “Door” as well.",
+      "combat_style": "supernatural powers (spatial erasure, subconscious domination) / fox-colored knife (special)",
+      "comment": "Koto: “She uses incomprehensible psychic powers. But in the end she seemed almost like nothing more than an insolent child, and it threw me off.”",
+      "related_characters": [
+        "Tággén Agaké"
+      ]
+    },
+    {
+      "id": "タゲン-アガケイ",
+      "name": "Tággén Agaké",
+      "tagline": "the Shadow Owl of Nine Earths who upheld the Final Instructional Nation",
+      "quote": "The easier attacks slip outside deliberate thought, the easier they are to land.",
+      "title": "“Shadow Owl” of Nine Earths; Third Instructor of the Final Kàlavé Instructional Nation",
+      "body": "A man who served as Nine Earths’ Shadow Owl under the Patei regime. With Door’s advent, he abandoned Patei and became the Third Instructor of the Final Instructional Nation. Door seized his subconscious and made him fight Satella, Akau, and the others, but he was freed by the ritual of dismissal carried out through the instructors’ deliberation.",
+      "combat_style": "Stance of No-Mind / fox-colored knife",
+      "comment": "Arsha: “To have one’s unconscious manipulated is the height of trouble. Still, I am glad he was freed in the end.”",
+      "related_characters": [
+        "Pājén・■"
+      ]
+    }
+  ],
+  "knives": [
+    {
+      "id": "純白のナイフ",
+      "name": "Pure-White Knife",
+      "tagline": "the blade passed down from Kïnàbé to Lai",
+      "body": "A knife handed down from Káin Kàna to Ládén Kïnàbé, then from Lakán Lài to Akau. Painted white, it is later stained with Akau’s blood.",
+      "users": [
+        "Káin Kàna",
+        "Ládén Kïnàbé",
+        "Lakán Lài",
+        "Shàun Akau",
+        "Lakán Fàta"
+      ],
+      "comment": "Arsha: “The color pure white expresses the cleanliness of their ideals.”"
+    },
+    {
+      "id": "真紅のナイフ",
+      "name": "Crimson Knife",
+      "tagline": "the sword engraved with the crest of House Bïláin",
+      "body": "A sword coated in the crimson lacquer that symbolizes House Bïláin. It bears the inscription, “May it be stained with blood no further.” It was wielded by Àkané and Tané.",
+      "users": [
+        "Bïláin Àkané",
+        "Ládén Tané"
+      ],
+      "comment": "Koto: “It is the knife my lord carried! Crimson suited him very well!”"
+    },
+    {
+      "id": "狐色のナイフ",
+      "name": "Fox-Colored Knife",
+      "tagline": "the knife Pàlajé used throughout his life",
+      "body": "A double-edged straight blade (zïrïjin) with the crest of House Shàun on the hilt and fox-colored ornamentation reserved for the First Instructor alone. Both genuine and counterfeit versions exist, and it was used by Minatsu and Fata as well.",
+      "users": [
+        "Shàun Pàlajé",
+        "Minac Arsnorva",
+        "Lakán Fàta"
+      ],
+      "comment": "Arsha: “How ironic that a three-way struggle should arise over this knife.”"
+    },
+    {
+      "id": "漆黒のナイフ",
+      "name": "Jet-Black Knife",
+      "tagline": "the murderous blade used by those who sank into darkness",
+      "body": "A blackened knife associated with those who walked the path of conspiracy and terror. Lei and Jen were among its wielders.",
+      "users": [
+        "Shàun Lèi",
+        "Jen D'Ark"
+      ],
+      "comment": "Koto: “It is the knife Lady Lei used. The jet-black blade is very beautiful.”"
+    }
+  ],
+  "stances": [
+    {
+      "id": "剛直の構え",
+      "name": "Stance of Forthrightness",
+      "tagline": "straight-line, explosive footwork",
+      "body": "A sword style prized in the bloodline of House Naren, built on direct and explosive advances. Its hallmark is overwhelming power.",
+      "users": [
+        "Nálén Yïfàta"
+      ],
+      "comment": "Arsha: “A way of fighting by sheer force is refreshing to watch.”"
+    },
+    {
+      "id": "柔和の構え",
+      "name": "Stance of Gentleness",
+      "tagline": "willow-like defense that diverts a raging current",
+      "body": "A form handed down in House Ládén. Rather than receiving an enemy’s attack head-on, it brushes it aside from the flank and excels at defense that creates an opening.",
+      "users": [
+        "Ládén Kïnàbé",
+        "Ládén Lā",
+        "Bïláin Alïkau"
+      ],
+      "comment": "Koto: “All that running around is dull. I wish it would show me more blood.”"
+    },
+    {
+      "id": "狂暴の構え",
+      "name": "Stance of Savagery",
+      "tagline": "unpredictable chains of attack driven by instinct",
+      "body": "A form that uses anger and emotion as its propulsion, bewildering the enemy with unreadable movement. It throws away defense and specializes in killing.",
+      "users": [
+        "Ahhárén Xàsané",
+        "Bïláin Àkané",
+        "Shàun Akau",
+        "Tággén Kïlàu",
+        "Shàun a Ètïré",
+        "Lakán Fàta"
+      ],
+      "comment": "Arsha: “A way of fighting that bares its emotions—truly beastly.”"
+    },
+    {
+      "id": "無心の構え",
+      "name": "Stance of No-Mind",
+      "tagline": "a form that strips away hesitation and waste",
+      "body": "A stance that casts off distraction, hesitation, and excess in order to cut with absolute economy. Calm judgment and simple finishing strokes define it.",
+      "users": [
+        "Ládén Kïnàbé",
+        "Lakán Lài",
+        "Apàla",
+        "Ládén Tané",
+        "Yuĕm Harc",
+        "Lakán Fàta"
+      ],
+      "comment": "Koto: “No-mind leaves not a fragment of humanity. Though when my lord uses it, it is wonderful!”"
+    },
+    {
+      "id": "中庸の構え-序",
+      "name": "Stance of Moderation: Prelude",
+      "tagline": "the opening form that balances offense and defense",
+      "body": "The foundational form of the Stance of Moderation, seeking balance rather than excess. It aims to answer the enemy with the minimum necessary movement and force.",
+      "users": [
+        "Lakán Lài",
+        "Hánén a Sekeu"
+      ],
+      "comment": "Arsha: “It shows that balance is what matters in all things.”"
+    },
+    {
+      "id": "真の中庸の構え",
+      "name": "True Stance of Moderation",
+      "tagline": "the perfected balance reached only by masters",
+      "body": "A perfected form attained only by the highest masters of moderation. It harmonizes offense, defense, judgment, and timing at an extraordinary level.",
+      "users": [
+        "Ládén Lā",
+        "Shàun Pàlé",
+        "Minac Arsnorva"
+      ],
+      "comment": "Koto: “Only a tiny handful can master this. It is truly the work of a genius.”"
+    },
+    {
+      "id": "中庸の構え-改",
+      "name": "Stance of Moderation: Kai",
+      "tagline": "a practical revision fused with riot-control technique",
+      "body": "A revised and highly practical form developed by En Nèkïné. By fusing Duïlé with police riot-control methods, it is optimized for real combat and arrests alike.",
+      "users": [
+        "Èn Nèkïné",
+        "Lakán Sài"
+      ],
+      "comment": "Arsha: “A practical improvement befitting the police. Efficient and splendid.”"
+    },
+    {
+      "id": "廻焔の構え",
+      "name": "Stance of Revolving Flame",
+      "tagline": "a whirling style that burns through openings",
+      "body": "A stance in which circular movement and sudden ignition-like bursts combine. It presses in from shifting angles and burns through the enemy’s guard.",
+      "users": [
+        "Nálén Sālé"
+      ],
+      "comment": "Koto: “Enduring and bearing with things is impossible for me. I would want to cut them to pieces at once.”"
+    }
+  ],
+  "glossary": [
+    {
+      "category": "States and Politics",
+      "terms": [
+        {
+          "id": "カラバァタン共和国",
+          "title": "Kàlavatan Republic",
+          "body": "A republican state that preceded the Kàlavé Instructional Nation. Centered on the president, the Council, and Parliament, it was later dismantled by Pàlajé."
+        },
+        {
+          "id": "カラベイ教導国",
+          "title": "Kàlavé Instructional Nation",
+          "body": "A state that adopts the Dírál faction as its official creed. It binds religious authority and secular rule tightly together under the First Instructor."
+        },
+        {
+          "id": "評議会",
+          "title": "Council",
+          "body": "A powerful institution within the Kàlavatan Republic. Leading figures, including men from Kïnàiny, gathered there and exerted great influence over national policy."
+        },
+        {
+          "id": "法議会",
+          "title": "Parliament",
+          "body": "The legislative body that deliberates on laws (secular law) and submits them to the instructors. From the Republic’s final years into the early Instructional Nation, it became the main battlefield of politics."
+        },
+        {
+          "id": "教学会",
+          "title": "Teaching Synod",
+          "body": "The highest religious deliberative body, which debates norms (religious law) and submits them to the instructors. It also takes part in selecting the First Instructor."
+        },
+        {
+          "id": "第一教導職",
+          "title": "First Instructor",
+          "body": "The highest instructional office and the head of state of the Kàlavé Instructional Nation. It possesses immense authority in both secular rule and religious prestige."
+        },
+        {
+          "id": "九氏族",
+          "title": "Nine Clans",
+          "body": "The collective name for Kàlavé’s nine great houses. They are closely tied to the succession of the First Instructor and to the tradition of the Child of Destiny."
+        },
+        {
+          "id": "Kïnàiny",
+          "title": "Kïnàiny",
+          "body": "The knightly and armed order directly under the Kàlavatan Republic. Rich in masters of Duïlé, it functioned as the Republic’s instrument of force."
+        },
+        {
+          "id": "九地",
+          "title": "Nine Earths",
+          "body": "A secret organization that works in the shadows behind Kàlavé’s political and religious struggles. It harbored the Shadow Owl and White Owl, and played a deep role in founding the Instructional Nation."
+        },
+        {
+          "id": "共和同盟",
+          "title": "Republican Alliance",
+          "body": "The ruling bloc of the Republic and successor to the Nationalist Alliance. It feared the Child of Destiny and wielded strong influence over how Pàlajé was handled."
+        },
+        {
+          "id": "イスミズラーク同盟",
+          "title": "Ismizlark Alliance",
+          "body": "A right-wing political force backed by conservative Dírál believers. It championed defense of the sacred land and Instructionalism, and grew powerful in the Republic’s final political struggles."
+        },
+        {
+          "id": "民族自決党",
+          "title": "National Self-Determination Party",
+          "body": "A right-wing force advocating escape from Armona colonialism. Alongside the Ismizlark Alliance and others, it supported the coalition governments of the Republic’s last days."
+        },
+        {
+          "id": "列邦国軍",
+          "title": "Confederated States Army",
+          "body": "The collective name for the forces of “orthodox” believers and ethnic minorities backed by Niqeltoliĕnē. They fought the Instructional Nation in the battles of the Xāváléqï Corridor."
+        }
+      ]
+    },
+    {
+      "category": "Religion and Thought",
+      "terms": [
+        {
+          "id": "イスミズラーク",
+          "title": "Ismizlark",
+          "body": "The name of the religious system centered on Ilat, the sole god of the earth, and Mazgūk, the final prophet. It exerts enormous influence on politics, culture, and law across the Kàlavé world."
+        },
+        {
+          "id": "ディラル派",
+          "title": "Dírál faction",
+          "body": "A branch of Ismizlark that emphasizes the instructors’ revelatory authority to interpret the law. It is the state creed of the Kàlavé Instructional Nation."
+        },
+        {
+          "id": "天命の子",
+          "title": "Child of Destiny",
+          "body": "The being believed to bear the fate of restoring the Instructional Nation. It is tied to the tradition of a “child born left-handed” into the Nine Clans."
+        }
+      ]
+    },
+    {
+      "category": "Geography and Cities",
+      "terms": [
+        {
+          "id": "Hāké",
+          "title": "Hāké",
+          "body": "The capital of Kàlavé. From the Republican era through the Instructional Nation, it functions as the center of both politics and religion."
+        },
+        {
+          "id": "Xāváléqï",
+          "title": "Xāváléqï",
+          "body": "The sacred land of Kàlavé. Known as a hot-spring resort and pilgrimage site, it is an area of immense religious and military importance."
+        },
+        {
+          "id": "ハヴァレイキ回廊",
+          "title": "Xāváléqï Corridor",
+          "body": "The corridor zone surrounding the sacred land amid the mountain ranges. Centered on Xāváléqï, it is a strategic crossroads of religion, transport, and war."
+        },
+        {
+          "id": "ゾパイタン市",
+          "title": "Zopāitān City",
+          "body": "A city known as the stronghold of Nine Earths. It is where Pàlajé was taken after his abduction and where battles between the Republic and Nine Earths were fought."
+        },
+        {
+          "id": "ライテイキ村",
+          "title": "Làitéqï Village",
+          "body": "A village belonging to Zoruā City. It is Èshe’s home village, depicted as a place where the old custom of night-crawling courtship still remains."
+        },
+        {
+          "id": "ジリウペル州",
+          "title": "Jïrīupēr Province",
+          "body": "The province that includes Zoruā City. It is the region where Pàlajé and Kïnàbé urged legal reforms to preserve public morals according to Dírál precepts."
+        },
+        {
+          "id": "Ládéqï",
+          "title": "Ládéqï",
+          "body": "The largest city in Jïrīupēr Province. It is also the electoral base of Shàun Pàlé."
+        },
+        {
+          "id": "ビライタン市",
+          "title": "Bïlàitān City",
+          "body": "The capital of Káshatìléqï Province. Its fall became the trigger for the plan to reorganize the state into the Instructional Nation."
+        },
+        {
+          "id": "Yìlà",
+          "title": "Yìlà",
+          "body": "Kàlavé’s largest city. It prospered as the economic center of the coast and later became a key hub for triport construction."
+        },
+        {
+          "id": "ドゥラム海",
+          "title": "Duram Sea",
+          "body": "The sea to the west of Kàlavé. It has a major influence on the economy and diplomacy of the coastal regions."
+        }
+      ]
+    },
+    {
+      "category": "Architecture and Facilities",
+      "terms": [
+        {
+          "id": "ミセニティウ大講堂",
+          "title": "Misenitiu Grand Auditorium",
+          "body": "A great auditorium counted among Kàlavé’s important ceremonial and political spaces."
+        },
+        {
+          "id": "転向の橋",
+          "title": "Bridge of Conversion",
+          "body": "The bridge where conviction and political choice collide. It is remembered as the site of Pàlajé and Kïnàbé’s fatal confrontation."
+        },
+        {
+          "id": "ガティナ大講堂",
+          "title": "Gatina Grand Auditorium",
+          "body": "A grand assembly hall tied to Kàlavé’s politics and public ceremonies."
+        },
+        {
+          "id": "フリヤー大神殿",
+          "title": "Great Temple of Friya",
+          "body": "A great temple that stands as one of the major sacred structures of Kàlavé."
+        },
+        {
+          "id": "マヴワ大講堂",
+          "title": "Mavwa Grand Auditorium",
+          "body": "One of the major grand auditoriums used in Kàlavé’s public and political life."
+        }
+      ]
+    },
+    {
+      "category": "Foreign Countries and Regions",
+      "terms": [
+        {
+          "id": "ハーロピノン共和国",
+          "title": "Har-Lopinong Republic",
+          "body": "A republic distinct from Kàlavé and the stage of the second major storyline. University life, street politics, mafia struggles, and immigrant issues intersect there."
+        },
+        {
+          "id": "ドゥルグァタン",
+          "title": "Durguatan",
+          "body": "A foreign land and cultural sphere associated with steppe culture and throat singing."
+        },
+        {
+          "id": "アルモナ",
+          "title": "Armona",
+          "body": "A great power whose colonialism and military pressure weigh heavily on the Kàlavatan Republic."
+        },
+        {
+          "id": "ウォール",
+          "title": "Worl",
+          "body": "A foreign country deeply entangled in the politics, business, and intelligence wars of later eras."
+        },
+        {
+          "id": "ウォール連邦",
+          "title": "Worl Federation",
+          "body": "The federal state centered on Worl. It influences other countries through politics, capital, and covert operations."
+        },
+        {
+          "id": "デルタイ",
+          "title": "Deltai",
+          "body": "A foreign country beset by civil war and dynastic conflict."
+        },
+        {
+          "id": "ジャハダーン",
+          "title": "Jaxadarn",
+          "body": "A protectorate on the Kàlavé frontier associated with orthodox believers and international conflict."
+        },
+        {
+          "id": "ヴァラリア",
+          "title": "Valaria",
+          "body": "A foreign power or region that appears in the international politics of the setting."
+        },
+        {
+          "id": "西ティネブリス",
+          "title": "Western Tinebris",
+          "body": "A western cultural sphere known for its martial arts and scholarship, both of which Kàna taught to Pàlajé."
+        },
+        {
+          "id": "ニケルトリーネー",
+          "title": "Niqeltoliĕnē",
+          "body": "A great power opposed to Armona. It supports forces hostile to the Republic and shapes the wider war."
+        },
+        {
+          "id": "ナレジア連邦",
+          "title": "Narejia Federation",
+          "body": "A federation whose universities and advanced learning play a part in the later story."
+        }
+      ]
+    },
+    {
+      "category": "Foreign Cities and Communities",
+      "terms": [
+        {
+          "id": "ヘリエン",
+          "title": "Hellén",
+          "body": "A major foreign city and academic center where many of the Har-Lopinong storyline’s students gather."
+        },
+        {
+          "id": "サウソス地区",
+          "title": "Sósos district",
+          "body": "A district of the Har-Lopinong Republic. Clinics, police boxes, and street communities there play important roles in the story."
+        },
+        {
+          "id": "エルベン地区",
+          "title": "Elben district",
+          "body": "A district tied to the political and social tensions of the Har-Lopinong Republic."
+        },
+        {
+          "id": "エルツ市",
+          "title": "Eltz City",
+          "body": "A city that appears in the Har-Lopinong storyline and the networks of business and society around it."
+        },
+        {
+          "id": "キニナラベイ市",
+          "title": "Kininarabei City",
+          "body": "A city in the wider setting whose name evokes Kàlavé’s extended world."
+        }
+      ]
+    },
+    {
+      "category": "Organizations, Societies, and Companies",
+      "terms": [
+        {
+          "id": "ジューナー",
+          "title": "Jūnā",
+          "body": "A secret society or underground network whose members operate from the shadows."
+        },
+        {
+          "id": "西アルトス研究会",
+          "title": "West Altos Researcher’s Club",
+          "body": "A university circle whose members become central figures in the Har-Lopinong storyline."
+        },
+        {
+          "id": "ヘリエン・マフィア",
+          "title": "Hellén Mafia",
+          "body": "The mafia operating in Hellén. It is involved in turf wars, underground business, and the struggles around Five Heavens."
+        },
+        {
+          "id": "アイテール社",
+          "title": "Aitēl Company",
+          "body": "The company headed by Koto Tál Aitēl."
+        },
+        {
+          "id": "エニミューツ社",
+          "title": "Enimyuts Company",
+          "body": "The company headed by Tiana Mellén."
+        },
+        {
+          "id": "レアリア社",
+          "title": "Realia Company",
+          "body": "A company that appears in the later Har-Lopinong storyline."
+        },
+        {
+          "id": "ラバクーダ社",
+          "title": "Lavacuda Company",
+          "body": "The company led by Arsha Pritivitiĕ, known for chemical fibers and large profits."
+        },
+        {
+          "id": "スキール社",
+          "title": "Skiel Company",
+          "body": "A company active in the economic and corporate side of the setting."
+        },
+        {
+          "id": "エルツ社",
+          "title": "Eltz Company",
+          "body": "A company bearing the name of Eltz and tied to the story’s corporate sphere."
+        }
+      ]
+    },
+    {
+      "category": "Schools, Facilities, and Buildings",
+      "terms": [
+        {
+          "id": "ノルト",
+          "title": "Nolt",
+          "body": "The name of the student dormitory where Satella later serves as dorm mother."
+        },
+        {
+          "id": "ヘリエン国立大学",
+          "title": "Hellén National University",
+          "body": "The university where many major figures of the Har-Lopinong storyline study."
+        },
+        {
+          "id": "ガティナ大講堂",
+          "title": "Gatina Grand Auditorium",
+          "body": "A grand assembly hall tied to Kàlavé’s politics and public ceremonies."
+        },
+        {
+          "id": "ミセニティウ大講堂",
+          "title": "Misenitiu Grand Auditorium",
+          "body": "A great auditorium counted among Kàlavé’s important ceremonial and political spaces."
+        },
+        {
+          "id": "マヴワ大講堂",
+          "title": "Mavwa Grand Auditorium",
+          "body": "One of the major grand auditoriums used in Kàlavé’s public and political life."
+        },
+        {
+          "id": "ハヴァレイズィ大講堂",
+          "title": "Xāválézï Grand Auditorium",
+          "body": "A grand auditorium in the Kàlavé world, tied to public ritual and political space."
+        },
+        {
+          "id": "エメラン大講堂",
+          "title": "Emeran Grand Auditorium",
+          "body": "A grand auditorium that appears among the important halls of the setting."
+        },
+        {
+          "id": "サザニ大講堂",
+          "title": "Sazani Grand Auditorium",
+          "body": "Another of the setting’s major grand auditoriums."
+        },
+        {
+          "id": "リウニシェベン基地",
+          "title": "Riunisheben Base",
+          "body": "A military base important to the later political and military story."
+        },
+        {
+          "id": "タネイ・トライポート",
+          "title": "Tané Triport",
+          "body": "A large triport project associated with Yìlà and Tané’s era."
+        }
+      ]
+    },
+    {
+      "category": "Politics, Military, and Systems",
+      "terms": [
+        {
+          "id": "ルルペ協定",
+          "title": "Lurupe Accord",
+          "body": "An accord or treaty that plays a role in the political order of the later setting."
+        },
+        {
+          "id": "警察庁",
+          "title": "Police Agency",
+          "body": "The national police authority. In the age of terrorism and political disorder, it oversees criminal investigations and anti-terror operations."
+        },
+        {
+          "id": "イスミズラーク同盟",
+          "title": "Ismizlark Alliance",
+          "body": "A right-wing political force backed by conservative Dírál believers. It championed defense of the sacred land and Instructionalism, and grew powerful in the Republic’s final political struggles."
+        },
+        {
+          "id": "Nia Kïnàiny",
+          "title": "Nia Kïnàiny",
+          "body": "A name associated with Kïnàiny’s institutional legacy and later developments."
+        },
+        {
+          "id": "列邦国軍",
+          "title": "Confederated States Army",
+          "body": "The collective name for the forces of “orthodox” believers and ethnic minorities backed by Niqeltoliĕnē. They fought the Instructional Nation in the battles of the Xāváléqï Corridor."
+        }
+      ]
+    }
+  ]
+}
