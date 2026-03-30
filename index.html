@@ -2085,6 +2085,7 @@ A stylish underworld road movie with lethal charm.</p>
   const p = new URLSearchParams(location.search);
   if (p.get("lang") !== "en") return;
   document.querySelectorAll('a[href]').forEach(a => {
+    if (a.closest('.lang-switch') || a.closest('.lang-buttons') || (a.id && (/^langLink/i.test(a.id) || /^lang-/i.test(a.id)))) return;
     const h = a.getAttribute("href");
     if (!h || h.startsWith("#") || h.startsWith("http://") || h.startsWith("https://") || h.startsWith("mailto:") || h.startsWith("tel:")) return;
     if (h.includes("lang=")) return;

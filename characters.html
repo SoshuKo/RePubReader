@@ -177,6 +177,14 @@
     let rows = [];
     let charSlugByName = new Map();
     let imageNameById = new Map();
+    const imageOverrideById = new Map([
+      ["Sāna", "サーナ"],
+      ["Apàla", "アパラ"],
+      ["Èshe", "エシェ"],
+      ["ヤナン-カウ", "ヤナン・カウ"],
+      ["タゲン-アガケイ", "タゲン・アガケイ"],
+      ["パジェン-■", "パジェン・■"]
+    ]);
     const pageLang = (new URLSearchParams(location.search).get("lang") === "en") ? "en" : "ja";
     document.documentElement.setAttribute("lang", pageLang);
     const ui = pageLang === "en" ? {
@@ -298,14 +306,14 @@
     function renderEntryImage(names, alt) {
       const candidates = buildImageNameCandidates(names);
       if (!candidates.length) return "";
-      const exts = ["png", "PNG", "jpg", "JPG", "jpeg", "JPEG"];
+      const exts = ["png", "PNG"];
       const srcList = [];
       for (const name of candidates) {
         const enc = encodeURIComponent(name);
         for (const ext of exts) srcList.push(`./assets/images/${enc}.${ext}`);
       }
       const srcs = srcList.join("|");
-      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || candidates[0])}" loading="lazy" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
+      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || candidates[0])}" loading="lazy" decoding="async" fetchpriority="low" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
     }
 
     function matchText(row, q) {
@@ -360,7 +368,16 @@
             <div class="head">
               <h2 class="name">${esc(title)}</h2>
               <p class="copy">${esc(catchCopy)}</p>
-              ${renderEntryImage([imageNameById.get(row.ref.slug), title, row.ref.canonical, ...(row.ref.aliases || []), e.id], `${title} illustration`)}
+              ${renderEntryImage([
+                imageOverrideById.get(normalizeKey(row.ref.slug)),
+                imageOverrideById.get(normalizeKey(e.id)),
+                imageNameById.get(normalizeKey(row.ref.slug)),
+                imageNameById.get(normalizeKey(e.id)),
+                imageNameById.get(normalizeKey(title)),
+                baseImageName(String(e.id || "").replace(/-/g, "・")),
+                baseImageName(String(title || "").replace(/[（(].*?[）)]/g, "").replace(/-/g, "・")),
+                baseImageName(title)
+              ], `${title} illustration`)}
             </div>
             <div class="body">
               <div><span class="label">${esc(ui.labels.role)}:</span> ${esc(pickEntryValue(e, [ui.labels.role, "肩書き", "Title", "role", "title"], ui.empty))}</div>
@@ -483,9 +500,9 @@
           const kId = c.id || c.slug || c.key;
           const kJa = c["人名（見出し）"] || c["名前"];
           const kEn = c["Name"] || c.name || c.title;
-          if (kId) map.set(String(kId).trim(), c);
-          if (kJa) map.set(String(kJa).trim(), c);
-          if (kEn) map.set(String(kEn).trim(), c);
+          if (kId) map.set(normalizeKey(kId), c);
+          if (kJa) map.set(normalizeKey(kJa), c);
+          if (kEn) map.set(normalizeKey(kEn), c);
         }
 
         if (!refs.length) {
@@ -500,7 +517,7 @@
 
         rows = refs.map(ref => ({
           ref,
-          entry: map.get(ref.slug) || map.get(ref.canonical) || null
+          entry: map.get(normalizeKey(ref.slug)) || map.get(normalizeKey(ref.canonical)) || map.get(baseImageName(ref.canonical)) || null
         }));
 
         render();
@@ -521,6 +538,7 @@
   const p = new URLSearchParams(location.search);
   if (p.get("lang") !== "en") return;
   document.querySelectorAll('a[href]').forEach(a => {
+    if (a.closest('.lang-switch') || a.closest('.lang-buttons') || (a.id && (/^langLink/i.test(a.id) || /^lang-/i.test(a.id)))) return;
     const h = a.getAttribute("href");
     if (!h || h.startsWith("#") || h.startsWith("http://") || h.startsWith("https://") || h.startsWith("mailto:") || h.startsWith("tel:")) return;
     if (h.includes("lang=")) return;
