@@ -176,6 +176,7 @@
 
     let rows = [];
     let charSlugByName = new Map();
+    let imageNameById = new Map();
     const pageLang = (new URLSearchParams(location.search).get("lang") === "en") ? "en" : "ja";
     document.documentElement.setAttribute("lang", pageLang);
     const ui = pageLang === "en" ? {
@@ -322,6 +323,14 @@
       return hay.includes(q.toLowerCase());
     }
 
+    function pickEntryValue(entry, keys, fallback = "") {
+      for (const k of keys) {
+        const v = entry && entry[k];
+        if (v !== undefined && v !== null && String(v).trim() !== "") return v;
+      }
+      return fallback;
+    }
+
     function render() {
       const q = elQ.value.trim();
       let view = rows.filter(r => matchText(r, q));
@@ -337,9 +346,9 @@
 
       elList.innerHTML = view.map((row) => {
         const e = row.entry || {};
-        const title = e[ui.labels.title] || row.ref.canonical;
-        const catchCopy = e[ui.labels.catch] || ui.empty;
-        const related = asArray(e[ui.labels.related]);
+        const title = pickEntryValue(e, [ui.labels.title, "人名（見出し）", "Name", "name", "title"], row.ref.canonical);
+        const catchCopy = pickEntryValue(e, [ui.labels.catch, "キャッチフレーズ", "Catchphrase", "catch", "tagline"], ui.empty);
+        const related = asArray(pickEntryValue(e, [ui.labels.related, "関連人物", "Related", "related", "related_characters"], []));
         const relatedHtml = related.map((x) => {
           const slug = resolveCharacterSlug(x);
           if (!slug) return `<span class="chip">${esc(x)}</span>`;
@@ -351,15 +360,15 @@
             <div class="head">
               <h2 class="name">${esc(title)}</h2>
               <p class="copy">${esc(catchCopy)}</p>
-              ${renderEntryImage([title, row.ref.canonical, ...(row.ref.aliases || [])], `${title} illustration`)}
+              ${renderEntryImage([imageNameById.get(row.ref.slug), title, row.ref.canonical, ...(row.ref.aliases || []), e.id], `${title} illustration`)}
             </div>
             <div class="body">
-              <div><span class="label">${esc(ui.labels.role)}:</span> ${esc(e[ui.labels.role] || ui.empty)}</div>
-              <div><span class="label">${esc(ui.labels.body)}:</span> ${esc(e[ui.labels.body] || ui.empty)}</div>
-              <div><span class="label">${esc(ui.labels.style)}:</span> ${esc(e[ui.labels.style] || ui.empty)}</div>
+              <div><span class="label">${esc(ui.labels.role)}:</span> ${esc(pickEntryValue(e, [ui.labels.role, "肩書き", "Title", "role", "title"], ui.empty))}</div>
+              <div><span class="label">${esc(ui.labels.body)}:</span> ${esc(pickEntryValue(e, [ui.labels.body, "本文", "Profile", "body"], ui.empty))}</div>
+              <div><span class="label">${esc(ui.labels.style)}:</span> ${esc(pickEntryValue(e, [ui.labels.style, "戦闘スタイル", "Combat Style", "style", "combat_style"], ui.empty))}</div>
               <div><span class="label">${esc(ui.labels.quote)}:</span></div>
-              <blockquote class="quote">${esc(e[ui.labels.quote] || ui.empty)}</blockquote>
-              <div><span class="label">${esc(ui.labels.comment)}:</span> ${esc(e[ui.labels.comment] || ui.empty)}</div>
+              <blockquote class="quote">${esc(pickEntryValue(e, [ui.labels.quote, "台詞", "Line", "quote"], ui.empty))}</blockquote>
+              <div><span class="label">${esc(ui.labels.comment)}:</span> ${esc(pickEntryValue(e, [ui.labels.comment, "コメント", "Comment", "comment"], ui.empty))}</div>
               <div>
                 <span class="label">${esc(ui.labels.related)}:</span>
                 ${related.length ? `<div class="chips">${relatedHtml}</div>` : ui.empty}
@@ -394,17 +403,53 @@
 
     async function boot() {
       try {
-        const [storyRes, dicRes] = await Promise.all([
-          fetch(pageLang === "en" ? "./data/story_en.json" : "./data/物語本編.json", { cache: "no-store" }),
-          fetch(pageLang === "en" ? "./data/rpdic_en.json" : "./data/rpdic.json", { cache: "no-store" })
-        ]);
-        if (!storyRes.ok) throw new Error(`${pageLang === "en" ? "story_en.json" : "物語本編.json"}: HTTP ${storyRes.status}`);
-        if (!dicRes.ok) throw new Error(`${pageLang === "en" ? "rpdic_en.json" : "rpdic.json"}: HTTP ${dicRes.status}`);
+        function loadJsonByXhr(url) {
+          try {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", url, false);
+            xhr.send(null);
+            if (xhr.status === 200 || xhr.status === 0) {
+              return JSON.parse(xhr.responseText);
+            }
+          } catch (_) {}
+          return null;
+        }
 
-        const story = await storyRes.json();
-        const dic = await dicRes.json();
+        async function fetchJson(primary, fallback = null) {
+          try {
+            const res = await fetch(primary, { cache: "no-store" });
+            if (res.ok) return await res.json();
+          } catch (_) {}
 
-        const refs = (story.references && Array.isArray(story.references.characters))
+          const byXhr = loadJsonByXhr(primary);
+          if (byXhr) return byXhr;
+
+          if (fallback) {
+            try {
+              const res2 = await fetch(fallback, { cache: "no-store" });
+              if (res2.ok) return await res2.json();
+            } catch (_) {}
+
+            const byXhr2 = loadJsonByXhr(fallback);
+            if (byXhr2) return byXhr2;
+          }
+          throw new Error(`load failed: ${primary}${location.protocol === "file:" ? " (open via local server: http://localhost)" : ""}`);
+        }
+
+        let story = null;
+        try {
+          story = await fetchJson(
+            pageLang === "en" ? "./data/story_en.json" : "./data/物語本編.json",
+            "./data/物語本編.json"
+          );
+        } catch (_) {}
+
+        const dic = await fetchJson(
+          pageLang === "en" ? "./data/rpdic_en.json" : "./data/rpdic.json",
+          "./data/rpdic.json"
+        );
+
+        let refs = (story && story.references && Array.isArray(story.references.characters))
           ? story.references.characters
           : [];
 
@@ -419,10 +464,38 @@
           }
         }
 
+
+
+        imageNameById = new Map();
+        if (pageLang === "en") {
+          try {
+            const dicJa = await fetchJson("./data/rpdic.json", null);
+            for (const cja of ((dicJa.characters || []) || [])) {
+              if (cja && cja.id && cja["人名（見出し）"]) {
+                imageNameById.set(String(cja.id).trim(), cja["人名（見出し）"]);
+              }
+            }
+          } catch (_) {}
+        }
+
         const map = new Map();
         for (const c of ((dic.characters || dic.characters_en || []) || [])) {
-          if (c.id) map.set(c.id, c);
-          if (c["人名（見出し）"]) map.set(c["人名（見出し）"], c);
+          const kId = c.id || c.slug || c.key;
+          const kJa = c["人名（見出し）"] || c["名前"];
+          const kEn = c["Name"] || c.name || c.title;
+          if (kId) map.set(String(kId).trim(), c);
+          if (kJa) map.set(String(kJa).trim(), c);
+          if (kEn) map.set(String(kEn).trim(), c);
+        }
+
+        if (!refs.length) {
+          const fromDic = (dic.characters || dic.characters_en || []);
+          refs = fromDic.map((c, idx) => {
+            const canonical = c["人名（見出し）"] || c["Name"] || c.title || c.name || `Entry ${idx + 1}`;
+            const slugRaw = c.id || canonical || `char-${idx + 1}`;
+            const slug = String(slugRaw).trim().replace(/\s+/g, "-");
+            return { slug, canonical, aliases: [] };
+          });
         }
 
         rows = refs.map(ref => ({

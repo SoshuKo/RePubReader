@@ -191,6 +191,7 @@
     let knives = [];
     let stances = [];
     let charSlugByName = new Map();
+    let imageNameById = new Map();
     const pageLang = (new URLSearchParams(location.search).get("lang") === "en") ? "en" : "ja";
     document.documentElement.setAttribute("lang", pageLang);
     const ui = pageLang === "en" ? {
@@ -362,7 +363,7 @@
 
     function normalizeTermsByStory(dicGlossary, storyRefs) {
       const refSlugByCanonical = new Map();
-      for (const ref of storyRefs) {
+      for (const ref of asArray(storyRefs)) {
         const canonical = normalizeKey(ref.canonical);
         if (canonical && ref.slug && !refSlugByCanonical.has(canonical)) {
           refSlugByCanonical.set(canonical, ref.slug);
@@ -371,29 +372,45 @@
 
       const out = [];
       const seen = new Set();
-      for (const cat of asArray(dicGlossary)) {
-        const category = String(cat["カテゴリ"] || "未分類").trim() || "未分類";
-        for (const term of asArray(cat["用語"])) {
-          const title = String(term["タイトル"] || "").trim();
-          if (!title) continue;
-          const body = String(term["本文"] || "").trim();
-          const slug = refSlugByCanonical.get(title) || title;
-          const key = normalizeKey(slug);
-          if (seen.has(key)) continue;
-          seen.add(key);
-          out.push({ id: slug, title, body, category });
+
+      const pushTerm = (titleRaw, bodyRaw, categoryRaw) => {
+        const title = String(titleRaw || "").trim();
+        if (!title) return;
+        const body = String(bodyRaw || "").trim();
+        const category = String(categoryRaw || ui.uncategorized).trim() || ui.uncategorized;
+        const slug = refSlugByCanonical.get(title) || title;
+        const key = normalizeKey(slug);
+        if (seen.has(key)) return;
+        seen.add(key);
+        out.push({ id: slug, title, body, category });
+      };
+
+      for (const item of asArray(dicGlossary)) {
+        const hasNested = Array.isArray(item["用語"]) || Array.isArray(item.terms);
+        if (hasNested) {
+          const category = item["カテゴリ"] || item.category || ui.uncategorized;
+          for (const term of asArray(item["用語"] || item.terms)) {
+            pushTerm(term["タイトル"] || term.title || term.name, term["本文"] || term.body, category);
+          }
+        } else {
+          pushTerm(
+            item["タイトル"] || item["用語名（見出し）"] || item.title || item.name,
+            item["本文"] || item.body,
+            item["カテゴリ"] || item.category
+          );
         }
       }
 
-      for (const ref of storyRefs) {
+      for (const ref of asArray(storyRefs)) {
         const title = String(ref.canonical || "").trim();
         const slug = String(ref.slug || "").trim();
         if (!title || !slug) continue;
         const key = normalizeKey(slug);
         if (seen.has(key)) continue;
         seen.add(key);
-        out.push({ id: slug, title, body: "", category: "未分類" });
+        out.push({ id: slug, title, body: "", category: ui.uncategorized });
       }
+
       return out;
     }
 
@@ -444,10 +461,10 @@
         <article class="card" id="${esc(it.id || it[nameKey] || "")}" data-name="${esc(it[nameKey] || "")}">
           <div class="head ${mode}">
             <h3 class="title">${esc(it[nameKey] || ui.empty)}</h3>
-            <p class="catch">${esc(it["キャッチフレーズ"] || it.catch || ui.empty)}</p>
+            <p class="catch">${esc(it["キャッチフレーズ"] || it.catch || it.tagline || ui.empty)}</p>
           </div>
           <div class="body">
-            ${mode === "knife" ? renderEntryImage(it[nameKey], `${it[nameKey] || "Knife"} illustration`) : ""}
+            ${mode === "knife" ? renderEntryImage(imageNameById.get(it.id) || it[nameKey], `${it[nameKey] || "Knife"} illustration`) : ""}
             <div><span class="label">${esc(ui.labels.body)}:</span> ${esc(it["本文"] || it.body || ui.empty)}</div>
             <div><span class="label">${esc(ui.labels.users)}:</span> ${renderUsers(it["使用者"] || it.users)}</div>
             <div><span class="label">${esc(ui.labels.comment)}:</span> ${esc(it["コメント"] || it.comment || ui.empty)}</div>
@@ -487,17 +504,53 @@
 
     async function boot() {
       try {
-        const [storyRes, dicRes] = await Promise.all([
-          fetch(pageLang === "en" ? "./data/story_en.json" : "./data/物語本編.json", { cache: "no-store" }),
-          fetch(pageLang === "en" ? "./data/rpdic_en.json" : "./data/rpdic.json", { cache: "no-store" })
-        ]);
-        if (!storyRes.ok) throw new Error(`${pageLang === "en" ? "story_en.json" : "物語本編.json"}: HTTP ${storyRes.status}`);
-        if (!dicRes.ok) throw new Error(`${pageLang === "en" ? "rpdic_en.json" : "rpdic.json"}: HTTP ${dicRes.status}`);
+        function loadJsonByXhr(url) {
+          try {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", url, false);
+            xhr.send(null);
+            if (xhr.status === 200 || xhr.status === 0) {
+              return JSON.parse(xhr.responseText);
+            }
+          } catch (_) {}
+          return null;
+        }
 
-        const story = await storyRes.json();
-        const dic = await dicRes.json();
+        async function fetchJson(primary, fallback = null) {
+          try {
+            const res = await fetch(primary, { cache: "no-store" });
+            if (res.ok) return await res.json();
+          } catch (_) {}
 
-        const charRefs = (story.references && Array.isArray(story.references.characters))
+          const byXhr = loadJsonByXhr(primary);
+          if (byXhr) return byXhr;
+
+          if (fallback) {
+            try {
+              const res2 = await fetch(fallback, { cache: "no-store" });
+              if (res2.ok) return await res2.json();
+            } catch (_) {}
+
+            const byXhr2 = loadJsonByXhr(fallback);
+            if (byXhr2) return byXhr2;
+          }
+          throw new Error(`load failed: ${primary}${location.protocol === "file:" ? " (open via local server: http://localhost)" : ""}`);
+        }
+
+        let story = null;
+        try {
+          story = await fetchJson(
+            pageLang === "en" ? "./data/story_en.json" : "./data/物語本編.json",
+            "./data/物語本編.json"
+          );
+        } catch (_) {}
+
+        const dic = await fetchJson(
+          pageLang === "en" ? "./data/rpdic_en.json" : "./data/rpdic.json",
+          "./data/rpdic.json"
+        );
+
+        const charRefs = (story && story.references && Array.isArray(story.references.characters))
           ? story.references.characters
           : [];
         charSlugByName = new Map();
@@ -511,7 +564,26 @@
           }
         }
 
-        const allRefs = (story.references && Array.isArray(story.references.glossary)) ? story.references.glossary : [];
+
+
+        imageNameById = new Map();
+        if (pageLang === "en") {
+          try {
+            const dicJa = await fetchJson("./data/rpdic.json", null);
+            for (const kja of ((dicJa.knives || []) || [])) {
+              if (kja && kja.id && kja["ナイフ名（見出し）"]) {
+                imageNameById.set(String(kja.id).trim(), kja["ナイフ名（見出し）"]);
+              }
+            }
+            for (const sja of ((dicJa.stances || []) || [])) {
+              if (sja && sja.id && sja["構え名（見出し）"]) {
+                imageNameById.set(String(sja.id).trim(), sja["構え名（見出し）"]);
+              }
+            }
+          } catch (_) {}
+        }
+
+        const allRefs = (story && story.references && Array.isArray(story.references.glossary)) ? story.references.glossary : [];
         const knifeSource = asArray(dic.knives || []);
         const stanceSource = asArray(dic.stances || []);
 
@@ -520,9 +592,9 @@
         const usedSlugs = new Set([...knifeRefs, ...stanceRefs].map((r) => normalizeKey(r.slug)).filter(Boolean));
         const termRefs = allRefs.filter((r) => !usedSlugs.has(normalizeKey(r.slug)));
 
-        terms = normalizeTermsByStory((dic.glossary || dic.terms || []).map((it) => ({ id: it.id, title: it["用語名（見出し）"] || it.title || it.name || "", body: it["本文"] || it.body || "", category: it["カテゴリ"] || it.category || "" })), termRefs);
-        knives = normalizeByStory(knifeSource.map((it)=>({ ...it, ["ナイフ名（見出し）"]: it["ナイフ名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), knifeRefs, "knife");
-        stances = normalizeByStory(stanceSource.map((it)=>({ ...it, ["構え名（見出し）"]: it["構え名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), stanceRefs, "stance");
+        terms = normalizeTermsByStory((dic.glossary || dic.terms || []), termRefs);
+        knives = normalizeByStory(knifeSource.map((it)=>({ ...it, ["ナイフ名（見出し）"]: it["ナイフ名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || it.tagline || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), knifeRefs, "knife");
+        stances = normalizeByStory(stanceSource.map((it)=>({ ...it, ["構え名（見出し）"]: it["構え名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || it.tagline || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), stanceRefs, "stance");
 
         render();
         jumpToHash();

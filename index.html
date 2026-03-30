@@ -1108,6 +1108,8 @@ A stylish underworld road movie with lethal charm.</p>
       dataJa: null,
       dataEn: null,
       dataKa: null,
+      dicJa: null,
+      dicEn: null,
       current: null,
       currentKey: null,
       buttons: [],
@@ -1439,6 +1441,8 @@ A stylish underworld road movie with lethal charm.</p>
       if (navGloss) { navGloss.textContent = currentLang === "ja" ? "用語辞典" : (currentLang === "en" ? "Glossary" : "Glossary"); navGloss.href = currentLang === "en" ? "glossary.html?lang=en" : "glossary.html"; }
       if (navAudio) { navAudio.textContent = currentLang === "ja" ? "オーディオコメンタリ" : (currentLang === "en" ? "Audio Commentary" : "Audio Commentary"); navAudio.href = "audiocommentary.html"; }
       if (navDiary) { navDiary.textContent = currentLang === "ja" ? "執筆録" : (currentLang === "en" ? "Writing Log" : "Writing Log"); navDiary.href = "diary.html"; }
+      const activeDic = (currentLang === "en" && state.dicEn) ? state.dicEn : state.dicJa;
+      if (activeDic) buildGlossaryPreviewMaps(activeDic);
       const activeData = getActiveData();
       if (activeData) buildTree(activeData);
       const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
@@ -1913,20 +1917,25 @@ A stylish underworld road movie with lethal charm.</p>
 
     async function boot() {
       try {
-        const [jaRes, enRes, kaRes] = await Promise.all([
+        const [jaRes, enRes, kaRes, dicJaRes, dicEnRes] = await Promise.all([
           fetch("./data/物語本編.json", { cache: "no-store" }),
           fetch("./data/story_en.json", { cache: "no-store" }),
-          fetch("./data/story_ka.json", { cache: "no-store" })
+          fetch("./data/story_ka.json", { cache: "no-store" }),
+          fetch("./data/rpdic.json", { cache: "no-store" }),
+          fetch("./data/rpdic_en.json", { cache: "no-store" })
         ]);
         if (!jaRes.ok) throw new Error(`HTTP ${jaRes.status}`);
         state.dataJa = await jaRes.json();
         buildReferenceMaps(state.dataJa);
+
         if (enRes.ok) state.dataEn = await enRes.json();
         if (kaRes.ok) state.dataKa = await kaRes.json();
-        try {
-          const dicRes = await fetch("./data/rpdic.json", { cache: "no-store" });
-          if (dicRes.ok) buildGlossaryPreviewMaps(await dicRes.json());
-        } catch (_) {}
+
+        if (dicJaRes.ok) state.dicJa = await dicJaRes.json();
+        if (dicEnRes.ok) state.dicEn = await dicEnRes.json();
+        const activeDic = (currentLang === "en" && state.dicEn) ? state.dicEn : state.dicJa;
+        if (activeDic) buildGlossaryPreviewMaps(activeDic);
+
         const activeData = getActiveData();
         if (activeData) buildTree(activeData);
       } catch (e) {
