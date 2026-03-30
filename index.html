@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -910,7 +910,7 @@
           <p>Set in the fictional nations of the Instructional Nation of Kàlavé and the Har-Lopinong Republic, this is a large-scale ensemble drama spanning generations and borders.
 Rulers who carved history with Duïlé and blood, and young people who resist or are swept up by those distorted definitions of "happiness," struggling to seize their own future and daily life.
 A historical entertainment epic where politics, religion, mafia networks, and student movements intersect around two clashing ideals: painful decisions called "choice," and harmony through dialogue.</p>
-          <p style="margin-top:10px;">Quick links: <a href="#work-karabatan-en">Kàlavatan Republica</a> / <a href="#work-haropinon-en">Har-Lopinong Republica</a> / <a href="#work-bookkeeper-en">Bookkeeper</a> / <a href="./characters.html">Character Dictionary (JP)</a> / <a href="./glossary.html">Glossary (JP)</a> / <a href="./audiocommentary.html">Audio Commentary (JP)</a> / <a href="./diary.html">Writing Log (JP)</a> / <a href="./言語/karabar-overview.html">Karabar Overview (JP)</a>
+          <p style="margin-top:10px;">Quick links: <a href="#work-karabatan-en">Kàlavatan Republica</a> / <a href="#work-haropinon-en">Har-Lopinong Republica</a> / <a href="#work-bookkeeper-en">Bookkeeper</a> / <a href="./characters.html?lang=en">Character Dictionary</a> / <a href="./glossary.html?lang=en">Glossary</a> / <a href="./audiocommentary.html">Audio Commentary (JP)</a> / <a href="./diary.html">Writing Log (JP)</a> / <a href="./言語/karabar-overview.html">Karabar Overview (JP)</a>
             <a href="./言語/fullgrammar.html">Karabar Full Grammar (JP)</a> / <a href="./地理/realtimemap.html">Kalavé Rail Realtime Map (JP)</a></p>
         </article>
 
@@ -1033,7 +1033,7 @@ A stylish underworld road movie with lethal charm.</p>
           <h3>English Pages</h3>
           <p class="catch">Available with Japanese fallback</p>
           <p>Character Dictionary / Glossary / Writing Log / Language pages open the Japanese pages for now so you can keep reading without dead ends.</p>
-          <p style="margin-top:10px;"><a href="./characters.html" class="inline-open-link">Open Character Dictionary (JP)</a></p>
+          <p style="margin-top:10px;"><a href="./characters.html?lang=en" class="inline-open-link">Open Character Dictionary</a></p>
         </article>
       </section>
       <section id="topPageKa" class="top-page" style="display:none;">
@@ -1435,8 +1435,8 @@ A stylish underworld road movie with lethal charm.</p>
       if (siteTitleEl) siteTitleEl.textContent = currentLang === "ja" ? "『共和国物語』サーガ" : (currentLang === "en" ? "Republica Saga" : "Republica Saga (Georgian)");
       if (siteMetaEl) siteMetaEl.textContent = currentLang === "ja" ? "物語本編ビューア" : (currentLang === "en" ? "Story Reader" : "Georgian Reader");
       if (navTop) { navTop.textContent = currentLang === "ja" ? "トップ・本編" : (currentLang === "en" ? "Top / Story" : "Top / Story"); navTop.href = "index.html"; }
-      if (navChars) { navChars.textContent = currentLang === "ja" ? "登場人物辞典" : (currentLang === "en" ? "Characters" : "Characters"); navChars.href = "characters.html"; }
-      if (navGloss) { navGloss.textContent = currentLang === "ja" ? "用語辞典" : (currentLang === "en" ? "Glossary" : "Glossary"); navGloss.href = "glossary.html"; }
+      if (navChars) { navChars.textContent = currentLang === "ja" ? "登場人物辞典" : (currentLang === "en" ? "Characters" : "Characters"); navChars.href = currentLang === "en" ? "characters.html?lang=en" : "characters.html"; }
+      if (navGloss) { navGloss.textContent = currentLang === "ja" ? "用語辞典" : (currentLang === "en" ? "Glossary" : "Glossary"); navGloss.href = currentLang === "en" ? "glossary.html?lang=en" : "glossary.html"; }
       if (navAudio) { navAudio.textContent = currentLang === "ja" ? "オーディオコメンタリ" : (currentLang === "en" ? "Audio Commentary" : "Audio Commentary"); navAudio.href = "audiocommentary.html"; }
       if (navDiary) { navDiary.textContent = currentLang === "ja" ? "執筆録" : (currentLang === "en" ? "Writing Log" : "Writing Log"); navDiary.href = "diary.html"; }
       const activeData = getActiveData();
@@ -1625,7 +1625,8 @@ A stylish underworld road movie with lethal charm.</p>
         if (!slug) return;
 
         const base = kind === "character" ? "characters.html" : "glossary.html";
-        a.setAttribute("href", `${base}#${encodeURIComponent(slug)}`);
+        const dictLangQuery = currentLang === "en" ? "?lang=en" : "";
+        a.setAttribute("href", `${base}${dictLangQuery}#${encodeURIComponent(slug)}`);
         a.dataset.previewKind = kind;
         a.dataset.previewSlug = slug;
       });

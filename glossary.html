@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -54,6 +54,9 @@
     }
     h1 { margin: 0 0 8px; font-size: 1.2rem; }
     nav a { color: #155a70; margin-right: 12px; text-decoration: none; border-bottom: 1px dotted currentColor; }
+    .lang-switch { margin: 6px 0 4px; font-size: .95rem; }
+    .lang-switch a { color: #155a70; text-decoration: none; border-bottom: 1px dotted currentColor; margin-right: 10px; }
+    .lang-switch a[aria-current="page"] { font-weight: 700; color: #8b1d1d; border-bottom-style: solid; }
     .tools {
       margin-top: 10px;
       display: grid;
@@ -147,6 +150,7 @@
       <a href="./地理/geo.html">世界設定</a>
       <a href="./観光/visit.html">外務省観光局</a>
     </nav>
+    <div class="lang-switch"><a id="langLinkJa" href="./glossary.html">日本語</a><a id="langLinkEn" href="./glossary.html?lang=en">English</a></div>
     <div class="tools">
       <input id="q" type="search" placeholder="名称・本文・使用者・コメントで検索" />
       <select id="kind">
@@ -187,6 +191,90 @@
     let knives = [];
     let stances = [];
     let charSlugByName = new Map();
+    const pageLang = (new URLSearchParams(location.search).get("lang") === "en") ? "en" : "ja";
+    document.documentElement.setAttribute("lang", pageLang);
+    const ui = pageLang === "en" ? {
+      title: "Republica Saga Glossary",
+      h1: "Republica Saga Glossary",
+      navMain: "Story",
+      navChars: "Character Dictionary",
+      navGloss: "Glossary",
+      navAudio: "Audio Commentary",
+      navDiary: "Writing Log",
+      navWorld: "World",
+      navTour: "Tourism",
+      search: "Search by term / body / users",
+      kindAll: "All",
+      kindTerm: "Terms",
+      kindKnife: "Knives",
+      kindStance: "Stances",
+      secTerm: "Terms",
+      secKnife: "Knives",
+      secStance: "Stances",
+      uncategorized: "Uncategorized",
+      labels: { body: "Body", users: "Users", comment: "Comment" },
+      empty: "(not set)",
+      noHit: "No match",
+      hidden: "Hidden",
+      loadingErr: "Failed to load: "
+    } : {
+      title: "用語辞典 | 『共和国物語』サーガ",
+      h1: "『共和国物語』サーガ 用語辞典",
+      navMain: "本編",
+      navChars: "登場人物辞典",
+      navGloss: "用語辞典",
+      navAudio: "オーディオコメンタリ",
+      navDiary: "執筆録",
+      navWorld: "世界設定",
+      navTour: "外務省観光局",
+      search: "名称・本文・使用者・コメントで検索",
+      kindAll: "すべて",
+      kindTerm: "用語",
+      kindKnife: "ナイフ",
+      kindStance: "構え",
+      secTerm: "用語",
+      secKnife: "ナイフ",
+      secStance: "構え",
+      uncategorized: "未分類",
+      labels: { body: "本文", users: "使用者", comment: "コメント" },
+      empty: "（未入力）",
+      noHit: "該当なし",
+      hidden: "非表示",
+      loadingErr: "読み込み失敗: "
+    };
+
+    document.title = ui.title;
+    const h1 = document.querySelector("header h1"); if (h1) h1.textContent = ui.h1;
+    const navLinks = document.querySelectorAll("header nav a");
+    if (navLinks.length >= 7) {
+      navLinks[0].textContent = ui.navMain;
+      navLinks[0].href = pageLang === "en" ? "./index.html?lang=en" : "./index.html";
+      navLinks[1].textContent = ui.navChars;
+      navLinks[1].href = pageLang === "en" ? "characters.html?lang=en" : "characters.html";
+      navLinks[2].textContent = ui.navGloss;
+      navLinks[2].href = pageLang === "en" ? "glossary.html?lang=en" : "glossary.html";
+      navLinks[3].textContent = ui.navAudio;
+      navLinks[4].textContent = ui.navDiary;
+      navLinks[5].textContent = ui.navWorld;
+      navLinks[6].textContent = ui.navTour;
+    }
+    if (qEl) qEl.placeholder = ui.search;
+    const langLinkJa = document.getElementById("langLinkJa");
+    const langLinkEn = document.getElementById("langLinkEn");
+    if (langLinkJa) langLinkJa.setAttribute("aria-current", pageLang === "ja" ? "page" : "false");
+    if (langLinkEn) langLinkEn.setAttribute("aria-current", pageLang === "en" ? "page" : "false");
+    if (kindEl && kindEl.options.length >= 4) {
+      kindEl.options[0].textContent = ui.kindAll;
+      kindEl.options[1].textContent = ui.kindTerm;
+      kindEl.options[2].textContent = ui.kindKnife;
+      kindEl.options[3].textContent = ui.kindStance;
+    }
+    const secTitles = document.querySelectorAll(".section-title");
+    if (secTitles.length >= 3) {
+      secTitles[0].textContent = ui.secTerm;
+      secTitles[1].textContent = ui.secKnife;
+      secTitles[2].textContent = ui.secStance;
+    }
 
     function normalizeKey(v) {
       return String(v ?? "").trim();
@@ -327,11 +415,11 @@
 
     function renderUsers(users) {
       const items = asArray(users);
-      if (!items.length) return "（未入力）";
+      if (!items.length) return ui.empty;
       const html = items.map((name) => {
         const slug = resolveCharacterSlug(name);
         if (!slug) return `<span>${esc(name)}</span>`;
-        return `<a class="char-link" href="characters.html#${encodeURIComponent(slug)}">${esc(name)}</a>`;
+        return `<a class="char-link" href="characters.html${pageLang === "en" ? "?lang=en" : ""}#${encodeURIComponent(slug)}">${esc(name)}</a>`;
       }).join("");
       return `<span class="char-links">${html}</span>`;
     }
@@ -340,11 +428,11 @@
       return `
         <article class="card" id="${esc(it.id || it.title || "")}" data-name="${esc(it.title || "")}">
           <div class="head">
-            <h3 class="title">${esc(it.title || "（未入力）")}</h3>
-            <p class="catch">${esc(it.category || "未分類")}</p>
+            <h3 class="title">${esc(it.title || ui.empty)}</h3>
+            <p class="catch">${esc(it.category || ui.uncategorized)}</p>
           </div>
           <div class="body">
-            <div><span class="label">本文:</span> ${esc(it.body || "（未入力）")}</div>
+            <div><span class="label">${esc(ui.labels.body)}:</span> ${esc(it.body || ui.empty)}</div>
           </div>
         </article>
       `;
@@ -355,14 +443,14 @@
       return `
         <article class="card" id="${esc(it.id || it[nameKey] || "")}" data-name="${esc(it[nameKey] || "")}">
           <div class="head ${mode}">
-            <h3 class="title">${esc(it[nameKey] || "（未入力）")}</h3>
-            <p class="catch">${esc(it["キャッチフレーズ"] || "（未入力）")}</p>
+            <h3 class="title">${esc(it[nameKey] || ui.empty)}</h3>
+            <p class="catch">${esc(it["キャッチフレーズ"] || it.catch || ui.empty)}</p>
           </div>
           <div class="body">
             ${mode === "knife" ? renderEntryImage(it[nameKey], `${it[nameKey] || "Knife"} illustration`) : ""}
-            <div><span class="label">本文:</span> ${esc(it["本文"] || "（未入力）")}</div>
-            <div><span class="label">使用者:</span> ${renderUsers(it["使用者"])}</div>
-            <div><span class="label">コメント:</span> ${esc(it["コメント"] || "（未入力）")}</div>
+            <div><span class="label">${esc(ui.labels.body)}:</span> ${esc(it["本文"] || it.body || ui.empty)}</div>
+            <div><span class="label">${esc(ui.labels.users)}:</span> ${renderUsers(it["使用者"] || it.users)}</div>
+            <div><span class="label">${esc(ui.labels.comment)}:</span> ${esc(it["コメント"] || it.comment || ui.empty)}</div>
           </div>
         </article>
       `;
@@ -400,11 +488,11 @@
     async function boot() {
       try {
         const [storyRes, dicRes] = await Promise.all([
-          fetch("./data/物語本編.json", { cache: "no-store" }),
-          fetch("./data/rpdic.json", { cache: "no-store" })
+          fetch(pageLang === "en" ? "./data/story_en.json" : "./data/物語本編.json", { cache: "no-store" }),
+          fetch(pageLang === "en" ? "./data/rpdic_en.json" : "./data/rpdic.json", { cache: "no-store" })
         ]);
-        if (!storyRes.ok) throw new Error(`物語本編.json: HTTP ${storyRes.status}`);
-        if (!dicRes.ok) throw new Error(`rpdic.json: HTTP ${dicRes.status}`);
+        if (!storyRes.ok) throw new Error(`${pageLang === "en" ? "story_en.json" : "物語本編.json"}: HTTP ${storyRes.status}`);
+        if (!dicRes.ok) throw new Error(`${pageLang === "en" ? "rpdic_en.json" : "rpdic.json"}: HTTP ${dicRes.status}`);
 
         const story = await storyRes.json();
         const dic = await dicRes.json();
@@ -432,15 +520,15 @@
         const usedSlugs = new Set([...knifeRefs, ...stanceRefs].map((r) => normalizeKey(r.slug)).filter(Boolean));
         const termRefs = allRefs.filter((r) => !usedSlugs.has(normalizeKey(r.slug)));
 
-        terms = normalizeTermsByStory(dic.glossary || [], termRefs);
-        knives = normalizeByStory(knifeSource, knifeRefs, "knife");
-        stances = normalizeByStory(stanceSource, stanceRefs, "stance");
+        terms = normalizeTermsByStory((dic.glossary || dic.terms || []).map((it) => ({ id: it.id, title: it["用語名（見出し）"] || it.title || it.name || "", body: it["本文"] || it.body || "", category: it["カテゴリ"] || it.category || "" })), termRefs);
+        knives = normalizeByStory(knifeSource.map((it)=>({ ...it, ["ナイフ名（見出し）"]: it["ナイフ名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), knifeRefs, "knife");
+        stances = normalizeByStory(stanceSource.map((it)=>({ ...it, ["構え名（見出し）"]: it["構え名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), stanceRefs, "stance");
 
         render();
         jumpToHash();
       } catch (e) {
-        termList.innerHTML = `<p class="dim">読み込み失敗: ${esc(e.message)}</p>`;
-        knifeList.innerHTML = `<p class="dim">読み込み失敗: ${esc(e.message)}</p>`;
+        termList.innerHTML = `<p class="dim">${esc(ui.loadingErr)}${esc(e.message)}</p>`;
+        knifeList.innerHTML = `<p class="dim">${esc(ui.loadingErr)}${esc(e.message)}</p>`;
         stanceList.innerHTML = "";
       }
     }
