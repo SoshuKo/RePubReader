@@ -518,6 +518,13 @@
       line-height: 1.95;
     }
     .article p { margin: 0 0 1em; }
+    .klv-line { margin: 0 0 1.2em; }
+    .klv-original { font-size: 1.03em; font-weight: 600; letter-spacing: .01em; }
+    .gloss-wrap { margin-top: .55em; border: 1px solid var(--line); border-radius: 8px; background: color-mix(in srgb, var(--panel) 92%, var(--accent-2) 8%); padding: 8px 10px; display: none; }
+    .gloss-wrap.show { display: block; }
+    .gloss-free { margin: 6px 0 0; color: var(--muted); font-size: .9em; }
+    .gloss-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: .88em; }
+    .gloss-table th, .gloss-table td { border: 1px solid var(--line); padding: 3px 6px; text-align: left; vertical-align: top; }
     .theme-choice { background: var(--theme-choice); }
     .theme-dialogue { background: var(--theme-dialogue); }
     .char-ref, .term-ref {
@@ -762,6 +769,7 @@
           <button id="langJa" class="theme-toggle lang-btn" type="button" data-lang="ja">&#26085;&#26412;&#35486;</button>
           <button id="langEn" class="theme-toggle lang-btn" type="button" data-lang="en">English</button>
           <button id="langKa" class="theme-toggle lang-btn" type="button" data-lang="ka">Georgian</button>
+          <button id="langKlv" class="theme-toggle lang-btn" type="button" data-lang="klv">カラバル語</button>
         </div>
       </div>
       <div class="read-feature-toggle">
@@ -1108,6 +1116,7 @@ A stylish underworld road movie with lethal charm.</p>
       dataJa: null,
       dataEn: null,
       dataKa: null,
+      klvData: null,
       dicJa: null,
       dicEn: null,
       current: null,
@@ -1122,7 +1131,8 @@ A stylish underworld road movie with lethal charm.</p>
       characterPreviewByLoose: new Map(),
       readPromptHidden: false,
       readPromptShownFor: null,
-      readEnabled: true
+      readEnabled: true,
+      showGloss: false
     };
 
     const STORAGE_THEME = "repub_theme_v1";
@@ -1143,6 +1153,7 @@ A stylish underworld road movie with lethal charm.</p>
     const langKa = document.getElementById("langKa");
     const langButtons = [langJa, langEn, langKa].filter(Boolean);
     const shareEpisodeBtn = document.getElementById("shareEpisode");
+    const glossToggleBtn = document.getElementById("glossToggle");
     const treeEl = document.getElementById("tree");
     const siteTitleEl = document.getElementById("siteTitle");
     const siteMetaEl = document.getElementById("siteMeta");
@@ -1445,29 +1456,35 @@ A stylish underworld road movie with lethal charm.</p>
     function getActiveData() {
       if (currentLang === "en" && state.dataEn) return state.dataEn;
       if (currentLang === "ka" && state.dataKa) return state.dataKa;
+      if (currentLang === "klv" && state.dataJa) return state.dataJa;
       return state.dataJa;
     }
 
     function applyLanguage(lang) {
-      currentLang = (lang === "en" || lang === "ka") ? lang : "ja";
-      document.documentElement.setAttribute("lang", currentLang);
-      langButtons.forEach((btn) => {
-        btn.setAttribute("aria-pressed", btn.dataset.lang === currentLang ? "true" : "false");
-      });
-      if (siteTitleEl) siteTitleEl.textContent = currentLang === "ja" ? "『共和国物語』サーガ" : (currentLang === "en" ? "Republica Saga" : "Republica Saga (Georgian)");
-      if (siteMetaEl) siteMetaEl.textContent = currentLang === "ja" ? "物語本編ビューア" : (currentLang === "en" ? "Story Reader" : "Georgian Reader");
-      if (navTop) { navTop.textContent = currentLang === "ja" ? "トップ・本編" : (currentLang === "en" ? "Top / Story" : "Top / Story"); navTop.href = "index.html"; }
-      if (navChars) { navChars.textContent = currentLang === "ja" ? "登場人物辞典" : (currentLang === "en" ? "Characters" : "Characters"); navChars.href = currentLang === "en" ? "characters.html?lang=en" : "characters.html"; }
-      if (navGloss) { navGloss.textContent = currentLang === "ja" ? "用語辞典" : (currentLang === "en" ? "Glossary" : "Glossary"); navGloss.href = currentLang === "en" ? "glossary.html?lang=en" : "glossary.html"; }
-      if (navAudio) { navAudio.textContent = currentLang === "ja" ? "オーディオコメンタリ" : (currentLang === "en" ? "Audio Commentary" : "Audio Commentary"); navAudio.href = "audiocommentary.html"; }
-      if (navDiary) { navDiary.textContent = currentLang === "ja" ? "執筆録" : (currentLang === "en" ? "Writing Log" : "Writing Log"); navDiary.href = "diary.html"; }
-      const activeDic = (currentLang === "en" && state.dicEn) ? state.dicEn : state.dicJa;
-      if (activeDic) buildGlossaryPreviewMaps(activeDic);
-      const activeData = getActiveData();
-      if (activeData) buildTree(activeData);
-      const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
-      showTop(incomingHash === "" || incomingHash === "top");
-    }
+          currentLang = (lang === "en" || lang === "ka" || lang === "klv") ? lang : "ja";
+          document.documentElement.setAttribute("lang", currentLang);
+          langButtons.forEach((btn) => {
+            btn.setAttribute("aria-pressed", btn.dataset.lang === currentLang ? "true" : "false");
+          });
+          if (siteTitleEl) siteTitleEl.textContent = currentLang === "en" ? "Republica Saga" : (currentLang === "ka" ? "Republica Saga (Georgian)" : "『共和国物語』 サーガ");
+          if (siteMetaEl) siteMetaEl.textContent = currentLang === "en" ? "Story Reader" : (currentLang === "ka" ? "Georgian Reader" : (currentLang === "klv" ? "物語本編ビューア（カラバル語本文）" : "物語本編ビューア"));
+          if (navTop) { navTop.textContent = currentLang === "en" ? "Top / Story" : "トップ・本編"; navTop.href = "index.html"; }
+          if (navChars) { navChars.textContent = currentLang === "en" ? "Characters" : "登場人物辞典"; navChars.href = currentLang === "en" ? "characters.html?lang=en" : "characters.html"; }
+          if (navGloss) { navGloss.textContent = currentLang === "en" ? "Glossary" : "用語辞典"; navGloss.href = currentLang === "en" ? "glossary.html?lang=en" : "glossary.html"; }
+          if (navAudio) { navAudio.textContent = currentLang === "en" ? "Audio Commentary" : "オーディオコメンタリ"; navAudio.href = "audiocommentary.html"; }
+          if (navDiary) { navDiary.textContent = currentLang === "en" ? "Writing Log" : "執筆録"; navDiary.href = "diary.html"; }
+          const activeDic = (currentLang === "en" && state.dicEn) ? state.dicEn : state.dicJa;
+          if (glossToggleBtn) {
+            const useKlv = currentLang === "klv";
+            glossToggleBtn.style.display = useKlv ? "inline-block" : "none";
+            glossToggleBtn.textContent = state.showGloss ? "グロスを隠す" : "グロスを表示";
+          }
+          if (activeDic) buildGlossaryPreviewMaps(activeDic);
+          const activeData = getActiveData();
+          if (activeData) buildTree(activeData);
+          const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+          showTop(incomingHash === "" || incomingHash === "top");
+        }
 
 
     function initSidebarToggle() {
@@ -1504,13 +1521,13 @@ A stylish underworld road movie with lethal charm.</p>
     function initLanguage() {
       const qLang = new URLSearchParams(location.search).get("lang");
       let lang = qLang || localStorage.getItem(STORAGE_LANG) || "ja";
-      if (!["ja", "en", "ka"].includes(lang)) lang = "ja";
+      if (!["ja", "en", "ka", "klv"].includes(lang)) lang = "ja";
       localStorage.setItem(STORAGE_LANG, lang);
       applyLanguage(lang);
       langButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const next = btn.dataset.lang;
-          if (!["ja", "en", "ka"].includes(next)) return;
+          if (!["ja", "en", "ka", "klv"].includes(next)) return;
           localStorage.setItem(STORAGE_LANG, next);
           applyLanguage(next);
         });
@@ -1519,7 +1536,7 @@ A stylish underworld road movie with lethal charm.</p>
 
     function showTop(updateHash = true) {
       if (window.matchMedia("(max-width: 880px)").matches) setSidebarOpen(false);
-      topPageEl.style.display = currentLang === "ja" ? "grid" : "none";
+      topPageEl.style.display = (currentLang === "ja" || currentLang === "klv") ? "grid" : "none";
       if (topPageEnEl) topPageEnEl.style.display = currentLang === "en" ? "grid" : "none";
       if (topPageKaEl) topPageKaEl.style.display = currentLang === "ka" ? "grid" : "none";
       articleWrapEl.style.display = "none";
@@ -1814,32 +1831,55 @@ A stylish underworld road movie with lethal charm.</p>
       });
     }
 
+    function renderKlvEpisodeOverlay(epKey) {
+          const ep = state.klvData && state.klvData.episodes ? state.klvData.episodes[epKey] : null;
+          if (!ep || !Array.isArray(ep.blocks) || ep.blocks.length === 0) return null;
+          const show = !!state.showGloss;
+          return ep.blocks.map((b) => {
+            const rows = Array.isArray(b.gloss_rows) ? b.gloss_rows : [];
+            let tr = "";
+            for (const r of rows) {
+              tr += "<tr><td>" + esc(r.surface || "") + "</td><td>" + esc(r.gloss || "") + "</td><td>" + esc(r.ja || "") + "</td></tr>";
+            }
+            const cls = show ? "gloss-wrap show" : "gloss-wrap";
+            return "<div class=\'klv-line\'><p class=\'klv-original\'>" + esc(b.original || "") + "</p><div class=\'" + cls + "\'><table class=\'gloss-table\'><thead><tr><th>??</th><th>???</th><th>??</th></tr></thead><tbody>" + tr + "</tbody></table><p class=\'gloss-free\'>" + esc(b.translation || "") + "</p></div></div>";
+          }).join("\n");
+        }
+
     function renderEpisode(work, section, ep) {
-      state.current = { work, section, ep };
-      state.readPromptShownFor = null;
-      state.currentKey = episodeKey(work, section, ep);
-      showEpisode();
-
-      document.getElementById("epTitle").textContent = ep.label || ep.id || "無題";
-      document.getElementById("epTrail").textContent = `${work.title} / ${section.title}`;
-      const html = Array.isArray(ep.content)
-        ? ep.content.map(block => block.html || `<p>${esc(block.text || "")}</p>`).join("\n")
-        : "<p>本文データがありません。</p>";
-      const epContentEl = document.getElementById("epContent");
-      epContentEl.innerHTML = html;
-      rewriteInlineRefs(epContentEl);
-      bindTermPreviews(epContentEl);
-
-      for (const btn of state.buttons) {
-        const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
-        btn.classList.toggle("active", active);
-        updateEpisodeButtonMarks(btn);
-      }
-      location.hash = encodeURIComponent(state.currentKey);
-      requestAnimationFrame(() => {
-        scrollEpisodeTop();
-      });
-    }
+          state.current = { work, section, ep };
+          state.readPromptShownFor = null;
+          state.currentKey = episodeKey(work, section, ep);
+          showEpisode();
+    
+          document.getElementById("epTitle").textContent = ep.label || ep.id || "無題";
+          document.getElementById("epTrail").textContent = `${work.title} / ${section.title}`;
+          const epContentEl = document.getElementById("epContent");
+          const klvHtml = currentLang === "klv" ? renderKlvEpisodeOverlay(state.currentKey) : null;
+          const html = klvHtml || (Array.isArray(ep.content)
+            ? ep.content.map(block => block.html || `<p>${esc(block.text || "")}</p>`).join("\n")
+            : "<p>本文データがありません。</p>");
+          epContentEl.innerHTML = html;
+          if (!klvHtml) {
+            rewriteInlineRefs(epContentEl);
+            bindTermPreviews(epContentEl);
+          }
+          if (glossToggleBtn) {
+            const useKlv = currentLang === "klv" && !!klvHtml;
+            glossToggleBtn.style.display = useKlv ? "inline-block" : "none";
+            glossToggleBtn.textContent = state.showGloss ? "グロスを隠す" : "グロスを表示";
+          }
+    
+          for (const btn of state.buttons) {
+            const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
+            btn.classList.toggle("active", active);
+            updateEpisodeButtonMarks(btn);
+          }
+          location.hash = encodeURIComponent(state.currentKey);
+          requestAnimationFrame(() => {
+            scrollEpisodeTop();
+          });
+        }
 
     function buildTree(data) {
       const root = treeEl;
@@ -1939,19 +1979,21 @@ A stylish underworld road movie with lethal charm.</p>
 
     async function boot() {
       try {
-        const [jaRes, enRes, kaRes, dicJaRes, dicEnRes] = await Promise.all([
-          fetch("./data/物語本編.json", { cache: "no-store" }),
-          fetch("./data/story_en.json", { cache: "no-store" }),
-          fetch("./data/story_ka.json", { cache: "no-store" }),
-          fetch("./data/rpdic.json", { cache: "no-store" }),
-          fetch("./data/rpdic_en.json", { cache: "no-store" })
-        ]);
+        const [jaRes, enRes, kaRes, klvRes, dicJaRes, dicEnRes] = await Promise.all([
+                  fetch("./data/物語本編.json", { cache: "no-store" }),
+                  fetch("./data/story_en.json", { cache: "no-store" }),
+                  fetch("./data/story_ka.json", { cache: "no-store" }),
+                  fetch("./data/story_klv.json", { cache: "no-store" }),
+                  fetch("./data/rpdic.json", { cache: "no-store" }),
+                  fetch("./data/rpdic_en.json", { cache: "no-store" })
+                ]);
         if (!jaRes.ok) throw new Error(`HTTP ${jaRes.status}`);
         state.dataJa = await jaRes.json();
         buildReferenceMaps(state.dataJa);
 
         if (enRes.ok) state.dataEn = await enRes.json();
         if (kaRes.ok) state.dataKa = await kaRes.json();
+        if (klvRes.ok) state.klvData = await klvRes.json();
 
         if (dicJaRes.ok) state.dicJa = await dicJaRes.json();
         if (dicEnRes.ok) state.dicEn = await dicEnRes.json();
@@ -1992,6 +2034,14 @@ A stylish underworld road movie with lethal charm.</p>
     }
     if (readPromptModal) {
       readPromptModal.addEventListener("click", (e) => { if (e.target === readPromptModal) closeReadPrompt(); });
+    }
+
+    if (glossToggleBtn) {
+      glossToggleBtn.addEventListener("click", () => {
+        state.showGloss = !state.showGloss;
+        glossToggleBtn.textContent = state.showGloss ? "グロスを隠す" : "グロスを表示";
+        if (state.current) renderEpisode(state.current.work, state.current.section, state.current.ep);
+      });
     }
 
     shareEpisodeBtn.addEventListener("click", () => {
