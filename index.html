@@ -1833,7 +1833,16 @@ A stylish underworld road movie with lethal charm.</p>
     }
 
     function renderKlvEpisodeOverlay(epKey) {
-          const ep = state.klvData && state.klvData.episodes ? state.klvData.episodes[epKey] : null;
+          const episodes = state.klvData && state.klvData.episodes ? state.klvData.episodes : null;
+          if (!episodes || typeof episodes !== "object") return null;
+          let ep = episodes[epKey] || null;
+          if (!ep) {
+            const targetId = String(epKey || "").split("::").pop();
+            const keys = Object.keys(episodes);
+            const idMatch = keys.find((k) => k.endsWith("::" + targetId));
+            if (idMatch) ep = episodes[idMatch];
+            if (!ep && keys.length === 1) ep = episodes[keys[0]];
+          }
           if (!ep || !Array.isArray(ep.blocks) || ep.blocks.length === 0) return null;
           const show = !!state.showGloss;
           return ep.blocks.map((b) => {
@@ -1843,7 +1852,7 @@ A stylish underworld road movie with lethal charm.</p>
               tr += "<tr><td>" + esc(r.surface || "") + "</td><td>" + esc(r.gloss || "") + "</td><td>" + esc(r.ja || "") + "</td></tr>";
             }
             const cls = show ? "gloss-wrap show" : "gloss-wrap";
-            return "<div class=\'klv-line\'><p class=\'klv-original\'>" + esc(b.original || "") + "</p><div class=\'" + cls + "\'><table class=\'gloss-table\'><thead><tr><th>??</th><th>???</th><th>??</th></tr></thead><tbody>" + tr + "</tbody></table><p class=\'gloss-free\'>" + esc(b.translation || "") + "</p></div></div>";
+            return "<div class=\'klv-line\'><p class=\'klv-original\'>" + esc(b.original || "") + "</p><div class=\'" + cls + "\'><table class=\'gloss-table\'><thead><tr><th>単語</th><th>グロス</th><th>訳</th></tr></thead><tbody>" + tr + "</tbody></table><p class=\'gloss-free\'>" + esc(b.translation || "") + "</p></div></div>";
           }).join("\n");
         }
 
@@ -2150,6 +2159,7 @@ A stylish underworld road movie with lethal charm.</p>
 </script>
 </body>
 </html>
+
 
 
 
