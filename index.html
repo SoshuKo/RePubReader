@@ -417,6 +417,99 @@
         aspect-ratio: 1 / 1;
       }
     }
+
+
+    .first-guide {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--panel) 92%, #fff 8%);
+      padding: 12px;
+    }
+    .first-guide h3 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 1.08rem;
+    }
+    .first-guide p {
+      margin: 0;
+      white-space: normal;
+      line-height: 1.82;
+    }
+    .guide-rotor-wrap {
+      margin-top: 12px;
+      display: block;
+    }
+    .guide-cube-scene {
+      position: relative;
+      width: min(360px, 92vw);
+      height: min(360px, 92vw);
+      margin-inline: auto;
+      perspective: 920px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: radial-gradient(circle at 35% 28%, rgba(255,255,255,.52), rgba(255,255,255,.08)),
+        linear-gradient(165deg, color-mix(in srgb, var(--panel) 90%, #f4ead8 10%), color-mix(in srgb, var(--panel) 92%, #e8dcc7 8%));
+      overflow: hidden;
+    }
+    .guide-cube {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform .72s cubic-bezier(.2,.72,.2,1);
+      touch-action: pan-y;
+      cursor: grab;
+    }
+    .guide-cube:active { cursor: grabbing; }
+    .guide-face {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 56%;
+      aspect-ratio: 1 / 1;
+      transform-style: preserve-3d;
+      margin-left: -28%;
+      margin-top: -28%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 24px rgba(0,0,0,.22);
+      transition: box-shadow .28s ease, filter .28s ease;
+      filter: saturate(.95);
+    }
+    .guide-face:hover,
+    .guide-face:focus-visible {
+      box-shadow: 0 14px 28px rgba(0,0,0,.30);
+      filter: saturate(1.06);
+    }
+    .guide-face img {
+      width: 74%;
+      height: 74%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+    .guide-face.face-0 { transform: translateZ(110px); }
+    .guide-face.face-1 { transform: rotateY(90deg) translateZ(110px); }
+    .guide-face.face-2 { transform: rotateY(180deg) translateZ(110px); }
+    .guide-face.face-3 { transform: rotateY(-90deg) translateZ(110px); }
+
+    .guide-tooltip {
+      margin-top: 10px;
+      min-height: 1.8em;
+      text-align: center;
+      color: var(--accent-2);
+      font-size: .92rem;
+      line-height: 1.5;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .guide-tooltip.show {
+      opacity: 1;
+    }
+
+
     .share-links {
       margin-top: 10px;
       display: flex;
@@ -675,6 +768,8 @@
         overflow: visible;
         padding-top: 62px;
       }
+
+
       .intro-media-wrap { grid-template-columns: 1fr; }
       .intro-media { width: 100%; }
     }
@@ -793,6 +888,31 @@
 「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
           <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a> / <a href="./diary.html">執筆録</a> / <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a>
             <a href="./言語/fullgrammar.html">カラバル語 文法総覧</a> / <a href="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a></p>
+
+        </article>
+
+        <article class="intro first-guide" id="firstGuide">
+          <h3>はじめての方へ</h3>
+          <p>このサイトは協同創作機構『亜空世界』の参加者「Soshu_K」の創作まとめページです。</p>
+          <div class="guide-rotor-wrap">
+            <div class="guide-cube-scene" aria-label="はじめての方向けナビゲーション">
+              <div id="guideRotorStage" class="guide-cube">
+                <button type="button" class="guide-face face-0" data-target="#work-karabatan" data-label="物語を読む（おすすめの作品一覧）" aria-label="物語を読む（おすすめの作品一覧）">
+                  <img src="./assets/images/小説アイコン.png" alt="物語を読む" loading="lazy" />
+                </button>
+                <button type="button" class="guide-face face-1" data-target="./地理/realtimemap.html" data-label="リアルタイム路線図を見る" aria-label="リアルタイム路線図を見る">
+                  <img src="./assets/images/地理アイコン.png" alt="リアルタイム路線図を見る" loading="lazy" />
+                </button>
+                <button type="button" class="guide-face face-2" data-target="./言語/karabar-overview.html" data-label="カラバル語を知る" aria-label="カラバル語を知る">
+                  <img src="./assets/images/言語アイコン.png" alt="カラバル語を知る" loading="lazy" />
+                </button>
+                <button type="button" class="guide-face face-3" data-target="./観光/visit.html" data-label="カラベイを知る" aria-label="カラベイを知る">
+                  <img src="./assets/images/観光アイコン.png" alt="カラベイを知る" loading="lazy" />
+                </button>
+              </div>
+            </div>
+            <p id="guideTooltip" class="guide-tooltip" aria-live="polite"></p>
+          </div>
         </article>
 
         <article class="intro">
@@ -1519,6 +1639,87 @@ A stylish underworld road movie with lethal charm.</p>
         sidebarBackdrop.addEventListener("click", () => setSidebarOpen(false));
       }
     }
+
+
+    function initFirstGuideRotor() {
+      if (!guideRotorStage) return;
+      let step = 0;
+      let timer = null;
+      let downX = null;
+
+      const setRotation = (n) => {
+        step = ((n % 4) + 4) % 4;
+        guideRotorStage.style.transform = `rotateY(${step * -90}deg)`;
+      };
+      const rotateStep = (delta) => setRotation(step + delta);
+
+      const stopAuto = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+      };
+      const startAuto = () => {
+        stopAuto();
+        timer = setInterval(() => {
+          if (currentLang !== "ja") return;
+          rotateStep(1);
+        }, 3400);
+      };
+
+      const setTip = (txt) => {
+        if (!guideTooltip) return;
+        guideTooltip.textContent = txt || "";
+        guideTooltip.classList.toggle("show", !!txt);
+      };
+
+      const goTarget = (target) => {
+        if (!target) return;
+        if (target.startsWith("#")) {
+          const el = document.querySelector(target);
+          if (el) {
+            showTop(false);
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          return;
+        }
+        location.href = target;
+      };
+
+      guideRotorStage.querySelectorAll(".guide-face").forEach((card, idx) => {
+        const label = card.dataset.label || "";
+        card.addEventListener("mouseenter", () => setTip(label));
+        card.addEventListener("mouseleave", () => setTip(""));
+        card.addEventListener("focus", () => setTip(label));
+        card.addEventListener("blur", () => setTip(""));
+        card.addEventListener("click", () => {
+          stopAuto();
+          setRotation(idx);
+          goTarget(card.dataset.target || "");
+        });
+      });
+
+      guideRotorStage.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        stopAuto();
+        rotateStep(e.deltaY > 0 ? 1 : -1);
+        startAuto();
+      }, { passive: false });
+
+      guideRotorStage.addEventListener("pointerdown", (e) => { downX = e.clientX; });
+      guideRotorStage.addEventListener("pointerup", (e) => {
+        if (downX == null) return;
+        const dx = e.clientX - downX;
+        downX = null;
+        if (Math.abs(dx) > 16) {
+          stopAuto();
+          rotateStep(dx > 0 ? -1 : 1);
+          startAuto();
+        }
+      });
+
+      setRotation(0);
+      startAuto();
+    }
+
     function initLanguage() {
       const qLang = new URLSearchParams(location.search).get("lang");
       let lang = qLang || localStorage.getItem(STORAGE_LANG) || "ja";
@@ -2137,6 +2338,7 @@ A stylish underworld road movie with lethal charm.</p>
     initTheme();
     initSidebarToggle();
     initLanguage();
+    initFirstGuideRotor();
     mountGiscus();
     boot();
   </script>
