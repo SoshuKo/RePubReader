@@ -207,6 +207,22 @@
       color: #fff;
       border-color: var(--accent);
     }
+    .zh-script-toggle {
+      margin: 10px 0 8px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .zh-script-toggle .theme-toggle {
+      margin-top: 0;
+      font-size: .82rem;
+      padding: 5px 11px;
+    }
+    .zh-script-note {
+      color: var(--muted);
+      font-size: .8rem;
+    }
     .read-feature-toggle {
       margin-top: 8px;
       font-size: .82rem;
@@ -885,6 +901,7 @@
         <div class="lang-buttons" role="group" aria-label="Language selector">
           <button id="langJa" class="theme-toggle lang-btn" type="button" data-lang="ja">&#26085;&#26412;&#35486;</button>
           <button id="langEn" class="theme-toggle lang-btn" type="button" data-lang="en">English</button>
+          <button id="langZh" class="theme-toggle lang-btn" type="button" data-lang="zh">&#20013;&#25991;</button>
           <button id="langKa" class="theme-toggle lang-btn" type="button" data-lang="ka">Georgian</button>
           
         </div>
@@ -1059,6 +1076,9 @@
             <img class="title-hero-img" src="./assets/images/タイトル.png" alt="Republica Saga title" loading="lazy" />
           </div>
           <h2>Republica Saga</h2>
+          <div class="century-hero-box">
+            <img class="century-hero-img" src="./assets/images/Century.GIF" alt="Century visual" loading="lazy" decoding="async" />
+          </div>
           <p class="catch">For the next 100 years, and beyond.</p>
           <p>Set in the fictional nations of the Instructional Nation of Kàlavé and the Har-Lopinong Republic, this is a large-scale ensemble drama spanning generations and borders.
 Rulers who carved history with Duïlé and blood, and young people who resist or are swept up by those distorted definitions of "happiness," struggling to seize their own future and daily life.
@@ -1189,6 +1209,142 @@ A stylish underworld road movie with lethal charm.</p>
           <p style="margin-top:10px;"><a href="./characters.html?lang=en" class="inline-open-link">Open Character Dictionary</a></p>
         </article>
       </section>
+                        
+            <section id="topPageZh" class="top-page" style="display:none;">
+        <article class="intro">
+          <h2>Republica Saga</h2>
+          <div class="century-hero-box">
+            <img class="century-hero-img" src="./assets/images/Century.GIF" alt="Century visual" loading="lazy" decoding="async" />
+          </div>
+          <p class="catch">下一個100年，還有再下一個100年。</p>
+          <div class="zh-script-toggle">
+            <button id="zhScriptToggle" class="theme-toggle" type="button">切換為简体</button>
+            <span class="zh-script-note" id="zhScriptNote">目前：繁體中文</span>
+          </div>
+          <div id="zhTradBlock">
+            <p>以架空國家「Kàlavé教導國」與「Har-Lopinong共和國」等地為舞台，這是一部跨越世代與國境編織而成的壯闊群像劇。追求著理想國家，以劍（Duïlé）與鮮血開拓出歷史的執政者們。反抗著那扭曲的「幸福」定義，抑或是在其中受盡擺佈，卻仍努力試圖掌握自身未來與日常的年輕人們。伴隨痛楚、名為「選擇」的決斷，以及透過名為「溝通」的對話所達致的和諧。以相互衝突的兩種理念為主軸，政治、宗教、黑手黨、學生運動等各種陰謀與意念交織於其中，是一部宏大的歷史娛樂巨作。</p>
+            <p style="margin-top:10px;">快速導覽：<a href="#work-karabatan-zh-t">Kàlavatan Republica</a> / <a href="#work-haropinon-zh-t">Har-Lopinong Republica</a> / <a href="#work-bookkeeper-zh-t">Bookkeeper</a> / <a href="./characters.html?lang=zh">登場人物辭典</a> / <a href="./glossary.html?lang=zh">用語辭典</a></p>
+          </div>
+          <div id="zhSimpBlock" style="display:none;">
+            <p>以架空国家「Kàlavé教导国」与「Har-Lopinong共和国」等地为舞台，这是一部跨越世代与国境编织而成的壮阔群像剧。追求着理想国家，以剑（Duïlé）与鲜血开拓出历史的执政者们。反抗着那扭曲的「幸福」定义，抑或是在其中受尽摆布，却仍努力试图掌握自身未来与日常的年轻人们。伴随痛楚、名为「选择」的决断，以及透过名为「沟通」的对话所达致的和谐。以相互冲突的两种理念为主轴，政治、宗教、黑手党、学生运动等各种阴谋与意念交织于其中，是一部宏大的历史娱乐巨作。</p>
+            <p style="margin-top:10px;">快速导览：<a href="#work-karabatan-zh-s">Kàlavatan Republica</a> / <a href="#work-haropinon-zh-s">Har-Lopinong Republica</a> / <a href="#work-bookkeeper-zh-s">Bookkeeper</a> / <a href="./characters.html?lang=zh">登场人物词典</a> / <a href="./glossary.html?lang=zh">用语词典</a></p>
+          </div>
+        </article>
+
+        <article class="intro" id="work-karabatan-zh-t">
+          <h3>Kàlavatan Republica</h3>
+          <p class="catch">200公尺外，轉向的兄弟</p>
+          <div class="intro-media-wrap intro-media-stack">
+            <figure class="intro-media"><img src="./assets/images/転向の橋の戦い.png" alt="Battle at the Bridge of Defection" loading="lazy" /></figure>
+            <div>
+              <p>以19世紀末至20世紀後半的Kàlavatan共和國（即後來的Kàlavé教導國）為舞台，這是一部充滿鮮血與陰謀的建國史。身為「天命之子」降生，擺脫了共和主義的洗腦，並以絕對的力量建立教導國的初代執政者・Pàlajé。挺身對抗那份獨裁與瘋狂，試圖透過對話摸索未來道路的Lakán Lài與Bïláin Àkané等人。還有為了所愛之人，自願背負黑暗以引導國家的Ládén Tané與Shàun Akau。執政者們手中緊握的「狐色匕首」究竟會吸食誰的鮮血，又將指向何方？這是一部描繪從初代至第五代教導職之間的愛恨情仇，以及極度激烈的劍戟（Duïlé）交鋒軌跡，既悲傷又美麗的歷史史詩。</p>
+              <div class="rec-block">
+                <p class="rec-title">推薦作品</p>
+                <div class="rec-grid">
+                  <article class="rec-item">
+                    <h4>Akau編</h4>
+                    <figure class="rec-figure"><img src="./assets/images/アカウ編.png" alt="Akau Arc" loading="lazy" /></figure>
+                    <p>以石油資源豐富的Duram海沿岸的產油國為舞台。在這裡，掌握國家實權的是許多國民所信仰宗教的最高領袖「第一教導職」，以及身為特權階級的九大名門「九氏族」。此外，在歷史的背後，負責暗殺與情報工作的秘密組織「九地」，以及將思想融入劍技之中的傳統匕首術「Duïlé」也在暗中活躍。</p>
+                    <p>1920年代，被稱為「天命之子」的Shàun Pàlajé擊敗了摯友並掌握政權，將Kàlavatan共和國轉變為獨裁國家「Kàlavé教導國」。然而在此之後，他卻遭到妻子與其暗中撫養的親生兒子Shàun Àya背叛而被暗殺。</p>
+                    <p>Àya更進一步冒充自己雙胞胎哥哥、即真正的Bïláin Àkané之名，站上國家頂點實行強權統治。另一方面，真正的Àkané被奪走家人，發誓要進行復仇。隨後，他與天才劍士Lakán Lài聯手，展開反擊。</p>
+                    <p>1960年代，在大國Worl聯邦的軍事入侵逼近之際，Àkané、Àya、Lài三者之間展開了激烈的戰鬥。最終，Àkané等人成功擊敗了Àya，但其結果卻是讓成為Worl聯邦傀儡的無能之輩掌握了新政權，國家也因此被外國資本所控制。</p>
+                    <p>英雄們的戰鬥就這樣迎來了終結。倖存下來的Lài以議長的身分致力於重建民主國家，Àkané則隱藏身分成為邊境的主教默默守護著國家。戰敗的Àya則遭到了軟禁。</p>
+                    <p>時代邁入1960年代後半。在日漸衰退的教導國中，九氏族之間錯綜複雜的權力鬥爭仍在持續。在這樣的背景下，身為Àya的女兒、卻連父親也瞞過而作為「男性」被撫養長大的Shàun Akau，將背負起嶄新的時代，踏上充滿陰謀與大國算計、政治與鬥爭交織的舞台。</p>
+                    <div class="rec-actions"><button class="share-link rec-open" type="button" data-work-key="karabatan" data-section-key="アカウ編">閱讀本篇</button></div>
+                  </article>
+                </div>
+              </div>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="karabatan">從 EP1 開始閱讀</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro" id="work-karabatan-zh-s" style="display:none;">
+          <h3>Kàlavatan Republica</h3>
+          <p class="catch">200公尺外，转向的兄弟</p>
+          <div class="intro-media-wrap intro-media-stack">
+            <figure class="intro-media"><img src="./assets/images/転向の橋の戦い.png" alt="Battle at the Bridge of Defection" loading="lazy" /></figure>
+            <div>
+              <p>以19世纪末至20世纪后半的Kàlavatan共和国（即后来的Kàlavé教导国）为舞台，这是一部充满鲜血与阴谋的建国史。身为「天命之子」降生，摆脱了共和主义的洗脑，并以绝对的力量建立教导国的初代执政者・Pàlajé。挺身对抗那份独裁与疯狂，试图透过对话摸索未来道路的Lakán Lài与Bïláin Àkané等人。还有为了所爱之人，自愿背负黑暗以引导国家的Ládén Tané与Shàun Akau。执政者们手中紧握的「狐色匕首」究竟会吸食谁的鲜血，又将指向何方？这是一部描绘从初代至第五代教导职之间的爱恨情仇，以及极度激烈的剑戟（Duïlé）交锋轨迹，既悲伤又美丽的历史史诗。</p>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="karabatan">从 EP1 开始阅读</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro" id="work-haropinon-zh-t">
+          <h3>Har-Lopinong Republica</h3>
+          <p class="catch">Boy-Meets-Knife</p>
+          <div class="intro-media-wrap intro-media-stack">
+            <figure class="intro-media"><img src="./assets/images/寮生活とナイフ.png" alt="Dorm Life and Knife" loading="lazy" /></figure>
+            <div>
+              <p>舞台設定於1990年代的Har-Lopinong共和國・Hellén直轄市。在黑手黨「五天」、激進派學生組織「Mancal」、秘密結社「Guĕnar」等各種組織的算計交錯混雜的無法地帶中，這是一個為了守護平凡日常而挺身而出的年輕人們的故事。</p>
+              <p>聚集在Hellén國立大學弱小社團「西Altos研究會」裡，國籍與身分皆各不相同的學生們。面對圍繞著「Pàlajé的匕首」的陰謀、無情捨棄弱者的不合理法律，以及可怕的病毒威脅，他們將傳承下來的劍術、壓倒性的辯論，以及堅定不移的友誼化為武器，挺身對抗。</p>
+              <p>拒絕因大人們的利益考量而被抹平稜角，為了緊緊抓住那份凹凸不平的「幸福」，這是一部熱血的青春群像劇。</p>
+              <div class="rec-block">
+                <p class="rec-title">推薦作品</p>
+                <div class="rec-grid">
+                  <article class="rec-item">
+                    <h4>Pàlajé的匕首編</h4>
+                    <figure class="rec-figure"><img src="./assets/images/パラジェイのナイフ編.png" alt="Pàlajé Knife Arc" loading="lazy" /></figure>
+                    <p>舞台是自由與混沌並存的鄰國「Har-Lopinong共和國」。曾經在「Kàlavé教導國」，由「第一教導職」與九大名家「九氏族」掌權，暗中活躍著暗殺・諜報組織「九地」與短劍術「Duïlé」。歷經Pàlajé建國、Àya篡奪、Àkané與Lakán Lài的激戰後，時代推進至1970年代之後。</p>
+                    <p>Àya之女Shàun Akau雖被當作「男性」養育，仍為了扶持誠實青年Ládén Tané成為第一教導職，自身化身「白梟」於暗處行動。另一方面，Tané在重重悲劇中仍選擇法治與對話，並推進「Lurpe協定」的經濟整合。二人最終決定作為從光與暗兩面支撐國家的「共犯關係」前行。</p>
+                    <p>其後，舞台轉向Har-Lopinong共和國。學生運動與黑手黨抗爭激化，下一代青年在學研都市中，背負傳奇匕首與複雜因緣，走向新的思想、青春與鬥爭。</p>
+                    <div class="rec-actions"><button class="share-link rec-open" type="button" data-work-key="haropinon" data-section-key="パラジェイのナイフ編">閱讀本篇</button></div>
+                  </article>
+                  <article class="rec-item">
+                    <h4>Glúck病毒編</h4>
+                    <figure class="rec-figure"><img src="./assets/images/グリュックウイルス編.png" alt="Glúck Virus Arc" loading="lazy" /></figure>
+                    <p>舞台是擁有學研都市Hellén的「Har-Lopinong共和國」。學生自治組織「Mancal」與巨大黑手黨「五天」激烈對立。過去在Kàlavé暗中活躍、如今作為宿舍管理員生活的前「魔女」Satella，靜靜守望著年輕人。</p>
+                    <p>故事中心是大學弱小社團「西Altos研究會」的學生們。Lakán Fàta、Minac等人被捲入圍繞「Pàlajé的匕首」的陰謀，在警察、學生組織、黑手黨三方混戰中互相合作，勉力突圍。</p>
+                    <p>隨著Kura與Hal加入，夥伴增多。他們透過市民辯論推翻壓制少數族群表達空間的法案。然而之後，Leto與Aliĕ的身分曝光並被強制帶回祖國。Fàta等人跨海潛入Kàlavé外交場合，成功將二人帶回Hellén。</p>
+                    <p>緊接著，致死率極高的風土病「Glúck病毒」開始蔓延。他們在與孤獨醫師Shiyuĕ Lei的相遇中，於未認可新藥與倫理夾縫間奮戰。激進新興宗教「Sait」與黑手黨算計交織，新的悲劇帷幕由此拉開。</p>
+                    <div class="rec-actions"><button class="share-link rec-open" type="button" data-work-key="haropinon" data-section-key="グリュックウイルス編">閱讀本篇</button></div>
+                  </article>
+                </div>
+              </div>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="haropinon">從 EP1 開始閱讀</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro" id="work-haropinon-zh-s" style="display:none;">
+          <h3>Har-Lopinong Republica</h3>
+          <p class="catch">Boy-Meets-Knife</p>
+          <div class="intro-media-wrap intro-media-stack">
+            <figure class="intro-media"><img src="./assets/images/寮生活とナイフ.png" alt="Dorm Life and Knife" loading="lazy" /></figure>
+            <div>
+              <p>舞台设定于1990年代的Har-Lopinong共和国・Hellén直辖市。在黑手党「五天」、激进派学生组织「Mancal」、秘密结社「Guĕnar」等组织算计交错混杂的无法地带中，这是一群年轻人为守护平凡日常而挺身而出的故事。</p>
+              <p>聚集在Hellén国立大学弱小社团「西Altos研究会」的学生们，面对围绕「Pàlajé的匕首」的阴谋、不合理法律与病毒威胁，以传承剑术、压倒性辩论与坚定友情为武器迎战。</p>
+              <p>拒绝被大人们的利益抹平棱角，为了抓住凹凸不平的「幸福」，这是一部热血青春群像剧。</p>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="haropinon">从 EP1 开始阅读</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro" id="work-bookkeeper-zh-t">
+          <h3>Bookkeeper</h3>
+          <p class="catch">Like Business, Love 推し</p>
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./assets/images/ポートフォリオ.png" alt="Portfolio" loading="lazy" /></figure>
+            <div>
+              <p>以掌控世界地下社會的犯罪組織「五天」高層Arsha Pritiviti（Arza Shon）與Koto tál Aitēl（Arza Nil）為主角的黑色外傳。看似優雅的假期背後，商業談判、推活與宿敵再會交錯，鈔票與匕首齊飛。</p>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="bookkeeper">從 EP1 開始閱讀</button></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="intro" id="work-bookkeeper-zh-s" style="display:none;">
+          <h3>Bookkeeper</h3>
+          <p class="catch">Like Business, Love 推し</p>
+          <div class="intro-media-wrap">
+            <figure class="intro-media"><img src="./assets/images/ポートフォリオ.png" alt="Portfolio" loading="lazy" /></figure>
+            <div>
+              <p>以掌控世界地下社会的犯罪组织「五天」高层Arsha Pritiviti（Arza Shon）与Koto tál Aitēl（Arza Nil）为主角的黑色外传。看似优雅的假期背后，商业谈判、推活与宿敌再会交错，钞票与匕首齐飞。</p>
+              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="bookkeeper">从 EP1 开始阅读</button></div>
+            </div>
+          </div>
+        </article>
+      </section>
       <section id="topPageKa" class="top-page" style="display:none;">
         <article class="intro">
           <h2>რესპუბლიკის ისტორია</h2>
@@ -1261,6 +1417,7 @@ A stylish underworld road movie with lethal charm.</p>
       dataJa: null,
       dataEn: null,
       dataKa: null,
+      dataZh: null,
       klvData: null,
       dicJa: null,
       dicEn: null,
@@ -1283,21 +1440,29 @@ A stylish underworld road movie with lethal charm.</p>
     const STORAGE_THEME = "repub_theme_v1";
     const STORAGE_READ = "repub_read_episodes_v1";
     const STORAGE_LANG = "repub_lang_v1";
+    const STORAGE_ZH_SCRIPT = "repub_zh_script_v1";
     const STORAGE_READ_PROMPT = "repub_read_prompt_v1";
     const STORAGE_READ_ENABLED = "repub_read_enabled_v1";
     let currentLang = "ja";
+    let zhScriptMode = "hant";
 
     const topPageEl = document.getElementById("topPage");
     const topPageEnEl = document.getElementById("topPageEn");
+    const topPageZhEl = document.getElementById("topPageZh");
     const topPageKaEl = document.getElementById("topPageKa");
     const articleWrapEl = document.getElementById("articleWrap");
     const mainEl = document.querySelector("main");
     const themeToggle = document.getElementById("themeToggle");
     const langJa = document.getElementById("langJa");
     const langEn = document.getElementById("langEn");
+    const langZh = document.getElementById("langZh");
     const langKa = document.getElementById("langKa");
-    
-    const langButtons = [langJa, langEn, langKa].filter(Boolean);
+    const zhScriptToggle = document.getElementById("zhScriptToggle");
+    const zhScriptNote = document.getElementById("zhScriptNote");
+    const zhTradBlock = document.getElementById("zhTradBlock");
+    const zhSimpBlock = document.getElementById("zhSimpBlock");
+
+    const langButtons = [langJa, langEn, langZh, langKa].filter(Boolean);
     const shareEpisodeBtn = document.getElementById("shareEpisode");
     const glossToggleBtn = document.getElementById("glossToggle");
     const treeEl = document.getElementById("tree");
@@ -1599,39 +1764,130 @@ A stylish underworld road movie with lethal charm.</p>
       }
     }
 
+
+    function getZhSectionIdFromJa(jaSectionId) {
+      const map = {
+        "パラジェイ編": "Pàlajé Arc",
+        "アカネイ編": "Àkané Arc",
+        "アカウ編": "Akau Arc"
+      };
+      return map[String(jaSectionId || "")] || null;
+    }
+
+    function getZhEpisodeIdFromJa(jaEpId) {
+      if (jaEpId === "EPT-new") return "T";
+      return String(jaEpId || "");
+    }
+
+    function findZhEpisodeForJa(work, section, ep) {
+      if (!state.dataZh || !Array.isArray(state.dataZh.works)) return null;
+      if (String(work && work.id || "") !== "カラバァタン共和国物語") return null;
+      const zhSectionId = getZhSectionIdFromJa(section && section.id);
+      const zhEpId = getZhEpisodeIdFromJa(ep && ep.id);
+      if (!zhSectionId || !zhEpId) return null;
+      for (const zw of state.dataZh.works) {
+        for (const zs of (zw.sections || [])) {
+          if (String(zs.id) !== zhSectionId) continue;
+          for (const ze of (zs.episodes || [])) {
+            if (String(ze.id) === zhEpId) return { work: zw, section: zs, ep: ze };
+          }
+        }
+      }
+      return null;
+    }
+
+    function toZhHansText(input) {
+      const s = String(input || "");
+      const map = {
+        "個":"个","還":"还","與":"与","為":"为","這":"这","說":"说","對":"对","將":"将","後":"后","來":"来","時":"时","開":"开","關":"关","國":"国","戰":"战","鬥":"斗","劍":"剑","鮮":"鲜","歷":"历","導":"导","擇":"择","話":"话","學":"学","運":"运","動":"动","陰":"阴","謀":"谋","義":"义","壯":"壮","闊":"阔","織":"织","邊":"边","嚴":"严","雜":"杂","體":"体","轉":"转","變":"变","權":"权","點":"点","實":"实","奪":"夺","復":"复","擊":"击","軍":"军","聯":"联","緊":"紧","傀":"傀","儡":"儡","資":"资","本":"本","終":"终","倖":"幸","隱":"隐","邁":"迈","衰":"衰","爭":"争","續":"续","雖":"虽","當":"当","陰":"阴","謀":"谋","鬥":"斗","爭":"争","圍":"围","繞":"绕","捲":"卷","棄":"弃","壓":"压","協":"协","夥":"伙","過":"过","議":"议","贏":"赢","靜":"静","監":"监","滅":"灭","藥":"药","倫":"伦","夾":"夹","縫":"缝","奮":"奋","瀰":"弥","蔓":"蔓","繼":"继","續":"续","熱":"热","血":"血","讀":"读","從":"从","開":"开","始":"始","閱":"阅","薦":"荐","辭":"辞","場":"场","臺":"台","圖":"图","訊":"讯","註":"注","寫":"写","誌":"志","頁":"页","書":"书","線":"线","號":"号","種":"种","達":"达","濟":"济","兩":"两","會":"会","鄰":"邻","風":"风","極":"极","認":"认","繼":"继","擁":"拥","學":"学","醫":"医","師":"师","新":"新","興":"兴","宗":"宗","教":"教","繫":"系","劇":"剧","幕":"幕","門":"门","戶":"户","應":"应","該":"该","貢":"贡","獻":"献","鐵":"铁","軌":"轨","號":"号","處":"处","點":"点","內":"内","訊":"讯"
+      };
+      return s.replace(/[\s\S]/g, ch => (map[ch] || ch));
+    }
+
+    function toZhHansHtml(html) {
+      const src = String(html || "");
+      return src.replace(/>([^<]*)</g, (m, t) => `>${toZhHansText(t)}<`);
+    }
+
     function getActiveData() {
       if (currentLang === "en" && state.dataEn) return state.dataEn;
       if (currentLang === "ka" && state.dataKa) return state.dataKa;
+      if (currentLang === "zh") return state.dataJa;
       
       return state.dataJa;
     }
 
-    function applyLanguage(lang) {
-          currentLang = (lang === "en" || lang === "ka") ? lang : "ja";
-          document.documentElement.setAttribute("lang", currentLang);
-          langButtons.forEach((btn) => {
-            btn.setAttribute("aria-pressed", btn.dataset.lang === currentLang ? "true" : "false");
-          });
-          if (siteTitleEl) siteTitleEl.textContent = currentLang === "en" ? "Republica Saga" : (currentLang === "ka" ? "Republica Saga (Georgian)" : "『共和国物語』 サーガ");
-          if (siteMetaEl) siteMetaEl.textContent = currentLang === "en" ? "Story Reader" : (currentLang === "ka" ? "Georgian Reader" : "物語本編ビューア");
-          if (navTop) { navTop.textContent = currentLang === "en" ? "Top / Story" : "トップ・本編"; navTop.href = "index.html"; }
-          if (navChars) { navChars.textContent = currentLang === "en" ? "Characters" : "登場人物辞典"; navChars.href = currentLang === "en" ? "characters.html?lang=en" : "characters.html"; }
-          if (navGloss) { navGloss.textContent = currentLang === "en" ? "Glossary" : "用語辞典"; navGloss.href = currentLang === "en" ? "glossary.html?lang=en" : "glossary.html"; }
-          if (navAudio) { navAudio.textContent = currentLang === "en" ? "Audio Commentary" : "オーディオコメンタリ"; navAudio.href = "audiocommentary.html"; }
-          if (navDiary) { navDiary.textContent = currentLang === "en" ? "Writing Log" : "執筆録"; navDiary.href = "diary.html"; }
-          const activeDic = (currentLang === "en" && state.dicEn) ? state.dicEn : state.dicJa;
-          if (glossToggleBtn) {
-            const useKlv = false;
-            glossToggleBtn.style.display = useKlv ? "inline-block" : "none";
-            glossToggleBtn.textContent = state.showGloss ? "グロスを隠す" : "グロスを表示";
-          }
-          if (activeDic) buildGlossaryPreviewMaps(activeDic);
-          const activeData = getActiveData();
-          if (activeData) buildTree(activeData);
-          const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
-          showTop(incomingHash === "" || incomingHash === "top");
-        }
+    function applyZhScript(mode) {
+      zhScriptMode = mode === "hans" ? "hans" : "hant";
+      if (zhTradBlock) zhTradBlock.style.display = zhScriptMode === "hant" ? "block" : "none";
+      if (zhSimpBlock) zhSimpBlock.style.display = zhScriptMode === "hans" ? "block" : "none";
+      document.querySelectorAll('[id$="-zh-t"]').forEach((el) => { el.style.display = zhScriptMode === "hant" ? "block" : "none"; });
+      document.querySelectorAll('[id$="-zh-s"]').forEach((el) => { el.style.display = zhScriptMode === "hans" ? "block" : "none"; });
+      if (zhScriptToggle) zhScriptToggle.textContent = zhScriptMode === "hant" ? "切換為简体" : "切換為繁體";
+      if (zhScriptNote) zhScriptNote.textContent = zhScriptMode === "hant" ? "目前：繁體中文" : "当前：简体中文";
+      try { localStorage.setItem(STORAGE_ZH_SCRIPT, zhScriptMode); } catch (_) {}
+      const activeData = getActiveData();
+      if (activeData) buildTree(activeData);
+      if (state.current) renderEpisode(state.current.work, state.current.section, state.current.ep);
+    }
 
+    function applyLanguage(lang) {
+      currentLang = (lang === "en" || lang === "zh" || lang === "ka") ? lang : "ja";
+      document.documentElement.setAttribute("lang", currentLang);
+      langButtons.forEach((btn) => {
+        btn.setAttribute("aria-pressed", btn.dataset.lang === currentLang ? "true" : "false");
+      });
+
+      if (siteTitleEl) {
+        siteTitleEl.textContent = currentLang === "en"
+          ? "Republica Saga"
+          : (currentLang === "zh" ? "共和國物語 Saga" : (currentLang === "ka" ? "Republica Saga (Georgian)" : "『共和国物語』 サーガ"));
+      }
+      if (siteMetaEl) {
+        siteMetaEl.textContent = currentLang === "en"
+          ? "Story Reader"
+          : (currentLang === "zh" ? "故事閱讀器" : (currentLang === "ka" ? "Georgian Reader" : "物語本編ビューア"));
+      }
+
+      if (navTop) {
+        navTop.textContent = currentLang === "en" ? "Top / Story" : (currentLang === "zh" ? "首頁・本編" : "トップ・本編");
+        navTop.href = "index.html" + (currentLang === "en" ? "?lang=en" : (currentLang === "zh" ? "?lang=zh" : (currentLang === "ka" ? "?lang=ka" : "")));
+      }
+      if (navChars) {
+        navChars.textContent = currentLang === "en" ? "Characters" : (currentLang === "zh" ? "登場人物辭典" : "登場人物辞典");
+        navChars.href = currentLang === "en" ? "characters.html?lang=en" : "characters.html";
+      }
+      if (navGloss) {
+        navGloss.textContent = currentLang === "en" ? "Glossary" : (currentLang === "zh" ? "用語辭典" : "用語辞典");
+        navGloss.href = currentLang === "en" ? "glossary.html?lang=en" : "glossary.html";
+      }
+      if (navAudio) {
+        navAudio.textContent = currentLang === "en" ? "Audio Commentary" : (currentLang === "zh" ? "音訊評註" : "オーディオコメンタリ");
+        navAudio.href = "audiocommentary.html";
+      }
+      if (navDiary) {
+        navDiary.textContent = currentLang === "en" ? "Writing Log" : (currentLang === "zh" ? "寫作日誌" : "執筆録");
+        navDiary.href = "diary.html";
+      }
+
+      if (currentLang === "zh") applyZhScript(zhScriptMode);
+
+      const activeDic = (currentLang === "en" && state.dicEn) ? state.dicEn : state.dicJa;
+      if (glossToggleBtn) {
+        const useKlv = false;
+        glossToggleBtn.style.display = useKlv ? "inline-block" : "none";
+        glossToggleBtn.textContent = state.showGloss ? "グロスを隠す" : "グロスを表示";
+      }
+      if (activeDic) buildGlossaryPreviewMaps(activeDic);
+      const activeData = getActiveData();
+      if (activeData) buildTree(activeData);
+      const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+      if (state.current && incomingHash !== "" && incomingHash !== "top") {
+        renderEpisode(state.current.work, state.current.section, state.current.ep);
+      } else {
+        showTop(incomingHash === "" || incomingHash === "top");
+      }
+    }
 
     function initSidebarToggle() {
       if (!sidebarEl || !sidebarToggle || !sidebarContentEl) return;
@@ -1748,23 +2004,33 @@ A stylish underworld road movie with lethal charm.</p>
     function initLanguage() {
       const qLang = new URLSearchParams(location.search).get("lang");
       let lang = qLang || localStorage.getItem(STORAGE_LANG) || "ja";
-      if (!["ja", "en", "ka"].includes(lang)) lang = "ja";
+      if (!["ja", "en", "zh", "ka"].includes(lang)) lang = "ja";
+      try {
+        const savedZh = localStorage.getItem(STORAGE_ZH_SCRIPT);
+        if (savedZh === "hans" || savedZh === "hant") zhScriptMode = savedZh;
+      } catch (_) {}
       localStorage.setItem(STORAGE_LANG, lang);
       applyLanguage(lang);
       langButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const next = btn.dataset.lang;
-          if (!["ja", "en", "ka"].includes(next)) return;
+          if (!["ja", "en", "zh", "ka"].includes(next)) return;
           localStorage.setItem(STORAGE_LANG, next);
           applyLanguage(next);
         });
       });
+      if (zhScriptToggle) {
+        zhScriptToggle.addEventListener("click", () => {
+          applyZhScript(zhScriptMode === "hant" ? "hans" : "hant");
+        });
+      }
     }
 
     function showTop(updateHash = true) {
       if (window.matchMedia("(max-width: 880px)").matches) setSidebarOpen(false);
       topPageEl.style.display = currentLang === "ja" ? "grid" : "none";
       if (topPageEnEl) topPageEnEl.style.display = currentLang === "en" ? "grid" : "none";
+      if (topPageZhEl) topPageZhEl.style.display = currentLang === "zh" ? "grid" : "none";
       if (topPageKaEl) topPageKaEl.style.display = currentLang === "ka" ? "grid" : "none";
       articleWrapEl.style.display = "none";
       for (const btn of state.buttons) btn.classList.remove("active");
@@ -1775,6 +2041,7 @@ A stylish underworld road movie with lethal charm.</p>
       if (window.matchMedia("(max-width: 880px)").matches) setSidebarOpen(false);
       topPageEl.style.display = "none";
       if (topPageEnEl) topPageEnEl.style.display = "none";
+      if (topPageZhEl) topPageZhEl.style.display = "none";
       if (topPageKaEl) topPageKaEl.style.display = "none";
       articleWrapEl.style.display = "block";
     }
@@ -2083,18 +2350,36 @@ A stylish underworld road movie with lethal charm.</p>
         }
 
     function renderEpisode(work, section, ep) {
+          let displayWork = work;
+          let displaySection = section;
+          let displayEp = ep;
+
+          if (currentLang === "zh") {
+            const zhHit = findZhEpisodeForJa(work, section, ep);
+            if (zhHit) {
+              displayWork = zhHit.work;
+              displaySection = zhHit.section;
+              displayEp = zhHit.ep;
+            } else {
+              localStorage.setItem(STORAGE_LANG, "ja");
+              applyLanguage("ja");
+              return;
+            }
+          }
+
           state.current = { work, section, ep };
           state.readPromptShownFor = null;
           state.currentKey = episodeKey(work, section, ep);
           showEpisode();
-    
-          document.getElementById("epTitle").textContent = ep.label || ep.id || "無題";
-          document.getElementById("epTrail").textContent = `${work.title} / ${section.title}`;
+
+          document.getElementById("epTitle").textContent = displayEp.label || displayEp.id || "無題";
+          document.getElementById("epTrail").textContent = `${displayWork.title} / ${displaySection.title}`;
           const epContentEl = document.getElementById("epContent");
           const klvHtml = null;
-          const html = klvHtml || (Array.isArray(ep.content)
-            ? ep.content.map(block => block.html || `<p>${esc(block.text || "")}</p>`).join("\n")
+          let html = klvHtml || (Array.isArray(displayEp.content)
+            ? displayEp.content.map(block => block.html || `<p>${esc(block.text || "")}</p>`).join("\n")
             : "<p>本文データがありません。</p>");
+          if (currentLang === "zh" && zhScriptMode === "hans") html = toZhHansHtml(html);
           epContentEl.innerHTML = html;
           if (!klvHtml) {
             rewriteInlineRefs(epContentEl);
@@ -2105,7 +2390,7 @@ A stylish underworld road movie with lethal charm.</p>
             glossToggleBtn.style.display = useKlv ? "inline-block" : "none";
             glossToggleBtn.textContent = state.showGloss ? "グロスを隠す" : "グロスを表示";
           }
-    
+
           for (const btn of state.buttons) {
             const active = btn.dataset.epid === ep.id && btn.dataset.sectionid === section.id && btn.dataset.workid === work.id;
             btn.classList.toggle("active", active);
@@ -2116,6 +2401,105 @@ A stylish underworld road movie with lethal charm.</p>
             scrollEpisodeTop();
           });
         }
+
+
+
+    function localizeSidebarWorkTitle(title) {
+      const t = String(title || "");
+      if (currentLang !== "zh") return t;
+      const map = {
+        "カラバァタン共和国物語": "Kàlavatan Republica",
+        "ハーロピノン共和国物語": "Har-Lopinong Republica",
+        "ブックキーパー": "Bookkeeper"
+      };
+      return map[t] || t;
+    }
+
+
+    function normSidebarKey(v) {
+      return String(v || "")
+        .replace(/[　\s]+/g, "")
+        .replace(/[＆&]/g, "&")
+        .trim();
+    }
+
+    function localizeSidebarSectionTitle(title) {
+      const t = String(title || "");
+      if (currentLang !== "zh") return t;
+      const key = normSidebarKey(t);
+      const tradMap = {
+        "アカウ編": "Akau篇",
+        "パラジェイ編": "Pàlajé篇",
+        "パラジェイのナイフ編": "Pàlajé匕首篇",
+        "グリュックウイルス編": "Glúck病毒篇",
+        "アカネイ編": "Àkané篇",
+        "ラデン": "Ládén",
+        "ウォール": "Worl",
+        "レアリア編": "Realia篇",
+        "セナリーナの夜編": "Saint Arena之夜篇",
+        "「セナリーナの夜」編": "Saint Arena之夜篇",
+        "セントアリーナの夜編": "Saint Arena之夜篇",
+        "「SaintArenaの夜」編": "Saint Arena之夜篇",
+        "アリー&レト奪還編": "Aliĕ & Leto奪還篇",
+        "アリー＆レト奪還編": "Aliĕ & Leto奪還篇",
+        "ブックキーパー": "Bookkeeper"
+      };
+      const simpMap = {
+        "アカウ編": "Akau篇",
+        "パラジェイ編": "Pàlajé篇",
+        "パラジェイのナイフ編": "Pàlajé匕首篇",
+        "グリュックウイルス編": "Glúck病毒篇",
+        "アカネイ編": "Àkané篇",
+        "ラデン": "Ládén",
+        "ウォール": "Worl",
+        "レアリア編": "Realia篇",
+        "セナリーナの夜編": "Saint Arena之夜篇",
+        "「セナリーナの夜」編": "Saint Arena之夜篇",
+        "セントアリーナの夜編": "Saint Arena之夜篇",
+        "「SaintArenaの夜」編": "Saint Arena之夜篇",
+        "アリー&レト奪還編": "Aliĕ & Leto夺还篇",
+        "アリー＆レト奪還編": "Aliĕ & Leto夺还篇",
+        "ブックキーパー": "Bookkeeper"
+      };
+      const map = zhScriptMode === "hans" ? simpMap : tradMap;
+      return map[key] || map[t] || t;
+    }
+
+    function localizeSidebarEpisodeLabel(label) {
+      const t = String(label || "");
+      if (currentLang !== "zh") return t;
+      const key = normSidebarKey(t);
+      const tradMap = {
+        "EPL(ラデン)": "EPL(Ládén)",
+        "EPL(ラデン旧版)": "EPL(Ládén, 舊版)",
+        "EPW(ウォール)": "EPW(Worl)",
+        "AliĕとLeto": "Aliĕ 與 Leto",
+        "アリー&レト奪還編": "Aliĕ & Leto奪還篇",
+        "アリー＆レト奪還編": "Aliĕ & Leto奪還篇",
+        "Realia": "Realia",
+        "レアリア編": "Realia篇",
+        "SaintArenaの夜編": "Saint Arena之夜篇",
+        "セナリーナの夜編": "Saint Arena之夜篇",
+        "「セナリーナの夜」編": "Saint Arena之夜篇",
+        "ブックキーパー": "Bookkeeper"
+      };
+      const simpMap = {
+        "EPL(ラデン)": "EPL(Ládén)",
+        "EPL(ラデン旧版)": "EPL(Ládén, 旧版)",
+        "EPW(ウォール)": "EPW(Worl)",
+        "AliĕとLeto": "Aliĕ 与 Leto",
+        "アリー&レト奪還編": "Aliĕ & Leto夺还篇",
+        "アリー＆レト奪還編": "Aliĕ & Leto夺还篇",
+        "Realia": "Realia",
+        "レアリア編": "Realia篇",
+        "SaintArenaの夜編": "Saint Arena之夜篇",
+        "セナリーナの夜編": "Saint Arena之夜篇",
+        "「セナリーナの夜」編": "Saint Arena之夜篇",
+        "ブックキーパー": "Bookkeeper"
+      };
+      const map = zhScriptMode === "hans" ? simpMap : tradMap;
+      return map[key] || map[t] || t;
+    }
 
     function buildTree(data) {
       const root = treeEl;
@@ -2131,7 +2515,7 @@ A stylish underworld road movie with lethal charm.</p>
         const d = document.createElement("details");
         d.open = true;
         const s = document.createElement("summary");
-        s.textContent = work.title || work.id || "無題作品";
+        s.textContent = localizeSidebarWorkTitle(work.title || work.id || "無題作品");
         d.appendChild(s);
 
         for (const section of (work.sections || [])) {
@@ -2139,14 +2523,14 @@ A stylish underworld road movie with lethal charm.</p>
           box.className = "section";
           const h = document.createElement("p");
           h.className = "section-title";
-          h.textContent = section.title || section.id || "無題セクション";
+          h.textContent = localizeSidebarSectionTitle(section.title || section.id || "無題セクション");
           box.appendChild(h);
 
           for (const ep of (section.episodes || [])) {
             const btn = document.createElement("button");
             btn.type = "button";
             btn.className = "episode-btn";
-            btn.textContent = ep.label || ep.id || "EP";
+            btn.textContent = localizeSidebarEpisodeLabel(ep.label || ep.id || "EP");
             btn.dataset.workid = work.id;
             btn.dataset.sectionid = section.id;
             btn.dataset.epid = ep.id;
@@ -2177,11 +2561,33 @@ A stylish underworld road movie with lethal charm.</p>
       const fromHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
       if (!fromHash || fromHash === "top") {
         const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
-      showTop(incomingHash === "" || incomingHash === "top");
+      if (state.current && incomingHash !== "" && incomingHash !== "top") {
+        renderEpisode(state.current.work, state.current.section, state.current.ep);
+      } else {
+        showTop(incomingHash === "" || incomingHash === "top");
+      }
         return;
       }
 
-      const [wid, sid, eid] = fromHash.split("::");
+      let [wid, sid, eid] = fromHash.split("::");
+      if (currentLang === "zh") {
+        const widMap = {
+          "The Kàlavétan Republic Story": "カラバァタン共和国物語",
+          "The Kàlavé tan Republic Story": "カラバァタン共和国物語",
+          "The Kàlavétan Republica Story": "カラバァタン共和国物語"
+        };
+        const sidMap = {
+          "Pàlajé Arc": "パラジェイ編",
+          "Àkané Arc": "アカネイ編",
+          "Akau Arc": "アカウ編"
+        };
+        const eidMap = {
+          "T": "EPT-new"
+        };
+        if (widMap[wid]) wid = widMap[wid];
+        if (sidMap[sid]) sid = sidMap[sid];
+        if (eidMap[eid]) eid = eidMap[eid];
+      }
       for (const work of data.works) {
         if (work.id !== wid) continue;
         for (const section of (work.sections || [])) {
@@ -2196,7 +2602,11 @@ A stylish underworld road movie with lethal charm.</p>
       }
 
       const incomingHash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
-      showTop(incomingHash === "" || incomingHash === "top");
+      if (state.current && incomingHash !== "" && incomingHash !== "top") {
+        renderEpisode(state.current.work, state.current.section, state.current.ep);
+      } else {
+        showTop(incomingHash === "" || incomingHash === "top");
+      }
     }
 
     function handleMainScroll() {
@@ -2215,10 +2625,11 @@ A stylish underworld road movie with lethal charm.</p>
 
     async function boot() {
       try {
-        const [jaRes, enRes, kaRes, dicJaRes, dicEnRes] = await Promise.all([
+        const [jaRes, enRes, kaRes, zhRes, dicJaRes, dicEnRes] = await Promise.all([
                   fetch("./data/物語本編.json", { cache: "no-store" }),
                   fetch("./data/story_en.json", { cache: "no-store" }),
                   fetch("./data/story_ka.json", { cache: "no-store" }),
+                  fetch("./data/物語本編_繁體中文.json", { cache: "no-store" }),
                   
                   fetch("./data/rpdic.json", { cache: "no-store" }),
                   fetch("./data/rpdic_en.json", { cache: "no-store" })
@@ -2229,6 +2640,7 @@ A stylish underworld road movie with lethal charm.</p>
 
         if (enRes.ok) state.dataEn = await enRes.json();
         if (kaRes.ok) state.dataKa = await kaRes.json();
+        if (zhRes.ok) state.dataZh = await zhRes.json();
         
 
         if (dicJaRes.ok) state.dicJa = await dicJaRes.json();
@@ -2367,10 +2779,11 @@ A stylish underworld road movie with lethal charm.</p>
     mountGiscus();
     boot();
   </script>
-<script id="autoLangEnPatch">
+<script id="autoLangPatch">
 (function(){
   const p = new URLSearchParams(location.search);
-  if (p.get("lang") !== "en") return;
+  const currentLang = p.get("lang");
+  if (!["en", "zh"].includes(currentLang)) return;
   document.querySelectorAll('a[href]').forEach(a => {
     if (a.closest('.lang-switch') || a.closest('.lang-buttons') || (a.id && (/^langLink/i.test(a.id) || /^lang-/i.test(a.id)))) return;
     const h = a.getAttribute("href");
@@ -2380,12 +2793,15 @@ A stylish underworld road movie with lethal charm.</p>
     const base = i >= 0 ? h.slice(0, i) : h;
     const hash = i >= 0 ? h.slice(i) : "";
     const sep = base.includes("?") ? "&" : "?";
-    a.setAttribute("href", base + sep + "lang=en" + hash);
+    a.setAttribute("href", base + sep + "lang=" + currentLang + hash);
   });
 })();
 </script>
 </body>
 </html>
+
+
+
 
 
 
