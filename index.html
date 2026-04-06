@@ -2184,6 +2184,84 @@ A stylish underworld road movie with lethal charm.</p>
         a.dataset.previewSlug = slug;
       });
     }
+    function collectEpisodeFirstLinkTargets(ep) {
+      const result = [];
+      if (!ep) return result;
+      const fl = ep.first_links || ep.firstLinks || {};
+      const chars = Array.isArray(fl.characters) ? fl.characters : [];
+      const terms = Array.isArray(fl.glossary) ? fl.glossary : [];
+
+      const pushUnique = (kind, name) => {
+        const n = String(name || "").trim();
+        if (!n) return;
+        const slug = resolveRefSlug(kind, n);
+        if (!slug) return;
+        const key = `${kind}:${normalizeRefLoose(n)}:${slug}`;
+        if (result.some((x) => x.key === key)) return;
+        result.push({ key, kind, name: n, slug });
+      };
+
+      chars.forEach((n) => pushUnique("character", n));
+      terms.forEach((n) => pushUnique("glossary", n));
+      return result;
+    }
+
+    function applyEpisodeFirstLinks(container, ep) {
+      if (!container) return;
+      const pending = collectEpisodeFirstLinkTargets(ep);
+      if (!pending.length) return;
+
+      const dictLangQuery = currentLang === "en" ? "?lang=en" : (currentLang === "zh" ? "?lang=zh" : "");
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+      const textNodes = [];
+      let node;
+      while ((node = walker.nextNode())) textNodes.push(node);
+
+      for (const textNode of textNodes) {
+        if (!pending.length) break;
+        const parent = textNode.parentElement;
+        if (!parent) continue;
+        if (parent.closest("a")) continue;
+        const text = textNode.nodeValue || "";
+        if (!text.trim()) continue;
+
+        let rest = text;
+        let touched = false;
+        const frag = document.createDocumentFragment();
+
+        while (rest.length && pending.length) {
+          let best = null;
+          for (let i = 0; i < pending.length; i++) {
+            const t = pending[i];
+            const idx = rest.indexOf(t.name);
+            if (idx < 0) continue;
+            if (!best || idx < best.idx || (idx === best.idx && t.name.length > best.target.name.length)) {
+              best = { idx, target: t, pendingIndex: i };
+            }
+          }
+          if (!best) break;
+
+          if (best.idx > 0) frag.appendChild(document.createTextNode(rest.slice(0, best.idx)));
+          const base = best.target.kind === "character" ? "characters.html" : "glossary.html";
+          const a = document.createElement("a");
+          a.className = best.target.kind === "character" ? "char-ref" : "term-ref";
+          a.href = `${base}${dictLangQuery}#${encodeURIComponent(best.target.slug)}`;
+          a.dataset.refType = best.target.kind;
+          a.dataset.canonical = best.target.name;
+          a.dataset.previewKind = best.target.kind;
+          a.dataset.previewSlug = best.target.slug;
+          a.textContent = best.target.name;
+          frag.appendChild(a);
+          rest = rest.slice(best.idx + best.target.name.length);
+          pending.splice(best.pendingIndex, 1);
+          touched = true;
+        }
+
+        if (!touched) continue;
+        if (rest.length) frag.appendChild(document.createTextNode(rest));
+        textNode.parentNode.replaceChild(frag, textNode);
+      }
+    }
     function addGlossaryPreview(slug, title, text) {
       const t = String(title || "").trim();
       const body = String(text || "").replace(/\s+/g, " ").trim();
@@ -2399,6 +2477,7 @@ A stylish underworld road movie with lethal charm.</p>
           epContentEl.innerHTML = html;
           if (!klvHtml) {
             rewriteInlineRefs(epContentEl);
+            applyEpisodeFirstLinks(epContentEl, displayEp);
             bindTermPreviews(epContentEl);
           }
           if (glossToggleBtn) {
@@ -2815,6 +2894,8 @@ A stylish underworld road movie with lethal charm.</p>
 </script>
 </body>
 </html>
+
+
 
 
 
