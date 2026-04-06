@@ -928,7 +928,7 @@
           <p>架空の国家「カラベイ教導国」と「ハーロピノン共和国」などを舞台に、世代と国境を超えて紡がれる壮大な群像劇。
 理想の国家を追い求め、剣（デューレイ）と血で歴史を切り拓いた為政者たち。その歪な「幸せ」の定義に抗い、あるいは翻弄されながらも、自分たちの未来と日常を掴み取ろうとする若者たち。
 「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
-          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a> / <a href="./diary.html">執筆録</a> / <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a>
+          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-skunyune">スクニューネ共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a> / <a href="./diary.html">執筆録</a> / <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a>
             <a href="./言語/fullgrammar.html">カラバル語 文法総覧</a> / <a href="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a></p>
 
         </article>
@@ -1047,6 +1047,16 @@
               </div>              <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="haropinon">EP1から読む</button><button class="share-link" type="button" data-share="haropinon">SNSで共有</button></div>
             </div>
           </div>
+        </article>
+
+        <article class="intro">
+          <h3 id="work-skunyune">スクニューネ共和国物語</h3>
+          <p class="catch">夜明けの戦争、その残響</p>
+          <p>1999年のスクニューネ共和国。首都スツューフテと港湾都市シュメケルペを舞台に、
+音楽ユニット「VUISAL」の若者たちと、過去の内戦・思想弾圧の傷を抱えた人々の運命が交差する。
+チエル、メウ、ニプロ、レイマー、ルルパルト・ヴィオン、ルルパルト・チュリアチュライ、そしてラデン・ア・ミオ。
+「<span class="theme-choice">選択</span>」と「<span class="theme-dialogue">話し合い</span>」のはざまで揺れる、共和国の新たな群像劇。</p>
+          <div class="share-links"><button class="share-link ep1-link" type="button" data-work-key="sknune">EP1から読む</button></div>
         </article>
 
         <article class="intro">
@@ -1508,6 +1518,11 @@ A stylish underworld road movie with lethal charm.</p>
         label: "ブックキーパー",
         path: "./share-bookkeeper.html",
         text: "ブックキーパー『Like Business, Love 推し』"
+      },
+      sknune: {
+        label: "スクニューネ共和国物語",
+        path: "./index.html",
+        text: "スクニューネ共和国物語"
       }
     };
 
@@ -2051,6 +2066,7 @@ A stylish underworld road movie with lethal charm.</p>
       const id = idRaw.toLowerCase();
       if (idRaw.includes("カラバァタン") || id.includes("kalavatan") || id.includes("kàlavatan")) return "karabatan";
       if (idRaw.includes("ハーロピノン") || id.includes("harl-lopinong") || id.includes("har-lopinong") || id.includes("haropinon")) return "haropinon";
+      if (idRaw.includes("スクニューネ") || id.includes("suknune") || id.includes("sknune")) return "sknune";
       if (idRaw.includes("ブックキーパー") || id.includes("bookkeeper")) return "bookkeeper";
       return "bookkeeper";
     }
