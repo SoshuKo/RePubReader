@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -451,6 +451,15 @@
       `;
     }
 
+
+    function selectGlossaryImageName(item, mode, nameKey) {
+      if (!item) return "";
+      if (mode === "knife" || mode === "stance") {
+        const id = normalizeKey(item.id);
+        if (id) return id;
+      }
+      return imageNameById.get(item.id) || item[nameKey] || "";
+    }
     function card(it, mode) {
       const nameKey = mode === "knife" ? "ナイフ名（見出し）" : "構え名（見出し）";
       return `
@@ -460,7 +469,7 @@
             <p class="catch">${esc(it["キャッチフレーズ"] || it.catch || it.tagline || ui.empty)}</p>
           </div>
           <div class="body">
-            ${mode === "knife" ? renderEntryImage(imageNameById.get(it.id) || it[nameKey], `${it[nameKey] || "Knife"} illustration`) : ""}
+            ${mode === "knife" ? renderEntryImage(selectGlossaryImageName(it, mode, nameKey), `${it[nameKey] || "Knife"} illustration`) : ""}
             <div><span class="label">${esc(ui.labels.body)}:</span> ${esc(it["本文"] || it.body || ui.empty)}</div>
             <div><span class="label">${esc(ui.labels.users)}:</span> ${renderUsers(it["使用者"] || it.users)}</div>
             <div><span class="label">${esc(ui.labels.comment)}:</span> ${esc(it["コメント"] || it.comment || ui.empty)}</div>
@@ -625,6 +634,7 @@
 </script>
 </body>
 </html>
+
 
 
 
