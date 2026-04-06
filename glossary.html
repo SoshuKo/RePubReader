@@ -617,7 +617,7 @@
         const termRefs = allRefs.filter((r) => !usedSlugs.has(normalizeKey(r.slug)));
 
         terms = normalizeTermsByStory((dic.glossary || dic.terms || []), termRefs);
-        knives = normalizeByStory(knifeSource.map((it)=>({ ...it, ["ナイフ名（見出し）"]: it["ナイフ名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || it.tagline || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), knifeRefs, "knife");
+        knives = knifeSource.map((it)=>({ ...it, ["ナイフ名（見出し）"]: it["ナイフ名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || it.tagline || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" }));
         stances = normalizeByStory(stanceSource.map((it)=>({ ...it, ["構え名（見出し）"]: it["構え名（見出し）"] || it.title || it.name || "", ["キャッチフレーズ"]: it["キャッチフレーズ"] || it.catch || it.tagline || "", ["本文"]: it["本文"] || it.body || "", ["使用者"]: it["使用者"] || it.users || [], ["コメント"]: it["コメント"] || it.comment || "" })), stanceRefs, "stance");
 
         render();
@@ -653,6 +653,7 @@
 </script>
 </body>
 </html>
+
 
 
 

@@ -1,0 +1,20 @@
+﻿{
+  "characters": {
+    "akau": {
+      "name": "アカウ",
+      "imagePath": "../assets/images/アカウ.png",
+      "weaponKey": "pureKnife",
+      "width": 92,
+      "height": 92,
+      "groundOffset": 10
+    }
+  },
+  "weapons": {
+    "pureKnife": {
+      "name": "純白のナイフ",
+      "imagePath": "./image/純白のナイフ.png",
+      "width": 88,
+      "height": 28
+    }
+  }
+}

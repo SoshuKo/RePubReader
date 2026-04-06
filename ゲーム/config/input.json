@@ -1,0 +1,12 @@
+﻿{
+  "bufferFrames": {
+    "attack": 7,
+    "jump": 7,
+    "dash": 7
+  },
+  "directionMemoryFrames": 4,
+  "holdThresholdFrames": {
+    "attackPrimary": 18,
+    "attackSecondary": 22
+  }
+}

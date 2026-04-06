@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RePubReader Action Prototype</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="gameRoot">
+    <canvas id="gameCanvas"></canvas>
+    <section id="uiPanel">
+      <div class="row">
+        <strong>移動/視点</strong>
+        <span>W: 上を見る / S: 下を見る / A: 左移動 / D: 右移動</span>
+      </div>
+      <div class="row">
+        <strong>攻撃</strong>
+        <span>左クリック: 通常攻撃 / 右クリック: サブ攻撃 / E: 必殺技</span>
+      </div>
+      <div class="row">
+        <strong>アクション</strong>
+        <span>Space: ジャンプ / Shift: ダッシュ / R: 構え切替 / Q: 固有能力</span>
+      </div>
+      <div class="row status">
+        <span id="statusText">status</span>
+      </div>
+    </section>
+  </div>
+  <script src="./game.js"></script>
+</body>
+</html>
