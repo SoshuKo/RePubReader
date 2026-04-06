@@ -286,16 +286,31 @@
       return key ? (charSlugByName.get(key) || null) : null;
     }
 
-    function renderEntryImage(name, alt) {
-      const key = normalizeKey(name);
-      if (!key) return "";
-      const enc = encodeURIComponent(key);
-      const srcList = [
-        `./assets/images/${enc}.png`,
-        `./assets/images/${enc}.PNG`
-      ];
-      const srcs = srcList.join("|");
-      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || key)}" loading="lazy" decoding="async" fetchpriority="low" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
+    function cleanImageName(v) {
+      return String(v ?? "").replace(/[（(].*?[）)]/g, "").trim();
+    }
+
+    function renderEntryImage(nameOrNames, alt) {
+      const names = Array.isArray(nameOrNames) ? nameOrNames : [nameOrNames];
+      const uniq = [];
+      const seen = new Set();
+      for (const n of names) {
+        for (const cand of [normalizeKey(n), normalizeKey(cleanImageName(n))]) {
+          if (!cand || seen.has(cand)) continue;
+          seen.add(cand);
+          uniq.push(cand);
+        }
+      }
+      if (!uniq.length) return "";
+
+      const srcList = [];
+      for (const key of uniq) {
+        const enc = encodeURIComponent(key);
+        srcList.push('./assets/images/' + enc + '.png');
+        srcList.push('./assets/images/' + enc + '.PNG');
+      }
+      const srcs = srcList.join('|');
+      return '<div class="entry-art-wrap"><img class="entry-art" src="' + esc(srcList[0]) + '" alt="' + esc(alt || uniq[0]) + '" loading="lazy" decoding="async" fetchpriority="low" data-srcs="' + esc(srcs) + '" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>';
     }
 
     function normalizeByStory(dicArr, storyRefs, mode) {
@@ -453,11 +468,17 @@
 
 
     function selectGlossaryImageName(item, mode, nameKey) {
-      if (!item) return "";
-      if (mode === "knife" || mode === "stance") {
-        const id = normalizeKey(item.id);
-        if (id) return id;
-      }
+      if (!item) return [];
+      const out = [];
+      const push = (v) => {
+        if (v !== undefined && v !== null && String(v).trim() !== "") out.push(String(v));
+      };
+      push(item.id);
+      push(imageNameById.get(item.id));
+      push(item[nameKey]);
+      push(cleanImageName(item[nameKey]));
+      return out;
+    }
       return imageNameById.get(item.id) || item[nameKey] || "";
     }
     function card(it, mode) {
