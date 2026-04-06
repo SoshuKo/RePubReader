@@ -2191,38 +2191,18 @@ A stylish underworld road movie with lethal charm.</p>
       const chars = Array.isArray(fl.characters) ? fl.characters : [];
       const terms = Array.isArray(fl.glossary) ? fl.glossary : [];
 
-      const seen = new Set();
-      const pushUnique = (kind, name, slugOverride = null) => {
+      const pushUnique = (kind, name) => {
         const n = String(name || "").trim();
         if (!n) return;
-        const slug = slugOverride || resolveRefSlug(kind, n);
+        const slug = resolveRefSlug(kind, n);
         if (!slug) return;
         const key = `${kind}:${normalizeRefLoose(n)}:${slug}`;
-        if (seen.has(key)) return;
-        seen.add(key);
+        if (result.some((x) => x.key === key)) return;
         result.push({ key, kind, name: n, slug });
       };
 
       chars.forEach((n) => pushUnique("character", n));
       terms.forEach((n) => pushUnique("glossary", n));
-
-      if (!result.length) {
-        const contentText = Array.isArray(ep.content)
-          ? ep.content.map((b) => String((b && (b.text || b.html)) || "")).join("\n")
-          : "";
-        const scanMap = (kind, mapObj) => {
-          for (const [name, slug] of mapObj.entries()) {
-            const n = String(name || "").trim();
-            if (!n || n.length < 2) continue;
-            if (!contentText.includes(n)) continue;
-            pushUnique(kind, n, slug);
-          }
-        };
-        scanMap("character", state.refExact.character);
-        scanMap("glossary", state.refExact.glossary);
-        result.sort((a, b) => b.name.length - a.name.length);
-      }
-
       return result;
     }
 
@@ -2914,6 +2894,7 @@ A stylish underworld road movie with lethal charm.</p>
 </script>
 </body>
 </html>
+
 
 
 
