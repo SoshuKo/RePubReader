@@ -310,7 +310,7 @@
         srcList.push('./assets/images/' + enc + '.PNG');
       }
       const srcs = srcList.join('|');
-      return '<div class="entry-art-wrap"><img class="entry-art" src="' + esc(srcList[0]) + '" alt="' + esc(alt || uniq[0]) + '" loading="lazy" decoding="async" fetchpriority="low" data-srcs="' + esc(srcs) + '" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>';
+      return `<div class="entry-art-wrap"><img class="entry-art" src="${esc(srcList[0])}" alt="${esc(alt || uniq[0])}" loading="lazy" decoding="async" fetchpriority="low" data-srcs="${esc(srcs)}" data-idx="0" onerror="(function(img){var list=(img.dataset.srcs||'').split('|');var idx=Number(img.dataset.idx||0)+1;if(idx<list.length){img.dataset.idx=String(idx);img.src=list[idx];}else{img.style.display='none';if(img.parentElement){img.parentElement.className='entry-art-wrap empty';}}})(this)"></div>`;
     }
 
     function normalizeByStory(dicArr, storyRefs, mode) {
@@ -478,8 +478,6 @@
       push(item[nameKey]);
       push(cleanImageName(item[nameKey]));
       return out;
-    }
-      return imageNameById.get(item.id) || item[nameKey] || "";
     }
     function card(it, mode) {
       const nameKey = mode === "knife" ? "ナイフ名（見出し）" : "構え名（見出し）";
