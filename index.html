@@ -863,6 +863,7 @@
         <a id="navTop" href="index.html">トップ・本編</a>
         <a id="navChars" href="./characters.html">登場人物辞典</a>
         <a id="navGloss" href="./glossary.html">用語辞典</a>
+        <a id="navCorrelation" href="./correlation.html">相関図</a>
         <a id="navAudio" href="./audiocommentary.html">オーディオコメンタリ</a>
         <a id="navDiary" href="./diary.html">執筆録</a>
       </nav>      <div class="site-groups" aria-label="派生サイト">
@@ -928,7 +929,7 @@
           <p>架空の国家「カラベイ教導国」と「ハーロピノン共和国」などを舞台に、世代と国境を超えて紡がれる壮大な群像劇。
 理想の国家を追い求め、剣（デューレイ）と血で歴史を切り拓いた為政者たち。その歪な「幸せ」の定義に抗い、あるいは翻弄されながらも、自分たちの未来と日常を掴み取ろうとする若者たち。
 「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
-          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-skunyune">スクニューネ共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a> / <a href="./diary.html">執筆録</a> / <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a>
+          <p style="margin-top:10px;">作品クイックリンク: <a href="#work-karabatan">カラバァタン共和国物語</a> / <a href="#work-haropinon">ハーロピノン共和国物語</a> / <a href="#work-skunyune">スクニューネ共和国物語</a> / <a href="#work-bookkeeper">ブックキーパー</a> / <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./correlation.html">相関図</a> / <a href="./audiocommentary.html">オーディオコメンタリ</a> / <a href="./diary.html">執筆録</a> / <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a>
             <a href="./言語/fullgrammar.html">カラバル語 文法総覧</a> / <a href="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a></p>
 
         </article>
@@ -1104,7 +1105,7 @@
           <p>Set in the fictional nations of the Instructional Nation of Kàlavé and the Har-Lopinong Republic, this is a large-scale ensemble drama spanning generations and borders.
 Rulers who carved history with Duïlé and blood, and young people who resist or are swept up by those distorted definitions of "happiness," struggling to seize their own future and daily life.
 A historical entertainment epic where politics, religion, mafia networks, and student movements intersect around two clashing ideals: painful decisions called "choice," and harmony through dialogue.</p>
-          <p style="margin-top:10px;">Quick links: <a href="#work-karabatan-en">Kàlavatan Republica</a> / <a href="#work-haropinon-en">Har-Lopinong Republica</a> / <a href="#work-bookkeeper-en">Bookkeeper</a> / <a href="./characters.html?lang=en">Character Dictionary</a> / <a href="./glossary.html?lang=en">Glossary</a> / <a href="./audiocommentary.html">Audio Commentary (JP)</a> / <a href="./diary.html">Writing Log (JP)</a> / <a href="./言語/karabar-overview.html">Karabar Overview (JP)</a>
+          <p style="margin-top:10px;">Quick links: <a href="#work-karabatan-en">Kàlavatan Republica</a> / <a href="#work-haropinon-en">Har-Lopinong Republica</a> / <a href="#work-bookkeeper-en">Bookkeeper</a> / <a href="./characters.html?lang=en">Character Dictionary</a> / <a href="./glossary.html?lang=en">Glossary</a> / <a href="./correlation.html">Correlation Map</a> / <a href="./audiocommentary.html">Audio Commentary (JP)</a> / <a href="./diary.html">Writing Log (JP)</a> / <a href="./言語/karabar-overview.html">Karabar Overview (JP)</a>
             <a href="./言語/fullgrammar.html">Karabar Full Grammar (JP)</a> / <a href="./地理/realtimemap.html">Kalavé Rail Realtime Map (JP)</a></p>
         </article>
 
@@ -1492,6 +1493,7 @@ A stylish underworld road movie with lethal charm.</p>
     const navTop = document.getElementById("navTop");
     const navChars = document.getElementById("navChars");
     const navGloss = document.getElementById("navGloss");
+    const navCorrelation = document.getElementById("navCorrelation");
     const navAudio = document.getElementById("navAudio");
     const navDiary = document.getElementById("navDiary");
     const sidebarEl = document.getElementById("sidebar");
@@ -1886,6 +1888,10 @@ A stylish underworld road movie with lethal charm.</p>
       if (navGloss) {
         navGloss.textContent = currentLang === "en" ? "Glossary" : (currentLang === "zh" ? "用語辭典" : "用語辞典");
         navGloss.href = currentLang === "en" ? "glossary.html?lang=en" : "glossary.html";
+      }
+      if (navCorrelation) {
+        navCorrelation.textContent = currentLang === "en" ? "Correlation Map" : (currentLang === "zh" ? "相關圖" : "相関図");
+        navCorrelation.href = "correlation.html";
       }
       if (navAudio) {
         navAudio.textContent = currentLang === "en" ? "Audio Commentary" : (currentLang === "zh" ? "音訊評註" : "オーディオコメンタリ");
@@ -2905,6 +2911,8 @@ A stylish underworld road movie with lethal charm.</p>
 </script>
 </body>
 </html>
+
+
 
 
 

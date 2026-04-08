@@ -1,0 +1,622 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNPH1HB9GD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    if (location.hostname === 'soshuko.github.io') {
+      gtag('config', 'G-NNPH1HB9GD');
+    }
+  </script>
+  <meta name="google-site-verification" content="02NYtmYvbsFZ1hgdCzjDVNtUwTkSz77iIYg7C1UBffs" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="『共和国物語』サーガに登場する運命の5本のナイフ相関図。継承ルートと歴史背景を一望できる特設ページ。" />
+  <link rel="canonical" href="https://soshuko.github.io/RePubReader/correlation.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://soshuko.github.io/RePubReader/correlation.html" />
+  <meta property="og:title" content="運命を切り拓く『5本のナイフ』の行方" />
+  <meta property="og:description" content="建国前夜から現代まで、為政者と若者たちをつないだ5本の特別なナイフの継承相関図。" />
+  <meta property="og:image" content="./assets/images/四本のナイフ.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="運命を切り拓く『5本のナイフ』の行方" />
+  <meta name="twitter:description" content="建国前夜から現代まで、5本のナイフに刻まれた継承の軌跡を可視化。" />
+  <meta name="twitter:image" content="./assets/images/四本のナイフ.png" />
+  <meta name="theme-color" content="#1f5c69" />
+  <title>運命を切り拓く『5本のナイフ』の行方 | 『共和国物語』サーガ</title>
+  <link rel="icon" type="image/png" href="./assets/images/アイコン.png" />
+  <style>
+    :root {
+      --bg: #f4efe5;
+      --panel: #fffdfa;
+      --ink: #1f1b16;
+      --muted: #6e6256;
+      --line: #d4c9b8;
+      --accent: #1f5c69;
+      --gold: #f09000;
+      --black: #171717;
+      --white: #dddde2;
+      --red: #8c1111;
+      --obsidian: #2a2a30;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at 84% -22%, #d8c8ae, transparent 40%), var(--bg);
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "BIZ UDPMincho", serif;
+      line-height: 1.9;
+    }
+    .wrap {
+      width: min(1180px, 94vw);
+      margin: 0 auto;
+      padding: 22px 0 42px;
+    }
+    header {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: clamp(16px, 2.6vw, 28px);
+      background: linear-gradient(150deg, rgba(255,255,255,.94), rgba(249,240,227,.94));
+      box-shadow: 0 14px 34px rgba(24,18,13,.08);
+    }
+    nav { margin-bottom: 14px; }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 10px;
+      border-bottom: 1px dotted currentColor;
+      white-space: nowrap;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.28rem, 2.6vw, 1.95rem);
+      letter-spacing: .04em;
+    }
+    .lead {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: .98rem;
+    }
+    main {
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+    }
+    .knife-card {
+      --knife-accent: #916f42;
+      border: 1px solid var(--line);
+      border-left: 8px solid var(--knife-accent);
+      border-radius: 16px;
+      background: var(--panel);
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(20,16,12,.06);
+    }
+    .knife-head {
+      padding: 14px 16px 8px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(100deg, color-mix(in srgb, var(--knife-accent) 16%, #fff) 0%, #fffdfa 72%);
+    }
+    .knife-title {
+      margin: 0;
+      font-size: clamp(1.02rem, 2.3vw, 1.28rem);
+    }
+    .knife-sub {
+      margin: 6px 0 8px;
+      color: #584e43;
+      font-size: .92rem;
+    }
+    .knife-hero {
+      margin: 0;
+      text-align: center;
+    }
+    .knife-hero img {
+      width: min(340px, 100%);
+      max-height: 168px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.18));
+    }
+    .knife-hero figcaption {
+      margin-top: 4px;
+      font-size: .84rem;
+      color: #5f5348;
+    }
+    .knife-body {
+      padding: 14px 16px 16px;
+    }
+    .route-title,
+    .desc-title {
+      margin: 0 0 8px;
+      font-size: .95rem;
+      color: #4a4037;
+      letter-spacing: .04em;
+    }
+    .route {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 14px;
+      align-items: flex-start;
+    }
+    .route li {
+      position: relative;
+      min-width: 116px;
+      text-align: center;
+      padding-right: 10px;
+    }
+    .route li:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -8px;
+      top: 42px;
+      width: 9px;
+      height: 9px;
+      border-top: 2px solid color-mix(in srgb, var(--knife-accent) 72%, #666);
+      border-right: 2px solid color-mix(in srgb, var(--knife-accent) 72%, #666);
+      transform: rotate(45deg);
+    }
+    .heir-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .heir-link:hover .heir-name {
+      border-bottom-color: currentColor;
+    }
+    .heir-img {
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,.22));
+    }
+    .heir-name {
+      font-size: .84rem;
+      font-weight: 700;
+      line-height: 1.4;
+      border-bottom: 1px dotted transparent;
+    }
+    .desc {
+      margin: 8px 0 0;
+      color: #241e18;
+      font-size: .95rem;
+    }
+    .fox { --knife-accent: var(--gold); }
+    .jet { --knife-accent: var(--black); }
+    .snow { --knife-accent: var(--white); }
+    .snow .knife-title, .snow .knife-sub, .snow .route-title, .snow .desc-title { color: #2e2e34; }
+    .crimson { --knife-accent: var(--red); }
+    .obsidian { --knife-accent: var(--obsidian); }
+    .lineage-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(20,16,12,.06);
+    }
+    .lineage-title {
+      margin: 0 0 8px;
+      font-size: clamp(1.05rem, 2.2vw, 1.34rem);
+      color: #3b3026;
+    }
+    .lineage-lead {
+      margin: 0 0 12px;
+      color: #53483c;
+      font-size: .94rem;
+    }
+    .lineage-radial-wrap {
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .lineage-radial {
+      position: relative;
+      width: 980px;
+      height: 620px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: radial-gradient(circle at 50% 50%, #fffefb 0%, #f7f1e7 58%, #f2ece1 100%);
+    }
+    .radial-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .radial-lines line {
+      stroke: #8d7c68;
+      stroke-width: 2.2;
+      opacity: .78;
+    }
+    .radial-lines .power-line { stroke: #8c1111; }
+    .radial-lines .soft-line { stroke: #2a5d88; }
+    .radial-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 136px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    .radial-node img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 4px;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,.2));
+    }
+    .radial-node span {
+      font-size: .81rem;
+      line-height: 1.35;
+      font-weight: 700;
+      background: rgba(255,255,255,.74);
+      padding: 1px 4px;
+      border-radius: 6px;
+    }
+    .radial-node.root span {
+      font-size: .9rem;
+      color: #1f1b16;
+      border: 1px solid #ccbda9;
+    }
+    .radial-caption {
+      margin: 8px 0 0;
+      font-size: .84rem;
+      color: #5f5348;
+      text-align: center;
+    }
+    .radial-caption .power { color: #6f1111; font-weight: 700; }
+    .radial-caption .soft { color: #214b72; font-weight: 700; }
+    .member-summary {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(20,16,12,.06);
+    }
+    .member-title {
+      margin: 0 0 8px;
+      font-size: clamp(1.05rem, 2.2vw, 1.34rem);
+      color: #3b3026;
+    }
+    .member-lead {
+      margin: 0 0 12px;
+      color: #53483c;
+      font-size: .94rem;
+      line-height: 1.85;
+    }
+    .club-block {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fffefb, #f8f2e7);
+      padding: 12px;
+    }
+    .club-heading {
+      margin: 0 0 6px;
+      font-size: .98rem;
+      color: #2f261e;
+    }
+    .club-desc {
+      margin: 0 0 10px;
+      color: #584d42;
+      font-size: .9rem;
+      line-height: 1.78;
+    }
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 10px;
+    }
+    .member-card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 10px;
+      background: #fffdfa;
+    }
+    .member-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .member-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .member-link:hover .member-name { border-bottom-color: currentColor; }
+    .member-img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,.2));
+    }
+    .member-name {
+      font-weight: 700;
+      font-size: .9rem;
+      line-height: 1.35;
+      border-bottom: 1px dotted transparent;
+    }
+    .grade-badge {
+      margin-left: auto;
+      font-size: .76rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #bfae97;
+      background: #fff6e8;
+      color: #5b3f20;
+      white-space: nowrap;
+    }
+    .grade-badge.new {
+      border-color: #bb2b2b;
+      color: #7a1414;
+      background: #ffeaea;
+    }
+    .member-meta,
+    .member-ep {
+      margin: 0;
+      font-size: .84rem;
+      line-height: 1.72;
+      color: #41372f;
+    }
+    .member-meta { margin-bottom: 6px; }    footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: .86rem;
+      text-align: center;
+    }
+    @media (max-width: 820px) {
+      .route li:not(:last-child)::after { display: none; }
+      .route li { padding-right: 0; min-width: 104px; }
+      .heir-img { width: 66px; height: 66px; }
+      .lineage-radial { width: 900px; height: 590px; }
+      .radial-node { width: 120px; }
+      .radial-node img { width: 58px; height: 58px; }
+      .radial-node span { font-size: .77rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="./index.html">トップ・本編</a>
+        <a href="./characters.html">登場人物辞典</a>
+        <a href="./glossary.html">用語辞典</a>
+        <a href="./correlation.html" aria-current="page">相関図</a>
+        <a href="./audiocommentary.html">オーディオコメンタリ</a>
+        <a href="./diary.html">執筆録</a>
+      </nav>
+      <h1>運命を切り拓く「5本のナイフ」の行方</h1>
+      <p class="lead">カラベイ教導国の建国前夜から、現代のハーロピノン、そしてスクニューネへと至るまで。歴史の表舞台と裏社会を交錯しながら、為政者や騎士、そして次代を担う若者たちの手を渡り歩いた「5本の特別なナイフ」が存在します。ある刃は呪いを断ち切るために海へ沈み、ある刃は愛する者を守るために血に染まりました。それぞれのナイフに刻まれた血と祈りの軌跡を紐解きます。</p>
+    </header>
+
+    <main>
+      <article class="knife-card fox">
+        <div class="knife-head">
+          <h2 class="knife-title">1. 狐色のナイフ（パラジェイのナイフ）</h2>
+          <p class="knife-sub">為政者の覚悟と、時代を越えた継承</p>
+          <figure class="knife-hero"><img src="./assets/images/狐色のナイフ.png" alt="狐色のナイフ" loading="lazy" /><figcaption>狐色のナイフ</figcaption></figure>
+        </div>
+        <div class="knife-body">
+          <h3 class="route-title">継承ルート</h3>
+          <ol class="route">
+            <li><a class="heir-link" href="./characters.html#カイン-カナ"><img class="heir-img" src="./assets/images/カナ.PNG" alt="カイン・カナ" loading="lazy" /><span class="heir-name">カイン・カナ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ラデン-キナベイ"><img class="heir-img" src="./assets/images/キナベイ.png" alt="ラデン・キナベイ" loading="lazy" /><span class="heir-name">ラデン・キナベイ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#シャウン-パラジェイ"><img class="heir-img" src="./assets/images/パラジェイ.png" alt="シャウン・パラジェイ" loading="lazy" /><span class="heir-name">シャウン・パラジェイ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ミナツ-アルスノーヴァ"><img class="heir-img" src="./assets/images/ミナツ.png" alt="ミナツ・アルスノーヴァ" loading="lazy" /><span class="heir-name">ミナツ・アルスノーヴァ</span></a></li>
+          </ol>
+          <h3 class="desc-title">解説</h3>
+          <p class="desc">本来はカイン・カナからパラジェイへの十五歳の成人祝いとして贈られる予定でしたが、暗殺によりキナベイを経由して託されました。第一教導職のみが許される狐色の装飾は建国の象徴として振るわれ、のちに歴史の闇へ失踪。1990年代、ハーロピノンの骨董屋でミナツが偶然発見し、過去の血塗られた来歴を知らぬまま「中庸の構え」を支える相棒となります。</p>
+        </div>
+      </article>
+
+      <article class="knife-card jet">
+        <div class="knife-head">
+          <h2 class="knife-title">2. 漆黒のナイフ</h2>
+          <p class="knife-sub">歴史を剪定する「白梟」の狂刃</p>
+          <figure class="knife-hero"><img src="./assets/images/漆黒のナイフ.PNG" alt="漆黒のナイフ" loading="lazy" /><figcaption>漆黒のナイフ</figcaption></figure>
+        </div>
+        <div class="knife-body">
+          <h3 class="route-title">継承ルート</h3>
+          <ol class="route">
+            <li><a class="heir-link" href="./characters.html#シャウン-パレイ"><img class="heir-img" src="./assets/images/パレイ.PNG" alt="シャウン・パレイ" loading="lazy" /><span class="heir-name">シャウン・パレイ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#シャウン-ア-レイ"><img class="heir-img" src="./assets/images/レイ.png" alt="シャウン・レイ" loading="lazy" /><span class="heir-name">シャウン・レイ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#シャウン-ア-エティレイ"><img class="heir-img" src="./assets/images/エティレイ.png" alt="シャウン・ア・エティレイ" loading="lazy" /><span class="heir-name">シャウン・ア・エティレイ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ジェン-ド-アーク"><img class="heir-img" src="./assets/images/ジェン.PNG" alt="ジェン・ド・アーク" loading="lazy" /><span class="heir-name">ジェン・ド・アーク</span></a></li>
+          </ol>
+          <h3 class="desc-title">解説</h3>
+          <p class="desc">国家の裏で暗躍する「白梟」の象徴であり、一切の光を反射しない漆黒の刃。初代大統領パレイから最高傑作の諜報員レイへ渡り、さらに議会と闇権力を握ったエティレイが謀略に運用。最終的に過激派ジェンの手で「セナリーナの夜」の人口削減計画に使われた、呪われた系譜の凶器です。</p>
+        </div>
+      </article>
+
+      <article class="knife-card snow">
+        <div class="knife-head">
+          <h2 class="knife-title">3. 純白のナイフ</h2>
+          <p class="knife-sub">血に染まらぬ誓いと、愛ゆえの堕落</p>
+          <figure class="knife-hero"><img src="./assets/images/純白のナイフ.png" alt="純白のナイフ" loading="lazy" /><figcaption>純白のナイフ</figcaption></figure>
+        </div>
+        <div class="knife-body">
+          <h3 class="route-title">継承ルート</h3>
+          <ol class="route">
+            <li><a class="heir-link" href="./characters.html#カイン-カナ"><img class="heir-img" src="./assets/images/カナ.PNG" alt="カイン・カナ" loading="lazy" /><span class="heir-name">カイン・カナ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ラデン-キナベイ"><img class="heir-img" src="./assets/images/キナベイ.png" alt="ラデン・キナベイ" loading="lazy" /><span class="heir-name">ラデン・キナベイ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ラカン-ライ"><img class="heir-img" src="./assets/images/ライ.png" alt="ラカン・ライ" loading="lazy" /><span class="heir-name">ラカン・ライ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#シャウン-アカウ"><img class="heir-img" src="./assets/images/アカウ.png" alt="シャウン・アカウ" loading="lazy" /><span class="heir-name">シャウン・アカウ</span></a></li>
+          </ol>
+          <h3 class="desc-title">解説</h3>
+          <p class="desc">いかなる血も滲まない純白塗装を持つカナの愛刀は、柔和の構えを極めたキナベイから無心の構えのライへ受け継がれ、平和と対話の象徴でした。しかしライから譲渡されたアカウは、タネイを守るために修羅の道を選択。血を拒むはずの純白は、皮肉にも深すぎる愛により初めて赤く染まりました。</p>
+        </div>
+      </article>
+
+      <article class="knife-card crimson">
+        <div class="knife-head">
+          <h2 class="knife-title">4. 真紅のナイフ</h2>
+          <p class="knife-sub">復讐から祈りへ昇華された重剣</p>
+          <figure class="knife-hero"><img src="./assets/images/真紅のナイフ.png" alt="真紅のナイフ" loading="lazy" /><figcaption>真紅のナイフ</figcaption></figure>
+        </div>
+        <div class="knife-body">
+          <h3 class="route-title">継承ルート</h3>
+          <ol class="route">
+            <li><a class="heir-link" href="./characters.html#ビライン-アカネイ"><img class="heir-img" src="./assets/images/アカネイ.png" alt="ビライン・アカネイ" loading="lazy" /><span class="heir-name">ビライン・アカネイ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ラデン-タネイ"><img class="heir-img" src="./assets/images/タネイ.png" alt="ラデン・タネイ" loading="lazy" /><span class="heir-name">ラデン・タネイ</span></a></li>
+          </ol>
+          <h3 class="desc-title">解説</h3>
+          <p class="desc">ビライン家の家紋と「これ以上血塗られませんように」という祈りを刻んだ深紅の刃。アカネイが復讐と共に振るった「狂暴の構え」の象徴でしたが、ライとの共闘で怒りは統治の強さへ転化。神前試合ののち、全ての国民の過ちを背負う覚悟を決めた第五代第一教導職タネイへ託され、迷いなき治世の証になります。</p>
+        </div>
+      </article>
+
+      <article class="knife-card obsidian">
+        <div class="knife-head">
+          <h2 class="knife-title">5. Takt02+24（アヤのナイフ）</h2>
+          <p class="knife-sub">誠実さを試す刃と、見つけ出した「自分」</p>
+          <figure class="knife-hero"><img src="./assets/images/アヤのナイフ.png" alt="Takt02+24" loading="lazy" /><figcaption>24枚換装式の黒曜石刃</figcaption></figure>
+        </div>
+        <div class="knife-body">
+          <h3 class="route-title">継承ルート</h3>
+          <ol class="route">
+            <li><a class="heir-link" href="./characters.html#シャウン-アヤ"><img class="heir-img" src="./assets/images/アヤ.png" alt="シャウン・アヤ" loading="lazy" /><span class="heir-name">シャウン・アヤ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ルルパルト-チュリアチュライ"><img class="heir-img" src="./assets/images/チュリアチュライ.png" alt="ルルパルト・チュリアチュライ" loading="lazy" /><span class="heir-name">ルルパルト・チュリアチュライ</span></a></li>
+            <li><a class="heir-link" href="./characters.html#ルルパルト-ヴィオン"><img class="heir-img" src="./assets/images/ヴィオン.png" alt="ルルパルト・ヴィオン" loading="lazy" /><span class="heir-name">ルルパルト・ヴィオン</span></a></li>
+          </ol>
+          <h3 class="desc-title">解説</h3>
+          <p class="desc">24枚の極薄オプシディオン刃を換装して戦う特殊ナイフで、持ち主の誠実さが揺らぐと砕け散る特級の呪物。偽りの第一教導職アヤから独裁者チュリアチュライへ渡り、彼は狂気的な誠実さで維持した末に、負の連鎖を断つためドゥラム海へ自沈。それから18年後、VUISALのロケで潜った孫娘ヴィオンに引き揚げられ、呪縛を脱した刃は「自分を見つける」ための宝へ変わりました。</p>
+        </div>
+      </article>
+      <section class="lineage-card" aria-labelledby="lineage-title">
+        <h2 id="lineage-title" class="lineage-title">剛直・狂暴と柔和・無心の系譜</h2>
+        <p class="lineage-lead">カラベイの伝統剣術「デューレイ」。すべての原点は、かつて「影梟」と呼ばれた伝説の剣客、アハレン・ハサネイにあります。彼の教えは二つの大きな流れに分かれ、時に激しく衝突し、時に互いを補い合いながら、時代を動かす英雄たちへと受け継がれていきました。</p>
+
+        <div class="lineage-radial-wrap">
+          <div class="lineage-radial" role="img" aria-label="アハレン・ハサネイを中心に左右へ分岐する剛直・狂暴と柔和・無心の系譜図">
+            <svg class="radial-lines" viewBox="0 0 980 620" aria-hidden="true" focusable="false">
+              <line class="power-line" x1="486" y1="310" x2="486" y2="161" />
+              <line class="soft-line" x1="494" y1="310" x2="494" y2="161" />
+              <line class="power-line" x1="486" y1="310" x2="486" y2="415" />
+              <line class="soft-line" x1="494" y1="310" x2="494" y2="415" />
+
+              <line class="power-line" x1="490" y1="161" x2="167" y2="124" />
+              <line class="power-line" x1="167" y1="124" x2="98" y2="217" />
+              <line class="power-line" x1="98" y1="217" x2="137" y2="322" />
+              <line class="power-line" x1="490" y1="415" x2="108" y2="496" />
+
+              <line class="soft-line" x1="490" y1="161" x2="813" y2="124" />
+              <line class="soft-line" x1="813" y1="124" x2="843" y2="322" />
+              <line class="soft-line" x1="490" y1="415" x2="843" y2="322" />
+              <line class="soft-line" x1="490" y1="415" x2="872" y2="496" />
+            </svg>
+
+            <a class="radial-node root" style="left:50%; top:50%;" href="./characters.html#アハレン-ハサネイ"><img src="./assets/images/ハサネイ.PNG" alt="アハレン・ハサネイ" loading="lazy" /><span>アハレン・ハサネイ</span></a>
+
+            <a class="radial-node" style="left:50%; top:26%;" href="./characters.html#カイン-カナ"><img src="./assets/images/カナ.PNG" alt="カイン・カナ" loading="lazy" /><span>カイン・カナ</span></a>
+            <a class="radial-node" style="left:17%; top:20%;" href="./characters.html#シャウン-パラジェイ"><img src="./assets/images/パラジェイ.png" alt="シャウン・パラジェイ" loading="lazy" /><span>シャウン・パラジェイ</span></a>
+            <a class="radial-node" style="left:10%; top:35%;" href="./characters.html#シャウン-アヤ"><img src="./assets/images/アヤ.png" alt="シャウン・アヤ" loading="lazy" /><span>シャウン・アヤ</span></a>
+            <a class="radial-node" style="left:14%; top:52%;" href="./characters.html#シャウン-アカウ"><img src="./assets/images/アカウ.png" alt="シャウン・アカウ" loading="lazy" /><span>シャウン・アカウ</span></a>
+            <a class="radial-node" style="left:50%; top:67%;" href="./characters.html#イマデン-リア"><img src="./assets/images/リア.png" alt="イマデン・リア" loading="lazy" /><span>イマデン・リア</span></a>
+            <a class="radial-node" style="left:11%; top:80%;" href="./characters.html#ビライン-アカネイ"><img src="./assets/images/アカネイ.png" alt="ビライン・アカネイ" loading="lazy" /><span>ビライン・アカネイ</span></a>
+
+            <a class="radial-node" style="left:83%; top:20%;" href="./characters.html#ラデン-キナベイ"><img src="./assets/images/キナベイ.png" alt="ラデン・キナベイ" loading="lazy" /><span>ラデン・キナベイ</span></a>
+            <a class="radial-node" style="left:86%; top:52%;" href="./characters.html#ラカン-ライ"><img src="./assets/images/ライ.png" alt="ラカン・ライ" loading="lazy" /><span>ラカン・ライ</span></a>
+            <a class="radial-node" style="left:89%; top:80%;" href="./characters.html#ラデン-タネイ"><img src="./assets/images/タネイ.png" alt="ラデン・タネイ" loading="lazy" /><span>ラデン・タネイ</span></a>
+          </div>
+        </div>
+
+        <p class="radial-caption"><span class="power">左: 剛直・狂暴系譜</span> / <span class="soft">右: 柔和・無心系譜</span></p>
+      </section>
+      <section class="member-summary" aria-labelledby="member-title">
+        <h2 id="member-title" class="member-title">西アルトス研究会 ＆ VUISALメンバーまとめ</h2>
+        <p class="member-lead">ハーロピノン共和国・ヘリエン国立大学の弱小サークル「西アルトス研究会」。そこには国境や身分、そして陰謀を越えて集った個性豊かな学生たちがいました。<br />そして、彼らの後輩たちを中心に結成され、スクニューネで大ブレイクを果たした異色のガールズバンド「VUISAL（ヴューサル）」。時代と国境を越えて絆を紡ぐ、若き主人公たちをご紹介します。</p>
+
+        <section class="club-block" aria-labelledby="club-west-title">
+          <h3 id="club-west-title" class="club-heading">【西アルトス研究会】メンバー</h3>
+          <p class="club-desc">ヘリエン国立大学の公認サークル。部室も予算もない吹き溜まりでしたが、彼らの入部を機に街を巻き込む数々の事件（と大食い大会）の中心地となっていきます。</p>
+          <div class="member-grid">
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#アリー-ナミレ"><img class="member-img" src="./assets/images/アリー.png" alt="アリー・ナミレ" loading="lazy" /><span class="member-name">アリー</span></a><span class="grade-badge">2年</span></div>
+              <p class="member-meta">出身: エルテーナ連合 / 法学科留学生。実はレネティ公主国の公主で、君主制保全省の職員。</p><p class="member-ep">ディベート特訓を経て路上営業規制法の議論でマジョリティーを動かした、仲間想いの実力派。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#レト-ラウワ"><img class="member-img" src="./assets/images/レト.png" alt="レト・ラウワ" loading="lazy" /><span class="member-name">レト</span></a><span class="grade-badge">4年</span></div>
+              <p class="member-meta">出身: エルテーナ連合 / アリーの付き人で未来の大宰相。冷静沈着な論理派。</p><p class="member-ep">学生生活課や自治会との難交渉を担う頭脳担当で、家事・料理の手際も抜群。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#ラカン-ファタ"><img class="member-img" src="./assets/images/ファタ.png" alt="ラカン・ファタ" loading="lazy" /><span class="member-name">ファタ</span></a><span class="grade-badge">2年</span></div>
+              <p class="member-meta">出身: カラベイ教導国 / ラカン・ライの孫。将来は警察官僚志望。</p><p class="member-ep">「狂暴」と「無心」を実戦で伸ばし、木刀一本でミナツとサークルを守る熱血青年。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#ミナツ-アルスノーヴァ"><img class="member-img" src="./assets/images/ミナツ.png" alt="ミナツ・アルスノーヴァ" loading="lazy" /><span class="member-name">ミナツ</span></a><span class="grade-badge">4年</span></div>
+              <p class="member-meta">出身: ハーロピノン共和国 / 3代目会長。重度のオタクで同人作家。</p><p class="member-ep">狐色のナイフを得て中庸の構えで戦い、後に『ArNoct』の敏腕プロデューサーとしてVUISALを世に送り出す。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#クラ-モグロイ"><img class="member-img" src="./assets/images/クラ.png" alt="クラ・モグロイ" loading="lazy" /><span class="member-name">クラ</span></a><span class="grade-badge">3年</span></div>
+              <p class="member-meta">出身: ドゥルグァタン / 弾き語りとホーミーを得意とする留学生。</p><p class="member-ep">路上ライブで人々をつなぎ、路上営業規制法撤廃へのうねりを生んだ心優しいアーティスト。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#ハル-ペロート"><img class="member-img" src="./assets/images/ハル.png" alt="ハル・ペロート" loading="lazy" /><span class="member-name">ハル</span></a><span class="grade-badge">2年</span></div>
+              <p class="member-meta">出身: ハーロピノン共和国 / 弁護士志望（後に弁護士）の天才論客。</p><p class="member-ep">当初は対立するも後に頼れるブレーンへ。無敗ディベーター兼・大食い担当。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="club-block" aria-labelledby="club-vuisal-title">
+          <h3 id="club-vuisal-title" class="club-heading">【VUISAL（ヴューサル）】メンバー</h3>
+          <p class="club-desc">ミナツ・アルスノーヴァがプロデュースし、スクニューネを拠点に活動する6人組ガールズバンド・ダンスユニット。ヴィオンを除く5人は、西アルトス研究会の後輩（新1年生）です。</p>
+          <div class="member-grid">
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#チエル"><img class="member-img" src="./assets/images/チエル.png" alt="チエル" loading="lazy" /><span class="member-name">チエル / ベース・リーダー</span></a><span class="grade-badge">1年</span></div>
+              <p class="member-meta">出身: スクニューネ共和国 / 鬼教官タイプのリーダー。</p><p class="member-ep">ヴィオンの宝物を守るため、裏社会相手にも一歩も引かない熱さを持つ。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#メウ"><img class="member-img" src="./assets/images/メウ.png" alt="メウ" loading="lazy" /><span class="member-name">メウ / ボーカル</span></a><span class="grade-badge">1年</span></div>
+              <p class="member-meta">出身: ソラン人 / 包容力のある最年長MC。</p><p class="member-ep">透き通る歌声と柔らかな統率力で、濃すぎるメンバーを笑顔でまとめる。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#ニプロ"><img class="member-img" src="./assets/images/ニプロ.png" alt="ニプロ" loading="lazy" /><span class="member-name">ニプロ / リードギター</span></a><span class="grade-badge">1年</span></div>
+              <p class="member-meta">出身: ニグラシオ / 無表情で精密なリフを刻むオートマタ担当。</p><p class="member-ep">常時腹ペコ。無言でケータリングを消し去る独特の存在感。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#ロイド-ゴーストピース"><img class="member-img" src="./assets/images/ロイド.png" alt="ロイド・ゴーストピース" loading="lazy" /><span class="member-name">ロイド / リズムギター</span></a><span class="grade-badge">1年</span></div>
+              <p class="member-meta">出身: デルタイ / 気難しいが仲間想いの一匹狼。</p><p class="member-ep">機械のように正確なカッティングでバンドの壁を作る、実は情の深いプレイヤー。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#レイマー"><img class="member-img" src="./assets/images/レイマー.png" alt="レイマー" loading="lazy" /><span class="member-name">レイマー / ドラム</span></a><span class="grade-badge">1年</span></div>
+              <p class="member-meta">出身: ドゥール / 豪快で声の大きいフィジカル担当。</p><p class="member-ep">チエルのベースと噛み合う強靭なエンジンとして、現場の空気を一気に引き上げる。</p>
+            </article>
+            <article class="member-card">
+              <div class="member-head"><a class="member-link" href="./characters.html#ルルパルト-ヴィオン"><img class="member-img" src="./assets/images/ヴィオン.png" alt="ルルパルト・ヴィオン" loading="lazy" /><span class="member-name">ヴィオン / キーボード・新人</span></a><span class="grade-badge new">New!</span></div>
+              <p class="member-meta">出身: スクニューネ共和国 / プレッシャーに弱いが素直で一生懸命。</p><p class="member-ep">海ロケでアヤのナイフを引き揚げ、仲間を信じる心と共に「自分自身の音」を掴み取った。</p>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer>© 『共和国物語』サーガ | Correlation Archive</footer>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
