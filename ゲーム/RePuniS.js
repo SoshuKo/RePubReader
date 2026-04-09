@@ -1805,29 +1805,34 @@ function drawImageCover(img) {
         tctx.stroke();
       }
     }
-    const pattern = ctx.createPattern(tileCanvas, "repeat");
-    if (pattern) {
-      const stageLeft = drawX;
-      const stageTop = drawY;
-      const stageRight = drawX + drawW;
-      const stageBottom = drawY + drawH;
-      ctx.save();
-      ctx.fillStyle = pattern;
-      if (stageRight <= 0 || stageLeft >= canvas.width || stageBottom <= 0 || stageTop >= canvas.height) {
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      } else {
-        if (stageTop > 0) ctx.fillRect(0, 0, canvas.width, stageTop);
-        if (stageBottom < canvas.height) ctx.fillRect(0, stageBottom, canvas.width, canvas.height - stageBottom);
-        const midTop = Math.max(0, stageTop);
-        const midBottom = Math.min(canvas.height, stageBottom);
-        const midH = Math.max(0, midBottom - midTop);
-        if (midH > 0) {
-          if (stageLeft > 0) ctx.fillRect(0, midTop, stageLeft, midH);
-          if (stageRight < canvas.width) ctx.fillRect(stageRight, midTop, canvas.width - stageRight, midH);
-        }
-      }
-      ctx.restore();
+    let pattern = null;
+    try {
+      pattern = ctx.createPattern(tileCanvas, "repeat");
+    } catch (err) {
+      pattern = null;
+      console.warn("[drawWorld] createPattern failed:", err);
     }
+
+    const stageLeft = drawX;
+    const stageTop = drawY;
+    const stageRight = drawX + drawW;
+    const stageBottom = drawY + drawH;
+    ctx.save();
+    ctx.fillStyle = pattern || "#16223a";
+    if (stageRight <= 0 || stageLeft >= canvas.width || stageBottom <= 0 || stageTop >= canvas.height) {
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (stageTop > 0) ctx.fillRect(0, 0, canvas.width, stageTop);
+      if (stageBottom < canvas.height) ctx.fillRect(0, stageBottom, canvas.width, canvas.height - stageBottom);
+      const midTop = Math.max(0, stageTop);
+      const midBottom = Math.min(canvas.height, stageBottom);
+      const midH = Math.max(0, midBottom - midTop);
+      if (midH > 0) {
+        if (stageLeft > 0) ctx.fillRect(0, midTop, stageLeft, midH);
+        if (stageRight < canvas.width) ctx.fillRect(stageRight, midTop, canvas.width - stageRight, midH);
+      }
+    }
+    ctx.restore();
     ctx.drawImage(stage.bg, drawX, drawY, drawW, drawH);
   }
 
@@ -2048,6 +2053,7 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
 
 
 
