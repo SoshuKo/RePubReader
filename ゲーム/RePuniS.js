@@ -1045,16 +1045,12 @@
     const sprite = getOpaqueBounds(img);
     const ratio = sprite.sw / sprite.sh;
     const isKnife = kind === "item" && String(name || "").includes("ナイフ");
-    let entityH = isKnife ? (baseH / 3) : baseH;
-    if (isKnife) {
-      const refDiag = await getKnifeReferenceDiag();
-      const myDiag = Math.hypot(Math.max(1, sprite.sw), Math.max(1, sprite.sh));
-      if (refDiag > 0 && myDiag > 0) {
-        const scale = refDiag / myDiag;
-        entityH = clamp((baseH / 3) * scale, (baseH / 3) * 0.55, (baseH / 3) * 1.45);
-      }
-    }
     const nowMs = performance.now();
+
+    const entityH = isKnife ? Math.max(1, sprite.sh / 3) : baseH;
+    const entityW = isKnife
+      ? Math.max(1, sprite.sw / 3)
+      : (kind === "item" ? entityH * ratio : clamp(entityH * ratio, 18, 180));
 
     return {
       id: nextEntityId++,
@@ -1066,7 +1062,7 @@
       sprite,
       x: 0,
       y: entityH,
-      w: (kind === "item" ? entityH * ratio : clamp(entityH * ratio, 18, 180)),
+      w: entityW,
       h: entityH,
       vx: 0,
       vy: 0,
