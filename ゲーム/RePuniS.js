@@ -1858,6 +1858,7 @@ function drawImageCover(img) {
   }
 
   function drawEntities(nowMs) {
+    const view = getViewTransform();
     const list = getEntitiesInStage(state.currentStageIndex)
       .slice()
       .sort((a, b) => a.y - b.y);
@@ -1876,8 +1877,8 @@ function drawImageCover(img) {
       const t = clamp((nowMs - actor.eatStartAt) / Math.max(1, actor.eatUntil - actor.eatStartAt), 0, 1);
       const bob = Math.sin((nowMs - actor.eatStartAt) / 90) * (item.h * 0.08);
 
-      const ix = actor.x - state.camera.x + (actor.facing > 0 ? actor.w * 0.18 : -actor.w * 0.18);
-      const iy = actor.y - state.camera.y - actor.h * 0.62 + bob;
+      const ix = (actor.x - state.camera.x + (actor.facing > 0 ? actor.w * 0.18 : -actor.w * 0.18)) * view.zoom + view.offsetX;
+      const iy = (actor.y - state.camera.y - actor.h * 0.62 + bob) * view.zoom + view.offsetY;
 
       if (state.speech.eatFxImg) {
         const fxW = item.w * 2.0 * view.zoom;
@@ -1898,10 +1899,10 @@ function drawImageCover(img) {
         item.sprite.sy,
         item.sprite.sw,
         item.sprite.sh,
-        -item.w * 0.5,
-        -item.h,
-        item.w,
-        item.h
+        -item.w * 0.5 * view.zoom,
+        -item.h * view.zoom,
+        item.w * view.zoom,
+        item.h * view.zoom
       );
       ctx.restore();
     });
@@ -2036,6 +2037,9 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
+
+
 
 
 
