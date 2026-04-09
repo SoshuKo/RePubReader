@@ -178,7 +178,17 @@
     const off = document.createElement("canvas");
     off.width = image.naturalWidth;
     off.height = image.naturalHeight;
-    const c = off.getContext("2d", { willReadFrequently: true });
+    let c = null;
+    try {
+      c = off.getContext("2d", { willReadFrequently: true });
+    } catch (_e) {
+      c = null;
+    }
+    if (!c) c = off.getContext("2d");
+    if (!c) {
+      const size = Math.max(1, off.width * off.height * 4);
+      return { width: off.width, height: off.height, data: new Uint8ClampedArray(size) };
+    }
     c.drawImage(image, 0, 0);
     return { width: off.width, height: off.height, data: c.getImageData(0, 0, off.width, off.height).data };
   }
@@ -190,7 +200,18 @@
     const off = document.createElement("canvas");
     off.width = image.naturalWidth;
     off.height = image.naturalHeight;
-    const c = off.getContext("2d", { willReadFrequently: true });
+    let c = null;
+    try {
+      c = off.getContext("2d", { willReadFrequently: true });
+    } catch (_e) {
+      c = null;
+    }
+    if (!c) c = off.getContext("2d");
+    if (!c) {
+      const fallback = { sx: 0, sy: 0, sw: Math.max(1, off.width), sh: Math.max(1, off.height) };
+      boundsCache.set(key, fallback);
+      return fallback;
+    }
     c.drawImage(image, 0, 0);
     const data = c.getImageData(0, 0, off.width, off.height).data;
 
@@ -2140,6 +2161,7 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
 
 
 
