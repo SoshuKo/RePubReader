@@ -1329,10 +1329,8 @@ function drawImageCover(img) {
         b.className = "char-item pick-char";
         b.dataset.name = name;
         b.innerHTML = `<img alt="${name}" src="${PUNI_BASE}/${file}"><span class="name">${name}</span>`;
-        b.addEventListener("click", async () => {
+        b.addEventListener("click", () => {
           state.selectedCharacter = name;
-          const hasActor = getCharactersInStage(state.currentStageIndex).some((ent) => ent.name === name);
-          if (!hasActor && state.player) await applyCharacterToPlayer(name);
           refreshSidebarSelection();
         });
         container.appendChild(b);
@@ -2161,6 +2159,7 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
 
 
 
