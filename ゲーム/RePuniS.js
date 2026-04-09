@@ -1146,12 +1146,19 @@ function drawImageCover(img) {
     const bg = state.farBg;
     if (!bg.images.length) return;
 
-    drawImageCover(bg.images[bg.currentIndex]);
+    const current = bg.images[bg.currentIndex];
+    if (current && current.naturalWidth > 0 && current.naturalHeight > 0) {
+      drawImageCover(current);
+    }
+
     if (bg.isFading) {
-      ctx.save();
-      ctx.globalAlpha = clamp(bg.fadeProgress, 0, 1);
-      drawImageCover(bg.images[bg.nextIndex]);
-      ctx.restore();
+      const next = bg.images[bg.nextIndex];
+      if (next && next.naturalWidth > 0 && next.naturalHeight > 0) {
+        ctx.save();
+        ctx.globalAlpha = clamp(bg.fadeProgress, 0, 1);
+        drawImageCover(next);
+        ctx.restore();
+      }
     }
   }
 
@@ -1938,36 +1945,40 @@ function drawImageCover(img) {
   }
 
   function tick(now) {
-    if (!state.ready) return;
+    try {
+      if (!state.ready) return;
 
-    const dt = Math.min(0.033, Math.max(0.001, (now - state.lastTime) / 1000));
-    state.lastTime = now;
+      const dt = Math.min(0.033, Math.max(0.001, (now - state.lastTime) / 1000));
+      state.lastTime = now;
 
-    updateFarBackground(now, dt);
-    getAllEntities().forEach((ent) => {
-      updateEntityPhysics(ent, dt);
-      updateEntityAnim(ent, dt);
-    });
+      updateFarBackground(now, dt);
+      getAllEntities().forEach((ent) => {
+        updateEntityPhysics(ent, dt);
+        updateEntityAnim(ent, dt);
+      });
 
-    updateCarriedItems();
-    updateEating(now);
-    updateIdleItemsLifecycle(now);
-    state.currentStageIndex = state.player ? state.player.stageIndex : 0;
-    updateCamera();
-    updateStageNav();
-    syncEntityPanelToPngEdge();
+      updateCarriedItems();
+      updateEating(now);
+      updateIdleItemsLifecycle(now);
+      state.currentStageIndex = state.player ? state.player.stageIndex : 0;
+      updateCamera();
+      updateStageNav();
+      syncEntityPanelToPngEdge();
 
-    tryAutoSpeak(now);
-    tryContactConversation(now);
-    runAutoBehavior(now);
-    drawWorld();
-    drawEntities(now);
-    drawSpeechBubble(now);
-    drawDragGuide();
-    updateHud();
-    if (state.ui.panelDirty || state.ui.panelStage !== state.currentStageIndex) renderEntityPanel();
-
-    requestAnimationFrame(tick);
+      tryAutoSpeak(now);
+      tryContactConversation(now);
+      runAutoBehavior(now);
+      drawWorld();
+      drawEntities(now);
+      drawSpeechBubble(now);
+      drawDragGuide();
+      updateHud();
+      if (state.ui.panelDirty || state.ui.panelStage !== state.currentStageIndex) renderEntityPanel();
+    } catch (err) {
+      console.error("[tick] runtime error:", err);
+    } finally {
+      requestAnimationFrame(tick);
+    }
   }
 
   async function init() {
@@ -2037,6 +2048,7 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
 
 
 
