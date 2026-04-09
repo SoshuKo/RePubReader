@@ -33,6 +33,7 @@
   const CONTACT_CHAT_CHANCE = 1 / 3;
   const CONTACT_DIALOGUE_CHANCE = 1 / 2;
   const CONTACT_PAIR_COOLDOWN_MS = 15 * 60 * 1000;
+  const DIALOGUE_LINE_INTERVAL_MS = 900;
   const AUTO_BEHAVIOR_INTERVAL_MS = 30 * 1000;
   const AUTO_PERCEPTION_RANGE = 520;
   const AUTO_IMPROVE_EPS = 6;
@@ -47,6 +48,7 @@
   const ITEM_BASE_H = Math.round(CHAR_BASE_H * 0.75);
   const NPC_LIMIT = 2;
   const ITEM_LIMIT = 2;
+  const KNIFE_REFERENCE_NAME = "ガナリのナイフ";
 
   const PHYS = {
     gravity: 230,
@@ -135,7 +137,9 @@
       bubbleEntityId: null,
       leftBubbleImg: null,
       rightBubbleImg: null,
-      eatFxImg: null
+      eatFxImg: null,
+      dialogueQueue: [],
+      dialogueNextAt: 0
     },
     ai: {
       nextAt: performance.now() + AUTO_BEHAVIOR_INTERVAL_MS,
@@ -152,6 +156,7 @@
   const imageCache = new Map();
   const boundsCache = new Map();
   let nextEntityId = 1;
+  let knifeReferenceDiag = null;
 
   function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
   function stageOf(index) { return state.stages[index]; }
@@ -420,7 +425,10 @@
           }));
 
         if (!lines.length) return;
-        dialogueMap.set(pairKeyByNames(n1, n2), lines);
+        const pairKey = pairKeyByNames(n1, n2);
+        const list = dialogueMap.get(pairKey) || [];
+        list.push(lines);
+        dialogueMap.set(pairKey, list);
       }
     });
 
@@ -511,22 +519,35 @@
     });
   }
 
+  function updateDialogueQueue(nowMs) {
+    if (!Array.isArray(state.speech.dialogueQueue) || !state.speech.dialogueQueue.length) return;
+    if (nowMs < state.speech.dialogueNextAt) return;
+
+    const step = state.speech.dialogueQueue.shift();
+    if (!step) return;
+    pushSpeechLog(`${step.speakerName}: ${step.message}`);
+    if (step.speakerEntId) setSpeechBubbleForEntity(step.speakerEntId, nowMs);
+    state.speech.dialogueNextAt = nowMs + DIALOGUE_LINE_INTERVAL_MS;
+  }
+
   function tryAutoSpeak(nowMs) {
-    if (!state.player) return;
-    if (nowMs < state.speech.nextAt) return;
+    const actors = getAllEntities().filter((ent) => ent && ent.kind !== "item");
+    actors.forEach((actor) => {
+      if (!Number.isFinite(actor.nextSpeechAt)) actor.nextSpeechAt = nowMs + AUTO_SPEECH_INTERVAL_MS;
+      if (nowMs < actor.nextSpeechAt) return;
+      actor.nextSpeechAt = nowMs + AUTO_SPEECH_INTERVAL_MS;
+      if (Math.random() >= AUTO_SPEECH_CHANCE) return;
 
-    state.speech.nextAt = nowMs + AUTO_SPEECH_INTERVAL_MS;
-    if (Math.random() >= AUTO_SPEECH_CHANCE) return;
-
-    const lines = state.speech.dailyByCharacter.get(state.player.name);
-    if (!Array.isArray(lines) || !lines.length) return;
-
-    const line = lines[Math.floor(Math.random() * lines.length)];
-    pushSpeechLog(`${state.player.name}: ${line}`);
-    setSpeechBubbleForEntity(state.player.id, nowMs);
+      const lines = state.speech.dailyByCharacter.get(actor.name);
+      if (!Array.isArray(lines) || !lines.length) return;
+      const line = lines[Math.floor(Math.random() * lines.length)];
+      pushSpeechLog(`${actor.name}: ${line}`);
+      setSpeechBubbleForEntity(actor.id, nowMs);
+    });
   }
 
   function tryContactConversation(nowMs) {
+    if (Array.isArray(state.speech.dialogueQueue) && state.speech.dialogueQueue.length) return;
     if (nowMs < state.speech.nextContactAt) return;
     state.speech.nextContactAt = nowMs + CONTACT_SPEECH_INTERVAL_MS;
 
@@ -551,18 +572,20 @@
 
     const [a, b, entityPairKey] = touchingPairs[Math.floor(Math.random() * touchingPairs.length)];
     const namePairKey = [a.name, b.name].sort().join("\u0001");
-    const specific = state.speech.dialoguesByPair.get(namePairKey);
+    const specificList = state.speech.dialoguesByPair.get(namePairKey);
 
-    if (specific) {
+    if (Array.isArray(specificList) && specificList.length) {
       if (Math.random() >= CONTACT_DIALOGUE_CHANCE) return;
-      const line = specific[Math.floor(Math.random() * specific.length)];
-      const speakerName = (line.speaker === a.name || line.speaker === b.name)
-        ? line.speaker
-        : (Math.random() < 0.5 ? a.name : b.name);
-      const speakerEnt = (speakerName === a.name) ? a : b;
-
-      pushSpeechLog(`${speakerName}: ${line.message}`);
-      setSpeechBubbleForEntity(speakerEnt.id, nowMs);
+      let alt = 0;
+      const specific = specificList[Math.floor(Math.random() * specificList.length)];
+      state.speech.dialogueQueue = specific.map((line) => {
+        const valid = (line.speaker === a.name || line.speaker === b.name);
+        const speakerName = valid ? line.speaker : (alt++ % 2 === 0 ? a.name : b.name);
+        const speakerEnt = speakerName === a.name ? a : b;
+        return { speakerName, speakerEntId: speakerEnt.id, message: line.message };
+      });
+      state.speech.dialogueNextAt = nowMs;
+      updateDialogueQueue(nowMs);
       state.speech.pairCooldownByEntity.set(entityPairKey, nowMs + CONTACT_PAIR_COOLDOWN_MS);
       return;
     }
@@ -726,6 +749,33 @@
     return all;
   }
 
+  function getCharactersInStage(stageIndex) {
+    return getEntitiesInStage(stageIndex).filter((ent) => ent && ent.kind !== "item");
+  }
+
+  function getControlledActor() {
+    const selected = String(state.selectedCharacter || "").trim();
+    if (selected) {
+      const hit = getCharactersInStage(state.currentStageIndex).find((ent) => ent.name === selected);
+      if (hit) return hit;
+    }
+    return state.player || null;
+  }
+
+  async function getKnifeReferenceDiag() {
+    if (Number.isFinite(knifeReferenceDiag) && knifeReferenceDiag > 0) return knifeReferenceDiag;
+    const refFile = ITEM_FILES.get(KNIFE_REFERENCE_NAME);
+    if (!refFile) { knifeReferenceDiag = 0; return 0; }
+    try {
+      const img = await loadImage(`${ITEM_BASE}/${refFile}`);
+      const bounds = getOpaqueBounds(img);
+      knifeReferenceDiag = Math.hypot(Math.max(1, bounds.sw), Math.max(1, bounds.sh));
+    } catch (_e) {
+      knifeReferenceDiag = 0;
+    }
+    return knifeReferenceDiag;
+  }
+
     function getEntityById(id) {
     if (state.player && state.player.id === id) return state.player;
     for (const bucket of state.stageBuckets) {
@@ -801,66 +851,76 @@
     return pickNearest(chars) || pickNearest(items);
   }
 
-  function runAutoBehavior(nowMs) {
-    const actor = state.player;
-    if (!actor) return;
-    if (state.drag.active) return;
+  function runAutoBehaviorForActor(actor, nowMs) {
+    if (!actor || actor.kind === "item") return;
+    if (state.drag.active && state.drag.entityId === actor.id) return;
     if (actor.roll && actor.roll.active) return;
     if (actor.eatUntil && nowMs < actor.eatUntil) return;
-    if (nowMs < state.ai.nextAt) return;
-
-    state.ai.nextAt = nowMs + AUTO_BEHAVIOR_INTERVAL_MS;
+    if (!actor.autoAi) {
+      actor.autoAi = {
+        nextAt: nowMs + AUTO_BEHAVIOR_INTERVAL_MS,
+        targetId: null,
+        lastDistance: Number.POSITIVE_INFINITY,
+        noImproveRolls: 0
+      };
+    }
+    const ai = actor.autoAi;
+    if (nowMs < ai.nextAt) return;
+    ai.nextAt = nowMs + AUTO_BEHAVIOR_INTERVAL_MS;
 
     const touchingItem = findTouchingItemForPickup(actor);
     if (touchingItem) {
-      handleAction("pickup", "auto");
-      state.ai.targetId = null;
-      state.ai.lastDistance = Number.POSITIVE_INFINITY;
-      state.ai.noImproveRolls = 0;
+      handleAction("pickup", "auto", actor);
+      ai.targetId = null;
+      ai.lastDistance = Number.POSITIVE_INFINITY;
+      ai.noImproveRolls = 0;
       return;
     }
 
     if (actor.carryingItemId) {
-      handleAction("pickup", "auto");
-      state.ai.targetId = null;
-      state.ai.lastDistance = Number.POSITIVE_INFINITY;
-      state.ai.noImproveRolls = 0;
+      handleAction("pickup", "auto", actor);
+      ai.targetId = null;
+      ai.lastDistance = Number.POSITIVE_INFINITY;
+      ai.noImproveRolls = 0;
       return;
     }
 
     const pref = findPreferredAutoTarget(actor);
     if (!pref) {
-      state.ai.targetId = null;
-      state.ai.lastDistance = Number.POSITIVE_INFINITY;
-      state.ai.noImproveRolls = 0;
+      ai.targetId = null;
+      ai.lastDistance = Number.POSITIVE_INFINITY;
+      ai.noImproveRolls = 0;
       return;
     }
 
     actor.facing = pref.target.x >= actor.x ? 1 : -1;
 
-    if (state.ai.targetId !== pref.target.id) {
-      state.ai.targetId = pref.target.id;
-      state.ai.lastDistance = pref.distance;
-      state.ai.noImproveRolls = 0;
-      handleAction("roll", "auto");
+    if (ai.targetId !== pref.target.id) {
+      ai.targetId = pref.target.id;
+      ai.lastDistance = pref.distance;
+      ai.noImproveRolls = 0;
+      handleAction("roll", "auto", actor);
       return;
     }
 
-    if (pref.distance < state.ai.lastDistance - AUTO_IMPROVE_EPS) {
-      state.ai.noImproveRolls = 0;
-    } else {
-      state.ai.noImproveRolls += 1;
-    }
-    state.ai.lastDistance = pref.distance;
+    if (pref.distance < ai.lastDistance - AUTO_IMPROVE_EPS) ai.noImproveRolls = 0;
+    else ai.noImproveRolls += 1;
+    ai.lastDistance = pref.distance;
 
-    if (state.ai.noImproveRolls >= AUTO_ROLL_NO_IMPROVE_LIMIT) {
-      handleAction("bounce", "auto");
-      state.ai.noImproveRolls = 0;
+    if (ai.noImproveRolls >= AUTO_ROLL_NO_IMPROVE_LIMIT) {
+      handleAction("bounce", "auto", actor);
+      ai.noImproveRolls = 0;
       return;
     }
 
-    handleAction("roll", "auto");
+    handleAction("roll", "auto", actor);
   }
+
+  function runAutoBehavior(nowMs) {
+    const actors = getAllEntities().filter((ent) => ent && ent.kind !== "item");
+    actors.forEach((actor) => runAutoBehaviorForActor(actor, nowMs));
+  }
+
   function getCarriedItem(carrier) {
     if (!carrier || !carrier.carryingItemId) return null;
     return getEntityById(carrier.carryingItemId);
@@ -964,7 +1024,16 @@
     const sprite = getOpaqueBounds(img);
     const ratio = sprite.sw / sprite.sh;
     const isKnife = kind === "item" && String(name || "").includes("ナイフ");
-    const entityH = isKnife ? (baseH / 3) : baseH;
+    let entityH = isKnife ? (baseH / 3) : baseH;
+    if (isKnife) {
+      const refDiag = await getKnifeReferenceDiag();
+      const myDiag = Math.hypot(Math.max(1, sprite.sw), Math.max(1, sprite.sh));
+      if (refDiag > 0 && myDiag > 0) {
+        const scale = refDiag / myDiag;
+        entityH = clamp((baseH / 3) * scale, (baseH / 3) * 0.55, (baseH / 3) * 1.45);
+      }
+    }
+    const nowMs = performance.now();
 
     return {
       id: nextEntityId++,
@@ -984,12 +1053,19 @@
       facing: -1,
       rot: 0,
       wrot: 0,
-      born: performance.now(),
+      born: nowMs,
       animTime: 0,
       landPulse: 0,
       carryingItemId: null,
       carriedById: null,
-      lastUserTouchAt: kind === "item" ? performance.now() : 0,
+      lastUserTouchAt: kind === "item" ? nowMs : 0,
+      nextSpeechAt: nowMs + AUTO_SPEECH_INTERVAL_MS * (0.7 + Math.random() * 0.6),
+      autoAi: {
+        nextAt: nowMs + AUTO_BEHAVIOR_INTERVAL_MS * (0.7 + Math.random() * 0.6),
+        targetId: null,
+        lastDistance: Number.POSITIVE_INFINITY,
+        noImproveRolls: 0
+      },
       roll: { active: false, t: 0, dur: 0.56, dir: 1, justFinished: false, targetRot: 0 }
     };
   }
@@ -1232,8 +1308,10 @@ function drawImageCover(img) {
         b.className = "char-item pick-char";
         b.dataset.name = name;
         b.innerHTML = `<img alt="${name}" src="${PUNI_BASE}/${file}"><span class="name">${name}</span>`;
-        b.addEventListener("click", () => {
+        b.addEventListener("click", async () => {
           state.selectedCharacter = name;
+          const hasActor = getCharactersInStage(state.currentStageIndex).some((ent) => ent.name === name);
+          if (!hasActor && state.player) await applyCharacterToPlayer(name);
           refreshSidebarSelection();
         });
         container.appendChild(b);
@@ -1379,12 +1457,12 @@ function drawImageCover(img) {
     document.body.classList.remove("show-left-sidebar", "show-right-sidebar");
   }
 
-  function handleAction(action, source = "system") {
-    const actor = state.player;
+  function handleAction(action, source = "system", actorOverride = null) {
+    const actor = actorOverride || getControlledActor();
     if (!actor) return;
 
-    if (source === "auto" && state.ai && state.ai.targetId) {
-      const autoTarget = getEntityById(state.ai.targetId);
+    if (source === "auto" && actor.autoAi && actor.autoAi.targetId) {
+      const autoTarget = getEntityById(actor.autoAi.targetId);
       if (autoTarget && autoTarget.stageIndex === actor.stageIndex) {
         actor.facing = autoTarget.x >= actor.x ? 1 : -1;
       }
@@ -1440,6 +1518,14 @@ function drawImageCover(img) {
       }
       return;
     }
+  }
+
+  function onActionButtonClick(e) {
+    const btn = e.target.closest(".action-trigger");
+    if (!btn) return;
+    const action = btn.dataset.action;
+    if (!action) return;
+    handleAction(action, "user");
   }
 
   function onActionButtonClick(e) {
@@ -1972,6 +2058,7 @@ function drawImageCover(img) {
 
       tryAutoSpeak(now);
       tryContactConversation(now);
+      updateDialogueQueue(now);
       runAutoBehavior(now);
       drawWorld();
       drawEntities(now);
@@ -2053,6 +2140,9 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
+
+
 
 
 
