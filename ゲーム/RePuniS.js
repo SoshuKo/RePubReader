@@ -243,7 +243,8 @@
       bestX: 0,
       bestY: 0,
       hasBest: false,
-      faceOnly: false
+      faceOnly: false,
+      groundOnly: false
     },
     speech: {
       dailyByCharacter: new Map(),
@@ -283,8 +284,8 @@
       knife: "狐色のナイフ",
       knife2: "漆黒のナイフ",
       started: false
-    }
-  };
+    },
+    loopStarted: false};
 
   const imageCache = new Map();
   const boundsCache = new Map();
@@ -1166,6 +1167,7 @@
       for (let i = bucket.items.length - 1; i >= 0; i -= 1) {
         const item = bucket.items[i];
         if (!item || item.carriedById || item.eatingById) continue;
+        if (stageIndex === ARENA_STAGE_INDEX && isKnifeName(item.name)) continue;
         const lastTouched = Number.isFinite(item.lastUserTouchAt) ? item.lastUserTouchAt : item.born;
         if (nowMs - lastTouched < ITEM_DESPAWN_IDLE_MS) continue;
         bucket.items.splice(i, 1);
@@ -1572,6 +1574,17 @@
   const collidesForNormal = (ent, x, y) => collidesAt(ent, x, y, true);
   const collidesForDrag = (ent, x, y) => collidesAt(ent, x, y, false);
 
+  function hasGroundSupportAt(ent, x, y) {
+    const footY = y + 1;
+    const halfW = getCollisionHalfWidth(ent);
+    const samples = [x, x - halfW * 0.55, x + halfW * 0.55];
+    for (const sx of samples) {
+      const t = maskTypeAt(sx, footY);
+      if (t === "solid" || t === "green") return true;
+    }
+    return false;
+  }
+
   function applyMoveCandidate(ent, nx, ny, allowGreenPass) {
     const stage = stageOf(ent.stageIndex);
     const halfW = ent.w * 0.5;
@@ -1596,6 +1609,37 @@
     return false;
   }
 
+  function tryStepUpMove(ent, dx, maxStep = null) {
+    if (!ent || ent.kind === "item") return false;
+    const ox = ent.x;
+    const oy = ent.y;
+    const stepLimit = Number.isFinite(maxStep) ? maxStep : Math.max(22, Math.min(44, Math.round(ent.h * 0.58)));
+    for (let up = 2; up <= stepLimit; up += 2) {
+      const ny = oy - up;
+      const nx = ox + dx;
+      if (collidesForNormal(ent, ox, ny)) continue;
+      if (collidesForNormal(ent, nx, ny)) continue;
+      ent.x = nx;
+      ent.y = ny;
+      for (let fall = 0; fall < stepLimit + 8; fall += 1) {
+        if (collidesForNormal(ent, ent.x, ent.y + 1)) break;
+        ent.y += 1;
+      }
+      return true;
+    }
+    ent.x = ox;
+    ent.y = oy;
+    return false;
+  }
+  function snapDownToGround(ent, maxDrop = 80) {
+    if (!ent || ent.kind === "item") return false;
+    for (let i = 0; i < maxDrop; i += 1) {
+      if (collidesForNormal(ent, ent.x, ent.y + 1)) return true;
+      ent.y += 1;
+      if (collidesForNormal(ent, ent.x, ent.y)) return false;
+    }
+    return hasGroundSupportAt(ent, ent.x, ent.y);
+  }
   function settleToGround(ent) {
     ent.y = ent.h;
     ent.vx = 0;
@@ -2345,6 +2389,7 @@
     }
 
     const step = 3;
+    const canStepUp = ent.kind !== "item" && (ent.grounded || collidesForNormal(ent, ent.x, ent.y + 1));
     let mx = ent.vx * dt;
     let my = ent.vy * dt;
     let hitWall = false;
@@ -2355,6 +2400,10 @@
       const s = Math.abs(mx) > step ? step * Math.sign(mx) : mx;
       if (applyMoveCandidate(ent, ent.x + s, ent.y, true)) mx -= s;
       else {
+        if (canStepUp && tryStepUpMove(ent, s)) {
+          mx -= s;
+          continue;
+        }
         hitWall = true;
         ent.vx = -ent.vx * 0.55;
         break;
@@ -2507,6 +2556,8 @@ function drawImageCover(img) {
     mkTitle("操作", "2px");
     const btnChar = mkAction("選択中キャラを追加", "btnSpawnChar");
     const btnItem = mkAction("選択中アイテムを配置", "btnSpawnItem");
+    const btnReset = mkAction("リセット", "btnResetStageState");
+    const btnBackTop = mkAction("トップ画面に戻る", "btnBackToStartScreen");
 
     btnChar.addEventListener("click", async () => {
       const bucket = bucketOf(state.currentStageIndex);
@@ -2538,6 +2589,16 @@ function drawImageCover(img) {
       refreshSidebarSelection();
     });
 
+    btnReset.addEventListener("click", () => {
+      applyStartModeSpawn().catch((err) => {
+        console.error(err);
+        hud.textContent = `リセットエラー: ${err.message}`;
+      });
+    });
+
+    btnBackTop.addEventListener("click", () => {
+      returnToStartScreen();
+    });
     mkTitle("キャラクター");
     CHARACTER_GROUPS.forEach((g) => {
       mkTitle(g.title, "8px");
@@ -2942,7 +3003,28 @@ function drawImageCover(img) {
     state.ready = true;
     state.lastTime = performance.now();
     if (startScreen) startScreen.classList.add("hidden");
-    requestAnimationFrame(tick);
+    if (!state.loopStarted) {
+      state.loopStarted = true;
+      requestAnimationFrame(tick);
+    }
+  }
+  function returnToStartScreen() {
+    if (state.player) {
+      state.start.selfChar = state.player.name || state.start.selfChar;
+      const held = getCarriedItem(state.player);
+      if (held && held.kind === "item") state.start.knife = held.name || state.start.knife;
+    }
+
+    if (selfCharSelect) selfCharSelect.value = state.start.selfChar;
+    if (enemyCharSelect) enemyCharSelect.value = state.start.enemyChar;
+    if (stadiumKnifeSelect) stadiumKnifeSelect.value = state.start.knife;
+    if (stadiumKnife2Select) stadiumKnife2Select.value = state.start.knife2;
+    setStartMode(state.start.mode || "play");
+
+    state.start.started = false;
+    state.ready = false;
+    closeMobileSidebars();
+    if (startScreen) startScreen.classList.remove("hidden");
   }
   function handleAction(action, source = "system", actorOverride = null, inputDir = "forward") {
     const actor = actorOverride || getControlledActor();
@@ -3424,11 +3506,26 @@ function drawImageCover(img) {
     d.bestY = ent.y;
     d.hasBest = !collidesForNormal(ent, ent.x, ent.y);
     d.faceOnly = false;
+    d.groundOnly = false;
+
+    const controlled = getControlledActor();
+    if (state.currentStageIndex === ARENA_STAGE_INDEX && ent.kind !== "item" && controlled && ent.id === controlled.id) {
+      d.groundOnly = true;
+      if (!hasGroundSupportAt(ent, ent.x, ent.y)) {
+        d.active = false;
+        d.pointerId = null;
+        d.entityId = null;
+        d.groundOnly = false;
+        return;
+      }
+    }
 
     if (state.currentStageIndex === ARENA_STAGE_INDEX) {
       if (ent.kind !== "item") {
-        ent.facing = world.x >= ent.x ? 1 : -1;
-        d.faceOnly = true;
+        if (!(controlled && ent.id === controlled.id)) {
+          ent.facing = world.x >= ent.x ? 1 : -1;
+          d.faceOnly = true;
+        }
       } else {
         d.active = false;
         d.pointerId = null;
@@ -3436,6 +3533,7 @@ function drawImageCover(img) {
         return;
       }
     }
+
 
     ent.vx = 0;
     ent.vy = 0;
@@ -3462,16 +3560,39 @@ function drawImageCover(img) {
     const desiredX = world.x - d.grabOffsetX;
     const desiredY = world.y - d.grabOffsetY;
 
-    const smooth = 0.28;
+    const smooth = state.currentStageIndex === ARENA_STAGE_INDEX ? 0.01 : 0.28;
     const nx = ent.x + (desiredX - ent.x) * smooth;
-    const ny = ent.y + (desiredY - ent.y) * smooth;
+    const ny = d.groundOnly ? ent.y : (ent.y + (desiredY - ent.y) * smooth);
 
     const px = ent.x;
     const py = ent.y;
     if (applyMoveCandidate(ent, nx, ny, true) && !collidesForNormal(ent, ent.x, ent.y)) {
-      d.bestX = ent.x;
-      d.bestY = ent.y;
-      d.hasBest = true;
+      if (d.groundOnly && !hasGroundSupportAt(ent, ent.x, ent.y)) {
+        if (!snapDownToGround(ent, Math.max(26, Math.min(72, Math.round(ent.h * 1.1))))) {
+          ent.x = px;
+          ent.y = py;
+        }
+      }
+      if (!d.groundOnly || hasGroundSupportAt(ent, ent.x, ent.y)) {
+        d.bestX = ent.x;
+        d.bestY = ent.y;
+        d.hasBest = true;
+      }
+    } else {
+      const dragDx = nx - px;
+      if (Math.abs(dragDx) > 0.1 && tryStepUpMove(ent, dragDx, Math.max(26, Math.min(52, Math.round(ent.h * 0.72))))) {
+        if (d.groundOnly && !hasGroundSupportAt(ent, ent.x, ent.y)) {
+          if (!snapDownToGround(ent, Math.max(26, Math.min(72, Math.round(ent.h * 1.1))))) {
+            ent.x = px;
+            ent.y = py;
+          }
+        }
+        if (!d.groundOnly || hasGroundSupportAt(ent, ent.x, ent.y)) {
+          d.bestX = ent.x;
+          d.bestY = ent.y;
+          d.hasBest = true;
+        }
+      }
     }
 
     const dx = ent.x - px;
@@ -3500,6 +3621,7 @@ function drawImageCover(img) {
     d.pointerId = null;
     d.entityId = null;
     d.faceOnly = false;
+    d.groundOnly = false;
 
     if (ent) {
       if (!faceOnly && collidesForNormal(ent, ent.x, ent.y)) {
@@ -3531,6 +3653,7 @@ function drawImageCover(img) {
     d.pointerId = null;
     d.entityId = null;
     d.faceOnly = false;
+    d.groundOnly = false;
 
     if (ent && !faceOnly) {
       ent.x = d.downX;
@@ -3961,6 +4084,33 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
