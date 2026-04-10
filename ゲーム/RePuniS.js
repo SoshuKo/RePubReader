@@ -685,10 +685,20 @@
     return false;
   }
 
+  function getCollisionHalfWidth(ent) {
+    return ent.w * 0.5 * (Number.isFinite(ent.hitboxScaleX) ? ent.hitboxScaleX : 1);
+  }
+
+  function getCollisionHeight(ent) {
+    return ent.h * (Number.isFinite(ent.hitboxScaleY) ? ent.hitboxScaleY : 1);
+  }
+
   function collidesAt(ent, px, py, blockGreen) {
-    const left = px - ent.w * 0.5;
-    const right = px + ent.w * 0.5;
-    const top = py - ent.h;
+    const halfW = getCollisionHalfWidth(ent);
+    const colH = getCollisionHeight(ent);
+    const left = px - halfW;
+    const right = px + halfW;
+    const top = py - colH;
     const bottom = py - 1;
 
     for (let y = top; y <= bottom; y += 2) {
@@ -807,14 +817,19 @@
   }
 
   function overlapsEntity(a, b, pad = 0) {
-    const al = a.x - a.w * 0.5 - pad;
-    const ar = a.x + a.w * 0.5 + pad;
-    const at = a.y - a.h - pad;
+    const ahw = getCollisionHalfWidth(a);
+    const bhw = getCollisionHalfWidth(b);
+    const ah = getCollisionHeight(a);
+    const bh = getCollisionHeight(b);
+
+    const al = a.x - ahw - pad;
+    const ar = a.x + ahw + pad;
+    const at = a.y - ah - pad;
     const ab = a.y + pad;
 
-    const bl = b.x - b.w * 0.5;
-    const br = b.x + b.w * 0.5;
-    const bt = b.y - b.h;
+    const bl = b.x - bhw;
+    const br = b.x + bhw;
+    const bt = b.y - bh;
     const bb = b.y;
 
     return al <= br && ar >= bl && at <= bb && ab >= bt;
@@ -955,11 +970,11 @@
     const dir = carrier.facing >= 0 ? 1 : -1;
     item.stageIndex = carrier.stageIndex;
     item.x = clamp(
-      carrier.x + dir * carrier.w * 0.08,
+      carrier.x + dir * carrier.w * 0.02,
       stage.x + item.w * 0.5,
       stage.x + stage.width - item.w * 0.5
     );
-    item.y = carrier.y - carrier.h + item.h * 0.9;
+    item.y = carrier.y - carrier.h + item.h * 0.5;
     item.vx = carrier.vx;
     item.vy = carrier.vy;
     item.rot = carrier.rot * 0.18;
@@ -1047,10 +1062,19 @@
     const isKnife = kind === "item" && String(name || "").includes("ナイフ");
     const nowMs = performance.now();
 
-    const entityH = isKnife ? Math.max(1, sprite.sh / 3) : baseH;
+    let knifeScale = 1 / 3;
+    if (isKnife) {
+      const refDiag = await getKnifeReferenceDiag();
+      const thisDiag = Math.hypot(Math.max(1, sprite.sw), Math.max(1, sprite.sh));
+      if (refDiag > 0 && thisDiag > 0) knifeScale = (refDiag / thisDiag) / 3;
+    }
+
+    const entityH = isKnife ? Math.max(1, sprite.sh * knifeScale) : baseH;
     const entityW = isKnife
-      ? Math.max(1, sprite.sw / 3)
+      ? Math.max(1, sprite.sw * knifeScale)
       : (kind === "item" ? entityH * ratio : clamp(entityH * ratio, 18, 180));
+    const hitboxScaleX = isKnife ? 0.55 : 1;
+    const hitboxScaleY = isKnife ? 0.55 : 1;
 
     return {
       id: nextEntityId++,
@@ -1064,6 +1088,8 @@
       y: entityH,
       w: entityW,
       h: entityH,
+      hitboxScaleX,
+      hitboxScaleY,
       vx: 0,
       vy: 0,
       grounded: false,
@@ -1083,7 +1109,8 @@
         lastDistance: Number.POSITIVE_INFINITY,
         noImproveRolls: 0
       },
-      roll: { active: false, t: 0, dur: 0.56, dir: 1, justFinished: false, targetRot: 0 }
+      roll: { active: false, t: 0, dur: 0.56, dir: 1, justFinished: false, targetRot: 0 },
+      bounceForwardActive: false
     };
   }
 
@@ -1180,7 +1207,13 @@
       ent.roll.justFinished = false;
     }
 
-    if (hitFloor) ent.landPulse = Math.min(1, ent.landPulse + 0.7);
+    if (hitFloor) {
+      if (ent.bounceForwardActive) {
+        ent.vx = 0;
+        ent.bounceForwardActive = false;
+      }
+      ent.landPulse = Math.min(1, ent.landPulse + 0.7);
+    }
     if (hitWall) ent.landPulse = Math.min(1, ent.landPulse + 0.25);
   }
 
@@ -1419,19 +1452,62 @@ function drawImageCover(img) {
   }
 
   function onEntityPanelClick(e) {
-    const btn = e.target.closest('button[data-action="delete"]');
+    const btn = e.target.closest("button[data-action][data-id]");
     if (!btn) return;
+
+    const action = btn.dataset.action;
+    const id = Number(btn.dataset.id);
+    if (!Number.isFinite(id)) return;
+    if (action !== "set-player" && action !== "delete") return;
 
     e.preventDefault();
     e.stopPropagation();
 
-    const id = Number(btn.dataset.id);
-    if (!Number.isFinite(id)) return;
+    if (action === "set-player") {
+      setPlayableCharacterById(id);
+      return;
+    }
 
-    deleteEntityById(id).catch((err) => {
-      console.error(err);
-      hud.textContent = `削除エラー: ${err.message}`;
-    });
+    if (action === "delete") {
+      deleteEntityById(id).catch((err) => {
+        console.error(err);
+        hud.textContent = `削除エラー: ${err.message}`;
+      });
+    }
+  }
+
+  function setPlayableCharacterById(id) {
+    const ent = getEntityById(id);
+    if (!ent || ent.kind === "item") return;
+
+    state.selectedCharacter = ent.name;
+    refreshSidebarSelection();
+
+    if (!state.player || state.player.id !== ent.id) {
+      const prevPlayer = state.player;
+      if (prevPlayer && prevPlayer.id !== ent.id) {
+        prevPlayer.kind = "npc";
+        const prevBucket = bucketOf(prevPlayer.stageIndex);
+        if (prevBucket && !prevBucket.npcs.some((x) => x.id === prevPlayer.id)) {
+          prevBucket.npcs.push(prevPlayer);
+        }
+      }
+
+      const targetBucket = bucketOf(ent.stageIndex);
+      if (targetBucket) {
+        const idx = targetBucket.npcs.findIndex((x) => x.id === ent.id);
+        if (idx >= 0) targetBucket.npcs.splice(idx, 1);
+      }
+
+      ent.kind = "player";
+      state.player = ent;
+    }
+
+    state.currentStageIndex = ent.stageIndex;
+    state.ui.panelDirty = true;
+    updateStageLabel();
+    updateStageNav();
+    syncEntityPanelToPngEdge();
   }
 
   
@@ -1486,7 +1562,11 @@ function drawImageCover(img) {
     if (action === "bounce") {
       const jumpHeight = actor.h * 2;
       const jumpV = Math.sqrt(2 * PHYS.gravity * jumpHeight);
+      const dir = actor.facing >= 0 ? 1 : -1;
       actor.vy = Math.min(actor.vy, -jumpV);
+      actor.vx += dir * 65;
+      actor.vx = clamp(actor.vx, -220, 220);
+      actor.bounceForwardActive = true;
       actor.grounded = false;
       return;
     }
@@ -1591,6 +1671,16 @@ function drawImageCover(img) {
       badge.className = "badge";
       badge.textContent = ent.kind === "item" ? "アイテム" : "キャラ";
       row.appendChild(badge);
+
+      if (ent.kind !== "item") {
+        const setPlayerBtn = document.createElement("button");
+        setPlayerBtn.className = "op";
+        setPlayerBtn.type = "button";
+        setPlayerBtn.textContent = state.player && ent.id === state.player.id ? "操作中" : "操作";
+        setPlayerBtn.dataset.action = "set-player";
+        setPlayerBtn.dataset.id = String(ent.id);
+        row.appendChild(setPlayerBtn);
+      }
 
       const del = document.createElement("button");
       del.className = "op del";
@@ -1735,7 +1825,9 @@ function drawImageCover(img) {
   }
 
   function pointOnEntity(ent, wx, wy) {
-    return wx >= ent.x - ent.w * 0.5 && wx <= ent.x + ent.w * 0.5 && wy >= ent.y - ent.h && wy <= ent.y;
+    const halfW = ent.kind === "item" ? ent.w * 0.5 : getCollisionHalfWidth(ent);
+    const colH = ent.kind === "item" ? ent.h : getCollisionHeight(ent);
+    return wx >= ent.x - halfW && wx <= ent.x + halfW && wy >= ent.y - colH && wy <= ent.y;
   }
 
   function pickEntityAt(wx, wy) {
@@ -2155,6 +2247,16 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
+
+
+
+
+
+
+
+
+
 
 
 
