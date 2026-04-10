@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RePuniS</title>
+    <link rel="stylesheet" href="./RePuniS.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <h1>ぷに選択</h1>
+      <div class="help">キャラ本体を掴んでドラッグ。</div>
+      <div id="charList"></div>
+    </aside>
+
+    <main id="gameWrap">
+      <canvas id="gameCanvas"></canvas>
+      <button id="navLeft" class="stage-nav" type="button" aria-label="左ステージへ">◀</button>
+      <button id="navRight" class="stage-nav" type="button" aria-label="右ステージへ">▶</button>
+      <div id="hud">読み込み中...</div>
+
+      <div id="mobileToggles">
+        <button id="toggleLeftSidebar" class="mobile-toggle-btn" type="button">キャラ</button>
+        <button id="toggleRightSidebar" class="mobile-toggle-btn" type="button">情報</button>
+      </div>
+
+      <section id="mobileActionOverlay" aria-label="モバイル操作パネル">
+        <div class="panel-title">操作</div>
+        <div class="action-grid">
+          <button class="action-btn action-trigger" data-action="bounce" type="button">はねる</button>
+          <button class="action-btn action-trigger" data-action="roll" type="button">転がる</button>
+          <button class="action-btn action-trigger" data-action="pickup" type="button">拾う/捨てる</button>
+        </div>
+        <div class="panel-title">セリフログ</div>
+        <div id="speechLogMobile" class="speech-log"></div>
+      </section>
+    </main>
+
+    <aside id="entityPanel" aria-label="現在ステージのオブジェクト">
+      <div id="stageSelectSection">
+        <div class="panel-title">ステージ選択</div>
+        <select id="stageSelector" aria-label="ステージ選択"></select>
+      </div>
+
+      <div id="entitySection">
+        <div id="entityCountTitle" class="panel-title">現在ステージのキャラ/アイテム (0)</div>
+        <div id="entityList"></div>
+      </div>
+
+      <div class="desktop-only" id="actionSection">
+        <div class="panel-title">操作</div>
+        <div class="action-grid">
+          <button class="action-btn action-trigger" data-action="bounce" type="button">はねる</button>
+          <button class="action-btn action-trigger" data-action="roll" type="button">転がる</button>
+          <button class="action-btn action-trigger" data-action="pickup" type="button">拾う/捨てる</button>
+        </div>
+      </div>
+
+      <div class="desktop-only" id="speechSection">
+        <div class="panel-title">セリフログ</div>
+        <div id="speechLogDesktop" class="speech-log"></div>
+      </div>
+    </aside>
+  </div>
+
+    <script src="./RePuniS_config.js"></script>
+  <script src="./RePuniS.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
