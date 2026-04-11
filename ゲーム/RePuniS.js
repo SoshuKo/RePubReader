@@ -3067,8 +3067,12 @@ function drawImageCover(img) {
     const btnBackTop = mkAction("トップ画面に戻る", "btnBackToStartScreen");
 
     btnChar.addEventListener("click", async () => {
-      if (state.start.mode === "stadium") {
+      if (state.start.mode === "stadium" || (state.online.active && state.online.phase === "battle")) {
         hud.textContent = "バトルモード中はキャラクターを追加できません。";
+        return;
+      }
+      if (state.online.active && !state.online.isHost) {
+        hud.textContent = "キャラクター追加はホストのみです。";
         return;
       }
       const bucket = bucketOf(state.currentStageIndex);
@@ -3086,8 +3090,12 @@ function drawImageCover(img) {
     });
 
     btnItem.addEventListener("click", async () => {
-      if (state.start.mode === "stadium") {
+      if (state.start.mode === "stadium" || (state.online.active && state.online.phase === "battle")) {
         hud.textContent = "バトルモード中はアイテムを追加できません。";
+        return;
+      }
+      if (state.online.active && !state.online.isHost) {
+        hud.textContent = "アイテム追加はホストのみです。";
         return;
       }
       const bucket = bucketOf(state.currentStageIndex);
@@ -3105,6 +3113,10 @@ function drawImageCover(img) {
     });
 
     btnReset.addEventListener("click", () => {
+      if (state.online.active && state.online.phase === "battle") {
+        hud.textContent = "バトルモード中はリセットできません。";
+        return;
+      }
       if (state.online.active && !state.online.isHost) {
         hud.textContent = "オンライン中のリセット権限はホストのみです。";
         return;
@@ -3231,15 +3243,36 @@ function drawImageCover(img) {
     if (!Number.isFinite(id)) return;
     if (action !== "set-player" && action !== "delete" && action !== "revive") return;
 
-    if (state.start.mode === "stadium") {
+    const isBattleActive = state.start.mode === "stadium" || (state.online.active && state.online.phase === "battle");
+    if (isBattleActive) {
       e.preventDefault();
       e.stopPropagation();
-      hud.textContent = "バトルモード中は右サイドバー操作を変更できません。";
+      hud.textContent = "バトルモード中は操作できません。";
       return;
     }
 
     e.preventDefault();
     e.stopPropagation();
+
+    if (state.online.active) {
+      const ent = getEntityById(id);
+      if (action === "set-player") {
+        if (!ent || ent.onlineToken !== state.online.sessionToken) {
+          hud.textContent = "自分のキャラクターのみ切替可能です。";
+          return;
+        }
+      }
+      if (action === "delete" || action === "revive") {
+        if (!state.online.isHost) {
+          hud.textContent = "削除/観戦解除はホストのみです。";
+          return;
+        }
+        if (ent && ent.isOnlinePlayer) {
+          hud.textContent = "オンラインプレイヤーは削除/観戦解除できません。";
+          return;
+        }
+      }
+    }
 
     if (action === "set-player") {
       setPlayableCharacterById(id);
@@ -4320,10 +4353,17 @@ function drawImageCover(img) {
 
       const actions = document.createElement("div");
       actions.className = "entity-actions";
-      const lockEntityOps = state.start.mode === "stadium" || (state.online.active && !state.online.isHost);
+      const isBattleActive = state.start.mode === "stadium" || (state.online.active && state.online.phase === "battle");
       const isRemoteOnline = state.online.active && ent.isOnlinePlayer && ent.onlineToken && ent.onlineToken !== state.online.sessionToken;
+      const isOwnOnlineEntity = state.online.active && ent.isOnlinePlayer && ent.onlineToken === state.online.sessionToken;
+      const isAnyOnlinePlayer = state.online.active && ent.isOnlinePlayer;
+      // set-player: own entity in online, any non-remote in offline
+      // set-player: own entity in online mode only; any non-remote entity in offline
+      const canSetPlayer = !isBattleActive && !isRemoteOnline && (!state.online.active || isOwnOnlineEntity);
+      // host-only ops (delete/revive): host in online play, not on online player entities; any in offline
+      const canHostOp = !isBattleActive && !isAnyOnlinePlayer && (!state.online.active || state.online.isHost);
 
-      if (ent.kind !== "item" && !lockEntityOps && !isRemoteOnline) {
+      if (ent.kind !== "item" && canSetPlayer) {
         const setPlayerBtn = document.createElement("button");
         setPlayerBtn.className = "op";
         setPlayerBtn.type = "button";
@@ -4331,19 +4371,19 @@ function drawImageCover(img) {
         setPlayerBtn.dataset.action = "set-player";
         setPlayerBtn.dataset.id = String(ent.id);
         actions.appendChild(setPlayerBtn);
-
-        if (getCharacterState(ent) === "spectator") {
-          const reviveBtn = document.createElement("button");
-          reviveBtn.className = "op revive";
-          reviveBtn.type = "button";
-          reviveBtn.textContent = "観戦解除";
-          reviveBtn.dataset.action = "revive";
-          reviveBtn.dataset.id = String(ent.id);
-          actions.appendChild(reviveBtn);
-        }
       }
 
-      if (!lockEntityOps && !isRemoteOnline) {
+      if (ent.kind !== "item" && canHostOp && getCharacterState(ent) === "spectator") {
+        const reviveBtn = document.createElement("button");
+        reviveBtn.className = "op revive";
+        reviveBtn.type = "button";
+        reviveBtn.textContent = "観戦解除";
+        reviveBtn.dataset.action = "revive";
+        reviveBtn.dataset.id = String(ent.id);
+        actions.appendChild(reviveBtn);
+      }
+
+      if (canHostOp) {
         const del = document.createElement("button");
         del.className = "op del";
         del.type = "button";
