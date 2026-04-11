@@ -86,7 +86,7 @@
   const ITEM_DESPAWN_IDLE_MS = 2 * 60 * 1000;
   const ITEM_SWEEP_INTERVAL_MS = 1000;
   const ONLINE_STATE_SEND_MS = 90;
-  const ONLINE_DEFAULT_SERVER = "";
+  const ONLINE_DEFAULT_SERVER = "https://joining-constantly-operator-views.trycloudflare.com";
 
   const EAT_EFFECT_MS = 2200;
   const COMBAT_FRAME_RATE = 60;
