@@ -153,8 +153,8 @@
 
   const CHAR_BASE_H = 69;
   const ITEM_BASE_H = Math.round(CHAR_BASE_H * 0.75);
-  const NPC_LIMIT = 2;
-  const ITEM_LIMIT = 2;
+  const NPC_LIMIT = 6;
+  const ITEM_LIMIT = 12;
   const KNIFE_REFERENCE_NAME = "ガナリのナイフ";
 
   const PHYS = {
@@ -172,6 +172,23 @@
   const SPECIAL_COOLDOWN_MS = 60 * 1000;
   const GUARD_COOLDOWN_MS = 3 * 1000;
   const GUARD_ACTIVE_MS = 2 * 1000;
+  const SPECIAL_INVUL_TYPES = new Set([
+    "berserkSecret",
+    "voidSecret",
+    "balanceSecret",
+    "witchSecret",
+    "divaSecret",
+    "yandereSecret"
+  ]);
+  const SPECIAL_DEF = {
+    "アカウ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "ファタ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "タネイ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "ミナツ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
+    "サテラ": { type: "witchSecret", effect: "effect4", color: "#ffd54a" },
+    "ジョーチョ": { type: "divaSecret", effect: "effect5", color: "#9cd7ff" },
+    "コト": { type: "yandereSecret", effect: "effect6", color: "#73b6ff" }
+  };
   const HP_MAX = 300;
   const HP_DANGER_THRESHOLD = 50;
   const EAT_HEAL_AMOUNT = 125;
@@ -288,12 +305,15 @@
       noImproveRolls: 0
     },
     itemLifecycle: {
-      nextSweepAt: performance.now() + ITEM_SWEEP_INTERVAL_MS
+      nextSweepAt: performance.now() + ITEM_SWEEP_INTERVAL_MS,
+      nextBattleFoodSpawnAt: performance.now() + 30 * 1000
     },
     combat: {
       effects: [],
       slashFxImg: null,
-      explosionFxImg: null
+      explosionFxImg: null,
+      specialFxImgs: {},
+      specialTextFx: []
     },
     ui: {
       panelDirty: true,
@@ -382,7 +402,214 @@
     const held = getHeldKnifeItem(actor);
     return held ? held.name : "";
   }
+  function getSpecialSpec(actor) {
+    if (!actor) return null;
+    if (SPECIAL_DEF[actor.name]) return SPECIAL_DEF[actor.name];
+    const knifeName = getHeldKnifeName(actor);
+    if (knifeName === "真紅のナイフ") return { type: "berserkSecret", effect: "effect1", color: "#ff5848" };
+    if (knifeName === "漆黒のナイフ") return { type: "voidSecret", effect: "effect2", color: "#55a7ff" };
+    if (knifeName === "狐色のナイフ") return { type: "balanceSecret", effect: "effect3", color: "#45cf66" };
+    if (knifeName === "サテラのナイフ") return { type: "witchSecret", effect: "effect4", color: "#ffd54a" };
+    if (knifeName === "アヤのナイフ") return { type: "divaSecret", effect: "effect5", color: "#9cd7ff" };
+    if (knifeName === "コトのナイフ") return { type: "yandereSecret", effect: "effect6", color: "#73b6ff" };
+    return null;
+  }
 
+  function hasSpecialMoveForActor(actor) {
+    return !!getSpecialSpec(actor);
+  }
+
+  function isSpecialActive(actor) {
+    return !!(actor && actor.specialMove && actor.specialMove.active);
+  }
+
+  function spawnSpecialText(stageIndex, x, y, text, color = "#fff", life = 42, scale = 1) {
+    state.combat.specialTextFx.push({ stageIndex, x, y, text, color, life, maxLife: life, scale });
+  }
+
+  function spawnSpecialEffect(kind, stageIndex, x, y, dir = 1, scale = 1, tint = null, life = 24, effectKey = null) {
+    state.combat.effects.push({ kind, stageIndex, x, y, dir, scale, tint, frame: 0, life, effectKey });
+  }
+
+  function getNearestEnemyInRange(actor, range = Infinity) {
+    if (!actor) return null;
+    let best = null;
+    let bestD = Infinity;
+    const chars = getCharactersInStage(actor.stageIndex);
+    for (const target of chars) {
+      if (!target || target.id === actor.id || getCharacterState(target) === "spectator") continue;
+      const d = Math.hypot(target.x - actor.x, target.y - actor.y);
+      if (d < bestD && d <= range) {
+        best = target;
+        bestD = d;
+      }
+    }
+    return best;
+  }
+
+  function finishSpecialMove(actor) {
+    if (!actor || !actor.specialMove) return;
+    actor.specialMove.active = false;
+    actor.specialMove = null;
+    actor.damageCutUntil = 0;
+    if (actor.specialCharge) {
+      actor.specialCharge.active = false;
+      actor.specialCharge.ready = false;
+      actor.specialCharge.buttonAction = "";
+    }
+  }
+
+  function performAreaSpecialHit(attacker, cx, cy, rx, ry, damage, opts = {}) {
+    if (!attacker) return;
+    const chars = getCharactersInStage(attacker.stageIndex);
+    for (const target of chars) {
+      if (!target || target.id === attacker.id || getCharacterState(target) === "spectator") continue;
+      if (opts.hitIds && opts.hitIds.has(target.id)) continue;
+      const dx = target.x - cx;
+      const dy = (target.y - target.h * 0.5) - cy;
+      const nx = dx / Math.max(1, rx);
+      const ny = dy / Math.max(1, ry);
+      if ((nx * nx + ny * ny) > 1) continue;
+      const dir = dx >= 0 ? 1 : -1;
+      const hit = applyHitToTarget(attacker, target, {
+        damage,
+        hitstop: opts.hitstop || 8,
+        knockback: opts.knockback || "medium",
+        allowCritical: false
+      }, dir);
+      if (hit && opts.hitIds) opts.hitIds.add(target.id);
+    }
+  }
+
+  function triggerSpecialMove(actor, nowMs) {
+    if (!actor || actor.kind === "item") return false;
+    if (isSpecialActive(actor)) return false;
+    if (getCharacterState(actor) === "spectator") return false;
+    const spec = getSpecialSpec(actor);
+    if (!spec) return false;
+
+    actor.specialMove = {
+      active: true,
+      type: spec.type,
+      effectKey: spec.effect,
+      tint: spec.color,
+      startedAt: nowMs,
+      finishAt: nowMs + 2200,
+      nextPulseAt: nowMs + 140,
+      nextStrikeAt: nowMs + 160,
+      counterWindowOpen: spec.type === "voidSecret" || spec.type === "yandereSecret",
+      counterTriggered: false,
+      pendingCounterVictimId: null,
+      pulsesDone: 0,
+      phase: 0,
+      hitIds: new Set()
+    };
+
+    actor.damageCutUntil = nowMs + 2200;
+    actor.hitstopFrames = 0;
+    actor.vx = 0;
+    actor.vy = 0;
+    actor.grounded = false;
+    if (actor.roll) actor.roll.active = false;
+    if (actor.combat) actor.combat.type = null;
+
+    spawnSpecialText(actor.stageIndex, actor.x, actor.y - actor.h * 1.15, "秘技", spec.color || "#fff", 48, 1.12);
+    return true;
+  }
+
+  function updateSpecialMoves(nowMs, dt) {
+    const chars = getAllEntities().filter((ent) => ent && ent.kind !== "item");
+    for (const actor of chars) {
+      const sm = actor.specialMove;
+      if (!sm || !sm.active) continue;
+
+      actor.hitstopFrames = 0;
+      const facing = actor.facing >= 0 ? 1 : -1;
+
+      if ((Math.floor((nowMs - sm.startedAt) / 90) % 2) === 0) {
+        spawnSpecialEffect("special", actor.stageIndex, actor.x + (Math.random() - 0.5) * actor.w * 1.2, actor.y - actor.h * (0.35 + Math.random() * 0.7), facing, 0.9 + Math.random() * 0.4, sm.tint, 14, sm.effectKey);
+      }
+
+      if (sm.type === "berserkSecret" || sm.type === "witchSecret") {
+        if (nowMs >= sm.nextStrikeAt && sm.phase < (sm.type === "berserkSecret" ? 3 : 5)) {
+          const target = getNearestEnemyInRange(actor, actor.w * 10);
+          if (target) {
+            const dir = target.x >= actor.x ? 1 : -1;
+            actor.facing = dir;
+            const stage = stageOf(actor.stageIndex);
+            actor.x = clamp(target.x - dir * actor.w * 0.9, stage.x + actor.w * 0.5, stage.x + stage.width - actor.w * 0.5);
+            spawnSpecialEffect("special", actor.stageIndex, actor.x, actor.y - actor.h * 0.58, dir, sm.type === "berserkSecret" ? 1.45 : 1.22, sm.tint, 18, sm.effectKey);
+            performAreaSpecialHit(actor, target.x, target.y - target.h * 0.42, actor.w * 1.7, actor.h * 1.25, sm.type === "berserkSecret" ? 34 : 22, { hitstop: 10, knockback: "medium", hitIds: new Set() });
+          }
+          sm.phase += 1;
+          sm.nextStrikeAt = nowMs + (sm.type === "berserkSecret" ? 240 : 150);
+        }
+      } else if (sm.type === "balanceSecret") {
+        actor.vx = 0;
+        actor.vy = 0;
+        if (nowMs >= sm.nextPulseAt && sm.pulsesDone < 6) {
+          sm.pulsesDone += 1;
+          sm.nextPulseAt = nowMs + 180;
+          const lineX = actor.x + facing * actor.w * (0.45 + sm.pulsesDone * 0.18);
+          spawnSpecialEffect("special", actor.stageIndex, lineX, actor.y - actor.h * 0.58, facing, 2.0, sm.tint, 22, sm.effectKey);
+          performAreaSpecialHit(actor, lineX, actor.y - actor.h * 0.55, actor.w * 3.8, actor.h * 2.4, 18, { hitstop: 8, knockback: "small", hitIds: new Set() });
+        }
+      } else if (sm.type === "divaSecret") {
+        actor.vx = 0;
+        actor.vy = 0;
+        if (nowMs >= sm.nextPulseAt && sm.pulsesDone < 7) {
+          sm.pulsesDone += 1;
+          sm.nextPulseAt = nowMs + 170;
+          const r = actor.w * (0.8 + sm.pulsesDone * 0.52);
+          spawnSpecialEffect("echo", actor.stageIndex, actor.x, actor.y - actor.h * 0.52, 1, r / Math.max(1, actor.w), sm.tint, 22, sm.effectKey);
+          performAreaSpecialHit(actor, actor.x, actor.y - actor.h * 0.52, r, actor.h * (0.7 + sm.pulsesDone * 0.12), 20, { hitstop: 7, knockback: "small", hitIds: new Set() });
+        }
+      } else if (sm.type === "voidSecret" || sm.type === "yandereSecret") {
+        actor.vx = 0;
+        actor.vy = 0;
+        if (sm.counterTriggered && !sm.resolved) {
+          sm.resolved = true;
+          const cx = actor.x + facing * actor.w * 0.8;
+          const cy = actor.y - actor.h * 0.55;
+          spawnSpecialEffect("special", actor.stageIndex, cx, cy, facing, sm.type === "voidSecret" ? 2.0 : 1.55, sm.tint, 28, sm.effectKey);
+          performAreaSpecialHit(actor, cx, cy, actor.w * (sm.type === "voidSecret" ? 3.0 : 2.5), actor.h * (sm.type === "voidSecret" ? 2.2 : 1.9), sm.type === "voidSecret" ? 72 : 48, { hitstop: 12, knockback: "medium", hitIds: new Set() });
+          sm.finishAt = nowMs + 420;
+        }
+      }
+
+      if (nowMs >= sm.finishAt) {
+        if (sm.type === "balanceSecret") {
+          performAreaSpecialHit(actor, actor.x + facing * actor.w, actor.y - actor.h * 0.55, actor.w * 4.6, actor.h * 2.8, 42, { hitstop: 12, knockback: "medium", hitIds: new Set() });
+        }
+        finishSpecialMove(actor);
+      }
+    }
+  }
+
+  function drawSpecialTexts() {
+    const view = getViewTransform();
+    for (let i = state.combat.specialTextFx.length - 1; i >= 0; i -= 1) {
+      const fx = state.combat.specialTextFx[i];
+      if (fx.stageIndex !== state.currentStageIndex) continue;
+      const alpha = clamp(fx.life / fx.maxLife, 0, 1);
+      const x = (fx.x - state.camera.x) * view.zoom + view.offsetX;
+      const y = (fx.y - state.camera.y) * view.zoom + view.offsetY;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = `bold ${Math.round(24 * (fx.scale || 1))}px "Segoe UI", sans-serif`;
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = "rgba(0,0,0,0.55)";
+      ctx.strokeText(fx.text, x, y);
+      ctx.fillStyle = fx.color || "#fff";
+      ctx.fillText(fx.text, x, y);
+      ctx.restore();
+      fx.life -= 1;
+      fx.y -= 0.7;
+      if (fx.life <= 0) state.combat.specialTextFx.splice(i, 1);
+    }
+  }
   function getMotionSpeedMultiplier(actor) {
     const knifeName = getHeldKnifeName(actor);
     return knifeName === "サテラのナイフ" ? 1.2 : 1;
@@ -491,7 +718,9 @@
     return false;
   }
   function isActorInvulnerable(actor) {
-    if (!actor || actor.kind === "item" || !actor.combat || !actor.combat.type) return false;
+    if (!actor || actor.kind === "item") return false;
+    if (isSpecialActive(actor) && SPECIAL_INVUL_TYPES.has(actor.specialMove.type)) return true;
+    if (!actor.combat || !actor.combat.type) return false;
     const frame = getCombatFrame(actor);
     if (actor.combat.type === "rollForward") {
       return frame >= COMBAT_DEF.rollForward.evadeStart && frame <= COMBAT_DEF.rollForward.evadeEnd;
@@ -552,6 +781,20 @@
     if (!target || target.kind === "item") return false;
     if (getCharacterState(target) === "spectator") return false;
     const nowMs = performance.now();
+    if (isSpecialActive(target) && target.specialMove.counterWindowOpen && !target.specialMove.counterTriggered) {
+      target.specialMove.counterTriggered = true;
+      target.specialMove.pendingCounterVictimId = attacker ? attacker.id : null;
+      target.hitstopFrames = Math.max(Number.isFinite(target.hitstopFrames) ? target.hitstopFrames : 0, 10);
+      if (attacker) attacker.hitstopFrames = Math.max(Number.isFinite(attacker.hitstopFrames) ? attacker.hitstopFrames : 0, 10);
+      return false;
+    }
+
+    if (Number.isFinite(target.damageCutUntil) && nowMs < target.damageCutUntil) {
+      target.hitstopFrames = Math.max(Number.isFinite(target.hitstopFrames) ? target.hitstopFrames : 0, 2);
+      if (attacker) attacker.hitstopFrames = Math.max(Number.isFinite(attacker.hitstopFrames) ? attacker.hitstopFrames : 0, 2);
+      return false;
+    }
+
     if (Number.isFinite(target.guardUntil) && nowMs < target.guardUntil) {
       target.hitstopFrames = Math.max(Number.isFinite(target.hitstopFrames) ? target.hitstopFrames : 0, 2);
       if (attacker) attacker.hitstopFrames = Math.max(Number.isFinite(attacker.hitstopFrames) ? attacker.hitstopFrames : 0, 2);
@@ -1005,6 +1248,47 @@
         return;
       }
 
+      if (fx.kind === "special") {
+        const img = (fx.effectKey && state.combat.specialFxImgs[fx.effectKey]) || state.combat.specialFxImgs.effect1 || slashImg;
+        if (!img) return;
+        const alpha = clamp(fx.life / 24, 0, 1);
+        const baseW = 70 * view.zoom * (fx.scale || 1);
+        const baseH = baseW * (img.naturalHeight / Math.max(1, img.naturalWidth));
+        ctx.save();
+        ctx.globalCompositeOperation = "source-over";
+        ctx.globalAlpha = 0.92 * alpha;
+        ctx.translate(x, y);
+        if ((fx.dir || 1) < 0) ctx.scale(-1, 1);
+        if (fx.tint) {
+          if (fx.tint === "#ff5848") ctx.filter = "sepia(1) saturate(7) hue-rotate(-35deg) brightness(1.12)";
+          else if (fx.tint === "#55a7ff") ctx.filter = "sepia(1) saturate(8) hue-rotate(165deg) brightness(1.1)";
+          else if (fx.tint === "#45cf66") ctx.filter = "sepia(1) saturate(8) hue-rotate(55deg) brightness(1.08)";
+          else if (fx.tint === "#ffd54a") ctx.filter = "sepia(1) saturate(9) hue-rotate(-8deg) brightness(1.08)";
+          else if (fx.tint === "#9cd7ff") ctx.filter = "sepia(1) saturate(7) hue-rotate(185deg) brightness(1.18)";
+          else if (fx.tint === "#73b6ff") ctx.filter = "sepia(1) saturate(8) hue-rotate(175deg) brightness(1.12)";
+        }
+        ctx.drawImage(img, -baseW * 0.5, -baseH * 0.55, baseW, baseH);
+        ctx.restore();
+        return;
+      }
+
+      if (fx.kind === "echo") {
+        const alpha = clamp(fx.life / 22, 0, 1);
+        const radius = 32 * view.zoom * (fx.scale || 1);
+        ctx.save();
+        ctx.globalAlpha = 0.85 * alpha;
+        ctx.strokeStyle = fx.tint || "#9cd7ff";
+        ctx.lineWidth = Math.max(2, 5 * alpha);
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, radius * 0.72, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+        return;
+      }
+
       if (!slashImg) return;
       const alpha = clamp(fx.life / 18, 0, 1);
       const baseW = 70 * view.zoom * (fx.scale || 1);
@@ -1169,6 +1453,56 @@
     return knives[Math.floor(Math.random() * knives.length)];
   }
 
+  function chooseBattleFoodItemName() {
+    const foods = Array.from(FOOD_ITEM_NAMES);
+    if (!foods.length) return "チャハン";
+    return foods[Math.floor(Math.random() * foods.length)];
+  }
+
+  function spawnBattleFoodInArena(nowMs) {
+    if (state.start.mode !== "stadium" || !state.start.started) return;
+    if (!state.itemLifecycle) return;
+    const nextAt = Number.isFinite(state.itemLifecycle.nextBattleFoodSpawnAt)
+      ? state.itemLifecycle.nextBattleFoodSpawnAt
+      : (nowMs + 30 * 1000);
+    if (nowMs < nextAt) return;
+    state.itemLifecycle.nextBattleFoodSpawnAt = nowMs + 30 * 1000;
+
+    const stageIndex = ARENA_STAGE_INDEX;
+    const stage = stageOf(stageIndex);
+    const bucket = bucketOf(stageIndex);
+    if (!stage || !bucket) return;
+    if (bucket.items.length >= ITEM_LIMIT) return;
+
+    const spawnName = chooseBattleFoodItemName();
+    const file = ITEM_FILES.get(spawnName);
+    if (!file) return;
+
+    createEntity("item", stageIndex, spawnName, file, ITEM_BASE, ITEM_BASE_H).then((item) => {
+      if (!bucketOf(stageIndex)) return;
+      if (bucket.items.length >= ITEM_LIMIT) return;
+      const minX = stage.x + item.w * 0.5;
+      const maxX = stage.x + stage.width - item.w * 0.5;
+      const centerX = state.player && state.player.stageIndex === stageIndex
+        ? state.player.x
+        : (stage.x + stage.width * 0.5);
+
+      let placed = false;
+      for (let t = 0; t < 18; t += 1) {
+        const spread = stage.width * 0.44;
+        const tx = clamp(centerX + (Math.random() * 2 - 1) * spread, minX, maxX);
+        if (placeEntitySafely(item, tx) && !collidesForNormal(item, item.x, item.y)) {
+          placed = true;
+          break;
+        }
+      }
+      if (!placed && !placeEntitySafely(item, centerX)) return;
+
+      item.lastUserTouchAt = nowMs;
+      bucket.items.push(item);
+      state.ui.panelDirty = true;
+    }).catch(() => {});
+  }
   function spawnRandomItemAroundViewportCenter(stageIndex) {
     const stage = stageOf(stageIndex);
     if (!stage) return;
@@ -1218,11 +1552,12 @@
         if (nowMs - lastTouched < ITEM_DESPAWN_IDLE_MS) continue;
         bucket.items.splice(i, 1);
         if (state.player && state.player.carryingItemId === item.id) state.player.carryingItemId = null;
-        respawnStages.push(stageIndex);
+        if (stageIndex !== ARENA_STAGE_INDEX) respawnStages.push(stageIndex);
         state.ui.panelDirty = true;
       }
     }
     respawnStages.forEach((stageIndex) => spawnRandomItemAroundViewportCenter(stageIndex));
+    spawnBattleFoodInArena(nowMs);
   }
 
   async function loadWorld() {
@@ -1296,6 +1631,25 @@
           break;
         } catch (_e) {
           // try next
+        }
+      }
+    }
+    state.combat.specialFxImgs = {};
+    const specialFxDefs = [
+      ["effect1", ["エフェクト1.png", "エフェクト1.PNG", "エフェクト1.gif", "エフェクト1.GIF", "item/エフェクト1.png", "item/エフェクト1.PNG", "item/エフェクト1.gif", "item/エフェクト1.GIF"]],
+      ["effect2", ["エフェクト2.png", "エフェクト2.PNG", "エフェクト2.gif", "エフェクト2.GIF", "item/エフェクト2.png", "item/エフェクト2.PNG", "item/エフェクト2.gif", "item/エフェクト2.GIF"]],
+      ["effect3", ["エフェクト3.png", "エフェクト3.PNG", "エフェクト3.gif", "エフェクト3.GIF", "item/エフェクト3.png", "item/エフェクト3.PNG", "item/エフェクト3.gif", "item/エフェクト3.GIF"]],
+      ["effect4", ["エフェクト4.png", "エフェクト4.PNG", "エフェクト4.gif", "エフェクト4.GIF", "item/エフェクト4.png", "item/エフェクト4.PNG", "item/エフェクト4.gif", "item/エフェクト4.GIF"]],
+      ["effect5", ["エフェクト5.png", "エフェクト5.PNG", "エフェクト5.gif", "エフェクト5.GIF", "item/エフェクト5.png", "item/エフェクト5.PNG", "item/エフェクト5.gif", "item/エフェクト5.GIF"]],
+      ["effect6", ["エフェクト6.png", "エフェクト6.PNG", "エフェクト6.gif", "エフェクト6.GIF", "item/エフェクト6.png", "item/エフェクト6.PNG", "item/エフェクト6.gif", "item/エフェクト6.GIF"]]
+    ];
+    for (const [key, rels] of specialFxDefs) {
+      for (const rel of rels) {
+        try {
+          state.combat.specialFxImgs[key] = await loadImage(`${ASSET_BASE}/${rel}`);
+          break;
+        } catch (_e) {
+          // next
         }
       }
     }
@@ -2035,6 +2389,62 @@
       return true;
     }
 
+    function canUseNpcSpecial() {
+      if (!hasKnife) return false;
+      if (!hasSpecialMoveForActor(npc)) return false;
+      if (isSpecialActive(npc)) return false;
+      if (npc.combat && npc.combat.type) return false;
+      ensureLongActionCooldown(npc);
+      const until = npc.longActionCooldownUntil.special || 0;
+      const battleLockUntil = (state.start.mode === "stadium" && Number.isFinite(state.start.battleStartAt))
+        ? (state.start.battleStartAt + 15000)
+        : 0;
+      return nowMs >= Math.max(until, battleLockUntil);
+    }
+
+    function tryAggressiveSpecial(baseChance = 0.45) {
+      if (!canUseNpcSpecial()) return false;
+      let chance = baseChance;
+      if (targetAttacking) chance += 0.1;
+      if (comboActive) chance += 0.08;
+      if (dangerHp) chance += 0.08;
+      if (absDx <= closeRange) chance += 0.12;
+      else if (absDx <= midRange) chance += 0.08;
+      else if (absDx <= farRange) chance += 0.04;
+      chance = clamp(chance, 0, 0.92);
+      if (Math.random() > chance) return false;
+      if (!triggerSpecialMove(npc, nowMs)) return false;
+      npc.longActionCooldownUntil.special = nowMs + SPECIAL_COOLDOWN_MS;
+      ai.lastActionAt = nowMs;
+      ai.lastDecision = "special";
+      pushSpeechLog(`${npc.name}: 秘技発動！`);
+      setSpeechBubbleForEntity(npc.id, nowMs);
+      return true;
+    }
+
+    function canUseNpcGuardFromRollCooldown() {
+      if (!hasKnife) return false;
+      if (getCharacterState(npc) === "spectator") return false;
+      if (isSpecialActive(npc)) return false;
+      if (npc.combat && npc.combat.type) return false;
+      ensureLongActionCooldown(npc);
+      const guardUntil = npc.longActionCooldownUntil.guard || 0;
+      const rollOnCooldown = !canAct("roll");
+      const attackReady = canAct("bounce");
+      return nowMs >= guardUntil && rollOnCooldown && attackReady;
+    }
+
+    function tryNpcGuardFromRollCooldown(chance = 0.42) {
+      if (!canUseNpcGuardFromRollCooldown()) return false;
+      if (Math.random() > clamp(chance, 0, 1)) return false;
+      const dir = npc.facing >= 0 ? 1 : -1;
+      if (!beginCombatAction(npc, "justGuard", dir)) return false;
+      npc.guardUntil = nowMs + GUARD_ACTIVE_MS;
+      npc.longActionCooldownUntil.guard = nowMs + GUARD_COOLDOWN_MS;
+      ai.lastActionAt = nowMs;
+      ai.lastDecision = "guard-roll-cd";
+      return true;
+    }
     function pickWeighted(options) {
       const valid = options.filter((o) => o.weight > 0);
       if (!valid.length) return null;
@@ -2057,6 +2467,12 @@
         return act("pickup", "forward", "pickup-near");
       }
       return false;
+    }
+
+    if (tryAggressiveSpecial(absDx <= midRange ? 0.62 : (absDx <= farRange ? 0.5 : 0.38))) {
+      setMode("special");
+      setNextThink(true);
+      return;
     }
 
     if (!hasKnife && thrownKnife) {
@@ -2098,6 +2514,11 @@
       return;
     }
 
+    if (absDx <= midRange && tryNpcGuardFromRollCooldown(targetAttacking ? 0.66 : 0.46)) {
+      setMode("defense");
+      setNextThink(true);
+      return;
+    }
     if (targetAttacking && absDx <= midRange) {
       setMode("defense");
       if (targetCombat === "dropSlash" && hasKnife && canAct("roll")) {
@@ -2379,6 +2800,9 @@
       actionCooldownUntil: { bounce: 0, roll: 0, pickup: 0 },
       longActionCooldownUntil: { special: 0, guard: 0 },
       guardUntil: 0,
+      specialCharge: { active: false, startedAt: 0, ready: false, buttonAction: "" },
+      specialMove: null,
+      damageCutUntil: 0,
       maxHp: kind === "item" ? 0 : HP_MAX,
       hp: kind === "item" ? 0 : HP_MAX,
       hitstopFrames: 0,
@@ -2609,6 +3033,10 @@ function drawImageCover(img) {
     const btnBackTop = mkAction("トップ画面に戻る", "btnBackToStartScreen");
 
     btnChar.addEventListener("click", async () => {
+      if (state.start.mode === "stadium") {
+        hud.textContent = "バトルモード中はキャラクターを追加できません。";
+        return;
+      }
       const bucket = bucketOf(state.currentStageIndex);
       if (bucket.npcs.length >= NPC_LIMIT) {
         hud.textContent = `追加キャラは1ステージにつき${NPC_LIMIT}体までです。`;
@@ -2624,6 +3052,10 @@ function drawImageCover(img) {
     });
 
     btnItem.addEventListener("click", async () => {
+      if (state.start.mode === "stadium") {
+        hud.textContent = "バトルモード中はアイテムを追加できません。";
+        return;
+      }
       const bucket = bucketOf(state.currentStageIndex);
       if (bucket.items.length >= ITEM_LIMIT) {
         hud.textContent = `アイテムは1ステージにつき${ITEM_LIMIT}個までです。`;
@@ -2760,6 +3192,13 @@ function drawImageCover(img) {
     const id = Number(btn.dataset.id);
     if (!Number.isFinite(id)) return;
     if (action !== "set-player" && action !== "delete" && action !== "revive") return;
+
+    if (state.start.mode === "stadium") {
+      e.preventDefault();
+      e.stopPropagation();
+      hud.textContent = "バトルモード中は右サイドバー操作を変更できません。";
+      return;
+    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -3042,6 +3481,7 @@ function drawImageCover(img) {
       b.items.length = 0;
     });
     state.combat.effects.length = 0;
+    state.combat.specialTextFx.length = 0;
     if (state.player) {
       state.player.carryingItemId = null;
       state.player.eatingItemId = null;
@@ -3081,6 +3521,7 @@ function drawImageCover(img) {
       const bucket = bucketOf(stageIndex);
       const battleStartMs = performance.now();
       state.start.battleStartAt = battleStartMs;
+      if (state.itemLifecycle) state.itemLifecycle.nextBattleFoodSpawnAt = battleStartMs + 30 * 1000;
       ensureLongActionCooldown(state.player);
       state.player.longActionCooldownUntil.special = battleStartMs + 15000;
 
@@ -3115,6 +3556,8 @@ function drawImageCover(img) {
         knife2.carriedById = enemy.id;
         syncCarriedItemTransform(enemy, knife2);
       }
+    } else {
+      if (state.itemLifecycle) state.itemLifecycle.nextBattleFoodSpawnAt = 0;
     }
 
     state.currentStageIndex = stageIndex;
@@ -3176,6 +3619,7 @@ function drawImageCover(img) {
       actor.actionCooldownUntil = { bounce: 0, roll: 0, pickup: 0 };
     }
     if (actor.combat && actor.combat.type) return;
+    if (isSpecialActive(actor)) return;
 
     if (source === "auto" && actor.autoAi && actor.autoAi.targetId) {
       const autoTarget = getEntityById(actor.autoAi.targetId);
@@ -3308,6 +3752,8 @@ function drawImageCover(img) {
   function canUseLongPressAction(actor, action) {
     if (!actor || actor.kind === "item") return false;
     if (action !== "bounce" && action !== "roll") return false;
+    if (action === "bounce" && !hasSpecialMoveForActor(actor)) return false;
+
     if (state.start.mode !== "stadium") return false;
     if (actor.stageIndex !== ARENA_STAGE_INDEX) return false;
     if (!getHeldKnifeItem(actor)) return false;
@@ -3342,8 +3788,9 @@ function drawImageCover(img) {
       const until = actor.longActionCooldownUntil.special || 0;
       const battleLockUntil = (state.start.mode === "stadium" && Number.isFinite(state.start.battleStartAt)) ? (state.start.battleStartAt + 15000) : 0;
       if (nowMs < Math.max(until, battleLockUntil)) return false;
+      if (!triggerSpecialMove(actor, nowMs)) return false;
       actor.longActionCooldownUntil.special = nowMs + SPECIAL_COOLDOWN_MS;
-      pushSpeechLog(`${actor.name}: 秘技の構え。`);
+      pushSpeechLog(`${actor.name}: 秘技発動！`);
       setSpeechBubbleForEntity(actor.id, nowMs);
       return true;
     }
@@ -3401,6 +3848,17 @@ function drawImageCover(img) {
 
     if (!lp.fired && elapsed >= lp.holdMs) {
       lp.fired = triggerLongPressAction(lp, nowMs);
+    }
+
+    if (!lp.fired && elapsed < lp.holdMs) {
+      const actor = getEntityById(lp.actorId);
+      if (actor) {
+        handleAction(lp.action, "user", actor, lp.directionMode || "forward");
+        lp.suppressAction = lp.action;
+        lp.suppressUntil = nowMs + 500;
+      }
+      clearLongPressState();
+      return;
     }
 
     if (lp.fired) {
@@ -3518,8 +3976,9 @@ function drawImageCover(img) {
 
       const actions = document.createElement("div");
       actions.className = "entity-actions";
+      const lockEntityOps = state.start.mode === "stadium";
 
-      if (ent.kind !== "item") {
+      if (ent.kind !== "item" && !lockEntityOps) {
         const setPlayerBtn = document.createElement("button");
         setPlayerBtn.className = "op";
         setPlayerBtn.type = "button";
@@ -3539,14 +3998,18 @@ function drawImageCover(img) {
         }
       }
 
-      const del = document.createElement("button");
-      del.className = "op del";
-      del.type = "button";
-      del.textContent = "削除";
-      del.dataset.action = "delete";
-      del.dataset.id = String(ent.id);
-      actions.appendChild(del);
-      row.appendChild(actions);
+      if (!lockEntityOps) {
+        const del = document.createElement("button");
+        del.className = "op del";
+        del.type = "button";
+        del.textContent = "削除";
+        del.dataset.action = "delete";
+        del.dataset.id = String(ent.id);
+        actions.appendChild(del);
+      }
+      if (actions.childElementCount > 0) {
+        row.appendChild(actions);
+      }
 
       entityList.appendChild(row);
     });
@@ -4272,6 +4735,7 @@ function drawImageCover(img) {
       getAllEntities().forEach((ent) => updateCombatActionForActor(ent, dt));
       updateThrownKnifeAttacks(dt);
       updateCombatEffects(dt);
+      updateSpecialMoves(now, dt);
       getAllEntities().forEach((ent) => {
         updateEntityPhysics(ent, dt);
         updateEntityAnim(ent, dt);
@@ -4296,6 +4760,7 @@ function drawImageCover(img) {
       drawSpeechBubble(now);
       drawDragGuide();
       drawCombatEffects();
+      drawSpecialTexts();
       drawComboIndicators(now);
       updateActionCooldownUi(now);
       updateHud();
@@ -4410,238 +4875,6 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
