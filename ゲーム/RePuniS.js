@@ -4358,6 +4358,7 @@ function drawImageCover(img) {
       const isOwnOnlineEntity = state.online.active && ent.isOnlinePlayer && ent.onlineToken === state.online.sessionToken;
       const isAnyOnlinePlayer = state.online.active && ent.isOnlinePlayer;
       // set-player: own entity in online, any non-remote in offline
+      // set-player: own entity in online mode only; any non-remote entity in offline
       const canSetPlayer = !isBattleActive && !isRemoteOnline && (!state.online.active || isOwnOnlineEntity);
       // host-only ops (delete/revive): host in online play, not on online player entities; any in offline
       const canHostOp = !isBattleActive && !isAnyOnlinePlayer && (!state.online.active || state.online.isHost);

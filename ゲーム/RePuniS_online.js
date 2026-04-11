@@ -134,7 +134,7 @@
         const isReady = !!state.online.readyByToken[token];
         const isOffline = meta && meta.connected === false;
         const slotNum = Number(meta && meta.slot);
-        const slotLabel = (slotNum >= 1 && slotNum <= 4) ? `${slotNum}P` : "?P";
+        const slotLabel = (!isNaN(slotNum) && slotNum >= 1 && slotNum <= 4) ? `${slotNum}P` : "?P";
         const name = `${slotLabel} ${meta && meta.username ? meta.username : "?"}${isSelf ? " (Host)" : ""}`;
         const cls = isOffline ? "offline" : (isReady ? "ready" : "");
         const label = isOffline ? "offline" : (isReady ? "Ready" : "Waiting");
