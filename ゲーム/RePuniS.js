@@ -3744,8 +3744,15 @@ function drawImageCover(img) {
     if (!btn || !actor || !Number.isFinite(clientX)) return directionMode;
     const rect = btn.getBoundingClientRect();
     const localX = clientX - rect.left;
-    const clickDir = localX >= rect.width * 0.5 ? 1 : -1;
     const facingDir = actor.facing >= 0 ? 1 : -1;
+
+    // Center taps are treated as forward to avoid accidental back-input on mobile.
+    const centerLeft = rect.width * 0.4;
+    const centerRight = rect.width * 0.6;
+    const clickDir = (localX >= centerLeft && localX <= centerRight)
+      ? facingDir
+      : (localX >= rect.width * 0.5 ? 1 : -1);
+
     directionMode = clickDir === facingDir ? "forward" : "backward";
     return directionMode;
   }
@@ -4854,7 +4861,11 @@ function drawImageCover(img) {
     e.preventDefault();
   }, { passive: false });
   document.addEventListener("touchstart", (e) => {
-    if (e.target && e.target.closest(".action-trigger")) {
+    const btn = e.target && e.target.closest ? e.target.closest(".action-trigger") : null;
+    if (!btn) return;
+    const action = btn.dataset ? btn.dataset.action : "";
+    const actor = getControlledActor();
+    if (actor && canUseLongPressAction(actor, action)) {
       e.preventDefault();
     }
   }, { passive: false });
