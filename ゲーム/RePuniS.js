@@ -187,11 +187,31 @@
     "ミナツ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
     "サテラ": { type: "witchSecret", effect: "effect4", color: "#ffd54a" },
     "ジョーチョ": { type: "divaSecret", effect: "effect5", color: "#9cd7ff" },
-    "コト": { type: "yandereSecret", effect: "effect6", color: "#73b6ff" }
+    "コト": { type: "yandereSecret", effect: "effect6", color: "#73b6ff" },
+    "カレイ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
+    "モノ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "アリー": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "レト": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
+    "クラ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "ハル": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "シユウ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "シナン": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "モン": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
+    "チエル": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "メウ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "ニプロ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "ロイド": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "レイマー": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "ヴィオン": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "チサ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
+    "アルカ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
+    "キルロード": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
+    "キュビ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
+    "アーシャ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" }
   };
   const HP_MAX = 300;
   const HP_DANGER_THRESHOLD = 50;
-  const EAT_HEAL_AMOUNT = 125;
+  const EAT_HEAL_AMOUNT = 75;
   const CRIT_BASE_CHANCE = 0.08;
   const CRIT_COMBO_BONUS = 0.035;
   const CRIT_MAX_CHANCE = 0.42;
@@ -336,9 +356,9 @@
     start: {
       mode: "play",
       selfChar: "アカウ",
-      enemyChar: "カレイ",
+      enemyChar: "コト",
       knife: "純白のナイフ",
-      knife2: "サテラのナイフ",
+      knife2: "コトのナイフ",
       manualKnife: false,
       manualKnife2: false,
       battleStartAt: 0,
@@ -2633,6 +2653,9 @@
   function runAutoBehavior(nowMs) {
     const actors = getAllEntities().filter((ent) => ent && ent.kind !== "item");
     actors.forEach((actor) => {
+      if (state.start.mode === "play" && state.player && actor.id === state.player.id) {
+        return;
+      }
       if (actor.stageIndex === ARENA_STAGE_INDEX && actor.kind === "npc") {
         updateBattleNpcAI(actor, nowMs);
       } else {
@@ -4886,6 +4909,8 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
+
 
 
 
