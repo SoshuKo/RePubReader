@@ -15,7 +15,7 @@ import asyncio
 import secrets
 import time
 from dataclasses import dataclass, field
-from typing import Dict, Optional, Any, List
+from typing import Dict, Optional, Any, List, Set
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -83,6 +83,7 @@ class RoomState:
     players: Dict[str, PlayerState] = field(default_factory=dict)
     phase: str = "play"  # play | battle
     pending_battle_invite: bool = False
+    ready_tokens: Set[str] = field(default_factory=set)
 
 
 rooms: Dict[str, RoomState] = {}
@@ -352,6 +353,8 @@ async def ws_room(websocket: WebSocket, room_code: str, session_token: str) -> N
                 token: scrub_player_for_client(p)
                 for token, p in room.players.items()
             },
+            "ready_tokens": list(room.ready_tokens),
+            "pending_battle_invite": room.pending_battle_invite,
         })
 
         await broadcast(room, {
@@ -433,15 +436,19 @@ async def ws_room(websocket: WebSocket, room_code: str, session_token: str) -> N
                         await websocket.send_json({"type": "error", "message": "host only"})
                         continue
                     room.pending_battle_invite = True
+                    room.ready_tokens = {session_token}  # host is auto-ready; reset others
                     await broadcast(room, {
                         "type": "invite_battle",
                         "session_token": session_token,
+                        "ready_tokens": list(room.ready_tokens),
                     })
 
                 elif msg_type == "accept_battle":
+                    room.ready_tokens.add(session_token)
                     await broadcast(room, {
                         "type": "accept_battle",
                         "session_token": session_token,
+                        "ready_tokens": list(room.ready_tokens),
                     })
 
                 elif msg_type == "phase":
@@ -453,10 +460,13 @@ async def ws_room(websocket: WebSocket, room_code: str, session_token: str) -> N
                         phase = "play"
                     room.phase = phase
                     room.pending_battle_invite = False
+                    if phase == "play":
+                        room.ready_tokens.clear()
                     await broadcast(room, {
                         "type": "phase",
                         "phase": room.phase,
                         "session_token": session_token,
+                        "ready_tokens": list(room.ready_tokens),
                     })
 
                 elif msg_type == "kick":
