@@ -225,6 +225,37 @@
     return state.currentStageIndex;
   }
 
+  // Strict variant: throws an explicit Error for any unrecognised or out-of-range
+  // stage token instead of silently falling back to the current stage.
+  function parseCommandStageTokenStrict(token) {
+    if (!token) throw new Error("ステージを指定してください");
+
+    const num = Number(token);
+    if (Number.isFinite(num)) {
+      const rawIdx = Math.round(num) - 1;
+      if (rawIdx < 0 || rawIdx >= state.stages.length) {
+        throw new Error(`ステージ不正: ${token} (有効範囲 1–${state.stages.length})`);
+      }
+      return rawIdx;
+    }
+
+    const lowered = String(token).trim().toLowerCase();
+    if (!lowered) throw new Error("ステージを指定してください");
+    if (lowered === "arena" || lowered === "アリーナ") return ARENA_STAGE_INDEX;
+    if (lowered === "play" || lowered === "プレイ") {
+      return clamp(state.currentStageIndex, 0, Math.max(0, ARENA_STAGE_INDEX - 1));
+    }
+
+    const normalize = (s) => String(s || "").replace(/^\s*\d+\s*[:：]\s*/, "").trim();
+    const fromLabel = STAGE_SELECT_NAMES.findIndex((x) => {
+      const l = normalize(x).toLowerCase();
+      return l === lowered || String(x).toLowerCase() === lowered;
+    });
+    if (fromLabel >= 0) return fromLabel;
+
+    throw new Error(`ステージが見つかりません: ${token}`);
+  }
+
       function findEntitiesByCommandTarget(raw) {
     const key = String(raw || "").trim();
     if (!key) return [];
@@ -262,10 +293,10 @@
     if (cmd === "/tp") {
       if (parts.length < 5) throw new Error("/tp target stage x y");
       const targets = findEntitiesByCommandTarget(parts[1]);
-      if (!targets.length) throw new Error("対象が見つかりません");
-      const stageIndex = parseCommandStageToken(parts[2]);
+      if (!targets.length) throw new Error(`対象が見つかりません: ${parts[1]}`);
+      const stageIndex = parseCommandStageTokenStrict(parts[2]);
       const stage = stageOf(stageIndex);
-      if (!stage) throw new Error("ステージが不正です");
+      if (!stage) throw new Error(`ステージが不正です: ${parts[2]}`);
       const x = Number(parts[3]);
       const y = Number(parts[4]);
       if (!Number.isFinite(x) || !Number.isFinite(y)) throw new Error("座標が不正です");
@@ -290,9 +321,9 @@
     } else if (cmd === "/heal") {
       if (parts.length < 3) throw new Error("/heal target amount");
       const targets = findEntitiesByCommandTarget(parts[1]).filter((ent) => ent.kind !== "item");
-      if (!targets.length) throw new Error("対象が見つかりません");
+      if (!targets.length) throw new Error(`対象が見つかりません: ${parts[1]}`);
       const amount = Number(parts[2]);
-      if (!Number.isFinite(amount)) throw new Error("回復量が不正です");
+      if (!Number.isFinite(amount)) throw new Error(`回復量が不正です: ${parts[2]}`);
       targets.forEach((ent) => {
         setCharacterHp(ent, (Number.isFinite(ent.hp) ? ent.hp : HP_MAX) + amount);
       });
@@ -301,33 +332,37 @@
       if (state.online.active && state.online.phase === "battle") throw new Error("バトル中はスポーン禁止です");
       if (parts.length < 5) throw new Error("/spawn entityName stage x y");
       const name = parts[1];
-      const stageIndex = parseCommandStageToken(parts[2]);
+      const stageIndex = parseCommandStageTokenStrict(parts[2]);
       const stage = stageOf(stageIndex);
-      if (!stage) throw new Error("ステージが不正です");
+      if (!stage) throw new Error(`ステージが不正です: ${parts[2]}`);
       const x = Number(parts[3]);
       const y = Number(parts[4]);
-      if (!Number.isFinite(x) || !Number.isFinite(y)) throw new Error("座標が不正です");
+      if (!Number.isFinite(x) || !Number.isFinite(y)) throw new Error(`座標が不正です: x=${parts[3]} y=${parts[4]}`);
 
       if (CHARACTER_FILES.has(name)) {
         const charCount = getAllEntities().filter((ent) => ent && ent.kind !== "item" && ent.stageIndex === stageIndex).length;
-        if (charCount >= NPC_LIMIT) throw new Error(`キャラクター上限 (${NPC_LIMIT})`);
+        if (charCount >= NPC_LIMIT) throw new Error(`キャラクター上限超過 (現在 ${charCount} / 上限 ${NPC_LIMIT})`);
 
+        const bucket = bucketOf(stageIndex);
+        if (!bucket) throw new Error(`ステージバケットが存在しません: ${stageIndex}`);
         const ent = await createEntity("npc", stageIndex, name, CHARACTER_FILES.get(name), PUNI_BASE, CHAR_BASE_H);
         ent.stageIndex = stageIndex;
         ent.x = x;
         ent.y = y;
         if (!applyMoveCandidate(ent, x, y, false)) placeEntitySafely(ent, clamp(x, stage.x + 8, stage.x + stage.width - 8));
-        bucketOf(stageIndex).npcs.push(ent);
+        bucket.npcs.push(ent);
       } else if (ITEM_FILES.has(name)) {
         const itemCount = getAllEntities().filter((ent) => ent && ent.kind === "item" && ent.stageIndex === stageIndex).length;
-        if (itemCount >= ITEM_LIMIT) throw new Error(`アイテム上限 (${ITEM_LIMIT})`);
+        if (itemCount >= ITEM_LIMIT) throw new Error(`アイテム上限超過 (現在 ${itemCount} / 上限 ${ITEM_LIMIT})`);
 
+        const bucket = bucketOf(stageIndex);
+        if (!bucket) throw new Error(`ステージバケットが存在しません: ${stageIndex}`);
         const item = await createEntity("item", stageIndex, name, ITEM_FILES.get(name), ITEM_BASE, ITEM_BASE_H);
         item.stageIndex = stageIndex;
         item.x = x;
         item.y = y;
         if (!applyMoveCandidate(item, x, y, true)) placeEntitySafely(item, clamp(x, stage.x + 8, stage.x + stage.width - 8));
-        bucketOf(stageIndex).items.push(item);
+        bucket.items.push(item);
       } else {
         throw new Error(`未定義エンティティ: ${name}`);
       }
@@ -337,11 +372,13 @@
       if (state.online.active && state.online.phase === "battle") throw new Error("バトル中は削除禁止です");
       if (parts.length < 2) throw new Error("/kill target");
       const targets = findEntitiesByCommandTarget(parts[1]);
-      if (!targets.length) throw new Error("対象が見つかりません");
+      if (!targets.length) throw new Error(`対象が見つかりません: ${parts[1]}`);
 
       let deleted = 0;
       let spectator = 0;
       for (const ent of targets) {
+        // Online players (including the local player) are never deleted; they are
+        // spectated (HP set to 0) so the connection and slot stay intact.
         if (ent.kind !== "item" && (ent.isOnlinePlayer || (state.player && ent.id === state.player.id))) {
           setCharacterHp(ent, 0);
           spectator += 1;
@@ -875,6 +912,7 @@
         updateHostToolsUi,
         updateHostCoordsFromClient,
         parseCommandStageToken,
+        parseCommandStageTokenStrict,
         findEntitiesByCommandTarget,
         executeHostCommandLine,
         submitHostChatOrCommand,

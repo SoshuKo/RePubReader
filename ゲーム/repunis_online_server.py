@@ -109,6 +109,8 @@ _MAX_HP = 9999
 _MAX_COORD = 1_000_000
 _MAX_STAGE_INDEX = 99
 _MAX_CARRYING_ITEM_LEN = 64  # carrying_item is a short asset name; 64 chars is ample
+_ALLOWED_COMMAND_NAMES = {"/tp", "/heal", "/spawn", "/kill"}
+_MAX_COMMAND_LEN = 512
 
 
 def scrub_player_for_client(p: PlayerState) -> Dict[str, Any]:
@@ -420,14 +422,32 @@ async def ws_room(websocket: WebSocket, room_code: str, session_token: str) -> N
                         })
 
                 elif msg_type == "command":
-                    # host-only command relay
+                    # host-only command relay — re-verify host status server-side
                     if not me.is_host:
                         await websocket.send_json({"type": "error", "message": "host only command"})
                         continue
+
+                    # Validate command line content before broadcasting
+                    cmd_line = str(data.get("command", "") or data.get("line", "")).strip()
+                    if not cmd_line:
+                        await websocket.send_json({"type": "error", "message": "コマンドが空です"})
+                        continue
+                    if len(cmd_line) > _MAX_COMMAND_LEN:
+                        await websocket.send_json({"type": "error", "message": f"コマンドが長すぎます (上限 {_MAX_COMMAND_LEN} 文字)"})
+                        continue
+                    if not cmd_line.startswith("/"):
+                        await websocket.send_json({"type": "error", "message": "コマンドは / で始まる必要があります"})
+                        continue
+                    cmd_name = cmd_line.split()[0].lower()
+                    if cmd_name not in _ALLOWED_COMMAND_NAMES:
+                        await websocket.send_json({"type": "error", "message": f"不明コマンド: {cmd_name}"})
+                        continue
+
                     await broadcast(room, {
                         "type": "command",
                         "session_token": session_token,
-                        "command": data.get("command", ""),
+                        "command": cmd_line,
+                        "line": cmd_line,
                         "args": data.get("args", {}),
                     })
 
