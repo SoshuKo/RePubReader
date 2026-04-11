@@ -93,6 +93,16 @@
     delete state.online.readyByToken[token];
   }
 
+  function applyServerReadyTokens(readyTokens) {
+    if (!Array.isArray(readyTokens)) return;
+    ensureHostReadyState();
+    readyTokens.forEach((t) => {
+      if (state.online.playerMetaByToken[t] !== undefined) {
+        state.online.readyByToken[t] = true;
+      }
+    });
+  }
+
   function resetHostReadyList() {
     ensureHostReadyState();
     Object.keys(state.online.playerMetaByToken).forEach((token) => {
@@ -574,6 +584,12 @@
         if (token !== state.online.sessionToken) await ensureOnlinePeerEntity(token, info || {});
       }
       setOnlinePlayerMeta(state.online.sessionToken, { username: state.start.onlineUsername || "Host", slot: state.online.slot, is_host: state.online.isHost, connected: true });
+      // Restore ready state from server so reconnects don't lose accepted readiness
+      applyServerReadyTokens(msg.ready_tokens);
+      // Restore pending invite flag on reconnect
+      if (msg.pending_battle_invite) {
+        state.online.pendingInvite = true;
+      }
       renderHostReadyList();
       onlineSetInfo(`接続中: ルーム ${state.online.roomCode} / ${state.online.slot}P`);
       return;
@@ -583,8 +599,12 @@
       const token = String(msg.session_token || "");
       if (!token || token === state.online.sessionToken) return;
       if (msg.connected === false) {
+        // Remove the game entity but keep the player meta so the ready state
+        // survives disconnection and is restored on reconnect.
         removeOnlinePeerEntity(token);
-        removeOnlinePlayerMeta(token);
+        if (state.online.playerMetaByToken && state.online.playerMetaByToken[token]) {
+          state.online.playerMetaByToken[token].connected = false;
+        }
         renderHostReadyList();
         return;
       }
@@ -657,7 +677,12 @@
     if (type === "accept_battle") {
       const token = String(msg.session_token || "");
       if (token) {
-        markHostReady(token, true);
+        // Prefer authoritative ready list from server when available
+        if (Array.isArray(msg.ready_tokens)) {
+          applyServerReadyTokens(msg.ready_tokens);
+        } else {
+          markHostReady(token, true);
+        }
         renderHostReadyList();
         if (isOnlineHostLocal()) {
           const meta = (state.online.playerMetaByToken && state.online.playerMetaByToken[token]) || {};
@@ -671,7 +696,12 @@
       state.online.pendingInvite = true;
       ensureHostReadyState();
       resetHostReadyList();
-      markHostReady(state.online.sessionToken, state.online.isHost);
+      // Apply authoritative ready list from server (host is pre-marked ready)
+      if (Array.isArray(msg.ready_tokens)) {
+        applyServerReadyTokens(msg.ready_tokens);
+      } else {
+        markHostReady(state.online.sessionToken, state.online.isHost);
+      }
       renderHostReadyList();
       if (!state.online.isHost) {
         const ok = window.confirm("ホストからバトル招待が届きました。参加しますか？");
@@ -693,7 +723,10 @@
       state.online.pendingInvite = false;
       if (state.online.phase !== "battle") {
         state.online.awaitingBattleLoadout = false;
+        // Allow re-invite when returning to play phase
+        state.ui.hostUi.phaseInviteSent = false;
         ensureHostReadyState();
+        // Server sends empty ready_tokens on play; reset local ready state
         Object.keys(state.online.readyByToken).forEach((t) => { state.online.readyByToken[t] = false; });
       }
       renderHostReadyList();
