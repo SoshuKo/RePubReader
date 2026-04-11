@@ -70,6 +70,7 @@ class PlayerState:
     facing: int = 1
     hp: int = 300
     carrying_item: str = ""
+    knife_state: str = "none"  # "holding" | "throwing" | "none"
 
 
 @dataclass
@@ -102,6 +103,13 @@ def now_ts() -> float:
     return time.time()
 
 
+_KNIFE_STATE_VALUES = {"holding", "throwing", "none"}
+_MAX_HP = 9999
+_MAX_COORD = 1_000_000
+_MAX_STAGE_INDEX = 99
+_MAX_CARRYING_ITEM_LEN = 64  # carrying_item is a short asset name; 64 chars is ample
+
+
 def scrub_player_for_client(p: PlayerState) -> Dict[str, Any]:
     return {
         "username": p.username,
@@ -116,6 +124,7 @@ def scrub_player_for_client(p: PlayerState) -> Dict[str, Any]:
         "facing": p.facing,
         "hp": p.hp,
         "carrying_item": p.carrying_item,
+        "knife_state": p.knife_state,
     }
 
 
@@ -370,12 +379,18 @@ async def ws_room(websocket: WebSocket, room_code: str, session_token: str) -> N
                 room.updated_at = now_ts()
 
                 if msg_type == "player_state":
-                    me.stage_index = int(data.get("stage_index", me.stage_index))
-                    me.x = float(data.get("x", me.x))
-                    me.y = float(data.get("y", me.y))
+                    raw_stage = int(data.get("stage_index", me.stage_index))
+                    me.stage_index = max(0, min(raw_stage, _MAX_STAGE_INDEX))
+                    raw_x = float(data.get("x", me.x))
+                    me.x = max(-_MAX_COORD, min(raw_x, _MAX_COORD))
+                    raw_y = float(data.get("y", me.y))
+                    me.y = max(-_MAX_COORD, min(raw_y, _MAX_COORD))
                     me.facing = int(data.get("facing", me.facing))
-                    me.hp = int(data.get("hp", me.hp))
-                    me.carrying_item = str(data.get("carrying_item", me.carrying_item))
+                    raw_hp = int(data.get("hp", me.hp))
+                    me.hp = max(0, min(raw_hp, _MAX_HP))
+                    me.carrying_item = str(data.get("carrying_item", me.carrying_item))[:_MAX_CARRYING_ITEM_LEN]
+                    raw_knife_state = str(data.get("knife_state", me.knife_state))
+                    me.knife_state = raw_knife_state if raw_knife_state in _KNIFE_STATE_VALUES else "none"
 
                     await broadcast(room, {
                         "type": "player_state",
@@ -387,6 +402,7 @@ async def ws_room(websocket: WebSocket, room_code: str, session_token: str) -> N
                             "facing": me.facing,
                             "hp": me.hp,
                             "carrying_item": me.carrying_item,
+                            "knife_state": me.knife_state,
                         },
                     }, exclude_token=session_token)
 

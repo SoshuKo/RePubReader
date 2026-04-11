@@ -497,6 +497,7 @@
     state.online.awaitingBattleLoadout = false;
     state.online.peers.clear();
     state.online.peerCreatePending.clear();
+    state.online.lastCarryingItem = undefined;
     state.ui.hostUi.phaseInviteSent = false;
     updateHostToolsUi();
   }
@@ -524,6 +525,8 @@
       ent.y = ent.netTargetY;
       ent.facing = Number(playerInfo.facing) >= 0 ? 1 : -1;
       ent.hp = Number.isFinite(playerInfo.hp) ? playerInfo.hp : HP_MAX;
+      ent.onlineCarryingItem = typeof playerInfo.carrying_item === "string" ? playerInfo.carrying_item : "";
+      ent.onlineKnifeState = typeof playerInfo.knife_state === "string" ? playerInfo.knife_state : "none";
 
       const bucket = bucketOf(stageIndex);
       if (bucket) bucket.npcs.push(ent);
@@ -605,11 +608,26 @@
       const ent = getEntityById(rec.entityId);
       if (!ent) return;
       const st = msg.state || {};
+
+      const prevStageIndex = ent.stageIndex;
       if (Number.isFinite(st.stage_index)) ent.stageIndex = st.stage_index;
       if (Number.isFinite(st.x)) ent.netTargetX = st.x;
       if (Number.isFinite(st.y)) ent.netTargetY = st.y;
+
+      // Snap directly when stage changed or position diverged beyond threshold
+      // 300px ≒ about 2 player-widths; beyond this lerp looks like teleport anyway
+      const SNAP_DIST = 300;
+      const dx = (ent.netTargetX || 0) - ent.x;
+      const dy = (ent.netTargetY || 0) - ent.y;
+      if (ent.stageIndex !== prevStageIndex || Math.hypot(dx, dy) > SNAP_DIST) {
+        ent.x = ent.netTargetX;
+        ent.y = ent.netTargetY;
+      }
+
       if (Number.isFinite(st.facing)) ent.facing = st.facing >= 0 ? 1 : -1;
       if (Number.isFinite(st.hp)) ent.hp = st.hp;
+      if (typeof st.carrying_item === "string") ent.onlineCarryingItem = st.carrying_item;
+      if (typeof st.knife_state === "string") ent.onlineKnifeState = st.knife_state;
       return;
     }
 
@@ -722,13 +740,26 @@
     if (nowMs - (state.online.lastStateSendAt || 0) < ONLINE_STATE_SEND_MS) return;
     state.online.lastStateSendAt = nowMs;
     const carried = getCarriedItem(state.player);
+    const carryingItem = carried ? carried.name : "";
+
+    // Detect knife throw: had a knife last tick, now empty → one tick of "throwing"
+    const prevCarrying = state.online.lastCarryingItem !== undefined ? state.online.lastCarryingItem : carryingItem;
+    let knifeState = "none";
+    if (carryingItem && isKnifeName(carryingItem)) {
+      knifeState = "holding";
+    } else if (!carryingItem && prevCarrying && isKnifeName(prevCarrying)) {
+      knifeState = "throwing";
+    }
+    state.online.lastCarryingItem = carryingItem;
+
     sendOnline("player_state", {
       stage_index: state.player.stageIndex,
       x: state.player.x,
       y: state.player.y,
       facing: state.player.facing,
       hp: state.player.hp,
-      carrying_item: carried ? carried.name : "",
+      carrying_item: carryingItem,
+      knife_state: knifeState,
     });
   }
 
