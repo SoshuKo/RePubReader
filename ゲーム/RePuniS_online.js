@@ -133,7 +133,9 @@
         const isSelf = token === state.online.sessionToken;
         const isReady = !!state.online.readyByToken[token];
         const isOffline = meta && meta.connected === false;
-        const name = `${Number(meta && meta.slot) || 0}P ${meta && meta.username ? meta.username : "?"}${isSelf ? " (Host)" : ""}`;
+        const slotNum = Number(meta && meta.slot);
+        const slotLabel = (slotNum >= 1 && slotNum <= 4) ? `${slotNum}P` : "?P";
+        const name = `${slotLabel} ${meta && meta.username ? meta.username : "?"}${isSelf ? " (Host)" : ""}`;
         const cls = isOffline ? "offline" : (isReady ? "ready" : "");
         const label = isOffline ? "offline" : (isReady ? "Ready" : "Waiting");
         return `<div class="host-ready-item"><span>${esc(name)}</span><span class="host-ready-tag ${cls}">${label}</span></div>`;
@@ -286,6 +288,7 @@
       });
       pushSpeechLog(`[CMD] heal: ${targets.length}件 (${Math.round(amount)})`);
     } else if (cmd === "/spawn") {
+      if (state.online.active && state.online.phase === "battle") throw new Error("バトル中はスポーン禁止です");
       if (parts.length < 5) throw new Error("/spawn entityName stage x y");
       const name = parts[1];
       const stageIndex = parseCommandStageToken(parts[2]);
@@ -321,6 +324,7 @@
 
       pushSpeechLog(`[CMD] spawn: ${name}`);
     } else if (cmd === "/kill") {
+      if (state.online.active && state.online.phase === "battle") throw new Error("バトル中は削除禁止です");
       if (parts.length < 2) throw new Error("/kill target");
       const targets = findEntitiesByCommandTarget(parts[1]);
       if (!targets.length) throw new Error("対象が見つかりません");
