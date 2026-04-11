@@ -28,6 +28,9 @@
   const selfCharPreview = document.getElementById("selfCharPreview");
   const enemyCharPreview = document.getElementById("enemyCharPreview");
   const startGameBtn = document.getElementById("startGameBtn");
+  const startGameBtnMobile = document.getElementById("startGameBtnMobile");
+  const selfRoster = document.getElementById("selfRoster");
+  const enemyRoster = document.getElementById("enemyRoster");
   const combatHelpBtn = document.getElementById("combatHelpBtn");
   const combatHelpBox = document.getElementById("combatHelpBox");
   const combatHelpClose = document.getElementById("combatHelpClose");
@@ -164,6 +167,11 @@
   const EDGE_ICON_MARGIN = 70;
 
   const ACTION_COOLDOWN_MS = 3000;
+  const SPECIAL_HOLD_MS = 3000;
+  const GUARD_HOLD_MS = 1000;
+  const SPECIAL_COOLDOWN_MS = 60 * 1000;
+  const GUARD_COOLDOWN_MS = 3 * 1000;
+  const GUARD_ACTIVE_MS = 2 * 1000;
   const HP_MAX = 300;
   const HP_DANGER_THRESHOLD = 50;
   const EAT_HEAL_AMOUNT = 125;
@@ -184,6 +192,17 @@
 
   const STAGE_SELECT_NAMES = ["アーケイ", "イラー", "シュメケルペ", "ヘリエン", "アリーナ"];
   const ARENA_STAGE_INDEX = 4;
+
+  const CHARACTER_DEFAULT_KNIFE = new Map([
+    ["アカウ", "純白のナイフ"], ["ファタ", "純白のナイフ"],
+    ["タネイ", "真紅のナイフ"], ["モノ", "真紅のナイフ"],
+    ["アリー", "狐色のナイフ"], ["レト", "狐色のナイフ"], ["ミナツ", "狐色のナイフ"], ["クラ", "狐色のナイフ"], ["ハル", "狐色のナイフ"],
+    ["アルカ", "漆黒のナイフ"], ["キルロード", "漆黒のナイフ"], ["キュビ", "漆黒のナイフ"], ["アーシャ", "漆黒のナイフ"],
+    ["チエル", "アヤのナイフ"], ["メウ", "アヤのナイフ"], ["ニプロ", "アヤのナイフ"], ["ロイド", "アヤのナイフ"], ["レイマー", "アヤのナイフ"], ["ヴィオン", "アヤのナイフ"],
+    ["サテラ", "サテラのナイフ"], ["カレイ", "サテラのナイフ"], ["シユウ", "サテラのナイフ"], ["シナン", "サテラのナイフ"], ["モン", "サテラのナイフ"],
+    ["コト", "コトのナイフ"],
+    ["チサ", "ガナリのナイフ"], ["ジョーチョ", "ガナリのナイフ"]
+  ]);
 
   const CHARACTER_GROUPS = [
     { title: "タネイ政権", names: ["アカウ", "カレイ", "タネイ", "モノ"] },
@@ -276,16 +295,37 @@
       slashFxImg: null,
       explosionFxImg: null
     },
-    ui: { panelDirty: true, panelStage: -1, speechLogs: [] },
+    ui: {
+      panelDirty: true,
+      panelStage: -1,
+      speechLogs: [],
+      longPress: {
+        active: false,
+        pointerId: null,
+        action: "",
+        actorId: null,
+        directionMode: "forward",
+        startAt: 0,
+        holdMs: 0,
+        fired: false,
+        button: null,
+        suppressAction: "",
+        suppressUntil: 0
+      }
+    },
     start: {
       mode: "play",
       selfChar: "アカウ",
       enemyChar: "カレイ",
-      knife: "狐色のナイフ",
-      knife2: "漆黒のナイフ",
+      knife: "純白のナイフ",
+      knife2: "サテラのナイフ",
+      manualKnife: false,
+      manualKnife2: false,
+      battleStartAt: 0,
       started: false
     },
-    loopStarted: false};
+    loopStarted: false
+  };
 
   const imageCache = new Map();
   const boundsCache = new Map();
@@ -511,6 +551,12 @@
   function applyHitToTarget(attacker, target, spec, dir) {
     if (!target || target.kind === "item") return false;
     if (getCharacterState(target) === "spectator") return false;
+    const nowMs = performance.now();
+    if (Number.isFinite(target.guardUntil) && nowMs < target.guardUntil) {
+      target.hitstopFrames = Math.max(Number.isFinite(target.hitstopFrames) ? target.hitstopFrames : 0, 2);
+      if (attacker) attacker.hitstopFrames = Math.max(Number.isFinite(attacker.hitstopFrames) ? attacker.hitstopFrames : 0, 2);
+      return false;
+    }
 
     if (
       target.combat &&
@@ -536,7 +582,7 @@
 
     if (isActorInvulnerable(target)) return false;
 
-    const nowMs = performance.now();
+
     const actionType = (spec && typeof spec.attackType === "string" && spec.attackType)
       ? spec.attackType
       : (attacker && attacker.combat && attacker.combat.type ? attacker.combat.type : "normal");
@@ -2278,7 +2324,7 @@
     const sprite = getOpaqueBounds(img);
     const ratio = sprite.sw / sprite.sh;
     const isKnife = kind === "item" && String(name || "").includes("ナイフ");
-    const nowMs = performance.now();
+
 
     let knifeScale = 1 / 3;
     if (isKnife) {
@@ -2293,6 +2339,7 @@
       : (kind === "item" ? entityH * ratio : clamp(entityH * ratio, 18, 180));
     const hitboxScaleX = isKnife ? 0.55 : 1;
     const hitboxScaleY = isKnife ? 0.55 : 1;
+    const nowMs = performance.now();
 
     return {
       id: nextEntityId++,
@@ -2330,6 +2377,8 @@
       roll: { active: false, t: 0, dur: 0.56, dir: 1, justFinished: false, targetRot: 0 },
       bounceForwardActive: false,
       actionCooldownUntil: { bounce: 0, roll: 0, pickup: 0 },
+      longActionCooldownUntil: { special: 0, guard: 0 },
+      guardUntil: 0,
       maxHp: kind === "item" ? 0 : HP_MAX,
       hp: kind === "item" ? 0 : HP_MAX,
       hitstopFrames: 0,
@@ -2840,16 +2889,41 @@ function drawImageCover(img) {
     return list;
   }
 
+  function getDefaultKnifeForCharacter(name, knives = null) {
+    const knifeList = Array.isArray(knives) && knives.length ? knives : getKnifeNameList();
+    const mapped = CHARACTER_DEFAULT_KNIFE.get(name);
+    if (mapped && knifeList.includes(mapped)) return mapped;
+    return knifeList[0] || "";
+  }
+
+  function refreshStartModeUi() {
+    if (!startScreen) return;
+    startScreen.classList.toggle("play-mode", state.start.mode !== "stadium");
+    startScreen.classList.toggle("stadium-mode", state.start.mode === "stadium");
+  }
+
   function setStartMode(mode) {
     state.start.mode = mode === "stadium" ? "stadium" : "play";
     if (modePlayBtn) modePlayBtn.classList.toggle("active", state.start.mode === "play");
     if (modeStadiumBtn) modeStadiumBtn.classList.toggle("active", state.start.mode === "stadium");
-    if (stadiumSetup) stadiumSetup.hidden = state.start.mode !== "stadium";
+    if (stadiumSetup) stadiumSetup.hidden = false;
+    refreshStartModeUi();
   }
 
   function setupStartSelectors() {
     const chars = getCharacterNameList();
     const knives = getKnifeNameList();
+
+    const applyKnifeDefaults = () => {
+      if (!state.start.manualKnife) {
+        state.start.knife = getDefaultKnifeForCharacter(state.start.selfChar, knives);
+      }
+      if (!state.start.manualKnife2) {
+        state.start.knife2 = getDefaultKnifeForCharacter(state.start.enemyChar, knives);
+      }
+      if (stadiumKnifeSelect) stadiumKnifeSelect.value = state.start.knife;
+      if (stadiumKnife2Select) stadiumKnife2Select.value = state.start.knife2;
+    };
 
     function refreshPreview() {
       if (selfCharPreview) {
@@ -2860,6 +2934,15 @@ function drawImageCover(img) {
         const file = CHARACTER_FILES.get(state.start.enemyChar);
         enemyCharPreview.src = file ? `${PUNI_BASE}/${file}` : "";
       }
+
+      const markActive = (root, value) => {
+        if (!root) return;
+        root.querySelectorAll(".start-roster-btn").forEach((el) => {
+          el.classList.toggle("active", el.dataset.name === value);
+        });
+      };
+      markActive(selfRoster, state.start.selfChar);
+      markActive(enemyRoster, state.start.enemyChar);
     }
 
     if (selfCharSelect) {
@@ -2873,6 +2956,7 @@ function drawImageCover(img) {
           enemyCharSelect.value = alt;
           state.start.enemyChar = alt;
         }
+        applyKnifeDefaults();
         refreshPreview();
       });
     }
@@ -2885,28 +2969,70 @@ function drawImageCover(img) {
       enemyCharSelect.value = state.start.enemyChar;
       enemyCharSelect.addEventListener("change", () => {
         state.start.enemyChar = enemyCharSelect.value;
+        applyKnifeDefaults();
         refreshPreview();
       });
     }
 
     if (stadiumKnifeSelect) {
       stadiumKnifeSelect.innerHTML = knives.map((name) => `<option value="${name}">${name}</option>`).join("");
-      if (!knives.includes(state.start.knife)) state.start.knife = knives[0] || "";
+      if (!knives.includes(state.start.knife)) state.start.knife = getDefaultKnifeForCharacter(state.start.selfChar, knives);
       stadiumKnifeSelect.value = state.start.knife;
       stadiumKnifeSelect.addEventListener("change", () => {
         state.start.knife = stadiumKnifeSelect.value;
+        state.start.manualKnife = true;
       });
     }
 
     if (stadiumKnife2Select) {
       stadiumKnife2Select.innerHTML = knives.map((name) => `<option value="${name}">${name}</option>`).join("");
-      if (!knives.includes(state.start.knife2)) state.start.knife2 = knives[1] || knives[0] || "";
+      if (!knives.includes(state.start.knife2)) state.start.knife2 = getDefaultKnifeForCharacter(state.start.enemyChar, knives);
       stadiumKnife2Select.value = state.start.knife2;
       stadiumKnife2Select.addEventListener("change", () => {
         state.start.knife2 = stadiumKnife2Select.value;
+        state.start.manualKnife2 = true;
       });
     }
 
+    const buildRoster = (root, side) => {
+      if (!root) return;
+      root.innerHTML = "";
+      chars.forEach((name) => {
+        const file = CHARACTER_FILES.get(name);
+        if (!file) return;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "start-roster-btn";
+        btn.dataset.name = name;
+        btn.innerHTML = `<img alt="${name}" src="${PUNI_BASE}/${file}"><span class="n">${name}</span>`;
+        btn.addEventListener("click", () => {
+          if (side === "self") {
+            state.start.selfChar = name;
+            if (selfCharSelect) selfCharSelect.value = name;
+            if (enemyCharSelect && enemyCharSelect.value === name) {
+              const alt = chars.find((n) => n !== name) || name;
+              state.start.enemyChar = alt;
+              enemyCharSelect.value = alt;
+            }
+          } else {
+            state.start.enemyChar = name;
+            if (enemyCharSelect) enemyCharSelect.value = name;
+            if (selfCharSelect && selfCharSelect.value === name) {
+              const alt = chars.find((n) => n !== name) || name;
+              state.start.selfChar = alt;
+              selfCharSelect.value = alt;
+            }
+          }
+          applyKnifeDefaults();
+          refreshPreview();
+        });
+        root.appendChild(btn);
+      });
+    };
+
+    buildRoster(selfRoster, "self");
+    buildRoster(enemyRoster, "enemy");
+    applyKnifeDefaults();
     refreshPreview();
   }
 
@@ -2953,12 +3079,22 @@ function drawImageCover(img) {
 
     if (mode === "stadium") {
       const bucket = bucketOf(stageIndex);
+      const battleStartMs = performance.now();
+      state.start.battleStartAt = battleStartMs;
+      ensureLongActionCooldown(state.player);
+      state.player.longActionCooldownUntil.special = battleStartMs + 15000;
 
       if (CHARACTER_FILES.has(enemyName)) {
         const enemy = await createEntity("npc", stageIndex, enemyName, CHARACTER_FILES.get(enemyName), PUNI_BASE, CHAR_BASE_H);
         placeEntitySafely(enemy, state.player.x + state.player.w * 5.2);
         enemy.facing = -1;
         bucket.npcs.push(enemy);
+      }
+
+      if (bucket.npcs.length > 0) {
+        const enemy = bucket.npcs[0];
+        ensureLongActionCooldown(enemy);
+        enemy.longActionCooldownUntil.special = battleStartMs + 15000;
       }
 
       if (ITEM_FILES.has(knifeName)) {
@@ -3012,7 +3148,10 @@ function drawImageCover(img) {
     if (state.player) {
       state.start.selfChar = state.player.name || state.start.selfChar;
       const held = getCarriedItem(state.player);
-      if (held && held.kind === "item") state.start.knife = held.name || state.start.knife;
+      if (held && held.kind === "item") {
+        state.start.knife = held.name || state.start.knife;
+        state.start.manualKnife = true;
+      }
     }
 
     if (selfCharSelect) selfCharSelect.value = state.start.selfChar;
@@ -3022,15 +3161,17 @@ function drawImageCover(img) {
     setStartMode(state.start.mode || "play");
 
     state.start.started = false;
+    state.start.battleStartAt = 0;
     state.ready = false;
     closeMobileSidebars();
     if (startScreen) startScreen.classList.remove("hidden");
   }
+
   function handleAction(action, source = "system", actorOverride = null, inputDir = "forward") {
     const actor = actorOverride || getControlledActor();
     if (!actor) return;
-
     const nowMs = performance.now();
+
     if (!actor.actionCooldownUntil) {
       actor.actionCooldownUntil = { bounce: 0, roll: 0, pickup: 0 };
     }
@@ -3148,21 +3289,163 @@ function drawImageCover(img) {
       return;
     }
   }
+  function ensureLongActionCooldown(actor) {
+    if (!actor) return;
+    if (!actor.longActionCooldownUntil) {
+      actor.longActionCooldownUntil = { special: 0, guard: 0 };
+    }
+  }
+  function getDirectionModeFromPointer(btn, clientX, actor) {
+    let directionMode = "forward";
+    if (!btn || !actor || !Number.isFinite(clientX)) return directionMode;
+    const rect = btn.getBoundingClientRect();
+    const localX = clientX - rect.left;
+    const clickDir = localX >= rect.width * 0.5 ? 1 : -1;
+    const facingDir = actor.facing >= 0 ? 1 : -1;
+    directionMode = clickDir === facingDir ? "forward" : "backward";
+    return directionMode;
+  }
+  function canUseLongPressAction(actor, action) {
+    if (!actor || actor.kind === "item") return false;
+    if (action !== "bounce" && action !== "roll") return false;
+    if (state.start.mode !== "stadium") return false;
+    if (actor.stageIndex !== ARENA_STAGE_INDEX) return false;
+    if (!getHeldKnifeItem(actor)) return false;
+    if (getCharacterState(actor) === "spectator") return false;
+    return true;
+  }
+  function clearLongPressState() {
+    const lp = state.ui.longPress;
+    if (lp.button) {
+      lp.button.classList.remove("holding");
+      delete lp.button.dataset.hold;
+      lp.button.style.removeProperty("--hold-progress");
+    }
+    lp.active = false;
+    lp.pointerId = null;
+    lp.action = "";
+    lp.actorId = null;
+    lp.directionMode = "forward";
+    lp.startAt = 0;
+    lp.holdMs = 0;
+    lp.fired = false;
+    lp.button = null;
+  }
+  function triggerLongPressAction(lp, nowMs) {
+    const actor = getEntityById(lp.actorId);
+    if (!actor) return false;
+    ensureLongActionCooldown(actor);
+    const facingDir = actor.facing >= 0 ? 1 : -1;
+    const motionDir = lp.directionMode === "backward" ? -facingDir : facingDir;
+
+    if (lp.action === "bounce") {
+      const until = actor.longActionCooldownUntil.special || 0;
+      const battleLockUntil = (state.start.mode === "stadium" && Number.isFinite(state.start.battleStartAt)) ? (state.start.battleStartAt + 15000) : 0;
+      if (nowMs < Math.max(until, battleLockUntil)) return false;
+      actor.longActionCooldownUntil.special = nowMs + SPECIAL_COOLDOWN_MS;
+      pushSpeechLog(`${actor.name}: 秘技の構え。`);
+      setSpeechBubbleForEntity(actor.id, nowMs);
+      return true;
+    }
+    if (lp.action === "roll") {
+      const until = actor.longActionCooldownUntil.guard || 0;
+      if (nowMs < until) return false;
+      if (actor.combat && actor.combat.type) return false;
+      if (!beginCombatAction(actor, "justGuard", motionDir)) return false;
+      actor.guardUntil = nowMs + GUARD_ACTIVE_MS;
+      actor.longActionCooldownUntil.guard = nowMs + GUARD_COOLDOWN_MS;
+      pushSpeechLog(`${actor.name}: ガード！`);
+      setSpeechBubbleForEntity(actor.id, nowMs);
+      return true;
+    }
+    return false;
+  }
+  function onActionButtonPointerDown(e) {
+    const btn = e.target.closest(".action-trigger");
+    if (!btn) return;
+    if (state.ui.longPress.active) clearLongPressState();
+
+    const action = btn.dataset.action;
+    const actor = getControlledActor();
+    if (!actor || !canUseLongPressAction(actor, action)) return;
+
+    const holdMs = action === "bounce" ? SPECIAL_HOLD_MS : action === "roll" ? GUARD_HOLD_MS : 0;
+    if (!holdMs) return;
+
+    const directionMode = getDirectionModeFromPointer(btn, e.clientX, actor);
+    const lp = state.ui.longPress;
+    lp.active = true;
+    lp.pointerId = e.pointerId;
+    lp.action = action;
+    lp.actorId = actor.id;
+    lp.directionMode = directionMode;
+    lp.startAt = performance.now();
+    lp.holdMs = holdMs;
+    lp.fired = false;
+    lp.button = btn;
+    btn.classList.add("holding");
+    btn.dataset.hold = `長押し ${(holdMs / 1000).toFixed(1)}s`;
+    btn.style.setProperty("--hold-progress", "0%");
+    try {
+      btn.setPointerCapture(e.pointerId);
+    } catch (_err) {
+      // no-op
+    }
+  }
+  function onActionButtonPointerUp(e) {
+    const lp = state.ui.longPress;
+    if (!lp.active) return;
+    if (e.pointerId !== lp.pointerId) return;
+    const nowMs = performance.now();
+    const elapsed = nowMs - lp.startAt;
+
+    if (!lp.fired && elapsed >= lp.holdMs) {
+      lp.fired = triggerLongPressAction(lp, nowMs);
+    }
+
+    if (lp.fired) {
+      lp.suppressAction = lp.action;
+      lp.suppressUntil = nowMs + 500;
+    }
+    clearLongPressState();
+  }
+  function onActionButtonPointerCancel(e) {
+    const lp = state.ui.longPress;
+    if (!lp.active) return;
+    if (e.pointerId !== lp.pointerId) return;
+    clearLongPressState();
+  }
+  function updateLongPress(nowMs) {
+    const lp = state.ui.longPress;
+    if (!lp.active || !lp.button) return;
+    const actor = getEntityById(lp.actorId);
+    if (!actor || !canUseLongPressAction(actor, lp.action)) {
+      clearLongPressState();
+      return;
+    }
+    const progress = clamp((nowMs - lp.startAt) / Math.max(1, lp.holdMs), 0, 1);
+    lp.button.classList.add("holding");
+    lp.button.style.setProperty("--hold-progress", `${(progress * 100).toFixed(2)}%`);
+    lp.button.dataset.hold = `長押し ${(progress * 100).toFixed(0)}%`;
+    if (!lp.fired && progress >= 1) {
+      lp.fired = triggerLongPressAction(lp, nowMs);
+    }
+  }
   function onActionButtonClick(e) {
     const btn = e.target.closest(".action-trigger");
     if (!btn) return;
     const action = btn.dataset.action;
     if (!action) return;
 
-    const actor = getControlledActor();
-    let directionMode = "forward";
-    if (actor) {
-      const rect = btn.getBoundingClientRect();
-      const localX = e.clientX - rect.left;
-      const clickDir = localX >= rect.width * 0.5 ? 1 : -1;
-      const facingDir = actor.facing >= 0 ? 1 : -1;
-      directionMode = clickDir === facingDir ? "forward" : "backward";
+    const nowMs = performance.now();
+    const lp = state.ui.longPress;
+    if (lp && lp.suppressAction === action && nowMs <= (lp.suppressUntil || 0)) {
+      e.preventDefault();
+      return;
     }
+
+    const actor = getControlledActor();
+    const directionMode = getDirectionModeFromPointer(btn, e.clientX, actor);
 
     handleAction(action, "user", null, directionMode);
   }
@@ -3777,6 +4060,16 @@ function drawImageCover(img) {
     }
 
     ctx.drawImage(ent.img, ent.sprite.sx, ent.sprite.sy, ent.sprite.sw, ent.sprite.sh, -drawW * 0.5, spriteY, drawW, drawH);
+
+    const guardActive = ent.kind !== "item" && Number.isFinite(ent.guardUntil) && nowMs < ent.guardUntil;
+    if (guardActive) {
+      const pulse = 0.36 + 0.2 * (0.5 + 0.5 * Math.sin(nowMs / 110 + ent.id));
+      ctx.save();
+      ctx.globalAlpha = pulse;
+      ctx.filter = "brightness(0) saturate(100%) invert(53%) sepia(95%) saturate(3125%) hue-rotate(194deg) brightness(106%) contrast(101%)";
+      ctx.drawImage(ent.img, ent.sprite.sx, ent.sprite.sy, ent.sprite.sw, ent.sprite.sh, -drawW * 0.5, spriteY, drawW, drawH);
+      ctx.restore();
+    }
     ctx.restore();
   }
 
@@ -3937,14 +4230,30 @@ function drawImageCover(img) {
 
     buttons.forEach((btn) => {
       const action = btn.dataset.action;
+      ensureLongActionCooldown(actor);
+      const longKey = action === "bounce" ? "special" : action === "roll" ? "guard" : "";
+      const longUntil = actor && longKey ? (actor.longActionCooldownUntil[longKey] || 0) : 0;
+      const longRemain = Math.max(0, longUntil - nowMs);
+
       const until = actor && actor.actionCooldownUntil ? (actor.actionCooldownUntil[action] || 0) : 0;
       const remain = Math.max(0, until - nowMs);
+
       if (remain > 0) {
         btn.classList.add("cooldown");
         btn.dataset.cd = `CD ${(remain / 1000).toFixed(1)}s`;
       } else {
         btn.classList.remove("cooldown");
         delete btn.dataset.cd;
+      }
+
+      if (longRemain > 0) {
+        const longTotal = longKey === "special" ? SPECIAL_COOLDOWN_MS : (longKey === "guard" ? GUARD_COOLDOWN_MS : 1);
+        const longPct = clamp((longRemain / Math.max(1, longTotal)) * 100, 0, 100);
+        btn.style.setProperty("--cd-long-pct", `${longPct.toFixed(2)}%`);
+        btn.classList.add("long-cooldown");
+      } else {
+        btn.style.setProperty("--cd-long-pct", "0%");
+        btn.classList.remove("long-cooldown");
       }
     });
   }
@@ -3981,6 +4290,7 @@ function drawImageCover(img) {
       tryContactConversation(now);
       updateDialogueQueue(now);
       runAutoBehavior(now);
+      updateLongPress(now);
       drawWorld();
       drawEntities(now);
       drawSpeechBubble(now);
@@ -4036,14 +4346,16 @@ function drawImageCover(img) {
     setStartMode("play");
     if (modePlayBtn) modePlayBtn.addEventListener("click", () => setStartMode("play"));
     if (modeStadiumBtn) modeStadiumBtn.addEventListener("click", () => setStartMode("stadium"));
-    if (startGameBtn) {
-      startGameBtn.addEventListener("click", () => {
-        beginFromStartScreen().catch((err) => {
-          console.error(err);
-          hud.textContent = `開始エラー: ${err.message}`;
-        });
+
+    const startFromTop = () => {
+      beginFromStartScreen().catch((err) => {
+        console.error(err);
+        hud.textContent = `開始エラー: ${err.message}`;
       });
-    }
+    };
+
+    if (startGameBtn) startGameBtn.addEventListener("click", startFromTop);
+    if (startGameBtnMobile) startGameBtnMobile.addEventListener("click", startFromTop);
   }
 
   window.addEventListener("resize", () => {
@@ -4067,6 +4379,20 @@ function drawImageCover(img) {
   });
   if (entityPanel) entityPanel.addEventListener("click", onEntityPanelClick);
   document.addEventListener("click", onActionButtonClick);
+  document.addEventListener("pointerdown", onActionButtonPointerDown);
+  document.addEventListener("pointerup", onActionButtonPointerUp);
+  document.addEventListener("pointercancel", onActionButtonPointerCancel);
+  document.addEventListener("dblclick", (e) => {
+    e.preventDefault();
+  }, { passive: false });
+  document.addEventListener("gesturestart", (e) => {
+    e.preventDefault();
+  }, { passive: false });
+  document.addEventListener("touchstart", (e) => {
+    if (e.target && e.target.closest(".action-trigger")) {
+      e.preventDefault();
+    }
+  }, { passive: false });
   if (toggleLeftSidebar) toggleLeftSidebar.addEventListener("click", () => {
     document.body.classList.toggle("show-left-sidebar");
     document.body.classList.remove("show-right-sidebar");
@@ -4084,6 +4410,27 @@ function drawImageCover(img) {
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
