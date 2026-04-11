@@ -438,7 +438,11 @@ async def ws_room(websocket: WebSocket, room_code: str, session_token: str) -> N
                     if not cmd_line.startswith("/"):
                         await websocket.send_json({"type": "error", "message": "コマンドは / で始まる必要があります"})
                         continue
-                    cmd_name = cmd_line.split()[0].lower()
+                    cmd_parts = cmd_line.split()
+                    if not cmd_parts:
+                        await websocket.send_json({"type": "error", "message": "コマンドが空です"})
+                        continue
+                    cmd_name = cmd_parts[0].lower()
                     if cmd_name not in _ALLOWED_COMMAND_NAMES:
                         await websocket.send_json({"type": "error", "message": f"不明コマンド: {cmd_name}"})
                         continue
