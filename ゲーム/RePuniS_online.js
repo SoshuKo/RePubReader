@@ -838,38 +838,43 @@
   }
 
   async function enterOnlineAsHost() {
-    const adminPass = onlineHostAdminPassword ? onlineHostAdminPassword.value.trim() : "";
-    const username = (onlineHostUsername && onlineHostUsername.value.trim()) || "Host";
-    const roomPass = (onlineRoomPasswordHost && onlineRoomPasswordHost.value.trim()) || "";
-    if (!/^\d{4}$/.test(roomPass)) throw new Error("ルームパスワードは4桁です。");
+  const adminPass = onlineHostAdminPassword ? onlineHostAdminPassword.value.trim() : "";
+  const username = (onlineHostUsername && onlineHostUsername.value.trim()) || "Host";
+  const roomPass = (onlineRoomPasswordHost && onlineRoomPasswordHost.value.trim()) || "";
 
-    const character = state.start.selfChar;
-    const knife = state.start.knife;
+  console.log("HOST roomPass raw =", JSON.stringify(roomPass), roomPass.length, /^\d{4}$/.test(roomPass));
+  console.log("HOST input el =", onlineRoomPasswordHost);
+  console.log("HOST input current value =", onlineRoomPasswordHost ? JSON.stringify(onlineRoomPasswordHost.value) : null);
 
-    const res = await onlineApi("/api/host/open-room", "POST", {
-      admin_password: adminPass,
-      username,
-      character,
-      knife,
-      room_password: roomPass,
-    });
+  if (!/^\d{4}$/.test(roomPass)) throw new Error("ルームパスワードは4桁です。");
 
-    state.online.active = true;
-    state.online.isHost = true;
-    state.online.roomCode = res.room_code;
-    state.online.roomPassword = roomPass;
-    state.online.sessionToken = res.session_token;
-    state.online.slot = Number(res.slot) || 1;
-    state.start.onlineUsername = username;
-    state.ui.hostUi.phaseInviteSent = false;
-    ensureHostReadyState();
-    setOnlinePlayerMeta(res.session_token, { username, slot: Number(res.slot) || 1, is_host: true, connected: true });
-    markHostReady(res.session_token, true);
-    onlineSetInfo(`ルーム作成: ${res.room_code} (共有パス: ${roomPass})`);
+  const character = state.start.selfChar;
+  const knife = state.start.knife;
 
-    await connectOnlineWs(res.room_code, res.session_token);
-    updateHostToolsUi();
-  }
+  const res = await onlineApi("/api/host/open-room", "POST", {
+    admin_password: adminPass,
+    username,
+    character,
+    knife,
+    room_password: roomPass,
+  });
+
+  state.online.active = true;
+  state.online.isHost = true;
+  state.online.roomCode = res.room_code;
+  state.online.roomPassword = roomPass;
+  state.online.sessionToken = res.session_token;
+  state.online.slot = Number(res.slot) || 1;
+  state.start.onlineUsername = username;
+  state.ui.hostUi.phaseInviteSent = false;
+  ensureHostReadyState();
+  setOnlinePlayerMeta(res.session_token, { username, slot: Number(res.slot) || 1, is_host: true, connected: true });
+  markHostReady(res.session_token, true);
+  onlineSetInfo(`ルーム作成: ${res.room_code} (共有パス: ${roomPass})`);
+
+  await connectOnlineWs(res.room_code, res.session_token);
+  updateHostToolsUi();
+}
 
   async function enterOnlineAsGuest() {
     const roomCode = onlineRoomSelect ? (onlineRoomSelect.value || "") : "";
