@@ -1,0 +1,254 @@
+﻿RePuniS オンライン残作業フローチャート（2026-04-11）
+
+[結論]
+- 残作業は、あなたが挙げた4項目が主軸で「ほぼ間違いない」。
+- ただし実装仕上げでは、下記の横断チェック（ログ/再接続/切断復帰）を同時に潰す必要がある。
+
+==================================================
+1. 残作業フローチャート（全体）
+==================================================
+
+START
+  |
+  v
+[前提固定]
+- 基準: backup/20260411_172700 の機能欠落なし
+- online処理は RePuniS_online.js + repunis_online_server.py に限定
+  |
+  v
+[Step A: マルチ同期精度]
+  |
+  +--> A1: player_state 送信項目を再確認
+  |     - stage_index, x, y, facing, hp, carrying_item, actionState(必要なら)
+  |
+  +--> A2: 受信補間の改善
+  |     - 位置: 線形補間 + スナップ閾値
+  |     - 向き: 即時同期
+  |     - HP/観戦状態: 即時同期
+  |
+  +--> A3: ナイフ同期強化
+  |     - 所持状態(carrying), 投擲状態(throwAttack), 地面状態を優先同期
+  |     - 「見えてるのに拾えない/当たらない」の不整合潰し
+  |
+  v
+[Step B: 1P〜4P表示 + 操作不可制御]
+  |
+  +--> B1: 右サイドバー表示
+  |     - onlineSlot を 1P〜4P 表示
+  |
+  +--> B2: 操作制御
+  |     - ローカル sessionToken 以外は「操作/削除/切替」禁止
+  |     - host/guest 権限差を最終固定
+  |
+  +--> B3: 例外確認
+  |     - 観戦解除可否
+  |     - バトルモード中のスポーン/削除禁止ルール
+  |
+  v
+[Step C: VPS側 FastAPI 拡張]
+  |
+  +--> C1: ルーム状態
+  |     - pending_battle_invite, phase(play/battle), readyByToken を保持
+  |
+  +--> C2: メッセージ拡張
+  |     - invite_battle, accept_battle, phase, command relay の整合
+  |
+  +--> C3: ルームスナップショット API
+  |     - 再接続時の復元用に players/loadout/phase を返す
+  |
+  +--> C4: 安全対策
+  |     - host-only endpoint 保護
+  |     - 入力バリデーション（stage座標/HP上限/存在確認）
+  |
+  v
+[Step D: 招待→遷移仕様の最終一致]
+  |
+  +--> D1: play部屋(1-4)で host が invite
+  |
+  +--> D2: guest が accept すると hostのReady一覧更新
+  |
+  +--> D3: host が バトルを開始 押下で stage5 リセット + 開始
+  |
+  +--> D4: battle中に0HPは観戦、play部屋へ戻れる
+  |
+  v
+[Step E: 実機通しテスト（PC/モバイル）]
+  |
+  +--> E1: 接続
+  |     - host作成 -> guest参加(2-4人)
+  |
+  +--> E2: プレイ部屋同期
+  |     - 移動/拾う/捨てる/投擲/HP同期
+  |
+  +--> E3: 招待〜開始
+  |     - Ready一覧変化
+  |     - host開始可能条件
+  |
+  +--> E4: バトル継続
+  |     - 観戦遷移
+  |     - 再接続復帰
+  |
+  v
+[バグ修正ループ]
+  - 再現手順を固定
+  - ログ追加
+  - 最小差分修正
+  - 再テスト
+  |
+  v
+END
+
+
+==================================================
+2. 「残り作業」補足（見落とし防止）
+==================================================
+
+あなたが列挙した4項目で本筋は合っている。
+ただし以下は実装時に必ず並行確認すること。
+
+- 切断/再接続時の同期復元
+- host交代しない前提でも「host切断時のルーム挙動」
+- command実行時の権限漏れ
+- モバイルSafariでの操作イベント競合（長押し/タップ）
+
+
+==================================================
+3. Python(VPS)で手動設定が必要な項目（ConoHa含む）
+==================================================
+
+A. 必須環境変数（.env）
+- REPUNIS_HOST_ADMIN_PASSWORD=<ホスト管理パス>
+- REPUNIS_ALLOWED_ORIGINS=<GitHub PagesのURLをカンマ区切り>
+  例: https://soshuko.github.io
+- REPUNIS_MAX_ROOMS=<同時ルーム上限>
+- REPUNIS_ROOM_TTL_SEC=<無通信ルームの自動破棄秒>
+
+B. ConoHa VPS 側
+- Python 3.11+ を導入
+- systemd サービス作成（自動起動）
+- UFW/ファイアウォールで使用ポート許可（例 8000）
+- Nginx リバースプロキシ設定
+  - /ws を websocket upgrade 付きで転送
+  - HTTPS終端（Let's Encrypt）
+- ドメインまたは固定URLを決める
+
+C. CORS / セキュリティ
+- GitHub Pagesドメインのみ許可
+- host専用APIは admin_password 必須
+- ルームパス4桁はサーバー照合
+- ログに平文パスワードを出さない
+
+D. 運用手順（手動）
+- デプロイ後に /api/rooms が空配列で200を返すか確認
+- host作成 -> guest参加 -> WS接続維持を確認
+- invite_battle -> accept_battle -> phase=battle の順で受信確認
+- 異常時は serverログの session_token と type で追跡
+
+E. トラブル時チェック
+- WebSocketが101になっているか
+- mixed content（httpsページ -> ws://）になっていないか
+- CORS preflight(OPTIONS)が通っているか
+- systemd再起動後に環境変数が読めているか
+
+
+==================================================
+4. 別AIへ渡す最短タスク順
+==================================================
+
+1) RePuniS_online.js の同期項目確定（位置/向き/HP/ナイフ状態）
+2) 1P〜4P表示と remote操作禁止の最終固定
+3) repunis_online_server.py に ready管理と phase遷移の堅牢化
+4) PC2台 + モバイル1台で通し検証
+5) バグ一覧を潰してから commit/push
+
+
+==================================================
+5. GitHub Copilot用プロンプト集（6本）
+==================================================
+
+[Prompt 1: マルチ同期精度の強化]
+あなたは既存コードを壊さず、オンライン同期精度だけを改善するエンジニアです。
+対象:
+- フロント: C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\RePuniS_online.js
+- サーバー: C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\repunis_online_server.py
+要件:
+1) player_state 同期で x,y,facing,stage_index,hp,carrying_item を確実に反映
+2) 他プレイヤー座標は補間しつつ、乖離が大きいときはスナップ
+3) ナイフの所持/投擲/地面状態の同期ズレを減らす
+4) 既存オフライン機能に影響を与えない
+出力:
+- 変更差分（関数名/理由付き）
+- 手元での検証手順
+
+[Prompt 2: 1P〜4P表示と操作不可制御の最終固定]
+既存UIを維持したまま、オンライン時の表示/権限制御を最終調整してください。
+対象:
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\RePuniS.js
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\RePuniS_online.js
+要件:
+1) 右サイドバーに onlineSlot を 1P〜4P で安定表示
+2) 自分(sessionToken一致)以外は操作/削除/切替不可
+3) host/guest 権限差を明確化（hostのみ可能な操作を固定）
+4) バトルモード中の禁止操作（スポーン/削除など）を統一
+出力:
+- 変更した条件分岐の一覧
+- 誤操作防止の確認観点
+
+[Prompt 3: 招待→Ready→開始フローを仕様通り化]
+バトル遷移を次の順序に厳密一致させてください。
+仕様:
+- play部屋(1〜4)でhostが invite_battle
+- guest が accept_battle
+- host画面のReady一覧が更新
+- host が「バトルを開始」で phase=battle
+- stage5 リセット後に開始
+対象:
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\RePuniS_online.js
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\repunis_online_server.py
+要件:
+1) Ready一覧は切断/再接続でも破綻しない
+2) phase=play に戻るとReadyを適切にクリア
+3) host以外が phase 変更できない
+出力:
+- 状態遷移図（テキスト）
+- 実装した受信イベントの一覧
+
+[Prompt 4: /tp /heal /spawn /kill のエッジケース強化]
+コマンド系の堅牢性だけに集中して改善してください。
+対象:
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\RePuniS_online.js
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\repunis_online_server.py
+要件:
+1) 対象0件、座標不正、ステージ不正、上限超過の明示エラー
+2) /kill はオンラインプレイヤーを削除ではなく観戦化(HP0)
+3) /spawn はキャラ上限・アイテム上限を厳密適用
+4) host-only をサーバー側でも必ず再検証
+出力:
+- コマンド別テストケース（正常/異常）
+- 追加したバリデーション一覧
+
+[Prompt 5: PC/モバイル通しテスト自動チェックリスト作成]
+接続〜プレイ〜バトル開始までの実機テストを体系化してください。
+対象:
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム
+要件:
+1) PC2台+モバイル1台を想定した手順書
+2) 各工程で「期待結果」「失敗時の切り分け」を記載
+3) 特にモバイルの操作入力（長押し/タップ）とWS維持を重点化
+4) 結果記録テンプレート（PASS/FAIL/再現条件）を付ける
+出力:
+- そのまま使えるテストチェックリスト（Markdown）
+
+[Prompt 6: VPSデプロイ最終化（ConoHa向け）]
+ConoHa VPSでの運用を前提に、FastAPIサーバーの本番設定手順を最終化してください。
+対象:
+- C:\Users\chiti\OneDrive\デスクトップ\RePubReader\ゲーム\repunis_online_server.py
+要件:
+1) .env 必須項目の整理（admin password, allowed origins, limits）
+2) systemd + nginx + websocket upgrade + HTTPS の設定例
+3) CORS/mixed-content/101 upgrade 失敗時の診断手順
+4) ログ上で session_token / type / phase を追える運用提案
+出力:
+- コピペ可能な設定例
+- デプロイ後の疎通確認コマンド一覧
+

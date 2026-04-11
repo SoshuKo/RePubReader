@@ -34,6 +34,33 @@
   const combatHelpBtn = document.getElementById("combatHelpBtn");
   const combatHelpBox = document.getElementById("combatHelpBox");
   const combatHelpClose = document.getElementById("combatHelpClose");
+  const modeOnlineBtn = document.getElementById("modeOnlineBtn");
+  const onlineSetup = document.getElementById("onlineSetup");
+  const onlineServerUrl = document.getElementById("onlineServerUrl");
+  const onlineRoleHostBtn = document.getElementById("onlineRoleHostBtn");
+  const onlineRoleGuestBtn = document.getElementById("onlineRoleGuestBtn");
+  const onlineHostForm = document.getElementById("onlineHostForm");
+  const onlineGuestForm = document.getElementById("onlineGuestForm");
+  const onlineHostAdminPassword = document.getElementById("onlineHostAdminPassword");
+  const onlineHostUsername = document.getElementById("onlineHostUsername");
+  const onlineGuestUsername = document.getElementById("onlineGuestUsername");
+  const onlineRoomPasswordHost = document.getElementById("onlineRoomPasswordHost");
+  const onlineRoomPasswordGuest = document.getElementById("onlineRoomPasswordGuest");
+  const onlineRoomSelect = document.getElementById("onlineRoomSelect");
+  const onlineRefreshRoomsBtn = document.getElementById("onlineRefreshRoomsBtn");
+  const onlineHostOpenBtn = document.getElementById("onlineHostOpenBtn");
+  const onlineGuestJoinBtn = document.getElementById("onlineGuestJoinBtn");
+  const onlineRoomInfo = document.getElementById("onlineRoomInfo");
+  const hostToolsSection = document.getElementById("hostToolsSection");
+  const hostShowCoordsToggle = document.getElementById("hostShowCoordsToggle");
+  const hostShowCommandToggle = document.getElementById("hostShowCommandToggle");
+  const hostCoordsBox = document.getElementById("hostCoordsBox");
+  const hostReadyList = document.getElementById("hostReadyList");
+  const hostCommandGuide = document.getElementById("hostCommandGuide");
+  const hostCommandBox = document.getElementById("hostCommandBox");
+  const hostCommandInput = document.getElementById("hostCommandInput");
+  const hostCommandSendBtn = document.getElementById("hostCommandSendBtn");
+  const hostBattleStartBtn = document.getElementById("hostBattleStartBtn");
 
   const ASSET_BASE = "./image";
   const PUNI_BASE = `${ASSET_BASE}/puni`;
@@ -58,6 +85,8 @@
   const AUTO_ROLL_NO_IMPROVE_LIMIT = 2;
   const ITEM_DESPAWN_IDLE_MS = 2 * 60 * 1000;
   const ITEM_SWEEP_INTERVAL_MS = 1000;
+  const ONLINE_STATE_SEND_MS = 90;
+  const ONLINE_DEFAULT_SERVER = "";
 
   const EAT_EFFECT_MS = 2200;
   const COMBAT_FRAME_RATE = 60;
@@ -180,35 +209,8 @@
     "divaSecret",
     "yandereSecret"
   ]);
-  const SPECIAL_DEF = {
-    "アカウ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "ファタ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "タネイ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "ミナツ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
-    "サテラ": { type: "witchSecret", effect: "effect4", color: "#ffd54a" },
-    "ジョーチョ": { type: "divaSecret", effect: "effect5", color: "#9cd7ff" },
-    "コト": { type: "yandereSecret", effect: "effect6", color: "#73b6ff" },
-    "カレイ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
-    "モノ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "アリー": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "レト": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
-    "クラ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "ハル": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "シユウ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "シナン": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "モン": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
-    "チエル": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "メウ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "ニプロ": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "ロイド": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "レイマー": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "ヴィオン": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "チサ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
-    "アルカ": { type: "balanceSecret", effect: "effect3", color: "#45cf66" },
-    "キルロード": { type: "voidSecret", effect: "effect2", color: "#55a7ff" },
-    "キュビ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" },
-    "アーシャ": { type: "berserkSecret", effect: "effect1", color: "#ff5848" }
-  };
+  const DATA = window.RePuniS_DATA || {};
+  const SPECIAL_DEF = DATA.specialDef || {};
   const HP_MAX = 300;
   const HP_DANGER_THRESHOLD = 50;
   const EAT_HEAL_AMOUNT = 75;
@@ -219,52 +221,14 @@
   const COMBO_RESET_MS = 3200;
   const COMBO_DISPLAY_MS = 1600;
 
-  const STAGES = [
-    { bg: "アーケイ.png", mask: "判定1.png" },
-    { bg: "イラー.png", mask: "判定2.png" },
-    { bg: "シュメケルペ.png", mask: "判定3.png" },
-    { bg: "ヘリエン.png", mask: "判定3.png" },
-    { bg: "スタジアム.png", mask: "判定4.png" }
-  ];
+  const STAGES = Array.isArray(DATA.stages) && DATA.stages.length ? DATA.stages : [];
+  const STAGE_SELECT_NAMES = Array.isArray(DATA.stageSelectNames) ? DATA.stageSelectNames : [];
+  const ARENA_STAGE_INDEX = Number.isFinite(DATA.arenaStageIndex) ? DATA.arenaStageIndex : 4;
 
-  const STAGE_SELECT_NAMES = ["アーケイ", "イラー", "シュメケルペ", "ヘリエン", "アリーナ"];
-  const ARENA_STAGE_INDEX = 4;
-
-  const CHARACTER_DEFAULT_KNIFE = new Map([
-    ["アカウ", "純白のナイフ"], ["ファタ", "純白のナイフ"],
-    ["タネイ", "真紅のナイフ"], ["モノ", "真紅のナイフ"],
-    ["アリー", "狐色のナイフ"], ["レト", "狐色のナイフ"], ["ミナツ", "狐色のナイフ"], ["クラ", "狐色のナイフ"], ["ハル", "狐色のナイフ"],
-    ["アルカ", "漆黒のナイフ"], ["キルロード", "漆黒のナイフ"], ["キュビ", "漆黒のナイフ"], ["アーシャ", "漆黒のナイフ"],
-    ["チエル", "アヤのナイフ"], ["メウ", "アヤのナイフ"], ["ニプロ", "アヤのナイフ"], ["ロイド", "アヤのナイフ"], ["レイマー", "アヤのナイフ"], ["ヴィオン", "アヤのナイフ"],
-    ["サテラ", "サテラのナイフ"], ["カレイ", "サテラのナイフ"], ["シユウ", "サテラのナイフ"], ["シナン", "サテラのナイフ"], ["モン", "サテラのナイフ"],
-    ["コト", "コトのナイフ"],
-    ["チサ", "ガナリのナイフ"], ["ジョーチョ", "ガナリのナイフ"]
-  ]);
-
-  const CHARACTER_GROUPS = [
-    { title: "タネイ政権", names: ["アカウ", "カレイ", "タネイ", "モノ"] },
-    { title: "西アルトス研究会", names: ["アリー", "レト", "ファタ", "ミナツ", "クラ", "ハル"] },
-    { title: "サウソス", names: ["サテラ", "シユウ", "シナン", "モン"] },
-    { title: "VUISAL", names: ["チエル", "メウ", "ニプロ", "ロイド", "レイマー", "ヴィオン"] },
-    { title: "ZC", names: ["チサ", "ジョーチョ"] },
-    { title: "五天", names: ["アルカ", "キルロード", "キュビ", "コト", "アーシャ"] }
-  ];
-
-  const CHARACTER_FILES = new Map([
-    ["アカウ", "アカウ.png"], ["カレイ", "カレイ.png"], ["タネイ", "タネイ.png"], ["モノ", "モノ.png"],
-    ["アリー", "アリー.png"], ["レト", "レト.png"], ["ファタ", "ファタ.png"], ["ミナツ", "ミナツ.png"], ["クラ", "クラ.png"], ["ハル", "ハル.png"],
-    ["サテラ", "サテラ.png"], ["シユウ", "シユウ.png"], ["シナン", "シナン.png"], ["モン", "モン.png"],
-    ["チエル", "チエル.png"], ["メウ", "メウ.png"], ["ニプロ", "ニプロ.png"], ["ロイド", "ロイド.png"], ["レイマー", "レイマー.png"], ["ヴィオン", "ヴィオン.png"],
-    ["チサ", "チサ.png"], ["ジョーチョ", "ジョーチョ.png"],
-    ["アルカ", "アルカ.png"], ["キルロード", "キルロード.png"], ["キュビ", "キュビ.png"], ["コト", "コト.png"], ["アーシャ", "アーシャ.png"]
-  ]);
-
-  const ITEM_FILES = new Map([
-    ["狐色のナイフ", "狐色のナイフ.png"], ["漆黒のナイフ", "漆黒のナイフ.PNG"], ["真紅のナイフ", "真紅のナイフ.png"], ["純白のナイフ", "純白のナイフ.png"],
-    ["アヤのナイフ", "アヤのナイフ.png"], ["コトのナイフ", "コトのナイフ.PNG"], ["サテラのナイフ", "サテラのナイフ.PNG"], ["ガナリのナイフ", "ガナリのナイフ.png"],
-    ["チャハン", "チャハン.png"], ["サシィク", "サシィク.png"], ["タピオカ", "タピオカ.png"], ["ギター", "ギター.png"], ["ぬいぐるみ", "ぬいぐるみ.png"]
-  ]);
-
+  const CHARACTER_DEFAULT_KNIFE = new Map(Array.isArray(DATA.characterDefaultKnife) ? DATA.characterDefaultKnife : []);
+  const CHARACTER_GROUPS = Array.isArray(DATA.characterGroups) ? DATA.characterGroups : [];
+  const CHARACTER_FILES = new Map(Array.isArray(DATA.characterFiles) ? DATA.characterFiles : []);
+  const ITEM_FILES = new Map(Array.isArray(DATA.itemFiles) ? DATA.itemFiles : []);
   const state = {
     ready: false,
     scale: 1,
@@ -335,6 +299,24 @@
       specialFxImgs: {},
       specialTextFx: []
     },
+    online: {
+      active: false,
+      role: "host",
+      serverBase: ONLINE_DEFAULT_SERVER,
+      roomCode: "",
+      roomPassword: "",
+      sessionToken: "",
+      slot: 0,
+      isHost: false,
+      phase: "play",
+      ws: null,
+      wsConnected: false,
+      peers: new Map(),
+      peerCreatePending: new Set(),
+      lastStateSendAt: 0,
+      pendingInvite: false,
+      awaitingBattleLoadout: false
+    },
     ui: {
       panelDirty: true,
       panelStage: -1,
@@ -351,14 +333,23 @@
         button: null,
         suppressAction: "",
         suppressUntil: 0
-      }
-    },
+      },
+      hostUi: {
+        showCoords: true,
+        showCommand: true,
+        mouseWorldX: 0,
+        mouseWorldY: 0,
+        phaseInviteSent: false
+      }},
     start: {
       mode: "play",
       selfChar: "アカウ",
       enemyChar: "コト",
       knife: "純白のナイフ",
       knife2: "コトのナイフ",
+      onlineRole: "host",
+      onlineUsername: "",
+      onlineServer: ONLINE_DEFAULT_SERVER,
       manualKnife: false,
       manualKnife2: false,
       battleStartAt: 0,
@@ -800,6 +791,7 @@
   function applyHitToTarget(attacker, target, spec, dir) {
     if (!target || target.kind === "item") return false;
     if (getCharacterState(target) === "spectator") return false;
+    if (state.online.active && state.online.phase === "play" && target.isOnlinePlayer) return false;
     const nowMs = performance.now();
     if (isSpecialActive(target) && target.specialMove.counterWindowOpen && !target.specialMove.counterTriggered) {
       target.specialMove.counterTriggered = true;
@@ -2653,6 +2645,8 @@
   function runAutoBehavior(nowMs) {
     const actors = getAllEntities().filter((ent) => ent && ent.kind !== "item");
     actors.forEach((actor) => {
+      if (actor.remoteControlled) return;
+      if (state.online.active && actor.isOnlinePlayer && state.player && actor.id !== state.player.id) return;
       if (state.start.mode === "play" && state.player && actor.id === state.player.id) {
         return;
       }
@@ -2836,7 +2830,13 @@
       comboCount: 0,
       comboLastHitAt: 0,
       comboDisplayUntil: 0,
-      comboCritUntil: 0
+      comboCritUntil: 0,
+      isOnlinePlayer: false,
+      onlineToken: "",
+      onlineSlot: 0,
+      remoteControlled: false,
+      netTargetX: 0,
+      netTargetY: 0
 };
   }
 
@@ -2865,6 +2865,17 @@
     if (state.drag.active && state.drag.entityId === ent.id) return;
     if ((ent.hitstopFrames || 0) > 0) {
       ent.hitstopFrames = Math.max(0, ent.hitstopFrames - dt * COMBAT_FRAME_RATE);
+      return;
+    }
+
+    if (ent.remoteControlled) {
+      const tx = Number.isFinite(ent.netTargetX) ? ent.netTargetX : ent.x;
+      const ty = Number.isFinite(ent.netTargetY) ? ent.netTargetY : ent.y;
+      ent.x += (tx - ent.x) * Math.min(1, dt * 12);
+      ent.y += (ty - ent.y) * Math.min(1, dt * 12);
+      ent.vx = 0;
+      ent.vy = 0;
+      ent.grounded = true;
       return;
     }
 
@@ -3094,6 +3105,10 @@ function drawImageCover(img) {
     });
 
     btnReset.addEventListener("click", () => {
+      if (state.online.active && !state.online.isHost) {
+        hud.textContent = "オンライン中のリセット権限はホストのみです。";
+        return;
+      }
       applyStartModeSpawn().catch((err) => {
         console.error(err);
         hud.textContent = `リセットエラー: ${err.message}`;
@@ -3358,16 +3373,189 @@ function drawImageCover(img) {
     return knifeList[0] || "";
   }
 
+  function createOnlineFallbackApi() {
+    return {
+      onlineSetInfo(text) {
+        if (onlineRoomInfo) onlineRoomInfo.textContent = text || "";
+      },
+      isOnlineHostLocal() {
+        return !!(state.online.active && state.online.isHost);
+      },
+      updateHostToolsUi() {
+        const hostOn = !!(state.online.active && state.online.isHost);
+        if (hostToolsSection) hostToolsSection.hidden = !hostOn;
+      },
+      updateHostCoordsFromClient() {},
+      parseCommandStageToken() { return state.currentStageIndex; },
+      findEntitiesByCommandTarget() { return []; },
+      async executeHostCommandLine() {},
+      async submitHostChatOrCommand() {},
+      updateOnlinePhaseHooks() {},
+      startOnlineBattleAsHost() {},
+      getOnlineServerBase() {
+        const fromInput = onlineServerUrl && typeof onlineServerUrl.value === "string" ? onlineServerUrl.value.trim() : "";
+        return (fromInput || state.start.onlineServer || state.online.serverBase || "").replace(/\/$/, "");
+      },
+      async onlineApi() {
+        throw new Error("オンライン機能の読み込みに失敗しました。");
+      },
+      onlineSetRole(role) {
+        state.start.onlineRole = role === "guest" ? "guest" : "host";
+        state.online.role = state.start.onlineRole;
+        if (onlineRoleHostBtn) onlineRoleHostBtn.classList.toggle("active", state.start.onlineRole === "host");
+        if (onlineRoleGuestBtn) onlineRoleGuestBtn.classList.toggle("active", state.start.onlineRole === "guest");
+        if (onlineHostForm) onlineHostForm.hidden = state.start.onlineRole !== "host";
+        if (onlineGuestForm) onlineGuestForm.hidden = state.start.onlineRole !== "guest";
+      },
+      async refreshOnlineRooms() {},
+      onlineDisconnect() {
+        if (state.online.ws) {
+          try { state.online.ws.close(); } catch (_e) {}
+        }
+        state.online.ws = null;
+        state.online.wsConnected = false;
+        state.online.active = false;
+        state.online.phase = "play";
+        state.online.pendingInvite = false;
+        state.online.awaitingBattleLoadout = false;
+        state.online.peers.clear();
+        state.online.peerCreatePending.clear();
+      },
+      async ensureOnlinePeerEntity() {},
+      removeOnlinePeerEntity() {},
+      async handleOnlineMessage() {},
+      async connectOnlineWs() {},
+      sendOnline() {},
+      sendOnlineLocalState() {},
+      async enterOnlineAsHost() {
+        throw new Error("オンライン機能の読み込みに失敗しました。");
+      },
+      async enterOnlineAsGuest() {
+        throw new Error("オンライン機能の読み込みに失敗しました。");
+      },
+      canMoveToStageOnline() {
+        return true;
+      }
+    };
+  }
+
+  let onlineApiImpl = null;
+
+  function getOnlineApiImpl() {
+    if (onlineApiImpl) return onlineApiImpl;
+    const fallback = createOnlineFallbackApi();
+    const mod = window.RePuniSOnline;
+    if (!mod || typeof mod.create !== "function") {
+      onlineApiImpl = fallback;
+      return onlineApiImpl;
+    }
+
+    try {
+      onlineApiImpl = mod.create({
+        window,
+        fetch,
+        WebSocket,
+        state,
+        canvas,
+        onlineRoomInfo,
+        hostToolsSection,
+        hostShowCoordsToggle,
+        hostShowCommandToggle,
+        hostCoordsBox,
+        hostReadyList,
+        hostCommandGuide,
+        hostCommandBox,
+        hostCommandInput,
+        hostBattleStartBtn,
+        onlineServerUrl,
+        onlineRoleHostBtn,
+        onlineRoleGuestBtn,
+        onlineHostForm,
+        onlineGuestForm,
+        onlineRoomSelect,
+        onlineHostAdminPassword,
+        onlineHostUsername,
+        onlineGuestUsername,
+        onlineRoomPasswordHost,
+        onlineRoomPasswordGuest,
+        startScreen,
+        clamp,
+        getViewTransform,
+        STAGE_SELECT_NAMES,
+        getAllEntities,
+        getEntityById,
+        applyMoveCandidate,
+        placeEntitySafely,
+        pushSpeechLog,
+        setCharacterHp,
+        HP_MAX,
+        CHARACTER_FILES,
+        createEntity,
+        bucketOf,
+        ITEM_FILES,
+        PUNI_BASE,
+        CHAR_BASE_H,
+        ITEM_BASE,
+        ITEM_BASE_H,
+        NPC_LIMIT,
+        ITEM_LIMIT,
+        deleteEntityById,
+        ARENA_STAGE_INDEX,
+        stageOf,
+        detachCarriedItem,
+        isKnifeName,
+        getCarriedItem,
+        ONLINE_STATE_SEND_MS,
+        setStartMode
+      }) || fallback;
+    } catch (err) {
+      console.error("[online] module load failed:", err);
+      onlineApiImpl = fallback;
+    }
+
+    return onlineApiImpl;
+  }
+
+  function onlineSetInfo(...args) { return getOnlineApiImpl().onlineSetInfo(...args); }
+  function isOnlineHostLocal(...args) { return getOnlineApiImpl().isOnlineHostLocal(...args); }
+  function updateHostToolsUi(...args) { return getOnlineApiImpl().updateHostToolsUi(...args); }
+  function updateHostCoordsFromClient(...args) { return getOnlineApiImpl().updateHostCoordsFromClient(...args); }
+  function parseCommandStageToken(...args) { return getOnlineApiImpl().parseCommandStageToken(...args); }
+  function findEntitiesByCommandTarget(...args) { return getOnlineApiImpl().findEntitiesByCommandTarget(...args); }
+  async function executeHostCommandLine(...args) { return getOnlineApiImpl().executeHostCommandLine(...args); }
+  async function submitHostChatOrCommand(...args) { return getOnlineApiImpl().submitHostChatOrCommand(...args); }
+  function updateOnlinePhaseHooks(...args) { return getOnlineApiImpl().updateOnlinePhaseHooks(...args); }
+  function startOnlineBattleAsHost(...args) { return getOnlineApiImpl().startOnlineBattleAsHost(...args); }
+  function getOnlineServerBase(...args) { return getOnlineApiImpl().getOnlineServerBase(...args); }
+  async function onlineApi(...args) { return getOnlineApiImpl().onlineApi(...args); }
+  function onlineSetRole(...args) { return getOnlineApiImpl().onlineSetRole(...args); }
+  async function refreshOnlineRooms(...args) { return getOnlineApiImpl().refreshOnlineRooms(...args); }
+  function onlineDisconnect(...args) { return getOnlineApiImpl().onlineDisconnect(...args); }
+  async function ensureOnlinePeerEntity(...args) { return getOnlineApiImpl().ensureOnlinePeerEntity(...args); }
+  function removeOnlinePeerEntity(...args) { return getOnlineApiImpl().removeOnlinePeerEntity(...args); }
+  async function handleOnlineMessage(...args) { return getOnlineApiImpl().handleOnlineMessage(...args); }
+  async function connectOnlineWs(...args) { return getOnlineApiImpl().connectOnlineWs(...args); }
+  function sendOnline(...args) { return getOnlineApiImpl().sendOnline(...args); }
+  function sendOnlineLocalState(...args) { return getOnlineApiImpl().sendOnlineLocalState(...args); }
+  async function enterOnlineAsHost(...args) { return getOnlineApiImpl().enterOnlineAsHost(...args); }
+  async function enterOnlineAsGuest(...args) { return getOnlineApiImpl().enterOnlineAsGuest(...args); }
+  function canMoveToStageOnline(...args) { return getOnlineApiImpl().canMoveToStageOnline(...args); }
   function refreshStartModeUi() {
     if (!startScreen) return;
-    startScreen.classList.toggle("play-mode", state.start.mode !== "stadium");
+    startScreen.classList.toggle("play-mode", state.start.mode === "play");
     startScreen.classList.toggle("stadium-mode", state.start.mode === "stadium");
+    startScreen.classList.toggle("online-mode", state.start.mode === "online");
+    if (onlineSetup) onlineSetup.hidden = state.start.mode !== "online";
   }
 
   function setStartMode(mode) {
-    state.start.mode = mode === "stadium" ? "stadium" : "play";
+    if (mode === "stadium") state.start.mode = "stadium";
+    else if (mode === "online") state.start.mode = "online";
+    else state.start.mode = "play";
+
     if (modePlayBtn) modePlayBtn.classList.toggle("active", state.start.mode === "play");
     if (modeStadiumBtn) modeStadiumBtn.classList.toggle("active", state.start.mode === "stadium");
+    if (modeOnlineBtn) modeOnlineBtn.classList.toggle("active", state.start.mode === "online");
     if (stadiumSetup) stadiumSetup.hidden = false;
     refreshStartModeUi();
   }
@@ -3496,6 +3684,18 @@ function drawImageCover(img) {
     buildRoster(enemyRoster, "enemy");
     applyKnifeDefaults();
     refreshPreview();
+
+    if (onlineServerUrl) {
+      onlineServerUrl.value = state.start.onlineServer || state.online.serverBase || "";
+      onlineServerUrl.addEventListener("change", () => {
+        state.start.onlineServer = onlineServerUrl.value.trim();
+        state.online.serverBase = state.start.onlineServer;
+      });
+    }
+    if (onlineRoleHostBtn) onlineRoleHostBtn.addEventListener("click", () => onlineSetRole("host"));
+    if (onlineRoleGuestBtn) onlineRoleGuestBtn.addEventListener("click", () => onlineSetRole("guest"));
+    if (onlineRefreshRoomsBtn) onlineRefreshRoomsBtn.addEventListener("click", () => { refreshOnlineRooms(); });
+    onlineSetRole(state.start.onlineRole || "host");
   }
 
   function clearStageObjects() {
@@ -3592,6 +3792,61 @@ function drawImageCover(img) {
     renderEntityPanel();
   }
 
+  async function applyOnlineBattleLoadoutSpawn() {
+    if (!state.player) return;
+
+    const selfName = state.start.selfChar;
+    const knifeName = state.start.knife;
+
+    if (CHARACTER_FILES.has(selfName)) {
+      state.selectedCharacter = selfName;
+      await applyCharacterToPlayer(selfName);
+    }
+    refreshSidebarSelection();
+
+    const p = state.player;
+    const stageIndex = ARENA_STAGE_INDEX;
+    const stage = stageOf(stageIndex);
+    const slot = clamp(Number(state.online.slot) || 1, 1, 4);
+
+    if (p.carryingItemId) {
+      const held = getCarriedItem(p);
+      if (held) {
+        await deleteEntityById(held.id);
+      }
+      p.carryingItemId = null;
+    }
+
+    p.stageIndex = stageIndex;
+    p.vx = 0;
+    p.vy = 0;
+    p.rot = 0;
+    p.wrot = 0;
+    p.grounded = false;
+    setCharacterHp(p, 0);
+
+    const ratio = 0.16 + (slot - 1) * 0.22;
+    const spawnX = stage.x + stage.width * clamp(ratio, 0.12, 0.88);
+    placeEntitySafely(p, spawnX);
+
+    if (ITEM_FILES.has(knifeName)) {
+      const bucket = bucketOf(stageIndex);
+      const knife = await createEntity("item", stageIndex, knifeName, ITEM_FILES.get(knifeName), ITEM_BASE, ITEM_BASE_H);
+      placeEntitySafely(knife, p.x);
+      bucket.items.push(knife);
+      p.carryingItemId = knife.id;
+      knife.carriedById = p.id;
+      syncCarriedItemTransform(p, knife);
+    }
+
+    state.currentStageIndex = stageIndex;
+    updateCamera();
+    updateStageNav();
+    syncStageSelector();
+    syncEntityPanelToPngEdge();
+    state.ui.panelDirty = true;
+    renderEntityPanel();
+  }
   async function beginFromStartScreen() {
     if (state.start.started) return;
     if (selfCharSelect) state.start.selfChar = selfCharSelect.value || state.start.selfChar;
@@ -3599,8 +3854,60 @@ function drawImageCover(img) {
     if (stadiumKnifeSelect) state.start.knife = stadiumKnifeSelect.value || state.start.knife;
     if (stadiumKnife2Select) state.start.knife2 = stadiumKnife2Select.value || state.start.knife2;
 
-    await applyStartModeSpawn();
+    if (state.start.mode === "online") {
+      onlineDisconnect();
+      if (state.start.onlineRole === "guest") await enterOnlineAsGuest();
+      else await enterOnlineAsHost();
 
+      const prevMode = state.start.mode;
+      state.start.mode = "play";
+      await applyStartModeSpawn();
+      state.start.mode = prevMode;
+
+      if (state.player) {
+        state.player.isOnlinePlayer = true;
+        state.player.onlineToken = state.online.sessionToken;
+        state.player.onlineSlot = state.online.slot || 1;
+      }
+    } else {
+      const isOnlineBattleLoadout = state.online.active && state.online.awaitingBattleLoadout && state.start.mode === "stadium";
+      if (isOnlineBattleLoadout) await applyOnlineBattleLoadoutSpawn();
+      else await applyStartModeSpawn();
+
+      if (state.online.active) {
+        if (state.player) {
+          state.player.isOnlinePlayer = true;
+          state.player.onlineToken = state.online.sessionToken;
+          state.player.onlineSlot = state.online.slot || 1;
+        }
+
+        if (state.online.awaitingBattleLoadout && state.start.mode === "stadium") {
+          try {
+            await onlineApi("/api/room/update-loadout", "POST", {
+              room_code: state.online.roomCode,
+              session_token: state.online.sessionToken,
+              character: state.start.selfChar,
+              knife: state.start.knife
+            });
+          } catch (_e) {
+            // ws側で進行は継続
+          }
+          state.online.awaitingBattleLoadout = false;
+          state.online.phase = "battle";
+          sendOnline("accept_battle", {});
+          if (state.player) {
+            setCharacterHp(state.player, 0);
+          }
+          pushSpeechLog("[NET] バトル部屋へ観戦状態で参加しました。");
+        }
+      } else if (state.player) {
+        state.player.isOnlinePlayer = false;
+        state.player.onlineToken = "";
+        state.player.onlineSlot = 0;
+      }
+    }
+
+    updateHostToolsUi();
     state.start.started = true;
     state.ready = true;
     state.lastTime = performance.now();
@@ -3610,6 +3917,7 @@ function drawImageCover(img) {
       requestAnimationFrame(tick);
     }
   }
+
   function returnToStartScreen() {
     if (state.player) {
       state.start.selfChar = state.player.name || state.start.selfChar;
@@ -3629,6 +3937,7 @@ function drawImageCover(img) {
     state.start.started = false;
     state.start.battleStartAt = 0;
     state.ready = false;
+    onlineDisconnect();
     closeMobileSidebars();
     if (startScreen) startScreen.classList.remove("hidden");
   }
@@ -3940,6 +4249,7 @@ function drawImageCover(img) {
 
   function renderEntityPanel() {
     if (!entityPanel || !entityList) return;
+    updateHostToolsUi();
 
     const list = getEntitiesInStage(state.currentStageIndex)
       .slice()
@@ -3973,7 +4283,11 @@ function drawImageCover(img) {
 
       const name = document.createElement("div");
       name.className = "entity-name";
-      name.textContent = ent.name;
+      if (state.online.active && ent.isOnlinePlayer && Number.isFinite(ent.onlineSlot) && ent.onlineSlot > 0) {
+        name.textContent = `${ent.onlineSlot}P: ${ent.name}`;
+      } else {
+        name.textContent = ent.name;
+      }
       row.appendChild(name);
 
       const badge = document.createElement("span");
@@ -4006,9 +4320,10 @@ function drawImageCover(img) {
 
       const actions = document.createElement("div");
       actions.className = "entity-actions";
-      const lockEntityOps = state.start.mode === "stadium";
+      const lockEntityOps = state.start.mode === "stadium" || (state.online.active && !state.online.isHost);
+      const isRemoteOnline = state.online.active && ent.isOnlinePlayer && ent.onlineToken && ent.onlineToken !== state.online.sessionToken;
 
-      if (ent.kind !== "item" && !lockEntityOps) {
+      if (ent.kind !== "item" && !lockEntityOps && !isRemoteOnline) {
         const setPlayerBtn = document.createElement("button");
         setPlayerBtn.className = "op";
         setPlayerBtn.type = "button";
@@ -4028,7 +4343,7 @@ function drawImageCover(img) {
         }
       }
 
-      if (!lockEntityOps) {
+      if (!lockEntityOps && !isRemoteOnline) {
         const del = document.createElement("button");
         del.className = "op del";
         del.type = "button";
@@ -4147,6 +4462,10 @@ function drawImageCover(img) {
     if (!state.player) return;
     if (!Number.isFinite(targetIndex)) return;
     const nextIndex = Math.max(0, Math.min(state.stages.length - 1, targetIndex));
+    if (!canMoveToStageOnline(nextIndex)) {
+      syncStageSelector();
+      return;
+    }
 
     const p = state.player;
     const oldIndex = p.stageIndex;
@@ -4266,6 +4585,7 @@ function drawImageCover(img) {
     const world = worldFromOffset(e.offsetX, e.offsetY);
     const ent = pickEntityAt(world.x, world.y);
     if (!ent) return;
+    if (ent.remoteControlled) return;
     markItemUserTouched(ent, performance.now());
 
     const d = state.drag;
@@ -4784,6 +5104,8 @@ function drawImageCover(img) {
       tryContactConversation(now);
       updateDialogueQueue(now);
       runAutoBehavior(now);
+      updateOnlinePhaseHooks();
+      sendOnlineLocalState(now);
       updateLongPress(now);
       drawWorld();
       drawEntities(now);
@@ -4839,8 +5161,6 @@ function drawImageCover(img) {
 
     setupStartSelectors();
     setStartMode("play");
-    if (modePlayBtn) modePlayBtn.addEventListener("click", () => setStartMode("play"));
-    if (modeStadiumBtn) modeStadiumBtn.addEventListener("click", () => setStartMode("stadium"));
 
     const startFromTop = () => {
       beginFromStartScreen().catch((err) => {
@@ -4849,8 +5169,18 @@ function drawImageCover(img) {
       });
     };
 
+    if (modePlayBtn) modePlayBtn.addEventListener("click", () => setStartMode("play"));
+    if (modeStadiumBtn) modeStadiumBtn.addEventListener("click", () => setStartMode("stadium"));
+    if (modeOnlineBtn) modeOnlineBtn.addEventListener("click", () => {
+      setStartMode("online");
+      refreshOnlineRooms();
+    });
+    if (onlineHostOpenBtn) onlineHostOpenBtn.addEventListener("click", startFromTop);
+    if (onlineGuestJoinBtn) onlineGuestJoinBtn.addEventListener("click", startFromTop);
     if (startGameBtn) startGameBtn.addEventListener("click", startFromTop);
     if (startGameBtnMobile) startGameBtnMobile.addEventListener("click", startFromTop);
+
+    updateHostToolsUi();
   }
 
   window.addEventListener("resize", () => {
@@ -4864,6 +5194,7 @@ function drawImageCover(img) {
   });
   canvas.addEventListener("pointerdown", startDrag);
   canvas.addEventListener("pointermove", moveDrag);
+  canvas.addEventListener("pointermove", (e) => updateHostCoordsFromClient(e.clientX, e.clientY));
   canvas.addEventListener("pointerup", finishDrag);
   canvas.addEventListener("pointercancel", cancelDrag);
   canvas.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -4903,12 +5234,92 @@ function drawImageCover(img) {
   canvas.addEventListener("pointerdown", () => closeMobileSidebars());
   if (combatHelpBtn) combatHelpBtn.addEventListener("click", () => setCombatHelpOpen(combatHelpBox ? combatHelpBox.hidden : true));
   if (combatHelpClose) combatHelpClose.addEventListener("click", () => setCombatHelpOpen(false));
+  if (hostShowCoordsToggle) hostShowCoordsToggle.addEventListener("change", () => {
+    state.ui.hostUi.showCoords = !!hostShowCoordsToggle.checked;
+    updateHostToolsUi();
+  });
+  if (hostShowCommandToggle) hostShowCommandToggle.addEventListener("change", () => {
+    state.ui.hostUi.showCommand = !!hostShowCommandToggle.checked;
+    updateHostToolsUi();
+  });
+  if (hostCommandSendBtn) hostCommandSendBtn.addEventListener("click", () => {
+    submitHostChatOrCommand();
+  });
+  if (hostBattleStartBtn) hostBattleStartBtn.addEventListener("click", () => {
+    startOnlineBattleAsHost();
+  });
+  if (hostCommandInput) hostCommandInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitHostChatOrCommand();
+    }
+  });
 
   init().catch((err) => {
     console.error(err);
     hud.textContent = `初期化エラー: ${err.message}`;
   });
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
