@@ -1,0 +1,115 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اخر / Axar - Game</title>
+  <link rel="stylesheet" href="./game.css">
+</head>
+<body>
+  <div class="bg-layer"></div>
+
+  <main class="game-screen" id="gameScreen">
+    <header class="game-header">
+      <h1>اخر / Axar</h1>
+      <p>Basic Battle Screen</p>
+      <button class="mobile-info-toggle" id="mobileInfoToggle" type="button" aria-controls="sidePanel" aria-expanded="false">情報を展開</button>
+    </header>
+
+    <section class="board-layout">
+      <div class="table-stage" id="tableStage">
+        <img class="table-backdrop" src="./images/背景.png" alt="">
+        <img class="table-image" src="./images/テーブル.png" alt="テーブル">
+
+        <div class="character-layer" id="characterLayer" aria-hidden="true"></div>
+        <div class="count-layer" id="countLayer" aria-hidden="true"></div>
+
+        <div class="piles-area">
+          <button id="drawPile" class="pile draw-pile" type="button" aria-label="山札から1枚引く">
+            <span class="pile-label">山札</span>
+            <span class="pile-count" id="drawCount">0</span>
+          </button>
+
+          <div id="discardPile" class="pile discard-pile" aria-label="捨て札">
+            <img id="discardImage" src="" alt="捨て札">
+            <span class="pile-label">捨て札</span>
+          </div>
+        </div>
+
+        <div class="cutin-wrap" id="cutinWrap" aria-hidden="true">
+          <img id="cutinImage" src="" alt="Axar カットイン">
+          <div class="cutin-text">AXAR!!</div>
+        </div>
+
+        <div class="kybi-wrap" id="kybiWrap" aria-hidden="true">
+          <div class="kybi-coin" id="kybiCoin">Q</div>
+          <div class="kybi-result" id="kybiResult">コイントス</div>
+        </div>
+
+        <div class="skill-fx-wrap" id="skillFxWrap" aria-hidden="true">
+          <div class="skill-fx-title" id="skillFxTitle">SKILL</div>
+          <div class="skill-fx-sub" id="skillFxSub">---</div>
+        </div>
+
+        <div class="speech-box" id="speechBox">
+          <div class="speech-name" id="speechName">System</div>
+          <div class="speech-line" id="speechLine">ゲーム準備中...</div>
+        </div>
+      </div>
+
+      <section class="hand-panel">
+        <h2>あなたの手札</h2>
+        <div class="hand-cards" id="handCards"></div>
+      </section>
+
+      <aside class="side-panel" id="sidePanel">
+        <div class="side-panel-head">
+          <h2>ゲーム情報</h2>
+          <button class="mobile-sidebar-close" id="mobileSidebarClose" type="button" aria-label="ゲーム情報を格納">格納</button>
+        </div>
+        <div class="turn-info" id="turnInfo">--</div>
+        <div class="color-info" id="colorInfo">有効色: --</div>
+        <div class="attack-info" id="attackInfo">攻撃: なし</div>
+        <div class="chat-box" id="chatBox" aria-live="polite">
+          <div class="chat-scene" id="chatScene">会話</div>
+          <div class="chat-speaker" id="chatSpeaker">System</div>
+          <div class="chat-text" id="chatText">chat.json を読み込み中...</div>
+          <div class="chat-log" id="chatLog"></div>
+        </div>
+        <div class="rule-chips" id="ruleChips"></div>
+
+        <div class="actions">
+          <button id="drawAction" type="button">山札から引く</button>
+          <button id="backTop" type="button" class="sub">トップへ戻る</button>
+        </div>
+
+      </aside>
+
+      <div class="color-picker hidden" id="colorPicker" aria-label="色選択">
+        <p>色を選択してください</p>
+        <div class="color-buttons">
+          <button data-color="red" type="button">赤</button>
+          <button data-color="green" type="button">緑</button>
+          <button data-color="blue" type="button">青</button>
+          <button data-color="yellow" type="button">黄</button>
+        </div>
+      </div>
+
+      <div class="mobile-sidebar-backdrop" id="mobileSidebarBackdrop" aria-hidden="true"></div>
+    </section>
+
+    <section class="result-overlay hidden" id="resultOverlay" aria-live="polite">
+      <div class="result-panel">
+        <button class="result-close" id="resultClose" type="button" aria-label="リザルトを閉じる">×</button>
+        <h2 id="resultTitle">リザルト</h2>
+        <div class="result-list" id="resultList"></div>
+        <div class="result-actions">
+          <button id="resultBackTop" type="button">トップへ戻る</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>

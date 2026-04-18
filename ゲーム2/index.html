@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اخر / Axar - Top</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="bg-layer"></div>
+
+  <main class="top-screen">
+    <header class="title-wrap">
+      <p class="subtitle">Card Battle Lobby</p>
+      <h1 class="title">اخر / Axar</h1>
+    </header>
+
+    <section class="lobby-card" aria-label="トップ設定画面">
+      <div class="table-stage" id="tableStage" role="radiogroup" aria-label="テーブル上のキャラクター選択">
+        <img class="table-image" src="./images/テーブル.png" alt="テーブル（色ベタ塗り）">
+
+        <div class="character-composite" aria-hidden="true">
+          <img class="char-overlay selected" data-character="サテラ" src="./images/サテラ/サテラ_通常.png" alt="">
+          <img class="char-overlay" data-character="アカウ" src="./images/アカウ/アカウ_通常.png" alt="">
+          <img class="char-overlay" data-character="コト" src="./images/コト/コト_通常.png" alt="">
+          <img class="char-overlay" data-character="アーシャ" src="./images/アーシャ/アーシャ_通常.png" alt="">
+          <img class="char-overlay" data-character="アルカ" src="./images/アルカ/アルカ_通常.png" alt="">
+          <img class="char-overlay" data-character="チサ" src="./images/チサ/チサ_通常.png" alt="">
+        </div>
+      </div>
+
+      <section class="settings-panel" aria-label="ルール設定">
+        <h2>ルール設定</h2>
+
+        <div class="character-selector" role="radiogroup" aria-label="キャラクター選択">
+          <button class="char-choice selected" data-character="サテラ" role="radio" aria-checked="true" type="button">
+            <img src="./images/アイコン/サテラ.png" alt="サテラ"><span>サテラ</span>
+          </button>
+          <button class="char-choice" data-character="アカウ" role="radio" aria-checked="false" type="button">
+            <img src="./images/アイコン/アカウ.png" alt="アカウ"><span>アカウ</span>
+          </button>
+          <button class="char-choice" data-character="コト" role="radio" aria-checked="false" type="button">
+            <img src="./images/アイコン/コト.png" alt="コト"><span>コト</span>
+          </button>
+          <button class="char-choice" data-character="アーシャ" role="radio" aria-checked="false" type="button">
+            <img src="./images/アイコン/アーシャ.png" alt="アーシャ"><span>アーシャ</span>
+          </button>
+          <button class="char-choice" data-character="アルカ" role="radio" aria-checked="false" type="button">
+            <img src="./images/アイコン/アルカ.png" alt="アルカ"><span>アルカ</span>
+          </button>
+          <button class="char-choice" data-character="チサ" role="radio" aria-checked="false" type="button">
+            <img src="./images/アイコン/チサ.png" alt="チサ"><span>チサ</span>
+          </button>
+        </div>
+
+        <label class="toggle-item">
+          <input type="checkbox" id="knifeCard" checked>
+          <span>ナイフカードを有効にする</span>
+        </label>
+
+        <label class="toggle-item">
+          <input type="checkbox" id="kybiCard" checked>
+          <span>キュビカードを有効にする</span>
+        </label>
+
+        <label class="toggle-item">
+          <input type="checkbox" id="monCard" checked>
+          <span>モンカードを有効にする</span>
+        </label>
+
+        <label class="toggle-item">
+          <input type="checkbox" id="skillEnabled" checked>
+          <span>スキルを有効にする</span>
+        </label>
+
+        <div class="status-line" id="statusLine">選択中: サテラ / 特殊カードON / スキルON</div>
+        <button id="startButton" class="start-button" type="button">ゲーム開始（次画面へ）</button>
+      </section>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
