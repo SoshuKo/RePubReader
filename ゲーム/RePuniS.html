@@ -17,6 +17,7 @@
       <div class="mode-tabs" role="tablist" aria-label="モード選択">
         <button id="modePlayBtn" class="mode-tab active" type="button" data-mode="play">プレイモード</button>
         <button id="modeStadiumBtn" class="mode-tab" type="button" data-mode="stadium">スタジアムモード</button>
+        <button id="modeOnlineBtn" class="mode-tab" type="button" data-mode="online">オンライン対戦</button>
       </div>
 
       <div id="stadiumSetup" class="stadium-setup fg-versus-board">
@@ -50,6 +51,49 @@
         </div>
       </div>
 
+
+      <section id="onlineSetup" class="online-setup" hidden>
+        <div class="online-head">
+          <label>サーバーURL
+            <input id="onlineServerUrl" type="text" placeholder="https://example.com" value="" />
+          </label>
+          <button id="onlineRefreshRoomsBtn" type="button" class="online-btn">ルーム更新</button>
+        </div>
+
+        <div class="online-role-tabs" role="tablist" aria-label="オンライン役割">
+          <button id="onlineRoleHostBtn" class="mode-tab active" type="button">ホスト</button>
+          <button id="onlineRoleGuestBtn" class="mode-tab" type="button">ゲスト</button>
+        </div>
+
+        <div id="onlineHostForm" class="online-form">
+          <label>ホスト管理パスワード
+            <input id="onlineHostAdminPassword" type="password" placeholder="VPS側設定パスワード" />
+          </label>
+          <label>ユーザー名
+            <input id="onlineHostUsername" type="text" maxlength="24" placeholder="Host" />
+          </label>
+          <label>ルームパスワード(4桁)
+            <input id="onlineRoomPasswordHost" type="password" inputmode="numeric" maxlength="4" placeholder="1234" />
+          </label>
+          <button id="onlineHostOpenBtn" type="button" class="start-game-btn">ホストでルーム作成</button>
+        </div>
+
+        <div id="onlineGuestForm" class="online-form" hidden>
+          <div class="online-roomlist-wrap">
+            <div class="panel-title">公開ルーム</div>
+            <select id="onlineRoomSelect"></select>
+          </div>
+          <label>ユーザー名
+            <input id="onlineGuestUsername" type="text" maxlength="24" placeholder="Guest" />
+          </label>
+          <label>ルームパスワード(4桁)
+            <input id="onlineRoomPasswordGuest" type="password" inputmode="numeric" maxlength="4" placeholder="1234" />
+          </label>
+          <button id="onlineGuestJoinBtn" type="button" class="start-game-btn">ゲストで参加</button>
+        </div>
+
+        <div id="onlineRoomInfo" class="online-room-info"></div>
+      </section>
       <div class="start-mobile-start-wrap">
         <button id="startGameBtnMobile" class="start-game-btn" type="button">ゲームスタート</button>
       </div>
@@ -127,11 +171,47 @@
         <div class="panel-title">セリフログ</div>
         <div id="speechLogDesktop" class="speech-log"></div>
       </div>
+
+      <section id="hostToolsSection" class="desktop-only host-tools" hidden>
+        <div class="panel-title">ホストツール</div>
+        <label class="host-tool-toggle"><input id="hostShowCoordsToggle" type="checkbox" checked> 座標表示</label>
+        <label class="host-tool-toggle"><input id="hostShowCommandToggle" type="checkbox" checked> チャット/コマンド</label>
+        <div id="hostCoordsBox" class="host-coords">x: -, y: -</div>
+        <div class="panel-title">招待受諾状況</div>
+        <div id="hostReadyList" class="host-ready-list"></div>
+        <button id="hostBattleStartBtn" type="button" class="online-btn">バトルを開始</button>
+        <details id="hostCommandGuide" class="host-command-guide" open>
+          <summary>コマンド構文</summary>
+          <div>/tp target stage x y</div>
+          <div>/heal target amount</div>
+          <div>/spawn entityName stage x y</div>
+          <div>/kill target</div>
+        </details>
+        <div id="hostCommandBox" class="host-command-box">
+          <input id="hostCommandInput" type="text" placeholder="/tp アカウ 1 500 300" />
+          <button id="hostCommandSendBtn" type="button" class="online-btn">送信</button>
+        </div>
+      </section>
     </aside>
   </div>
 
   <script src="./RePuniS_config.js"></script>
+  <script src="./RePuniS_data.js"></script>
+  <script src="./RePuniS_online.js"></script>
   <script src="./RePuniS.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 

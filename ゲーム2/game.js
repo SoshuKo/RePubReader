@@ -286,17 +286,24 @@ async function buildCardArts() {
 
 function buildPlayers() {
   const selected = state.settings.character;
-  const orderedNames = [selected, ...CHARACTERS.map((c) => c.name).filter((name) => name !== selected)];
+  const orderedNames = CHARACTERS.map((c) => c.name);
 
-  state.players = orderedNames.map((name, index) => ({
+  state.players = orderedNames.map((name) => ({
     name,
-    isHuman: index === 0,
+    isHuman: name === selected,
     hand: [],
   }));
+
+  const selectedIndex = state.players.findIndex((player) => player.name === selected);
+  state.currentIndex = selectedIndex >= 0 ? selectedIndex : 0;
 }
 
 function getPlayerByName(name) {
   return state.players.find((player) => player.name === name) || null;
+}
+
+function getHumanPlayer() {
+  return state.players.find((player) => player.isHuman) || null;
 }
 
 function formatSceneLabel(scene) {
@@ -1737,6 +1744,7 @@ function renderCharacterLayer() {
   }
 
   const current = state.players[state.currentIndex];
+  const human = getHumanPlayer();
   const rankMap = getRankByPlayerName();
   for (const char of CHARACTERS) {
     const node = characterLayer.querySelector(`[data-character="${char.name}"]`);
@@ -1760,7 +1768,7 @@ function renderCharacterLayer() {
     }
 
     node.classList.toggle("current-turn", current && current.name === char.name);
-    node.classList.toggle("user-char", state.players[0] && state.players[0].name === char.name);
+    node.classList.toggle("user-char", human && human.name === char.name);
   }
 }
 
@@ -1807,8 +1815,10 @@ function renderInfo() {
 }
 
 function renderHand() {
-  const human = state.players[0];
+  const human = getHumanPlayer();
   handCards.innerHTML = "";
+
+  if (!human) return;
 
   for (const card of human.hand) {
     const button = document.createElement("button");
@@ -1934,7 +1944,8 @@ function closeColorPicker() {
 async function onHumanPlayCard(cardId) {
   if (!state.waitingHuman || state.gameOver) return;
 
-  const human = state.players[0];
+  const human = getHumanPlayer();
+  if (!human) return;
   const card = human.hand.find((item) => item.id === cardId);
   if (!card) return;
 
@@ -1970,7 +1981,8 @@ async function onHumanPlayCard(cardId) {
 
 async function onHumanDraw() {
   if (!state.waitingHuman || state.gameOver) return;
-  const human = state.players[0];
+  const human = getHumanPlayer();
+  if (!human) return;
 
   if (state.pendingAttack.amount > 0) {
     await resolveAttackDraw(human);
@@ -2072,7 +2084,11 @@ function bindEvents() {
     const button = event.target.closest("button[data-color]");
     if (!button || !state.pendingWildCardId) return;
 
-    const human = state.players[0];
+    const human = getHumanPlayer();
+    if (!human) {
+      closeColorPicker();
+      return;
+    }
     const card = human.hand.find((item) => item.id === state.pendingWildCardId);
     if (!card) {
       closeColorPicker();
