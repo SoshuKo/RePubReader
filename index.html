@@ -865,7 +865,6 @@
         <a id="navGloss" href="./glossary.html">用語辞典</a>
         <a id="navCorrelation" href="./correlation.html">相関図</a>
         <a id="navAudio" href="./audiocommentary.html">オーディオコメンタリ</a>
-        <a id="navDiary" href="./diary.html">執筆録</a>
       </nav>      <div class="site-groups" aria-label="派生サイト">
         <details>
           <summary><img class="site-icon" src="./assets/images/地理アイコン.png" alt="地理" />地理</summary>
@@ -924,7 +923,7 @@
           <p>架空の国家「カラベイ教導国」と「ハーロピノン共和国」などを舞台に、世代と国境を超えて紡がれる壮大な群像劇。
 理想の国家を追い求め、剣（デューレイ）と血で歴史を切り拓いた為政者たち。その歪な「幸せ」の定義に抗い、あるいは翻弄されながらも、自分たちの未来と日常を掴み取ろうとする若者たち。
 「選択」という名の痛みを伴う決断と、「話し合い」という名の対話による調和。相克する二つの理念を軸に、政治、宗教、マフィア、学生運動など、あらゆる陰謀と想いが交錯する、一大ヒストリカル・エンターテインメント。</p>
-          <p style="margin-top:10px;">クイックリンク: <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./correlation.html">相関図</a> / <a href="./diary.html">執筆録</a> / <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a> / <a href="./言語/fullgrammar.html">カラバル語 文法総覧</a> / <a href="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a></p>
+          <p style="margin-top:10px;">クイックリンク: <a href="./characters.html">登場人物辞典</a> / <a href="./glossary.html">用語辞典</a> / <a href="./correlation.html">相関図</a> / <a href="./言語/karabar-overview.html">カラバル語概要・文法解説</a> / <a href="./言語/fullgrammar.html">カラバル語 文法総覧</a> / <a href="./地理/realtimemap.html">カラベイ 鉄道リアルタイムマップ</a></p>
 
         </article>
 
@@ -1070,7 +1069,6 @@
     const navGloss = document.getElementById("navGloss");
     const navCorrelation = document.getElementById("navCorrelation");
     const navAudio = document.getElementById("navAudio");
-    const navDiary = document.getElementById("navDiary");
     const sidebarEl = document.getElementById("sidebar");
     const sidebarToggle = document.getElementById("sidebarToggle");
     const sidebarContentEl = document.getElementById("sidebarContent");
@@ -1472,11 +1470,6 @@
         navAudio.textContent = currentLang === "en" ? "Audio Commentary" : (currentLang === "zh" ? "音訊評註" : "オーディオコメンタリ");
         navAudio.href = "audiocommentary.html";
       }
-      if (navDiary) {
-        navDiary.textContent = currentLang === "en" ? "Writing Log" : (currentLang === "zh" ? "寫作日誌" : "執筆録");
-        navDiary.href = "diary.html";
-      }
-
       if (currentLang === "zh") applyZhScript(zhScriptMode);
 
       const activeDic = (currentLang === "en" && state.dicEn) ? state.dicEn : state.dicJa;

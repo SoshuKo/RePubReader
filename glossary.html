@@ -145,7 +145,6 @@
       <a href="characters.html">登場人物辞典</a>
       <a href="glossary.html">用語辞典</a>
       <a href="audiocommentary.html">オーディオコメンタリ</a>
-      <a href="diary.html">執筆録</a>
     
       <a href="./地理/geo.html">世界設定</a>
       <a href="./観光/visit.html">外務省観光局</a>
@@ -200,7 +199,6 @@
       navChars: "Character Dictionary",
       navGloss: "Glossary",
       navAudio: "Audio Commentary",
-      navDiary: "Writing Log",
       navWorld: "World",
       navTour: "Tourism",
       search: "Search by term / body / users",
@@ -224,7 +222,6 @@
       navChars: "登場人物辞典",
       navGloss: "用語辞典",
       navAudio: "オーディオコメンタリ",
-      navDiary: "執筆録",
       navWorld: "世界設定",
       navTour: "外務省観光局",
       search: "名称・本文・使用者・コメントで検索",
@@ -246,7 +243,7 @@
     document.title = ui.title;
     const h1 = document.querySelector("header h1"); if (h1) h1.textContent = ui.h1;
     const navLinks = document.querySelectorAll("header nav a");
-    if (navLinks.length >= 7) {
+    if (navLinks.length >= 6) {
       navLinks[0].textContent = ui.navMain;
       navLinks[0].href = pageLang === "en" ? "./index.html?lang=en" : "./index.html";
       navLinks[1].textContent = ui.navChars;
@@ -254,9 +251,8 @@
       navLinks[2].textContent = ui.navGloss;
       navLinks[2].href = pageLang === "en" ? "glossary.html?lang=en" : "glossary.html";
       navLinks[3].textContent = ui.navAudio;
-      navLinks[4].textContent = ui.navDiary;
-      navLinks[5].textContent = ui.navWorld;
-      navLinks[6].textContent = ui.navTour;
+      navLinks[4].textContent = ui.navWorld;
+      navLinks[5].textContent = ui.navTour;
     }
     if (qEl) qEl.placeholder = ui.search;
     const langLinkJa = document.getElementById("langLinkJa");
@@ -636,8 +632,6 @@
 
 </body>
 </html>
-
-
 
 
 
