@@ -155,7 +155,6 @@
       <a href="./地理/geo.html">世界設定</a>
       <a href="./観光/visit.html">外務省観光局</a>
     </nav>
-    <div class="lang-switch"><a id="langLinkJa" href="./characters.html">日本語</a><a id="langLinkEn" href="./characters.html?lang=en">English</a></div>
     <div class="tools">
       <input id="q" type="search" placeholder="名前・肩書き・本文で検索" />
       <select id="sort">
@@ -185,7 +184,7 @@
       ["タゲン-アガケイ", "タゲン・アガケイ"],
       ["パジェン-■", "パジェン・■"]
     ]);
-    const pageLang = (new URLSearchParams(location.search).get("lang") === "en") ? "en" : "ja";
+    const pageLang = "ja";
     document.documentElement.setAttribute("lang", pageLang);
     const ui = pageLang === "en" ? {
       title: "Republica Saga Character Dictionary",
@@ -540,23 +539,7 @@
     window.addEventListener('hashchange', () => setTimeout(jumpToHash, 0));
     boot();
   </script>
-<script id="autoLangEnPatch">
-(function(){
-  const p = new URLSearchParams(location.search);
-  if (p.get("lang") !== "en") return;
-  document.querySelectorAll('a[href]').forEach(a => {
-    if (a.closest('.lang-switch') || a.closest('.lang-buttons') || (a.id && (/^langLink/i.test(a.id) || /^lang-/i.test(a.id)))) return;
-    const h = a.getAttribute("href");
-    if (!h || h.startsWith("#") || h.startsWith("http://") || h.startsWith("https://") || h.startsWith("mailto:") || h.startsWith("tel:")) return;
-    if (h.includes("lang=")) return;
-    const i = h.indexOf("#");
-    const base = i >= 0 ? h.slice(0, i) : h;
-    const hash = i >= 0 ? h.slice(i) : "";
-    const sep = base.includes("?") ? "&" : "?";
-    a.setAttribute("href", base + sep + "lang=en" + hash);
-  });
-})();
-</script>
+
 </body>
 </html>
 
